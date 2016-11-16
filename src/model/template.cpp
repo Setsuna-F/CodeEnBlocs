@@ -1,6 +1,7 @@
 #include "template.hpp"
 
-Template::Template(){
+
+Template::Template() {
 
 }
 	

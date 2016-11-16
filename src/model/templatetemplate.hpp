@@ -4,7 +4,7 @@
 #include<iostream>
 #include "template.hpp"
 
-class TemplateTemplate : public Template{
+class TemplateTemplate : public Template {
 
 	public:
 		TemplateTemplate();

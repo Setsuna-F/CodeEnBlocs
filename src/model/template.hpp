@@ -11,6 +11,7 @@ class Template {
 	protected:
 		
 	private:
+		std::vector<vector<int> > iLoveVectors;
 
 };
 

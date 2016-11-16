@@ -6,15 +6,15 @@
 
 namespace satap{
 
-	class Template {
+	class TemplateModel {
 
 		public:
-			Template();
+			TemplateModel();
 		
 		protected:
 		
 		private:
-			std::vector<std::vector<int> > iLoveVectors;
+			std::vector<std::vector<int> > _iLoveVectors;
 
 	};
 

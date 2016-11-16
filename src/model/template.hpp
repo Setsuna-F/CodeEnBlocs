@@ -2,17 +2,22 @@
 #define TEMPLATE_HPP
 
 #include<iostream>
+#include<vector>
 
-class Template {
+namespace satap{
 
-	public:
-		Template();
+	class Template {
+
+		public:
+			Template();
 		
-	protected:
+		protected:
 		
-	private:
-		std::vector<vector<int> > iLoveVectors;
+		private:
+			std::vector<std::vector<int> > iLoveVectors;
 
-};
+	};
+
+}
 
 #endif

@@ -4,6 +4,8 @@
 #include<iostream>
 #include "template.hpp"
 
+namespace satap{
+
 class TemplateTemplate : public Template {
 
 	public:
@@ -21,5 +23,6 @@ class TemplateTemplate : public Template {
 		int _fooBar;
 
 };
+}
 
 #endif

@@ -1,5 +1,8 @@
-#Linux System
+#Linux
 *~
+
+#macOS
+*.DS_Store
 
 # Prerequisites
 *.d

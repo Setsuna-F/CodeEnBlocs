@@ -1,4 +1,6 @@
-#include<iostream>
+#include <iostream>
+
+#include "templatetemplatemodel.hpp"
 
 int main(int argc, char**argv){
 
@@ -6,6 +8,12 @@ int main(int argc, char**argv){
 	  	std::cout << "Windows" << std::endl;
 	#elif __APPLE__
 		std::cout << "Apple" << std::endl;
+	
+	
+		satap::TemplateTemplateModel ttm; // declaration d'un templatetemplagtemodel
+		ttm.getFoo();
+	
+	
 	#elif __linux__
 		std::cout << "Linux" << std::endl;
 	#else

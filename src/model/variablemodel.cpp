@@ -30,3 +30,7 @@ void VariableModel::setValue(std::string n){
 std::string VariableModel::getValue(){
 	return _value;
 }
+
+std::string VariableModel::execute(){
+	return _value;
+}

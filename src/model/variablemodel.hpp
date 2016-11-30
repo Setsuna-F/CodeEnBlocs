@@ -11,10 +11,11 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "blockcompositemodel.hpp"
 
 namespace satap{
 
-	class VariableModel{
+	class VariableModel : public BlockCompositeModel{
 	private:
 		std::string _name;
 		std::string _value;
@@ -26,6 +27,8 @@ namespace satap{
 	
 		void setValue(std::string n);
 		std::string getValue();
+		
+		std::string execute();
 	};
 
 }

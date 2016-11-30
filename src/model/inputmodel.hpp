@@ -18,7 +18,7 @@ namespace satap{
 			std::string execute();
 			
 		private:
-			InputListModel _inputList;
+			InputListModel _inputList; //TODO not inputlist but Game : then, game.getInputList().pop();
 	
 	};
 

@@ -9,7 +9,7 @@
 #ifndef outputmodel_hpp
 #define outputmodel_hpp
 
-#include <stdio.h>
+#include <string>
 #include <vector>
 
 namespace satap{

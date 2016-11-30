@@ -10,7 +10,7 @@
 
 using namespace satap;
 
-VariableModel::VariableModel(std::string name="", std::string value=""){
+VariableModel::VariableModel(std::string name, std::string value){
 	_name = name;
 	_value = value;
 }

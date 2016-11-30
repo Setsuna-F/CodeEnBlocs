@@ -6,11 +6,11 @@
 //  Copyright © 2016 sofien benharchache. All rights reserved.
 //
 
-#ifndef variablemode_hpp
+#ifndef variablemodel_hpp
 #define variablemodel_hpp
 
-#include <stdio.h>
 #include <iostream>
+#include <string>
 #include "blockcompositemodel.hpp"
 
 namespace satap{

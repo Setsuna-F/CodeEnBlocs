@@ -11,9 +11,9 @@
 
 using namespace satap;
 
-OutputModel::OutputModel(){_output();}
+OutputModel::OutputModel(){}
 
-OutputModel::OutputModel(std::vector<std::string> out){_output(out);}
+OutputModel::OutputModel(std::vector<std::string> out){_output = out;}
 
 void OutputModel::push(std::string val){_output.push_back(val);}
 

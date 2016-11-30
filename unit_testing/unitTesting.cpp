@@ -11,8 +11,8 @@
 
 #include "unitTesting.hpp"
 
-#include "../src/model/inputmodel.hpp"
-#include "../src/model/outputmodel.hpp"
+#include "../src/model/inputlistmodel.hpp"
+#include "../src/model/outputlistmodel.hpp"
 #include "../src/model/variablelistmodel.hpp"
 
 
@@ -23,11 +23,11 @@ void globalTests(){
 	std::cout<<"///unit testing begin///"<<std::endl;
 	std::cout<<"////////////////////////"<<std::endl;
 	
-	std::cout<<"   | INPUTMODEL |   "<<std::endl;
-	testInputModel();
+	std::cout<<"   | INPUTLISTMODEL |   "<<std::endl;
+	testInputListModel();
 	
-	std::cout<<"   | OUTPUTMODEL |   "<<std::endl;
-	testOutputModel();
+	std::cout<<"   | OUTPUTLISTMODEL |   "<<std::endl;
+	testOutputListModel();
 	
 	std::cout<<"   | VARIABLELISTMODEL |   "<<std::endl;
 	testVariableListModel();
@@ -70,7 +70,7 @@ void testVariableListModel(){
 }
 
 
-void testOutputModel(){
+void testOutputListModel(){
 	std::cout<<"Test de OutputModel: "<<std::endl;
 	std::cout<<"Test du contructeur avec param: "<<std::endl;
 
@@ -78,17 +78,17 @@ void testOutputModel(){
 	v.push_back("stella");
 	v.push_back("stello");
 	v.push_back("stelli");
-	OutputModel outv(v);
+	OutputListModel outv(v);
 	outv.clear();
 	std::cout<<"Test du contructeur sans param: "<<std::endl;
-	OutputModel out;
+	OutputListModel out;
 	out.push("soka");
 	out.push("soda");
 	out.clear();
 }
 
 
-void testInputModel(){
+void testInputListModel(){
  	///////////Test unitaire des input.
 	///////////Constructeur avec parametre:
 	std::cout<<"Test de InputModel: "				 <<std::endl;
@@ -97,7 +97,7 @@ void testInputModel(){
 	vs.push("stella");
 	vs.push("stello");
 	vs.push("stelli");
-	InputModel invs(vs);
+	InputListModel invs(vs);
 	if(invs.size()!=3)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=3"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==3"<<std::endl;
 	/*---------------------------*/

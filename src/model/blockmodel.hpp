@@ -2,6 +2,8 @@
 #define BLOCKMODEL_HPP
 
 #include <string>
+#include <vector>
+#include <iostream>
 
 namespace satap{
 

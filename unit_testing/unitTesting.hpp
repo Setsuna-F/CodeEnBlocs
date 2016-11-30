@@ -12,9 +12,9 @@
 #include <stdio.h>
 
 
-void testInput();
-void testOutput();
-void testVariableList();
+void testInputModel();
+void testOutputModel();
+void testVariableListModel();
 void globalTests();
 
 

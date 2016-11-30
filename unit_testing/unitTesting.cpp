@@ -11,9 +11,9 @@
 
 #include "unitTesting.hpp"
 
-#include "input.hpp"
-#include "output.hpp"
-#include "variableList.hpp"
+#include "../src/model/inputmodel.hpp"
+#include "../src/model/outputmodel.hpp"
+#include "../src/model/variablelistmodel.hpp"
 
 
 
@@ -23,14 +23,14 @@ void globalTests(){
 	std::cout<<"///unit testing begin///"<<std::endl;
 	std::cout<<"////////////////////////"<<std::endl;
 	
-	std::cout<<"   | INPUT |   "<<std::endl;
-	testInput();
+	std::cout<<"   | INPUTMODEL |   "<<std::endl;
+	testInputModel();
 	
-	std::cout<<"   | OUTPUT |   "<<std::endl;
-	testOutput();
+	std::cout<<"   | OUTPUTMODEL |   "<<std::endl;
+	testOutputModel();
 	
-	std::cout<<"   | VARIABLELIST |   "<<std::endl;
-	testVariableList();
+	std::cout<<"   | VARIABLELISTMODEL |   "<<std::endl;
+	testVariableListModel();
 	
 	std::cout<<"//////////////////////"<<std::endl;
 	std::cout<<"///unit testing end///"<<std::endl;
@@ -39,10 +39,10 @@ void globalTests(){
 
 
 
-void testVariableList(){
-	std::cout<<"Test de VariableList: "<<std::endl;
+void testVariableListModel(){
+	std::cout<<"Test de VariableListModel: "<<std::endl;
 
-	VariableList vl;
+	VariableListModel vl;
 	vl.setVariable("soka", "stella");
 	vl.setVariable("soso", "steste");
 	vl.setVariable("solaris");
@@ -70,34 +70,34 @@ void testVariableList(){
 }
 
 
-void testOutput(){
-	std::cout<<"Test de Output: "<<std::endl;
+void testOutputModel(){
+	std::cout<<"Test de OutputModel: "<<std::endl;
 	std::cout<<"Test du contructeur avec param: "<<std::endl;
 
 	std::vector<std::string> v;
 	v.push_back("stella");
 	v.push_back("stello");
 	v.push_back("stelli");
-	Output outv(v);
+	OutputModel outv(v);
 	outv.clear();
 	std::cout<<"Test du contructeur sans param: "<<std::endl;
-	Output out;
+	OutputModel out;
 	out.push("soka");
 	out.push("soda");
 	out.clear();
 }
 
 
-void testInput(){
+void testInputModel(){
  	///////////Test unitaire des input.
 	///////////Constructeur avec parametre:
-	std::cout<<"Test de Input: "				 <<std::endl;
+	std::cout<<"Test de InputModel: "				 <<std::endl;
 	std::cout<<"Test du contructeur avec param: "<<std::endl;
 	std::stack<std::string> vs;
 	vs.push("stella");
 	vs.push("stello");
 	vs.push("stelli");
-	Input invs(vs);
+	InputModel invs(vs);
 	if(invs.size()!=3)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=3"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==3"<<std::endl;
 	/*---------------------------*/

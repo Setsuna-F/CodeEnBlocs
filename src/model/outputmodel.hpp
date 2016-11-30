@@ -1,36 +1,24 @@
-//
-//  outputmodel.hpp
-//  SeriousGame
-//
-//  Created by sofien benharchache on 30/10/2016.
-//  Copyright © 2016 sofien benharchache. All rights reserved.
-//
+#ifndef OUTPUTMODEL_HPP
+#define OUTPUTMODEL_HPP
+#include "blocksimplemodel.hpp"
 
-#ifndef outputmodel_hpp
-#define outputmodel_hpp
+/*
+ *
+ * Description : 
+ *
+ *
+*/
 
-#include <string>
-#include <vector>
+namespace satap {
 
-namespace satap{
-	/**
-	 * \class OutputModel
-	 *
-	 * \brief Classe contenant une liste de valeur.
-	 */
-	class OutputModel{
-	private:
-		std::vector<std::string> _output;
+
+	class OutputModel : public BlockSimpleModel {
 	
-	public:
-		OutputModel();
-		OutputModel(std::vector<std::string> out);
-	
-		void		clear();
-		void		push(std::string val);
-		std::string getValByIndex(unsigned int i);
-		size_t		size();
+		public:
+			OutputModel();
+			~OutputModel();
+			std::string execute();
 	};
 }
 
-#endif /* outputmodel_hpp */
+#endif	// OUTPUTMODEL_HPP

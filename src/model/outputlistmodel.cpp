@@ -6,19 +6,19 @@
 //  Copyright © 2016 sofien benharchache. All rights reserved.
 //
 
-#include "outputmodel.hpp"
+#include "outputlistmodel.hpp"
 #include <iostream>
 
 using namespace satap;
 
-OutputModel::OutputModel(){_output();}
+OutputListModel::OutputListModel(){}
 
-OutputModel::OutputModel(std::vector<std::string> out){_output(out);}
+OutputListModel::OutputListModel(std::vector<std::string> out){_output = out;}
 
-void OutputModel::push(std::string val){_output.push_back(val);}
+void OutputListModel::push(std::string val){_output.push_back(val);}
 
-void OutputModel::clear(){_output.clear();}
+void OutputListModel::clear(){_output.clear();}
 
-size_t OutputModel::size(){ return _output.size(); }
+size_t OutputListModel::size(){ return _output.size(); }
 
-std::string OutputModel::getValByIndex(unsigned int i){ if(i<_output.size()) return _output[i]; else return NULL;} //TODO exception
+std::string OutputListModel::getValByIndex(unsigned int i){ if(i<_output.size()) return _output[i]; else return NULL;} //TODO exception

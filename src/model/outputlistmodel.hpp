@@ -6,8 +6,8 @@
 //  Copyright © 2016 sofien benharchache. All rights reserved.
 //
 
-#ifndef OUTPUTMODEL_HPP
-#define OUTPUTMODEL_HPP
+#ifndef OUTPUTLISTMODEL_HPP
+#define OUTPUTLISTMODEL_HPP
 
 #include <vector>
 #include <string>
@@ -18,14 +18,14 @@ namespace satap {
 	 *
 	 * \brief Classe contenant une liste de valeur.
 	 */
-	class OutputModel{
+	class OutputListModel{
 		private:
 			std::vector<std::string> _output;
-	
+
 	public:
-		OutputModel();
-		OutputModel(std::vector<std::string> out);
-	
+		OutputListModel();
+		OutputListModel(std::vector<std::string> out);
+
 		void		clear();
 		void		push(std::string val);
 		std::string getValByIndex(unsigned int i);
@@ -33,4 +33,4 @@ namespace satap {
 	};
 }
 
-#endif /* OUTPUTMODEL_HPP */
+#endif /* OUTPUTLISTMODEL_HPP */

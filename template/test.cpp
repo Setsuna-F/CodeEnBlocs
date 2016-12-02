@@ -10,7 +10,7 @@ int main(int argc, char**argv){
 		std::cout << "Apple" << std::endl;
 	
 	
-		satap::TemplateTemplateModel ttm; // declaration d'un templatetemplagtemodel
+		satap::TemplateTemplateModel ttm; // declaration d'un templatetemplatemodel
 		ttm.getFoo();
 	
 	

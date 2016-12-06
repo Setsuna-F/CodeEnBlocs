@@ -22,4 +22,7 @@ std::string OutputModel::execute() {
 	return "codeenblock";
 }
 
+std::string OutputModel::getCategory() {
+	return "other";
+}
 

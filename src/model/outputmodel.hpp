@@ -18,6 +18,7 @@ namespace satap {
 			OutputModel();
 			~OutputModel();
 			std::string execute();
+			std::string getCategory();
 	};
 }
 

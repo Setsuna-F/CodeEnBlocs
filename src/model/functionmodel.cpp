@@ -14,6 +14,10 @@ FunctionModel::FunctionModel(std::string name, std::vector<BlockCompositeModel*>
 	_blockList = blockList;
 	_parameterList = parameterList;
 }
+
+std::string FunctionModel::getCategory(){
+	return "other";
+}
 			
 std::string FunctionModel::execute(){
 	std::string returnValue;

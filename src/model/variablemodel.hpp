@@ -28,6 +28,7 @@ namespace satap{
 		void setValue(std::string n);
 		std::string getValue();
 		
+		std::string getCategory();
 		std::string execute();
 	};
 

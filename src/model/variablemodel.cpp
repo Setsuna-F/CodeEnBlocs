@@ -31,6 +31,10 @@ std::string VariableModel::getValue(){
 	return _value;
 }
 
+std::string LoopModel::getCategory(){
+	return "other";
+}
+
 std::string VariableModel::execute(){
 	return _value;
 }

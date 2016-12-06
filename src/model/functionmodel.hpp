@@ -17,6 +17,7 @@ namespace satap{
 			
 			
 			
+			std::string getCategory();
 			std::string execute();
 			
 		private:

@@ -15,6 +15,7 @@ namespace satap{
 			
 			void setInputList(InputListModel inputList);
 			
+			std::string getCategory();
 			std::string execute();
 			
 		private:

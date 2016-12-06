@@ -54,3 +54,7 @@ std::string LoopModel::execute() {
 	std::string returnValue = "LoopModel class";
 	return returnValue;
 }
+
+std::string getCategory() {
+	return "loop";
+}

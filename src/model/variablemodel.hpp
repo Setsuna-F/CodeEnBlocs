@@ -6,8 +6,8 @@
 //  Copyright © 2016 sofien benharchache. All rights reserved.
 //
 
-#ifndef variablemodel_hpp
-#define variablemodel_hpp
+#ifndef VARIABLEMODEL_HPP
+#define VARIABLEMODEL_HPP
 
 #include <iostream>
 #include <string>
@@ -16,21 +16,25 @@
 namespace satap{
 
 	class VariableModel : public BlockCompositeModel{
-	private:
-		std::string _name;
-		std::string _value;
-	public:
-		VariableModel(std::string name="", std::string value="");
-	
-		void setName(std::string n);
-		std::string getName();
-	
-		void setValue(std::string n);
-		std::string getValue();
 		
-		std::string execute();
+		public:
+			VariableModel(std::string name="", std::string value="");
+	
+			void setName(std::string n);
+			std::string getName();
+	
+			void setValue(std::string n);
+			std::string getValue();
+		
+			std::string execute();
+			
+		private:
+			//variable name
+			std::string _name;
+			//variable value
+			std::string _value;
 	};
 
 }
 
-#endif /* variablemodel_hpp */
+#endif /* VARIABLEMODEL_HPP */

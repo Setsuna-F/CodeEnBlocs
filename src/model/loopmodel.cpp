@@ -55,6 +55,6 @@ std::string LoopModel::execute() {
 	return returnValue;
 }
 
-std::string getCategory() {
+std::string LoopModel::getCategory() {
 	return "loop";
 }

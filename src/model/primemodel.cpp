@@ -1,5 +1,7 @@
 #include "primemodel.hpp"
 
+#include "tools.h"
+
 /*
  *
  * Description :
@@ -25,8 +27,9 @@ PrimeModel::~PrimeModel() {
 	//
 }
 
-std::string PrimeModel::execute() {
-	return "the addition";
+sct_type PrimeModel::execute() {
+	sct_type res;
+	return res;
 }
 
 std::string PrimeModel::getCategory() {

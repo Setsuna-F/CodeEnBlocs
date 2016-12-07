@@ -1,6 +1,7 @@
 #ifndef MODULOMODEL_HPP
 #define MODULOMODEL_HPP
 #include "binarymodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -17,7 +18,7 @@ namespace satap {
 			ModuloModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			ModuloModel(const BinaryModel & binaryModel);
 			~ModuloModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

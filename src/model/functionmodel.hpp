@@ -5,6 +5,7 @@
 #include <vector>
 #include "variablemodel.hpp"
 #include "blockcompositemodel.hpp"
+#include "tools.h"
 
 namespace satap{
 
@@ -18,7 +19,7 @@ namespace satap{
 			
 			
 			std::string getCategory();
-			std::string execute();
+			sct_type execute();
 			
 		private:
 			//name

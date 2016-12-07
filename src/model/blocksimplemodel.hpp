@@ -1,7 +1,8 @@
 #ifndef BLOCKSIMPLEMODEL_HPP
 #define BLOCKSIMPLEMODEL_HPP
-#include "blockmodel.hpp"
 
+#include "blockmodel.hpp"
+#include "tools.h"
 /*
  *
  * Description : 
@@ -14,7 +15,8 @@ namespace satap {
 	class BlockSimpleModel : public BlockModel {
 	
 		public:
-			virtual std::string execute() = 0;
+			//template<typename Type>
+			virtual sct_type execute() = 0;
 			virtual std::string getCategory() = 0;
 	};
 }

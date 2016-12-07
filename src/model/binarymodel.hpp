@@ -2,6 +2,7 @@
 #define BINARYMODEL_HPP
 #include "operatormodel.hpp"
 #include "blockcompositemodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -23,7 +24,7 @@ namespace satap {
 			void setFirstOperand(BlockCompositeModel* operand);
 			BlockCompositeModel* getSecondOperand();
 			void setSecondOperand(BlockCompositeModel* operand);
-			virtual std::string execute() = 0;
+			virtual sct_type execute() = 0;
 			virtual std::string getCategory() = 0;
 			
 		private:

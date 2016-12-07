@@ -1,6 +1,7 @@
 #ifndef OUTPUTMODEL_HPP
 #define OUTPUTMODEL_HPP
 #include "blocksimplemodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -17,7 +18,7 @@ namespace satap {
 		public:
 			OutputModel();
 			~OutputModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

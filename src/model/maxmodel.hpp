@@ -1,6 +1,7 @@
 #ifndef MAXMODEL_HPP
 #define MAXMODEL_HPP
 #include "binarymodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -11,14 +12,14 @@
 
 namespace satap {
 	
-	class MaxModel : BinaryModel {
+	class MaxModel : public BinaryModel {
 		
 		public:
 			MaxModel();
 			MaxModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MaxModel(const BinaryModel & binaryModel);
 			~MaxModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

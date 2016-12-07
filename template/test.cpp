@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "templatetemplatemodel.hpp"
-
+/*
 int main(int argc, char**argv){
 
    	#ifdef _WIN32
@@ -22,4 +22,4 @@ int main(int argc, char**argv){
 
 	return 0;
 }
-
+*/

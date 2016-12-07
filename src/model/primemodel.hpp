@@ -1,6 +1,7 @@
 #ifndef PRIMEMODEL_HPP
 #define PRIMEMODEL_HPP
 #include "binarymodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -11,14 +12,14 @@
 
 namespace satap {
 	
-	class PrimeModel : BinaryModel {
+	class PrimeModel : public BinaryModel {
 		
 		public:
 			PrimeModel();
 			PrimeModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			PrimeModel(const BinaryModel & binaryModel);
 			~PrimeModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

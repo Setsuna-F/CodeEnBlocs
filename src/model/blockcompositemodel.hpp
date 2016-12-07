@@ -2,6 +2,7 @@
 #define BLOCKCOMPOSITEMODEL_HPP
 
 #include "blockmodel.hpp"
+#include "tools.h"
 
 namespace satap{
 
@@ -9,7 +10,7 @@ namespace satap{
 	
 		public:
 			virtual std::string getCategory() = 0;
-			virtual std::string execute()=0;
+			virtual sct_type execute()=0;
 	
 	};
 

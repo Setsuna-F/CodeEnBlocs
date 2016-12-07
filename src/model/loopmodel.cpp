@@ -50,9 +50,19 @@ void LoopModel::removeBlock(const int index) {
 	this->_blockList.erase(this->_blockList.begin() + index);
 }
 
-std::string LoopModel::execute() {
+
+/*
+ 
+ 1 erreur:
+ ---------
+ 
+ Faire une boucle tant que pour boucler sur _blockList
+ 
+ */
+sct_type LoopModel::execute() {
 	std::string returnValue = "LoopModel class";
-	return returnValue;
+	sct_type res;
+	return res;
 }
 
 std::string LoopModel::getCategory() {

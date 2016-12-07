@@ -24,13 +24,13 @@ void globalTests(){
 	std::cout<<"////////////////////////"<<std::endl;
 	
 	std::cout<<"   | INPUTLISTMODEL |   "<<std::endl;
-	testInputListModel();
+	//testInputModel();
 	
 	std::cout<<"   | OUTPUTLISTMODEL |   "<<std::endl;
-	testOutputListModel();
+	//testOutputModel();
 	
 	std::cout<<"   | VARIABLELISTMODEL |   "<<std::endl;
-	testVariableListModel();
+	//testVariableListModel();
 	
 	std::cout<<"//////////////////////"<<std::endl;
 	std::cout<<"///unit testing end///"<<std::endl;
@@ -40,9 +40,9 @@ void globalTests(){
 
 
 void testVariableListModel(){
-	std::cout<<"Test de VariableListModel: "<<std::endl;
+	/*std::cout<<"Test de VariableListModel: "<<std::endl;
 
-	VariableListModel vl;
+	satap::VariableListModel vl;
 	vl.setVariable("soka", "stella");
 	vl.setVariable("soso", "steste");
 	vl.setVariable("solaris");
@@ -66,7 +66,7 @@ void testVariableListModel(){
 	if(!val4.empty())	std::cout<<"Test has FAILED: "		<<val4<<"!=NULL"<<std::endl;
 	else				std::cout<<"Test SUCCESS: is empty" <<std::endl;
 
-	std::cout<<"Size of variableList is : "<<vl.size()<<std::endl;
+	std::cout<<"Size of variableList is : "<<vl.size()<<std::endl;*/
 }
 
 
@@ -78,10 +78,10 @@ void testOutputListModel(){
 	v.push_back("stella");
 	v.push_back("stello");
 	v.push_back("stelli");
-	OutputListModel outv(v);
+	satap::OutputListModel outv(v);
 	outv.clear();
 	std::cout<<"Test du contructeur sans param: "<<std::endl;
-	OutputListModel out;
+	satap::OutputListModel out;
 	out.push("soka");
 	out.push("soda");
 	out.clear();
@@ -97,49 +97,49 @@ void testInputListModel(){
 	vs.push("stella");
 	vs.push("stello");
 	vs.push("stelli");
-	InputListModel invs(vs);
+	/*satap::InputListModel invs(vs);
 	if(invs.size()!=3)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=3"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==3"<<std::endl;
-	/*---------------------------*/
+	*//*---------------------------*/
 
-	std::string v1 = invs.pop();
+	/*std::string v1 = invs.pop();
 	if(v1!="stelli")	std::cout<<"Test has FAILED: "	<<v1<<"!=stelli"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<v1<<"==stelli"<<std::endl;
 	if(invs.size()!=2)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=2"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==2"<<std::endl;
-	/*---------------------------*/
+	*//*---------------------------*/
 
 	
-	std::string v2 = invs.pop();
+	/*std::string v2 = invs.pop();
 	if(v2!="stello")	std::cout<<"Test has FAILED: "	<<v2		 <<"!=stello"<<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<v2		 <<"==stello"<<std::endl;
 	if(invs.size()!=1)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=1"	 <<std::endl;
 	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==1"	 <<std::endl;
-	/*---------------------------*/
+	*//*---------------------------*/
 	
 	///////////Constructeur sans parametre:
 	std::cout<<"Test du contructeur sans param: "<<std::endl;
-	Input in;
+	/*Input in;
 	in.push("soka");
 	in.push("soja");
 	in.push("soya");
 	in.push("jojo");
 	in.push("soda");
 	if(in.size()!=5) std::cout<<"Test has FAILED: "	<<in.size()<<"!=5"<<std::endl;
-	else			 std::cout<<"Test SUCCESS: "	<<in.size()<<"==5"<<std::endl;
+	else			 std::cout<<"Test SUCCESS: "	<<in.size()<<"==5"<<std::endl;*/
 	/*---------------------------*/
 
-	std::string v3 = in.pop();
+	/*std::string v3 = in.pop();
 	if(v3!="soda")	std::cout<<"Test has FAILED: "	<<v3		<<"!=soda"<<std::endl;
 	else			std::cout<<"Test SUCCESS: "		<<v3		<<"==soda"<<std::endl;
 	if(in.size()!=4)std::cout<<"Test has FAILED: "	<<in.size() <<"!=4"	  <<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==4"	  <<std::endl;
+	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==4"	  <<std::endl;*/
 	/*---------------------------*/
 	
-	std::string v4 = in.pop();
+	/*std::string v4 = in.pop();
 	if(v4!="jojo")	std::cout<<"Test has FAILED: "	<<v4		<<"!=jojo"<<std::endl;
 	else			std::cout<<"Test SUCCESS: "		<<v4		<<"==jojo"<<std::endl;
 	if(in.size()!=3)std::cout<<"Test has FAILED: "	<<in.size() <<"!=3"	  <<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==3"	  <<std::endl;
+	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==3"	  <<std::endl;*/
 	/*---------------------------*/
 }

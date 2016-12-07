@@ -1,6 +1,7 @@
 #ifndef MULTMODEL_HPP
 #define MULTMODEL_HPP
 #include "binarymodel.hpp"
+#include "tools.h"
 
 /*
  *
@@ -17,7 +18,7 @@ namespace satap {
 			MultModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MultModel(const BinaryModel & binaryModel);
 			~MultModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

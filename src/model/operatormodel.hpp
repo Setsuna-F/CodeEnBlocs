@@ -2,12 +2,13 @@
 #define OPERATORMODEL_HPP
 
 #include "blockcompositemodel.hpp"
+#include "tools.h"
 
 namespace satap{
 
 	class OperatorModel : public BlockCompositeModel{
 		public :
-			virtual std::string execute() = 0;
+			virtual sct_type execute() = 0;
 			virtual std::string getCategory() = 0;
 	};
 

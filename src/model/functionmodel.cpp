@@ -18,11 +18,12 @@ FunctionModel::FunctionModel(std::string name, std::vector<BlockCompositeModel*>
 std::string FunctionModel::getCategory(){
 	return "other";
 }
-			
-std::string FunctionModel::execute(){
-	std::string returnValue;
-	for(std::vector<BlockCompositeModel*>::iterator it = _blockList.begin(); it != _blockList.end(); ++it) {
-		returnValue = (*it)->execute();
-	}
-	return returnValue;
+
+sct_type FunctionModel::execute(){
+	//std::string returnValue;
+	//for(std::vector<BlockCompositeModel*>::iterator it = _blockList.begin(); it != _blockList.end(); ++it) {
+	//	returnValue = (*it)->execute();
+	//}
+	sct_type res;
+	return res;
 }

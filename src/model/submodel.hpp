@@ -17,7 +17,7 @@ namespace satap {
 			SubModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			SubModel(const BinaryModel & binaryModel);
 			~SubModel();
-			std::string execute();
+			sct_type execute();
 			std::string getCategory();
 	};
 }

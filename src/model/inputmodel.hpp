@@ -4,6 +4,7 @@
 #include <string>
 #include "blockcompositemodel.hpp"
 #include "inputlistmodel.hpp"
+#include "tools.h"
 
 namespace satap{
 
@@ -16,7 +17,7 @@ namespace satap{
 			void setInputList(InputListModel inputList);
 			
 			std::string getCategory();
-			std::string execute();
+			sct_type execute();
 			
 		private:
 			InputListModel _inputList; //TODO not inputlist but Game : then, game.getInputList().pop();

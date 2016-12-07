@@ -42,3 +42,10 @@ void WorkspaceModel::setVariableList(VariableListModel variableList){
 void WorkspaceModel::setCodePage(CodePageModel codePage){
 	_codePage = codePage;
 }
+
+void WorkspaceModel::flush(){
+	_inputList = *(new InputListModel());
+	_outputList = *(new OutputListModel());
+	_variableList = *(new VariableListModel());
+	_codePage = *(new CodePageModel());
+}

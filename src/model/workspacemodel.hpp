@@ -22,6 +22,7 @@ namespace satap {
 			void setOutputList(OutputListModel outputList);
 			void setVariableList(VariableListModel variableList);
 			void setCodePage(CodePageModel codePage);
+			void flush();
 
 		private:
 			InputListModel _inputList;

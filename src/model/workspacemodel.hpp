@@ -12,16 +12,16 @@ namespace satap {
 		
 		public:
 			WorkspaceModel();
-			WorkspaceModel(InputListModel inputList, OutputListModel outputList, VariableListModel variableList, CodePageModel codePage);
+			WorkspaceModel(InputListModel inputList, OutputListModel outputList, VariableListModel variableList, CodePageModel* codePage);
 			InputListModel getInputList();
 			OutputListModel getOutputList();
 			VariableListModel getVariableList();
-			CodePageModel getCodePage();
+			CodePageModel* getCodePage();
 			
 			void setInputList(InputListModel inputList);
 			void setOutputList(OutputListModel outputList);
 			void setVariableList(VariableListModel variableList);
-			void setCodePage(CodePageModel codePage);
+			void setCodePage(CodePageModel* codePage);
 			void executeCodePage();
 			void flush();
 
@@ -29,7 +29,7 @@ namespace satap {
 			InputListModel _inputList;
 			OutputListModel _outputList;
 			VariableListModel _variableList;
-			CodePageModel _codePage;
+			CodePageModel* _codePage;
 	};
 }
 

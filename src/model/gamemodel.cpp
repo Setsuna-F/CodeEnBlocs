@@ -1,8 +1,11 @@
 #include "gamemodel.hpp"
+#include "additionlevelmodel.hpp"
 
 using namespace satap;
 
-GameModel::GameModel(){}
+GameModel::GameModel(){
+	_levelList.push_back(new AdditionLevelModel());
+}
 
 std::vector<LevelModel*> GameModel::getLevelList(){
 	return _levelList;

@@ -20,11 +20,8 @@ WorkspaceModel LevelModel::getWorkspace(){
 	return _workspace;
 }
 
-bool LevelModel::isCompleted(WorkspaceModel workspace){
-	return isCompleted(workspace.getOutputList());
-}
-
-bool LevelModel::isCompleted(OutputListModel outputList){
+bool LevelModel::isCompleted(){
+	OutputListModel outputList = _workspace.getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList.size();
 	if(size != expectedSize)

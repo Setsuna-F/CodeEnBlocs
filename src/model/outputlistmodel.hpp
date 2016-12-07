@@ -28,6 +28,7 @@ namespace satap {
 
 		void		clear();
 		void		push(std::string val);
+		std::vector<std::string> getOutputList();
 		std::string getValByIndex(unsigned int i);
 		size_t		size();
 	};

@@ -61,7 +61,3 @@ sct_type AddModel::execute() {
 		return res;
 	}
 }
-
-std::string AddModel::getCategory() {
-	return "arithmetic";
-}

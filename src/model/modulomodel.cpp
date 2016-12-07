@@ -58,7 +58,3 @@ sct_type ModuloModel::execute() {
 		return res;
 	}
 }
-
-std::string ModuloModel::getCategory() {
-	return "arithmetic";
-}

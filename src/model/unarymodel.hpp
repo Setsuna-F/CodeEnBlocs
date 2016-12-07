@@ -14,7 +14,7 @@
 namespace satap {
 
 	class UnaryModel : public OperatorModel {
-		
+
 		public:
 			UnaryModel();
 			UnaryModel(BlockCompositeModel* operand);
@@ -23,10 +23,9 @@ namespace satap {
 			BlockCompositeModel* getOperand();
 			void setOperand(BlockCompositeModel* operand);
 			virtual sct_type execute() = 0;
-			virtual std::string getCategory() = 0;
-			
+
 		private:
-			//operand 
+			//operand
 			BlockCompositeModel* _operand;
 	};
 }

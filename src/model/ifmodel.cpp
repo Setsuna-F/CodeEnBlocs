@@ -105,12 +105,3 @@ sct_type IfModel::execute() {
 	return res;
 }
 
-
-
-
-/*
- Mais a quoi sert cette methode ? :x
- */
-std::string IfModel::getCategory() {
-	return "conditional";
-}

@@ -12,14 +12,16 @@
 namespace satap {
 
 	class MultModel : public BinaryModel {
-	
+
 		public:
+			/*Constructeurs/Destructeur*/
 			MultModel();
 			MultModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MultModel(const BinaryModel & binaryModel);
 			~MultModel();
+		
+			/*Methodes*/
 			sct_type execute();
-			std::string getCategory();
 	};
 }
 

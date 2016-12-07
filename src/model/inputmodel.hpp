@@ -9,19 +9,17 @@
 namespace satap{
 
 	class InputModel : public BlockCompositeModel{
-	
+
 		public:
 			InputModel();
 			InputModel(InputListModel inputList);
-			
+
 			void setInputList(InputListModel inputList);
 			
-			std::string getCategory();
 			sct_type execute();
-			
 		private:
 			InputListModel _inputList; //TODO not inputlist but Game : then, game.getInputList().pop();
-	
+
 	};
 
 }

@@ -15,10 +15,6 @@ void InputModel::setInputList(InputListModel inputList){
 	_inputList = inputList;
 }
 
-std::string InputModel::getCategory(){
-	return "other";
-}
-
 sct_type InputModel::execute(){
 	return _inputList.pop();
 }

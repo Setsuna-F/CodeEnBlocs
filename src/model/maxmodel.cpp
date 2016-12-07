@@ -67,7 +67,3 @@ sct_type MaxModel::execute() {
 		return res;
 	}
 }
-
-std::string MaxModel::getCategory() {
-	return "other";
-}

@@ -61,7 +61,3 @@ sct_type SubModel::execute() {
 		return res;
 	}
 }
-
-std::string SubModel::getCategory() {
-	return "arithmetic";
-}

@@ -17,8 +17,9 @@
 namespace satap{
 
 	class VariableModel : public BlockCompositeModel{
-		
+
 		public:
+
 			VariableModel(std::string name, sct_type value);
 	
 			void setName(std::string n);
@@ -27,12 +28,12 @@ namespace satap{
 			void setValue(sct_type n);
 			sct_type getValue();
 		
-			std::string getCategory();
 			sct_type execute();
 
 		private:
 			//variable name
 			std::string _name;
+		
 			//variable value
 			sct_type _value;
 	};

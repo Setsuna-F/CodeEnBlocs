@@ -66,7 +66,3 @@ sct_type UpperModel::execute() {
 		return res;
 	}
 }
-
-std::string UpperModel::getCategory() {
-	return "other";
-}

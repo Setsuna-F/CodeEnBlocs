@@ -67,7 +67,3 @@ sct_type DivModel::execute() {
 		return res;
 	}
 }
-
-std::string DivModel::getCategory() {
-	return "arithmetic";
-}

@@ -22,7 +22,6 @@ namespace satap {
 		UpperModel(const BinaryModel & binaryModel);
 		~UpperModel();
 		sct_type execute();
-		std::string getCategory();
 	};
 }
 

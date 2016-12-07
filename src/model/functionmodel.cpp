@@ -15,10 +15,6 @@ FunctionModel::FunctionModel(std::string name, std::vector<BlockCompositeModel*>
 	_parameterList = parameterList;
 }
 
-std::string FunctionModel::getCategory(){
-	return "other";
-}
-
 sct_type FunctionModel::execute(){
 	//std::string returnValue;
 	//for(std::vector<BlockCompositeModel*>::iterator it = _blockList.begin(); it != _blockList.end(); ++it) {
@@ -26,4 +22,5 @@ sct_type FunctionModel::execute(){
 	//}
 	sct_type res;
 	return res;
+
 }

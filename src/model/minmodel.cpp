@@ -67,7 +67,3 @@ sct_type MinModel::execute() {
 		return res;
 	}
 }
-
-std::string MinModel::getCategory() {
-	return "other";
-}

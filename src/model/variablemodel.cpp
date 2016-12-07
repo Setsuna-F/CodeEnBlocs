@@ -10,8 +10,9 @@
 
 using namespace satap;
 
+
 VariableModel::VariableModel(std::string name, sct_type value): _name(name), _value(value){}
-	
+
 void VariableModel::setName(std::string n){
 	_name = n;
 }
@@ -26,10 +27,6 @@ void VariableModel::setValue(sct_type value){
 
 sct_type VariableModel::getValue(){
 	return _value;
-}
-
-std::string VariableModel::getCategory(){
-	return "other";
 }
 
 sct_type VariableModel::execute(){

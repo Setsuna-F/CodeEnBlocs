@@ -61,7 +61,3 @@ sct_type MultModel::execute() {
 		return res;
 	}
 }
-
-std::string MultModel::getCategory() {
-	return "arithmetic";
-}

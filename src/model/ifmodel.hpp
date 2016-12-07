@@ -27,6 +27,7 @@ namespace satap {
 			IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockListtrue, std::vector<BlockModel *> blockListfalse);
 			~IfModel();
 			std::vector<BlockCompositeModel *> getConditionList();
+
 			void addCondtion		(BlockCompositeModel * blockCM);
 			void removeCondition	(const int index);
 			std::vector<BlockModel *> getBlockListTrue();
@@ -37,6 +38,7 @@ namespace satap {
 			void removeBlockFalse	(const int index);
 			sct_type execute();
 			std::string getCategory();
+
 
 		private:
 			//Conditions and / or parameters of the if

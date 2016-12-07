@@ -15,11 +15,11 @@ PrimeModel::PrimeModel() {
 	//
 }
 
-PrimeModel::PrimeModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand) : BinaryModel(firstOperand, secondOperand) {
+PrimeModel::PrimeModel(BlockCompositeModel* operand) : UnaryModel(operand) {
 	//
 }
 
-PrimeModel::PrimeModel(const BinaryModel & binaryModel) : BinaryModel(binaryModel) {
+PrimeModel::PrimeModel(const UnaryModel & unaryModel) : UnaryModel(unaryModel) {
 	//
 }
 
@@ -27,11 +27,36 @@ PrimeModel::~PrimeModel() {
 	//
 }
 
+
 sct_type PrimeModel::execute() {
-	sct_type res;
-	return res;
+	sct_type op;
+	op.int_type		=nullptr;
+	op.double_type	=nullptr;
+	op.bool_type	=nullptr;
+	
+	op = this->UnaryModel::getOperand()->execute();
+	if(op.int_type){
+		bool result = this->isPrime((*op.int_type), (*op.int_type)/2);
+		op.bool_type	= &result;
+	}
+	else{
+		op.int_type		=nullptr;
+		op.double_type	=nullptr;
+		op.bool_type	=nullptr;
+	}
+	return op;
 }
 
-std::string PrimeModel::getCategory() {
-	return "other";
+bool PrimeModel::isPrime(const int number, const int divider) {
+	if (number == 1) 
+		return true;
+    if (divider == 1)
+            return true;
+    else {
+            if (number % divider == 0)
+                    return false;
+            else
+                    return isPrime(number, divider - 1);
+    }
+
 }

@@ -5,7 +5,7 @@
 #include "tools.h"
 /*
  *
- * Description : 
+ * Description :
  *
  *
 */
@@ -13,11 +13,9 @@
 namespace satap {
 
 	class BlockSimpleModel : public BlockModel {
-	
+
 		public:
-			//template<typename Type>
 			virtual sct_type execute() = 0;
-			virtual std::string getCategory() = 0;
 	};
 }
 

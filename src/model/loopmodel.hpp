@@ -26,7 +26,6 @@ namespace satap {
 			void addBlock(BlockModel * block);
 			void removeBlock(const int index);
 			sct_type execute();
-			std::string getCategory();
 
 		private:
 			//Conditions and / or parameters of the loop

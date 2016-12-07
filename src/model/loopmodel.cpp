@@ -64,7 +64,3 @@ sct_type LoopModel::execute() {
 	sct_type res;
 	return res;
 }
-
-std::string LoopModel::getCategory() {
-	return "loop";
-}

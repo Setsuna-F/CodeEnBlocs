@@ -43,6 +43,14 @@ void WorkspaceModel::setCodePage(CodePageModel codePage){
 	_codePage = codePage;
 }
 
+void WorkspaceModel::executeCodePage(){ //TODO
+	std::vector<BlockModel*> blockList = _codePage.getBlockList();
+	//std::string returnValue;
+	for(std::vector<BlockModel*>::iterator it = blockList.begin(); it != blockList.end(); ++it) {
+		/*returnValue = */(*it)->execute();
+	}
+}
+
 void WorkspaceModel::flush(){
 	_inputList = *(new InputListModel());
 	_outputList = *(new OutputListModel());

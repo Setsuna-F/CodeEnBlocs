@@ -29,3 +29,7 @@ void CodePageModel::removeBlock(int i){
 BlockModel* CodePageModel::getBlock(int i){
 	return _blockList[i];
 }
+
+std::vector<BlockModel*> CodePageModel::getBlockList(){
+	return _blockList;
+}

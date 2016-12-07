@@ -21,6 +21,7 @@ WorkspaceModel LevelModel::getWorkspace(){
 }
 
 bool LevelModel::isCompleted(){
+	_workspace.executeCodePage();
 	OutputListModel outputList = _workspace.getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList.size();

@@ -14,6 +14,7 @@ namespace satap {
 			std::vector<LevelModel*> getLevelList();
 			LevelModel* getLevel(int i);
 			void loadLevel(int i);
+			//TODO loadLevel(string name)
 
 		private:
 			std::vector<LevelModel*> _levelList;

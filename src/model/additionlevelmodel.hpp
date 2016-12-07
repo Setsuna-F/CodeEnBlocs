@@ -9,20 +9,9 @@ namespace satap {
 		
 		public:
 			AdditionLevelModel();
-			//LevelModel(std::string name);
-			//std::string getName();
-			//OutputListModel getOutputListExpected();
-			
-			void init();
-			//bool isCompleted(WorkspaceModel workspace);
-			//bool isCompleted(OutputListModel outputList);
-		
-		/*protected:
-			OutputListModel _outputListExpected;
 
-		private:
-			std::string _name;*/
-			
+			void init();
+
 	};
 }
 

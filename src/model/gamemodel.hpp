@@ -13,6 +13,7 @@ namespace satap {
 			GameModel();
 			std::vector<LevelModel*> getLevelList();
 			LevelModel* getLevel(int i);
+			LevelModel* getCurrentLevel();
 			void loadLevel(int i);
 			//TODO loadLevel(string name)
 

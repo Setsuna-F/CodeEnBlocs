@@ -11,14 +11,13 @@
 namespace satap {
 
 	class DivModel : public BinaryModel {
-	
+
 		public:
 			DivModel();
 			DivModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			DivModel(const BinaryModel & binaryModel);
 			~DivModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

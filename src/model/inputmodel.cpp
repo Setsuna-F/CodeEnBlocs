@@ -15,10 +15,6 @@ void InputModel::setInputList(InputListModel inputList){
 	_inputList = inputList;
 }
 
-std::string InputModel::getCategory(){
-	return "other";
-}
-			
 std::string InputModel::execute(){
 	return _inputList.pop();
 }

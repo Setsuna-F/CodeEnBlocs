@@ -10,16 +10,15 @@
 */
 
 namespace satap {
-	
+
 	class PrimeModel : BinaryModel {
-		
+
 		public:
 			PrimeModel();
 			PrimeModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			PrimeModel(const BinaryModel & binaryModel);
 			~PrimeModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

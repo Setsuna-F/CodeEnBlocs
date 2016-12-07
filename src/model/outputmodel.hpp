@@ -4,7 +4,7 @@
 
 /*
  *
- * Description : 
+ * Description :
  *
  *
 */
@@ -13,12 +13,11 @@ namespace satap {
 
 
 	class OutputModel : public BlockSimpleModel {
-	
+
 		public:
 			OutputModel();
 			~OutputModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

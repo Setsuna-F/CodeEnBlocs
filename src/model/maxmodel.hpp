@@ -10,16 +10,15 @@
 */
 
 namespace satap {
-	
+
 	class MaxModel : BinaryModel {
-		
+
 		public:
 			MaxModel();
 			MaxModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MaxModel(const BinaryModel & binaryModel);
 			~MaxModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

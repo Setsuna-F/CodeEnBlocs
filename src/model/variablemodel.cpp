@@ -14,7 +14,7 @@ VariableModel::VariableModel(std::string name, std::string value){
 	_name = name;
 	_value = value;
 }
-	
+
 void VariableModel::setName(std::string n){
 	_name = n;
 }
@@ -29,10 +29,6 @@ void VariableModel::setValue(std::string n){
 
 std::string VariableModel::getValue(){
 	return _value;
-}
-
-std::string VariableModel::getCategory(){
-	return "other";
 }
 
 std::string VariableModel::execute(){

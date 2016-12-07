@@ -33,7 +33,3 @@ std::string DivModel::execute() {
 	int result = firstOperand / secondOperand;
 	return std::to_string(result);
 }
-
-std::string DivModel::getCategory() {
-	return "arithmetic";
-}

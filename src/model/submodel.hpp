@@ -11,14 +11,13 @@
 namespace satap {
 
 	class SubModel : public BinaryModel {
-	
+
 		public:
 			SubModel();
 			SubModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			SubModel(const BinaryModel & binaryModel);
 			~SubModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

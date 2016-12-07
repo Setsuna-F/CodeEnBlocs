@@ -28,7 +28,3 @@ PrimeModel::~PrimeModel() {
 std::string PrimeModel::execute() {
 	return "the addition";
 }
-
-std::string PrimeModel::getCategory() {
-	return "other";
-}

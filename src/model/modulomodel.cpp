@@ -33,7 +33,3 @@ std::string ModuloModel::execute() {
 	int result = firstOperand % secondOperand;
 	return std::to_string(result);
 }
-
-std::string ModuloModel::getCategory() {
-	return "arithmetic";
-}

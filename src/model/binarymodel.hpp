@@ -13,7 +13,7 @@
 namespace satap {
 
 	class BinaryModel : public OperatorModel {
-		
+
 		public:
 			BinaryModel();
 			BinaryModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
@@ -24,8 +24,7 @@ namespace satap {
 			BlockCompositeModel* getSecondOperand();
 			void setSecondOperand(BlockCompositeModel* operand);
 			virtual std::string execute() = 0;
-			virtual std::string getCategory() = 0;
-			
+
 		private:
 			//operand 1
 			BlockCompositeModel* _firstOperand;

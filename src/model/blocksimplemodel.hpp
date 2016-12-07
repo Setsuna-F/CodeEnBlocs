@@ -4,7 +4,7 @@
 
 /*
  *
- * Description : 
+ * Description :
  *
  *
 */
@@ -12,10 +12,9 @@
 namespace satap {
 
 	class BlockSimpleModel : public BlockModel {
-	
+
 		public:
 			virtual std::string execute() = 0;
-			virtual std::string getCategory() = 0;
 	};
 }
 

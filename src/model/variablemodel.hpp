@@ -16,17 +16,15 @@
 namespace satap{
 
 	class VariableModel : public BlockCompositeModel{
-		
+
 		public:
 			VariableModel(std::string name="", std::string value="");
-	
+
 			void setName(std::string n);
 			std::string getName();
-	
+
 			void setValue(std::string n);
 			std::string getValue();
-		
-			std::string getCategory();
 			std::string execute();
 
 		private:

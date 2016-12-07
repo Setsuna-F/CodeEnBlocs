@@ -67,7 +67,3 @@ std::string IfModel::execute() {
 	}
 	return returnValue;
 }
-
-std::string IfModel::getCategory() {
-	return "conditional";
-}

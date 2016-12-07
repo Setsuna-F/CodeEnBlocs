@@ -10,16 +10,15 @@
 */
 
 namespace satap {
-	
+
 	class MinModel : BinaryModel {
-		
+
 		public:
 			MinModel();
 			MinModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MinModel(const BinaryModel & binaryModel);
 			~MinModel();
 			std::string execute();
-			std::string getCategory();
 	};
 }
 

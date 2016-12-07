@@ -19,7 +19,7 @@ namespace satap {
 			WorkspaceModel getWorkspace();
 			
 			virtual void init() = 0; //generates random input and computes expected output
-			bool isCompleted();
+			bool validate();
 		
 		protected:
 			std::string _name;

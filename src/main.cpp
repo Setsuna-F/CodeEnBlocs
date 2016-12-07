@@ -15,7 +15,9 @@ int console(){
 	
 	GameModel game;
 	game.loadLevel(0);
-	std::cout << game.getCurrentLevel()->getName() << std::endl;
+	
+	LevelModel* currentLevel = game.getCurrentLevel();
+	std::cout << currentLevel->getName() << std::endl;
 	
 	//What we need to do here : 
 	//a = input //variable affectation input
@@ -23,9 +25,10 @@ int console(){
 	//c = a + b
 	//output c
 	
-	CodePageModel* codePage = game.getCurrentLevel()->getWorkspace().getCodePage();
+	CodePageModel* codePage = currentLevel->getWorkspace().getCodePage();
 	//codePage->addBlock( ... );
-	
+	std::cout << currentLevel->validate() << std::endl;
+
 	return 0;
 }
 

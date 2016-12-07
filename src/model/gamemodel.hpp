@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "levelmodel.hpp"
-#include "workspacemodel.hpp"
 
 namespace satap {
 	
@@ -12,15 +11,13 @@ namespace satap {
 		
 		public:
 			GameModel();
-			std::vector<LevelModel> getLevelList();
-			LevelModel getLevel(int i);
+			std::vector<LevelModel*> getLevelList();
+			LevelModel* getLevel(int i);
 			void loadLevel(int i);
-			WorkspaceModel getWorkspace();
 
 		private:
-			std::vector<LevelModel> _levelList;
-			WorkspaceModel _workspace;
-			LevelModel _currentLevel;
+			std::vector<LevelModel*> _levelList;
+			LevelModel* _currentLevel;
 			
 	};
 }

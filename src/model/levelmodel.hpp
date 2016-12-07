@@ -16,15 +16,16 @@ namespace satap {
 			LevelModel(std::string name);
 			std::string getName();
 			OutputListModel getOutputListExpected();
+			WorkspaceModel getWorkspace();
 			
+			virtual void init() = 0; //generates random input and computes expected output
 			bool isCompleted(WorkspaceModel workspace);
 			bool isCompleted(OutputListModel outputList);
 		
 		protected:
-			OutputListModel _outputListExpected;
-
-		private:
 			std::string _name;
+			OutputListModel _outputListExpected;
+			WorkspaceModel _workspace;
 			
 	};
 }

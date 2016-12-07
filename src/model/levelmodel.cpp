@@ -16,6 +16,10 @@ OutputListModel LevelModel::getOutputListExpected(){
 	return _outputListExpected;
 }
 
+WorkspaceModel LevelModel::getWorkspace(){
+	return _workspace;
+}
+
 bool LevelModel::isCompleted(WorkspaceModel workspace){
 	return isCompleted(workspace.getOutputList());
 }

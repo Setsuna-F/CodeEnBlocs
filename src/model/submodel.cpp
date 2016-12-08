@@ -44,20 +44,45 @@ sct_type SubModel::execute() {
 	firstOperand = this->BinaryModel::getFirstOperand()->execute();
 	secondOperand = this->BinaryModel::getSecondOperand()->execute();
 	
-	/*cas int*/
-	if(firstOperand.int_type && secondOperand.int_type){
-		int res_int=(*firstOperand.int_type)-(*secondOperand.int_type);
-		res.int_type = &res_int;
-		return res;
-	}
-	/*cas double*/
-	else if(firstOperand.double_type && secondOperand.double_type){
-		double res_double=(*firstOperand.double_type)-(*secondOperand.double_type);
-		res.double_type = &res_double;
-		return res;
+	bool isinteger=true; // cette variable va nous servir a voir si les deux param sont des int ou des doubles
+	double res_first=0;
+	double res_second=0;
+	
+	/*Premiere operande int ou double*/
+	if(firstOperand.int_type)
+		res_first=*firstOperand.int_type;
+	else if(firstOperand.double_type){
+		isinteger=false;
+		res_first=*firstOperand.double_type;
 	}
 	/*cas erreur*/
-	else{
+	else
 		return res;
+	
+	/*Seconde operande int ou double*/
+	if(secondOperand.int_type)
+		res_second=*secondOperand.int_type;
+	else if(secondOperand.double_type){
+		isinteger=false;
+		res_second=*secondOperand.double_type;
 	}
+	/*cas erreur*/
+	else
+		return res;
+	
+	/*cas int*/
+	if(isinteger){
+		int res_add=res_first-res_second;
+		res.int_type=&res_add;
+		std::fflush(stdout);
+	}
+	/*cas double*/
+	else{
+		double res_add=res_first-res_second;
+		res.double_type=&res_add;
+		std::fflush(stdout);
+	}
+	
+	return res;
+
 }

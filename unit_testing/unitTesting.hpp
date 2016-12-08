@@ -18,4 +18,26 @@ void testVariableListModel();
 void globalTests();
 
 
+void testInputListModel();
+void testOutputListModel();
+
+
+void testIf();
+void testLoop();
+
+
+void unitTestingAdd();
+void unitTestingSub();
+void unitTestingMul();
+void unitTestingDiv();
+void unitTestingMod();
+
+void unitTestingMax();
+void unitTestingMin();
+
+void unitTestingUpper();
+void unitTestingPrime();
+
+
+
 #endif /* unitTesting_hpp */

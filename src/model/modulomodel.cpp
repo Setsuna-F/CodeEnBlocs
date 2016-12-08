@@ -51,6 +51,7 @@ sct_type ModuloModel::execute() {
 		}
 		int res_int=(*firstOperand.int_type)%(*secondOperand.int_type);
 		res.int_type = &res_int;
+		std::fflush(stdout);
 		return res;
 	}
 	/*cas erreur*/

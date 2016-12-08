@@ -24,7 +24,7 @@ struct sct_type{
 
 /**
  * \brief fonction generique de convertion n'importe quels types en string
- *
+ * 
  */
 template<typename T>
 std::string typeToString(T i) {

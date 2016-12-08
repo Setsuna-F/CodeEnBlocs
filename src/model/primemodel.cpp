@@ -30,19 +30,21 @@ PrimeModel::~PrimeModel() {
 
 sct_type PrimeModel::execute() {
 	sct_type op;
-	op.int_type		=nullptr;
-	op.double_type	=nullptr;
-	op.bool_type	=nullptr;
+	op.int_type		= nullptr;
+	op.double_type	= nullptr;
+	op.bool_type	= nullptr;
 	
 	op = this->UnaryModel::getOperand()->execute();
 	if(op.int_type){
 		bool result = this->isPrime((*op.int_type), (*op.int_type)/2);
+		op.int_type		= nullptr;
+		op.double_type	= nullptr;
 		op.bool_type	= &result;
 	}
 	else{
-		op.int_type		=nullptr;
-		op.double_type	=nullptr;
-		op.bool_type	=nullptr;
+		op.int_type		= nullptr;
+		op.double_type	= nullptr;
+		op.bool_type	= nullptr;
 	}
 	return op;
 }

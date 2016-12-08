@@ -17,6 +17,8 @@
 
 #include "variablelistmodel.hpp"
 #include "loopmodel.hpp"
+#include "tools.h"
+#include "addmodel.hpp"
 
 using namespace satap;
 
@@ -121,16 +123,101 @@ void testLoop(){
 }
 
 
+void unitTestingAdd(){
+	std::cout <<"----------Test de add--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	sct_type var_type_value4;
+	sct_type var_type_value5;
+	
+	int opi1 = 42;
+	int opi2 = 23;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= &opi1;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= nullptr;
+
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
+	
+	/*var 4*/
+	var_type_value4.int_type	= nullptr;
+	var_type_value4.double_type = &opd2;
+	var_type_value4.bool_type	= nullptr;
+
+	/*var 5*/
+	var_type_value5.int_type	= nullptr;
+	var_type_value5.double_type = nullptr;
+	var_type_value5.bool_type	= &opb1;
+
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("2", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	VariableModel var_m4("4", var_type_value4);
+	VariableModel var_m5("5", var_type_value5);
+	
+	
+	/*Nes classes d'addition*/
+	AddModel add1(&var_m1, &var_m2);
+	AddModel add2(&var_m3, &var_m4);
+	AddModel add3(&var_m1, &var_m4);
+	AddModel add4(&var_m1, &var_m5);
+	
+	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 23
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	std::cout<<"La valeur de vtv4 "<<*var_type_value4.double_type<<std::endl; // retourne 42.666
+
+	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
+	
+	std::cout<<"La valeur de l'addition (add "<<opi1<<" et "<<opi2<<") est : "<<*add1.execute().int_type<<std::endl;	// CAS int+int			: retourne 65
+	std::cout<<"La valeur de l'addition (add "<<opd1<<" et "<<opd2<<") est : "<<*add2.execute().double_type<<std::endl; // CAS double+double	: retourne 709.086
+	std::cout<<"La valeur de l'addition (add "<<opi1<<" et "<<opd2<<") est : "<<*add3.execute().double_type<<std::endl; // CAS int+double		: retourne 84.666
+	
+	if(!add4.execute().double_type)
+		std::cout<<"La valeur de l'addition (add "<<opi1<<" et "<<(opb1?"T":"F")<<") est un bien un cas d'erreur "<<std::endl; // CAS int+true	: retourne error
+	else
+		std::cout<<"La valeur de l'addition (add "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
+
+}
 
 
-class c{
-public:
-	template<typename Type>
-	Type sokafunc(){
-		Type go=6667;
-		return go;
-	}
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -145,50 +232,9 @@ int main(int argc, char**argv){
 	testIf();
 	std::cout << std::endl;
 	testLoop();
-	
 	std::cout << std::endl;
-	int soka;
-	int * pi;
-	std::cout << "int is: " << typeid(int).name() << '\n';
-	std::cout << "  i is: " << typeid(soka).name() << '\n';
-	std::cout << " pi is: " << typeid(pi).name() << '\n';
-	std::cout << "*pi is: " << typeid(*pi).name() << '\n';
+	unitTestingAdd();
 	
-	
-	
-	std::cout << std::endl;
-	char sokac;
-	char * pic;
-	std::cout << "int is: " << typeid(char).name() << '\n';
-	std::cout << "  i is: " << typeid(sokac).name() << '\n';
-	std::cout << " pi is: " << typeid(pic).name() << '\n';
-	std::cout << "*pi is: " << typeid(*pic).name() << '\n';
-	
-	
-	
-	
-	std::cout << std::endl;
-	bool sokab;
-	bool * pib;
-	std::cout << "int is: " << typeid(bool).name() << '\n';
-	std::cout << "  i is: " << typeid(sokab).name() << '\n';
-	std::cout << " pi is: " << typeid(pib).name() << '\n';
-	std::cout << "*pi is: " << typeid(*pib).name() << '\n';
-	
-	
-	
-	
-	std::cout << std::endl;
-	double sokad;
-	double * pid;
-	std::cout << "int is: " << typeid(double).name() << '\n';
-	std::cout << "  i is: " << typeid(sokad).name() << '\n';
-	std::cout << " pi is: " << typeid(pid).name() << '\n';
-	std::cout << "*pi is: " << typeid(*pid).name() << '\n';
-	
-	
-
-
 	std::cout << std::endl;
 	std::cout << "***********************************" << std::endl;
 	std::cout << "**************| FIN |**************" << std::endl;

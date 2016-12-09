@@ -41,7 +41,17 @@ int main(int argc, char**argv){
 	std::cout << std::endl;
 	unitTestingMod();
 	std::cout << std::endl;
-	unitTestingUpper();
+	unitTestingEqual();
+	std::cout << std::endl;
+	unitTestingDifferent();
+	std::cout << std::endl;
+	unitTestingGreaterThan();
+	std::cout << std::endl;
+	unitTestingLessThan();
+	std::cout << std::endl;
+	unitTestingGreaterThanOrEqual();
+	std::cout << std::endl;
+	unitTestingLessThanOrEqual();
 	std::cout << std::endl;
 	unitTestingPrime();
 	std::cout << std::endl;
@@ -49,8 +59,16 @@ int main(int argc, char**argv){
 	std::cout << std::endl;
 	unitTestingMin();
 	
+	std::cout << std::endl;
+	unitTestingAnd();
+	std::cout << std::endl;
+	unitTestingOr();
 	
 	
+	std::cout << std::endl;
+	unitTestingDec();
+	std::cout << std::endl;
+	unitTestingInc();
 	
 	std::cout << std::endl;
 	std::cout << "***********************************" << std::endl;

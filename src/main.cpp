@@ -18,6 +18,7 @@ int console(){
 	
 	LevelModel* currentLevel = game.getCurrentLevel();
 	std::cout << currentLevel->getName() << std::endl;
+	std::cout << currentLevel->getDescription() << std::endl;
 	
 	//What we need to do here : 
 	//a = input //variable affectation input

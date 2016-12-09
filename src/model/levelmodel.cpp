@@ -8,8 +8,17 @@ LevelModel::LevelModel(std::string name){
 	_name = name;
 }
 
+LevelModel::LevelModel(std::string name, std::string description){
+	_name = name;
+	_description = description;
+}
+
 std::string LevelModel::getName(){
 	return _name;
+}
+
+std::string LevelModel::getDescription(){
+	return _description;
 }
 
 OutputListModel LevelModel::getOutputListExpected(){

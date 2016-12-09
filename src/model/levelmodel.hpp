@@ -14,7 +14,9 @@ namespace satap {
 		public:
 			LevelModel();
 			LevelModel(std::string name);
+			LevelModel(std::string name, std::string description);
 			std::string getName();
+			std::string getDescription();
 			OutputListModel getOutputListExpected();
 			WorkspaceModel getWorkspace();
 			
@@ -23,6 +25,8 @@ namespace satap {
 		
 		protected:
 			std::string _name;
+			std::string _description;
+			//TODO help
 			OutputListModel _outputListExpected;
 			WorkspaceModel _workspace;
 			

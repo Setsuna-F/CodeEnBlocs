@@ -1,9 +1,18 @@
+#include <gui/Application.hpp>
+
+#include <stdexcept>
 #include <iostream>
 
-int main(int argc, char**argv){
 
-	std::cout << "CodeEnBlocs" << std::endl;
-	
-	return 0;
+int main()
+{
+	try
+	{
+		Application app;
+		app.run();
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "\nEXCEPTION: " << e.what() << std::endl;
+	}
 }
-

@@ -4,12 +4,13 @@
 #include <gui/StateIdentifiers.hpp>
 #include <gui/TitleState.hpp>
 #include <gui/MenuState.hpp>
+#include "GameState.hpp"
 
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
 Application::Application()
-: mWindow(sf::VideoMode(1024, 768), "CodeEnBlocs", sf::Style::Close)
+: mWindow(sf::VideoMode(1280, 720), "CodeEnBlocs", sf::Style::Close)
 , mTextures()
 , mFonts()
 , mMusic()
@@ -111,5 +112,5 @@ void Application::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<MenuState>(States::Menu);
-	mStateStack.registerState<MenuState>(States::Game);
+	mStateStack.registerState<GameState>(States::Game);
 }

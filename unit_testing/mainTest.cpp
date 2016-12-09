@@ -41,7 +41,16 @@ int main(int argc, char**argv){
 	std::cout << std::endl;
 	unitTestingMod();
 	std::cout << std::endl;
-	//unitTestingUpper();
+	unitTestingUpper();
+	std::cout << std::endl;
+	unitTestingPrime();
+	std::cout << std::endl;
+	unitTestingMax();
+	std::cout << std::endl;
+	unitTestingMin();
+	
+	
+	
 	
 	std::cout << std::endl;
 	std::cout << "***********************************" << std::endl;

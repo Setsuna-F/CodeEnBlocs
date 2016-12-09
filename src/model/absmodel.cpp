@@ -25,9 +25,12 @@ AbsModel::~AbsModel() {
 	//
 }
 
-std::string AbsModel::execute() {
-	int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
+sct_type AbsModel::execute() {
+	/*int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
 
 	operand = operand >= 0 ? operand : operand * (-1);
-	return std::to_string(operand);
+	return std::to_string(operand);*/
+	
+	sct_type res;
+	return res;
 }

@@ -18,7 +18,7 @@ namespace satap {
 			LessThanModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			LessThanModel(const BinaryModel & binaryModel);
 			~LessThanModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

@@ -18,7 +18,7 @@ namespace satap {
 			GreaterThanOrEqualModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			GreaterThanOrEqualModel(const BinaryModel & binaryModel);
 			~GreaterThanOrEqualModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

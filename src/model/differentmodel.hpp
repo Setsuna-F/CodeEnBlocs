@@ -18,7 +18,7 @@ namespace satap {
 			DifferentModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			DifferentModel(const BinaryModel & binaryModel);
 			~DifferentModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

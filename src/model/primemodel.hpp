@@ -25,7 +25,7 @@ namespace satap {
 
 			
 		private:
-			bool isPrime(const int number, const int divider);
+			bool isPrime(const int number);
 	};
 }
 

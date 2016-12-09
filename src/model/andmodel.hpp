@@ -18,7 +18,7 @@ namespace satap {
 			AndModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			AndModel(const BinaryModel & binaryModel);
 			~AndModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

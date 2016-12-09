@@ -18,7 +18,7 @@ namespace satap {
 			EqualModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			EqualModel(const BinaryModel & binaryModel);
 			~EqualModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

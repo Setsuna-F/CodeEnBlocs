@@ -25,8 +25,11 @@ NotModel::~NotModel() {
 	//
 }
 
-std::string NotModel::execute() {
-	int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
+sct_type NotModel::execute() {
+	/*int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
 	
-	return std::to_string(!operand);
+	return std::to_string(!operand);*/
+	
+	sct_type res;
+	return res;
 }

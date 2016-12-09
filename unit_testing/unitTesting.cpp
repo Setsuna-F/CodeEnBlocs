@@ -35,7 +35,9 @@
 
 #include "variablemodel.hpp"
 #include "maxmodel.hpp"
+#include "minmodel.hpp"
 #include "uppermodel.hpp"
+#include "primemodel.hpp"
 
 
 
@@ -273,19 +275,6 @@ void testInputListModel(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void unitTestingAdd(){
 	std::cout <<"----------Test de add--------"<< std::endl;
 	sct_type var_type_value1;
@@ -358,12 +347,6 @@ void unitTestingAdd(){
 	
 }
 
-
-
-
-
-
-
 void unitTestingSub(){
 	std::cout <<"----------Test de sub--------"<< std::endl;
 	sct_type var_type_value1;
@@ -435,15 +418,6 @@ void unitTestingSub(){
 		std::cout<<"La valeur de l'addition (sub "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
 }
 
-
-
-
-
-
-
-
-
-
 void unitTestingMul(){
 	std::cout <<"----------Test de mult--------"<< std::endl;
 	sct_type var_type_value1;
@@ -514,8 +488,6 @@ void unitTestingMul(){
 	else
 		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
 }
-
-
 
 void unitTestingDiv(){
 	std::cout <<"----------Test de div--------"<< std::endl;
@@ -602,7 +574,6 @@ void unitTestingDiv(){
 	else
 		std::cout<<"La valeur de l'addition (div "<<opi1<<" et "<<(opi3?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
 }
-
 
 void unitTestingMod(){
 	std::cout <<"----------Test de mod--------"<< std::endl;
@@ -694,7 +665,6 @@ void unitTestingMod(){
 		std::cout<<"La valeur de l'addition (mod "<<opd1<<" et "<<opd2<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
 }
 
-
 void unitTestingUpper(){
 	std::cout <<"----------Test de upper--------"<< std::endl;
 	sct_type var_type_value1;
@@ -757,37 +727,253 @@ void unitTestingUpper(){
 	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
 	
 	
-	std::cout<<opi1<<" > "<<opi2<<" : "<<std::endl;	// CAS int > int			: retourne true
-	if (*upper1.execute().int_type)
+	std::cout<<opi1<<" > "<<opi2<<" : "<<std::endl;	// CAS int > int		: retourne true
+	if (*upper1.execute().bool_type)
 		std::cout<<"true"<<std::endl;	// CAS int+int			: retourne true
 	else
 		std::cout<<"false"<<std::endl;	// CAS int+int			: retourne false
 
 	std::cout<<opd1<<" > "<<opd2<<" : "<<std::endl;	// CAS double > double	: retourne true
-	if (*upper2.execute().double_type)
+	if (*upper2.execute().bool_type)
 		std::cout<<"true"<<std::endl;	// CAS int+int			: retourne true
 	else
 		std::cout<<"false"<<std::endl;	// CAS int+int			: retourne false
 	
-	std::cout<<opi1<<" > "<<opd2<<" : "<<std::endl;	// CAS int > double	: retourne true
-	if (*upper3.execute().double_type)
+	std::cout<<opi1<<" > "<<opd2<<" : "<<std::endl;	// CAS int > double		: retourne true
+	if (*upper3.execute().bool_type)
 		std::cout<<"true"<<std::endl;	// CAS int+int			: retourne true
 	else
 		std::cout<<"false"<<std::endl;	// CAS int+int			: retourne false
 	
-	if(!*upper4.execute().double_type)
+	if(!upper4.execute().bool_type)
 		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<") est un bien un cas d'erreur "<<std::endl; // CAS int+true	: retourne error
 	else
 		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
 }
 
+void unitTestingPrime(){
+	std::cout <<"----------Test de prime--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	sct_type var_type_value4;
+	sct_type var_type_value5;
+	
+	int opi1 = 42;
+	int opi2 = 19;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= &opi1;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= nullptr;
 
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
 
+	/*var 5*/
+	var_type_value5.int_type	= nullptr;
+	var_type_value5.double_type = nullptr;
+	var_type_value5.bool_type	= &opb1;
+	
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("1", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	VariableModel var_m5("5", var_type_value5);
+	
+	
+	/*Nes classes d'addition*/
+	PrimeModel prime1(&var_m1); //Un int
+	PrimeModel prime4(&var_m2); //Un int
+	PrimeModel prime2(&var_m3); //un double
+	PrimeModel prime3(&var_m5); //un bool
+	
+	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
+	
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 19
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	
+	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
+	
+	
+	std::cout<<" Prime("<<opi1<<") : "<<std::endl;	// CAS Prime(int)		: retourne false
+	if (*prime1.execute().bool_type)
+		std::cout<<"true"<<std::endl;
+	else
+		std::cout<<"false"<<std::endl;
+	
+	
+	std::cout<<" Prime("<<opi2<<") : "<<std::endl;	// CAS Prime(int)		: retourne true
+	if (*prime4.execute().bool_type)
+		std::cout<<"true"<<std::endl;
+	else
+		std::cout<<"false"<<std::endl;
+	
+	
+	std::cout<<" Prime("<<opd1<<") : "<<std::endl;	// CAS Prime(double)	: retourne error
+	if (!prime2.execute().bool_type)
+		std::cout<<"error"<<std::endl;	// CAS double			: retourne error
+	else
+		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS double	: retourne error
+	
+	std::cout<<" Prime("<<(opb1?"true":"false")<<") : "<<std::endl;	// CAS int > double		: retourne true
+	if (!prime3.execute().bool_type)
+		std::cout<<"Error"<<std::endl;	// CAS bool			: retourne error
+	else
+		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS bool		: retourne error
+}
 
+void unitTestingMax(){
+	std::cout <<"----------Test de max--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	sct_type var_type_value4;
+	sct_type var_type_value5;
+	
+	int opi1 = 42;
+	int opi2 = 23;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= &opi1;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= nullptr;
+	
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
+	
+	/*var 4*/
+	var_type_value4.int_type	= nullptr;
+	var_type_value4.double_type = &opd2;
+	var_type_value4.bool_type	= nullptr;
+	
+	/*var 5*/
+	var_type_value5.int_type	= nullptr;
+	var_type_value5.double_type = nullptr;
+	var_type_value5.bool_type	= &opb1;
+	
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("2", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	VariableModel var_m4("4", var_type_value4);
+	VariableModel var_m5("5", var_type_value5);
+	
+	
+	/*Nes classes d'addition*/
+	MaxModel max1(&var_m1, &var_m2);
+	MaxModel max2(&var_m3, &var_m4);
+	MaxModel max3(&var_m1, &var_m4);
+	MaxModel max4(&var_m1, &var_m5);
+	
+	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 23
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	std::cout<<"La valeur de vtv4 "<<*var_type_value4.double_type<<std::endl; // retourne 42.666
+	
+	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
+	
+	std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<opi2<<") est : "<<*max1.execute().int_type<<std::endl;	// CAS int+int			: retourne 966
+	std::cout<<"La valeur de l'addition (mult "<<opd1<<" et "<<opd2<<") est : "<<*max2.execute().double_type<<std::endl; // CAS double+double	: retourne 28433.47572
+	std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<opd2<<") est : "<<*max3.execute().double_type<<std::endl; // CAS int+double		: retourne 1791.972
+	
+	if(!max4.execute().double_type)
+		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<") est un bien un cas d'erreur "<<std::endl; // CAS int+true	: retourne error
+	else
+		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
+}
 
-
-
-
-
+void unitTestingMin(){
+	std::cout <<"----------Test de min--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	sct_type var_type_value4;
+	sct_type var_type_value5;
+	
+	int opi1 = 42;
+	int opi2 = 23;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= &opi1;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= nullptr;
+	
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
+	
+	/*var 4*/
+	var_type_value4.int_type	= nullptr;
+	var_type_value4.double_type = &opd2;
+	var_type_value4.bool_type	= nullptr;
+	
+	/*var 5*/
+	var_type_value5.int_type	= nullptr;
+	var_type_value5.double_type = nullptr;
+	var_type_value5.bool_type	= &opb1;
+	
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("2", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	VariableModel var_m4("4", var_type_value4);
+	VariableModel var_m5("5", var_type_value5);
+	
+	
+	/*Nes classes d'addition*/
+	MinModel min1(&var_m1, &var_m2);
+	MinModel min2(&var_m3, &var_m4);
+	MinModel min3(&var_m1, &var_m4);
+	MinModel min4(&var_m1, &var_m5);
+	
+	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 23
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	std::cout<<"La valeur de vtv4 "<<*var_type_value4.double_type<<std::endl; // retourne 42.666
+	
+	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
+	
+	std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<opi2<<") est : "<<*min1.execute().int_type<<std::endl;	// CAS int+int			: retourne 966
+	std::cout<<"La valeur de l'addition (mult "<<opd1<<" et "<<opd2<<") est : "<<*min2.execute().double_type<<std::endl; // CAS double+double	: retourne 28433.47572
+	std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<opd2<<") est : "<<*min3.execute().double_type<<std::endl; // CAS int+double		: retourne 1791.972
+	
+	if(!min4.execute().double_type)
+		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<") est un bien un cas d'erreur "<<std::endl; // CAS int+true	: retourne error
+	else
+		std::cout<<"La valeur de l'addition (mult "<<opi1<<" et "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
+}
 
 

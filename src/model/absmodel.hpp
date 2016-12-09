@@ -18,7 +18,7 @@ namespace satap {
 			AbsModel(BlockCompositeModel* operand);
 			AbsModel(const UnaryModel & unaryModel);
 			~AbsModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

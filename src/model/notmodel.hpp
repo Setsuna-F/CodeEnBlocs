@@ -18,7 +18,7 @@ namespace satap {
 			NotModel(BlockCompositeModel* operand);
 			NotModel(const UnaryModel & unaryModel);
 			~NotModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

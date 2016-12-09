@@ -18,7 +18,7 @@ namespace satap {
 			OrModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			OrModel(const BinaryModel & binaryModel);
 			~OrModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

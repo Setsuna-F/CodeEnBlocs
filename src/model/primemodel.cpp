@@ -36,7 +36,8 @@ sct_type PrimeModel::execute() {
 	
 	op = this->UnaryModel::getOperand()->execute();
 	if(op.int_type){
-		bool result = this->isPrime((*op.int_type), (*op.int_type)/2);
+		bool result = this->isPrime(*op.int_type);
+		std::fflush(stdout);
 		op.int_type		= nullptr;
 		op.double_type	= nullptr;
 		op.bool_type	= &result;
@@ -46,19 +47,21 @@ sct_type PrimeModel::execute() {
 		op.double_type	= nullptr;
 		op.bool_type	= nullptr;
 	}
+	
 	return op;
 }
 
-bool PrimeModel::isPrime(const int number, const int divider) {
-	if (number == 1) 
-		return true;
-    if (divider == 1)
-            return true;
-    else {
-            if (number % divider == 0)
-                    return false;
-            else
-                    return isPrime(number, divider - 1);
-    }
-
+bool PrimeModel::isPrime(const int number) {
+	if (number>1) {
+		for (int i=2; i<number; i++) {
+			if(number%i==0){
+				return false;
+				break;
+			}
+		}
+	}
+	else{
+		return false;
+	}
+	return true;
 }

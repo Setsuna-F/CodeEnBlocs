@@ -18,7 +18,7 @@ namespace satap {
 			DecModel(BlockCompositeModel* operand);
 			DecModel(const UnaryModel & unaryModel);
 			~DecModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

@@ -18,7 +18,7 @@ namespace satap {
 			IncModel(BlockCompositeModel* operand);
 			IncModel(const UnaryModel & unaryModel);
 			~IncModel();
-			std::string execute();
+			sct_type execute();
 	};
 }
 

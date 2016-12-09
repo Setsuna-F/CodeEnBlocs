@@ -61,6 +61,8 @@ sct_type UpperModel::execute() {
 	else
 		return res;
 	
+
+	
 	/*Seconde operande int ou double*/
 	if(secondOperand.int_type)
 		res_second=*secondOperand.int_type;

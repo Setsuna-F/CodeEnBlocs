@@ -37,7 +37,6 @@ namespace satap {
 			void removeBlockTrue	(const int index);
 			void removeBlockFalse	(const int index);
 			sct_type execute();
-			std::string getCategory();
 
 
 		private:

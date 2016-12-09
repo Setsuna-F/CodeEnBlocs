@@ -1,7 +1,7 @@
 #ifndef MINMODEL_HPP
 #define MINMODEL_HPP
 #include "binarymodel.hpp"
-
+#include "tools.h"
 /*
  *
  * Description :
@@ -10,16 +10,17 @@
 */
 
 namespace satap {
-	
+
 	class MinModel : BinaryModel {
-		
 		public:
+			/*Constructeurs/Destructeur*/
 			MinModel();
 			MinModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			MinModel(const BinaryModel & binaryModel);
 			~MinModel();
-			std::string execute();
-			std::string getCategory();
+		
+			/*Methodes*/
+			sct_type execute();
 	};
 }
 

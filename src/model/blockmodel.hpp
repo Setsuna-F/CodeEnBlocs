@@ -5,13 +5,14 @@
 #include <vector>
 #include <iostream>
 
+#include "tools.h"
+
 namespace satap{
 
 	class BlockModel {
 
 		public:
-			virtual std::string execute() = 0;
-			virtual std::string getCategory() = 0;
+			virtual sct_type execute() = 0;
 	};
 
 }

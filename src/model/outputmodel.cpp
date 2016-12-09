@@ -2,7 +2,7 @@
 
 /*
  *
- * Description : 
+ * Description :
  *
  *
 */
@@ -17,12 +17,8 @@ OutputModel::~OutputModel() {
 	//
 }
 
-std::string OutputModel::execute() {
+sct_type OutputModel::execute() {
 	//
-	return "codeenblock";
+	sct_type res;
+	return res;
 }
-
-std::string OutputModel::getCategory() {
-	return "other";
-}
-

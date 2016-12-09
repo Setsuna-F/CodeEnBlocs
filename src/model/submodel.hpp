@@ -11,14 +11,17 @@
 namespace satap {
 
 	class SubModel : public BinaryModel {
-	
+
 		public:
+			/*Constructeurs/Destructeur*/
 			SubModel();
 			SubModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			SubModel(const BinaryModel & binaryModel);
 			~SubModel();
-			std::string execute();
-			std::string getCategory();
+
+			/*Methodes*/
+			sct_type execute();
+
 	};
 }
 

@@ -19,7 +19,11 @@ IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList) {
 
 IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockList) {
 	this->_conditionList = conditionList;
-	this->_blockList = blockList;
+	this->_blockListTrue = blockList;
+}
+
+IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockListtrue, std::vector<BlockModel *> blockListfalse): _conditionList(conditionList), _blockListTrue(blockListtrue), _blockListFalse(blockListfalse) {
+
 }
 
 
@@ -39,35 +43,65 @@ void IfModel::removeCondition(const int index) {
 	this->_conditionList.erase(this->_conditionList.begin() + index);
 }
 
-std::vector<BlockModel *> IfModel::getBlockList() {
-	return this->_blockList;
+std::vector<BlockModel *> IfModel::getBlockListTrue() {
+	return this->_blockListTrue;
 }
 
-void IfModel::addBlock(BlockModel * block) {
-	this->_blockList.push_back(block);
+std::vector<BlockModel *> IfModel::getBlockListFalse() {
+	return this->_blockListFalse;
 }
 
-void IfModel::removeBlock(const int index) {
-	this->_blockList.erase(this->_blockList.begin() + index);
+void IfModel::addBlockTrue(BlockModel * block) {
+	this->_blockListTrue.push_back(block);
+}
+
+void IfModel::addBlockFalse(BlockModel * block) {
+	this->_blockListFalse.push_back(block);
+}
+
+void IfModel::removeBlockTrue(const int index) {
+	this->_blockListTrue.erase(this->_blockListTrue.begin() + index);
+}
+
+void IfModel::removeBlockFalse(const int index) {
+	this->_blockListFalse.erase(this->_blockListFalse.begin() + index);
 }
 
 
-std::string IfModel::execute() {
+
+/*
+ 2 problemes
+ -----------
+ 
+ 1_ Pourquoi mettre un retour en string si on veut retourner un booleen ?
+ faisont en sorte qu'il retourne bool et non string
+ 
+ 2_ Si je vois bien il y a ecrit: 
+			si on a la condition vrai alors on execute les valeurs de _blockList.
+			or _blockList est la liste des block du if mais ca ne dit pas si c'est la partie true ou si c'est la partie false.
+	pour palier a cet erreur je propose de creer 2 attributs:
+		_blockListTrue //liste des blocs a executer si la condition est vrai
+		_blockListFase //liste des blocs a executer si la condition est fausse
+ */
+sct_type IfModel::execute() {
 	std::string returnValue = "IfModel class";
 	std::string condition_str = "true";
 
 	for (std::vector<BlockCompositeModel *>::iterator it = this->_conditionList.begin(); it != this->_conditionList.end(); ++it) {
-		condition_str = (condition_str == (*it)->execute()) ? "true" : "false";
+		//condition_str = (condition_str == (*it)->execute()) ? "true" : "false";
 	}
 
 	if (condition_str == "true") {
-		for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it) {
-			returnValue = (*it)->execute();
+		for (std::vector<BlockModel *>::iterator it = this->_blockListTrue.begin(); it != this->_blockListTrue.end(); ++it) {
+			//returnValue = (*it)->execute();
 		}
 	}
-	return returnValue;
+	else{
+		for (std::vector<BlockModel *>::iterator it = this->_blockListFalse.begin(); it != this->_blockListFalse.end(); ++it) {
+			//returnValue = (*it)->execute();
+		}
+	}
+	sct_type res;
+	return res;
 }
 
-std::string IfModel::getCategory() {
-	return "conditional";
-}

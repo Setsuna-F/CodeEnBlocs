@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class EqualModel : BinaryModel {
+	class EqualModel : public BinaryModel {
 
 		public:
 			EqualModel();

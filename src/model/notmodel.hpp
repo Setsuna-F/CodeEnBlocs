@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class NotModel : UnaryModel {
+	class NotModel : public UnaryModel {
 
 		public:
 			NotModel();

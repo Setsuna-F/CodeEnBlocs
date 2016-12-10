@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class OrModel : BinaryModel {
+	class OrModel : public BinaryModel {
 
 		public:
 			OrModel();

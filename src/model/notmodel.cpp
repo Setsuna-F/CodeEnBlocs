@@ -26,10 +26,27 @@ NotModel::~NotModel() {
 }
 
 sct_type NotModel::execute() {
-	/*int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
+	sct_type op;
+	op.int_type		= nullptr;
+	op.double_type	= nullptr;
+	op.bool_type	= nullptr;
 	
-	return std::to_string(!operand);*/
+	op = this->UnaryModel::getOperand()->execute();
 	
-	sct_type res;
-	return res;
+	/*Cas bool*/
+	if(op.bool_type){
+		bool res_tmp = *op.bool_type;
+		res_tmp = !res_tmp;
+		op.bool_type = &res_tmp;
+		std::fflush(stdout);
+	}
+	/*Cas erreur*/
+	else{
+		op.int_type		= nullptr;
+		op.double_type	= nullptr;
+		op.bool_type	= nullptr;
+		return op;
+	}
+	
+	return op;
 }

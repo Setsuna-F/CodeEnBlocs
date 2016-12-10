@@ -28,6 +28,7 @@ PrimeModel::~PrimeModel() {
 }
 
 
+
 sct_type PrimeModel::execute() {
 	sct_type op;
 	op.int_type		= nullptr;

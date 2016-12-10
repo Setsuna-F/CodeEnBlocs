@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class DifferentModel : BinaryModel {
+	class DifferentModel : public BinaryModel {
 
 		public:
 			DifferentModel();

@@ -26,11 +26,36 @@ AbsModel::~AbsModel() {
 }
 
 sct_type AbsModel::execute() {
-	/*int operand = std::stoi( this->UnaryModel::getOperand()->execute() );
+	sct_type op;
+	op.int_type		= nullptr;
+	op.double_type	= nullptr;
+	op.bool_type	= nullptr;
 
-	operand = operand >= 0 ? operand : operand * (-1);
-	return std::to_string(operand);*/
-	
-	sct_type res;
-	return res;
+	op = this->UnaryModel::getOperand()->execute();
+
+	if(op.int_type){
+		int res_tmp = *op.int_type;
+		if (res_tmp < 0) {
+			res_tmp = res_tmp*(-1);
+		}
+		op.int_type = &res_tmp;
+		std::fflush(stdout);
+	}
+	else if(op.double_type){
+		double res_tmp = *op.double_type;
+		if (res_tmp < 0) {
+			res_tmp = res_tmp*(-1);
+		}
+		op.double_type = &res_tmp;
+		std::fflush(stdout);
+	}
+	/*Cas erreur*/
+	else{
+		op.int_type		= nullptr;
+		op.double_type	= nullptr;
+		op.bool_type	= nullptr;
+		return op;
+	}
+
+	return op;
 }

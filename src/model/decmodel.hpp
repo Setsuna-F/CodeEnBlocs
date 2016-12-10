@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class DecModel : UnaryModel {
+	class DecModel : public UnaryModel {
 
 		public:
 			DecModel();

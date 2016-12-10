@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class MinModel : BinaryModel {
+	class MinModel : public BinaryModel {
 		public:
 			/*Constructeurs/Destructeur*/
 			MinModel();

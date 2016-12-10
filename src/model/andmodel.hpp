@@ -11,13 +11,15 @@
 
 namespace satap {
 
-	class AndModel : BinaryModel {
+	class AndModel : public BinaryModel {
 
 		public:
 			AndModel();
 			AndModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			AndModel(const BinaryModel & binaryModel);
 			~AndModel();
+		
+			/*Methodes*/
 			sct_type execute();
 	};
 }

@@ -11,13 +11,15 @@
 
 namespace satap {
 
-	class AbsModel : UnaryModel {
+	class AbsModel : public UnaryModel {
 
 		public:
 			AbsModel();
 			AbsModel(BlockCompositeModel* operand);
 			AbsModel(const UnaryModel & unaryModel);
 			~AbsModel();
+		
+			/*Methodes*/
 			sct_type execute();
 	};
 }

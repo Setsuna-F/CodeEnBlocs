@@ -5,11 +5,21 @@
 
 #include "additionlevelmodel.hpp"
 #include "inputlistmodel.hpp"
+#include "addmodel.hpp"
+#include "inputmodel.hpp"
+#include "outputmodel.hpp"
+#include "variablemodel.hpp"
+//#include "affectationmodel.hpp"
 
 using namespace satap;
 
 AdditionLevelModel::AdditionLevelModel() :
 	LevelModel("Addition", "On va te donner deux nombres, additionne-les et donne le résultat calculé"){
+	_availableBlocks.push_back(new AddModel());
+	_availableBlocks.push_back(new InputModel());
+	_availableBlocks.push_back(new OutputModel());
+	_availableBlocks.push_back(new VariableModel());
+	//_availableBlocks.push_back(new Affectation()); //TODO
 	reset();
 }
 

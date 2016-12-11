@@ -10,6 +10,7 @@
 
 using namespace satap;
 
+VariableModel::VariableModel(){}
 
 VariableModel::VariableModel(std::string name, sct_type value): _name(name), _value(value){}
 

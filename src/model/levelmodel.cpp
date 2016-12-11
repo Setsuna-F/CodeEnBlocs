@@ -20,12 +20,24 @@ LevelModel::LevelModel(std::string name, std::string description){
 	_codePage = new CodePageModel();
 }
 
+LevelModel::LevelModel(std::string name, std::string description, std::vector<BlockModel*> availableBlocks){
+	_name = name;
+	_description = description;
+	_availableBlocks = availableBlocks;
+	_workspace = new WorkspaceModel();
+	_codePage = new CodePageModel();
+}
+
 std::string LevelModel::getName(){
 	return _name;
 }
 
 std::string LevelModel::getDescription(){
 	return _description;
+}
+
+std::vector<BlockModel*> LevelModel::getAvailableBlocks(){
+	return _availableBlocks;
 }
 
 OutputListModel LevelModel::getOutputListExpected(){

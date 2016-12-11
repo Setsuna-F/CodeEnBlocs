@@ -7,6 +7,7 @@
 #include "outputlistmodel.hpp"
 #include "workspacemodel.hpp"
 #include "codepagemodel.hpp"
+#include "blockmodel.hpp"
 
 namespace satap {
 	
@@ -16,8 +17,10 @@ namespace satap {
 			LevelModel();
 			LevelModel(std::string name);
 			LevelModel(std::string name, std::string description);
+			LevelModel(std::string name, std::string description, std::vector<BlockModel*> availableBlocks);
 			std::string getName();
 			std::string getDescription();
+			std::vector<BlockModel*> getAvailableBlocks();
 			OutputListModel getOutputListExpected();
 			WorkspaceModel* getWorkspace();
 			CodePageModel* getCodePage();
@@ -31,9 +34,11 @@ namespace satap {
 			std::string _name;
 			std::string _description;
 			//TODO help
+			std::vector<BlockModel*> _availableBlocks; //TODO by default, all the block
 			OutputListModel _outputListExpected;
 			WorkspaceModel* _workspace;
 			CodePageModel* _codePage;
+			
 	};
 }
 

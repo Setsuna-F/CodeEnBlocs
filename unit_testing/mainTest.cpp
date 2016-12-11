@@ -70,6 +70,28 @@ int main(int argc, char**argv){
 	std::cout << std::endl;
 	unitTestingInc();
 	
+	
+	
+	std::cout << std::endl;
+	unitTestingAbs();
+	std::cout << std::endl;
+	unitTestingNot();
+	
+	
+	
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	
+	
+	
+	
+
+	
+	
+	
 	std::cout << std::endl;
 	std::cout << "***********************************" << std::endl;
 	std::cout << "**************| FIN |**************" << std::endl;

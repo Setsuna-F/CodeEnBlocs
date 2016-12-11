@@ -11,46 +11,42 @@
 
 #include "unitTesting.hpp"
 
-#include "../src/model/inputlistmodel.hpp"
-#include "../src/model/outputlistmodel.hpp"
 #include "../src/model/variablelistmodel.hpp"
+#include "../src/model/outputlistmodel.hpp"
+#include "../src/model/inputlistmodel.hpp"
+#include "../src/model/variablemodel.hpp"
+#include "../src/model/loopmodel.hpp"
+#include "../src/model/ifmodel.hpp"
 
-#include "variablelistmodel.hpp"
-#include "variablemodel.hpp"
-#include "loopmodel.hpp"
-#include "ifmodel.hpp"
+#include "../src/model/modulomodel.hpp"
+#include "../src/model/multmodel.hpp"
+#include "../src/model/divmodel.hpp"
+#include "../src/model/addmodel.hpp"
+#include "../src/model/submodel.hpp"
 
-#include "tools.h"
+#include "../src/model/uppermodel.hpp"
+#include "../src/model/primemodel.hpp"
+#include "../src/model/maxmodel.hpp"
+#include "../src/model/minmodel.hpp"
 
-#include "modulomodel.hpp"
-#include "multmodel.hpp"
-#include "divmodel.hpp"
-#include "addmodel.hpp"
-#include "submodel.hpp"
+#include "../src/model/greaterthanorequalmodel.hpp"
+#include "../src/model/lessthanorequalmodel.hpp"
+#include "../src/model/greaterthanmodel.hpp"
+#include "../src/model/differentmodel.hpp"
+#include "../src/model/lessthanmodel.hpp"
+#include "../src/model/equalmodel.hpp"
+#include "../src/model/andmodel.hpp"
+#include "../src/model/notmodel.hpp"
+#include "../src/model/absmodel.hpp"
+#include "../src/model/decmodel.hpp"
+#include "../src/model/incmodel.hpp"
+#include "../src/model/ormodel.hpp"
+#include "../src/model/incmodel.hpp"
+#include "../src/model/decmodel.hpp"
 
-#include "uppermodel.hpp"
-#include "primemodel.hpp"
-#include "maxmodel.hpp"
-#include "minmodel.hpp"
-
-#include "greaterthanorequalmodel.hpp"
-#include "lessthanorequalmodel.hpp"
-#include "greaterthanmodel.hpp"
-#include "differentmodel.hpp"
-#include "lessthanmodel.hpp"
-#include "equalmodel.hpp"
-#include "andmodel.hpp"
-#include "notmodel.hpp"
-#include "absmodel.hpp"
-#include "decmodel.hpp"
-#include "incmodel.hpp"
-#include "ormodel.hpp"
-#include "incmodel.hpp"
-#include "decmodel.hpp"
+#include "../src/tools.h"
 
 using namespace satap;
-
-
 
 void globalTests(){
 	std::cout<<"////////////////////////"<<std::endl;
@@ -1591,11 +1587,14 @@ void unitTestingOr(){
 	
 	
 	/*Nes classes d'addition*/
-	OrModel or1(&var_m1, &var_m2); //Un int et double (int and double)
+	OrModel or1; //Un int et double (int and double)
 	OrModel or2(&var_m3, &var_m4); //un bool et bool (true and true)
 	OrModel or3(&var_m5, &var_m6); //un bool et bool (false and false)
 	OrModel or4(&var_m4, &var_m5); //un bool et bool (true and false)
 	OrModel or5(&var_m1, &var_m3); //un int et bool  (int and true)
+	
+	or1.setFirstOperand(&var_m1);
+	or1.setSecondOperand(&var_m2);
 	
 	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
 	
@@ -1761,29 +1760,182 @@ void unitTestingDec(){
 	VariableModel var_m3("3", var_type_value3);
 	VariableModel var_m4("4", var_type_value4);
 	VariableModel var_m5("5", var_type_value5);
-	
-	
+
 	/*Nes classes d'addition*/
 	DecModel dec1(&var_m1);
 	DecModel dec2(&var_m3);
 	DecModel dec3(&var_m1);
 	DecModel dec4(&var_m5);
-	
+
 	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
 	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 23
-	
+
 	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
 	std::cout<<"La valeur de vtv4 "<<*var_type_value4.double_type<<std::endl; // retourne 42.666
-	
+
 	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
-	
+
 	std::cout<<"La valeur de l'addition (inc "<<opi1<<") est : "<<*dec1.execute().int_type<<std::endl;	// CAS int+int			: retourne 65
 	std::cout<<"La valeur de l'addition (inc "<<opd1<<") est : "<<*dec2.execute().double_type<<std::endl; // CAS double+double	: retourne 709.086
 	std::cout<<"La valeur de l'addition (inc "<<opi1<<") est : "<<*dec3.execute().int_type<<std::endl; // CAS int+double		: retourne 84.666
-	
+
 	if(!dec4.execute().double_type)
 		std::cout<<"La valeur de l'addition (inc "<<(opb1?"T":"F")<<") est un bien un cas d'erreur "<<std::endl; // CAS int+true	: retourne error
 	else
 		std::cout<<"La valeur de l'addition (inc "<<(opb1?"T":"F")<<"), ERROR IL Y A UN PROBLEME ! "<<std::endl; // CAS int+true	: retourne error
+
+}
+
+void unitTestingAbs(){
+	std::cout <<"----------Test de abs--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	sct_type var_type_value4;
+	sct_type var_type_value5;
+	
+	int opi1 = 42;
+	int opi2 = -19;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= &opi1;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= nullptr;
+	
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
+	
+	/*var 5*/
+	var_type_value5.int_type	= nullptr;
+	var_type_value5.double_type = nullptr;
+	var_type_value5.bool_type	= &opb1;
+	
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("1", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	VariableModel var_m5("5", var_type_value5);
+	
+	
+	/*Nes classes d'addition*/
+	AbsModel abs1; //Un int
+	AbsModel abs2(&var_m2); //Un int
+	AbsModel abs3(&var_m3); //un double
+	AbsModel abs4(&var_m5); //un bool
+	
+	
+	abs1.setOperand(&var_m1);
+	
+	
+	std::cout<<"La valeur de vtv1 "<<*var_type_value1.int_type<<std::endl; // retourne 42
+	
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 19
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	
+	std::cout<<"La valeur de vtv5 "<<((*var_type_value5.bool_type)?"true":"false")<<std::endl; // retourne true
+	
+	
+	std::cout<<" ABS("<<opi1<<") : "<<std::endl;	// CAS Prime(int)		: retourne false
+	if (*abs1.execute().int_type)
+		std::cout<<*abs1.execute().int_type<<std::endl;
+	else
+		std::cout<<"Erreur"<<std::endl;
+	
+	
+	std::cout<<" ABS("<<opi2<<") : "<<std::endl;	// CAS Prime(int)		: retourne true
+	if (*abs2.execute().int_type)
+		std::cout<<*abs2.execute().int_type<<std::endl;
+	else
+		std::cout<<"Erreur"<<std::endl;
+	
+	
+	std::cout<<" ABS("<<opd1<<") : "<<std::endl;	// CAS Prime(double)	: retourne error
+	if (*abs3.execute().double_type)
+		std::cout<<*abs3.execute().double_type<<std::endl;	// CAS double			: retourne error
+	else
+		std::cout<<"Erreur"<<std::endl;	// CAS double	: retourne error
+
+	std::cout<<" ABS("<<(opb1?"true":"false")<<") : "<<std::endl;	// CAS int > double		: retourne true
+	if (!abs4.execute().bool_type)
+		std::cout<<"Error"<<std::endl;	// CAS bool			: retourne error
+	else
+		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS bool		: retourne error
+}
+
+void unitTestingNot(){
+	std::cout <<"----------Test de not--------"<< std::endl;
+	sct_type var_type_value1;
+	sct_type var_type_value2;
+	sct_type var_type_value3;
+	
+	int opi1 = 42;
+	int opi2 = -19;
+	double opd1 = 666.42;
+	double opd2 = 42.666;
+	bool opb1 = true;
+	
+	/*var 1*/
+	var_type_value1.int_type	= nullptr;
+	var_type_value1.double_type = nullptr;
+	var_type_value1.bool_type	= &opb1;
+	
+	/*var 2*/
+	var_type_value2.int_type	= &opi2;
+	var_type_value2.double_type = nullptr;
+	var_type_value2.bool_type	= nullptr;
+	
+	/*var 3*/
+	var_type_value3.int_type	= nullptr;
+	var_type_value3.double_type = &opd1;
+	var_type_value3.bool_type	= nullptr;
+	
+	
+	VariableModel var_m1("1", var_type_value1);
+	VariableModel var_m2("1", var_type_value2);
+	VariableModel var_m3("3", var_type_value3);
+	
+	
+	/*Nes classes d'addition*/
+	NotModel not1(&var_m1); //Un int
+	NotModel not2(&var_m2); //Un int
+	NotModel not3(&var_m3); //un double
+	
+	std::cout<<"La valeur de vtv1 "<<((*var_type_value1.bool_type)?"true":"false")<<std::endl; // retourne 42
+	
+	std::cout<<"La valeur de vtv2 "<<*var_type_value2.int_type<<std::endl; // retourne 19
+	
+	std::cout<<"La valeur de vtv3 "<<*var_type_value3.double_type<<std::endl; // retourne 666.42
+	
+	
+	std::cout<<" not("<<((*var_type_value1.bool_type)?"true":"false")<<") : "<<std::endl;	// CAS Prime(int)		: retourne false
+	if (*not1.execute().bool_type)
+		std::cout<<"true"<<std::endl;
+	else
+		std::cout<<"false"<<std::endl;
+	
+	
+	std::cout<<" not("<<opi2<<") : "<<std::endl;	// CAS Prime(int)		: retourne true
+	if (!not2.execute().bool_type)
+		std::cout<<"error"<<std::endl;	// CAS double			: retourne error
+	else
+		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS double	: retourne error
+	
+	
+	std::cout<<" not("<<opd1<<") : "<<std::endl;	// CAS Prime(double)	: retourne error
+	if (!not3.execute().bool_type)
+		std::cout<<"error"<<std::endl;	// CAS double			: retourne error
+	else
+		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS double	: retourne error
 	
 }

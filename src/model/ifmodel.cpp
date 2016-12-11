@@ -69,14 +69,8 @@ void IfModel::removeBlockFalse(const int index) {
 
 
 
-/*
- 2 problemes
- -----------
- 
- 1_ Pourquoi mettre un retour en string si on veut retourner un booleen ?
- faisont en sorte qu'il retourne bool et non string
- 
- 2_ Si je vois bien il y a ecrit: 
+/* 
+ Si je vois bien il y a ecrit: 
 			si on a la condition vrai alors on execute les valeurs de _blockList.
 			or _blockList est la liste des block du if mais ca ne dit pas si c'est la partie true ou si c'est la partie false.
 	pour palier a cet erreur je propose de creer 2 attributs:
@@ -86,22 +80,29 @@ void IfModel::removeBlockFalse(const int index) {
 sct_type IfModel::execute() {
 	std::string returnValue = "IfModel class";
 	std::string condition_str = "true";
-
+	sct_type result;
+	result.int_type			=nullptr;
+	result.double_type		=nullptr;
+	result.bool_type		=nullptr;
+	bool condition 			=true;
+	
 	for (std::vector<BlockCompositeModel *>::iterator it = this->_conditionList.begin(); it != this->_conditionList.end(); ++it) {
-		//condition_str = (condition_str == (*it)->execute()) ? "true" : "false";
+		condition = condition && (*it)->execute().double_type;
 	}
 
-	if (condition_str == "true") {
-		for (std::vector<BlockModel *>::iterator it = this->_blockListTrue.begin(); it != this->_blockListTrue.end(); ++it) {
-			//returnValue = (*it)->execute();
-		}
+	if (condition == true) {
+		for (std::vector<BlockModel *>::iterator it = this->_blockListTrue.begin(); it != this->_blockListTrue.end(); ++it)
+			(*it)->execute();
 	}
-	else{
-		for (std::vector<BlockModel *>::iterator it = this->_blockListFalse.begin(); it != this->_blockListFalse.end(); ++it) {
-			//returnValue = (*it)->execute();
-		}
+	
+	else {
+		for (std::vector<BlockModel *>::iterator it = this->_blockListFalse.begin(); it != this->_blockListFalse.end(); ++it) 
+			(*it)->execute();
 	}
-	sct_type res;
-	return res;
+	
+	result.int_type			=nullptr;
+	result.double_type		=nullptr;
+	result.bool_type 		=&condition;
+	return result;
 }
 

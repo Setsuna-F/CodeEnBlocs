@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class LessThanOrEqualModel : BinaryModel {
+	class LessThanOrEqualModel : public BinaryModel {
 
 		public:
 			LessThanOrEqualModel();

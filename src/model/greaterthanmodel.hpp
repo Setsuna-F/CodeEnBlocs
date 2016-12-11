@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class GreaterThanModel : BinaryModel {
+	class GreaterThanModel : public BinaryModel {
 
 		public:
 			GreaterThanModel();

@@ -11,7 +11,7 @@
 
 namespace satap {
 
-	class IncModel : UnaryModel {
+	class IncModel : public UnaryModel {
 
 		public:
 			IncModel();

@@ -18,6 +18,8 @@ namespace satap {
 			void removeBlock(int i);
 			BlockModel* getBlock(int i);
 			std::vector<BlockModel*> getBlockList();
+			void flush();
+			void execute();
 
 		private:
 			std::vector<BlockModel*> _blockList;

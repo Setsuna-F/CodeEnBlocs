@@ -10,7 +10,7 @@ namespace satap {
 		public:
 			AdditionLevelModel();
 
-			void init();
+			void reset();
 
 	};
 }

@@ -4,7 +4,6 @@
 #include "inputlistmodel.hpp"
 #include "outputlistmodel.hpp"
 #include "variablelistmodel.hpp"
-#include "codepagemodel.hpp"
 
 namespace satap {
 	
@@ -12,24 +11,20 @@ namespace satap {
 		
 		public:
 			WorkspaceModel();
-			WorkspaceModel(InputListModel inputList, OutputListModel outputList, VariableListModel variableList, CodePageModel* codePage);
-			InputListModel getInputList();
-			OutputListModel getOutputList();
-			VariableListModel getVariableList();
-			CodePageModel* getCodePage();
+			WorkspaceModel(InputListModel* inputList, OutputListModel* outputList, VariableListModel* variableList);
+			InputListModel* getInputList();
+			OutputListModel* getOutputList();
+			VariableListModel* getVariableList();
 			
-			void setInputList(InputListModel inputList);
-			void setOutputList(OutputListModel outputList);
-			void setVariableList(VariableListModel variableList);
-			void setCodePage(CodePageModel* codePage);
-			void executeCodePage();
+			void setInputList(InputListModel* inputList);
+			void setOutputList(OutputListModel* outputList);
+			void setVariableList(VariableListModel* variableList);
 			void flush();
 
 		private:
-			InputListModel _inputList;
-			OutputListModel _outputList;
-			VariableListModel _variableList;
-			CodePageModel* _codePage;
+			InputListModel* _inputList;
+			OutputListModel* _outputList;
+			VariableListModel* _variableList;
 	};
 }
 

@@ -10,18 +10,19 @@ using namespace satap;
 
 AdditionLevelModel::AdditionLevelModel() :
 	LevelModel("Addition", "On va te donner deux nombres, additionne-les et donne le résultat calculé"){
-	init();
+	reset();
 }
 
-void AdditionLevelModel::init(){
+void AdditionLevelModel::reset(){
 	int min = 0;
 	int max = 10;
 	int output = 0;
-	InputListModel input;
 	
-	_workspace.flush();
+	
+	_workspace->flush();
+	_codePage->flush();
+	InputListModel* input = _workspace->getInputList();	
 	srand(time(NULL));
-	
 	
 	for(int i=0; i<2; i++){
 		sct_type foo;
@@ -32,9 +33,9 @@ void AdditionLevelModel::init(){
 		bar = min + (rand() % (int)(max - min + 1));
 		foo.int_type = &bar;
 		output += *(foo.int_type);
-		input.push(foo);
+		input->push(foo);
+		//_workspace->setInputList(input);
 	}
-	_workspace.setInputList(input);
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(std::to_string(output));
 }

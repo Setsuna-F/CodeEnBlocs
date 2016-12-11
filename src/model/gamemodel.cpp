@@ -21,5 +21,5 @@ LevelModel* GameModel::getCurrentLevel(){
 
 void GameModel::loadLevel(int i){
 	_currentLevel = _levelList[i];
-	_currentLevel->init();
+	_currentLevel->reset();
 }

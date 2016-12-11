@@ -26,7 +26,7 @@ int console(){
 	//c = a + b
 	//output c
 	
-	CodePageModel* codePage = currentLevel->getWorkspace().getCodePage();
+	CodePageModel* codePage = currentLevel->getCodePage();
 	//codePage->addBlock( ... );
 	std::cout << currentLevel->validate() << std::endl;
 

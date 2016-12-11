@@ -30,6 +30,16 @@ BlockModel* CodePageModel::getBlock(int i){
 	return _blockList[i];
 }
 
+void CodePageModel::flush(){
+	_blockList = *(new std::vector<BlockModel*>());
+}
+
+void CodePageModel::execute(){
+	for(int i=0; i<(int)_blockList.size(); i++){
+		_blockList[i]->execute();
+	}
+}
+
 std::vector<BlockModel*> CodePageModel::getBlockList(){
 	return _blockList;
 }

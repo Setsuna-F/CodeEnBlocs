@@ -6,6 +6,7 @@
 
 #include "outputlistmodel.hpp"
 #include "workspacemodel.hpp"
+#include "codepagemodel.hpp"
 
 namespace satap {
 	
@@ -18,9 +19,12 @@ namespace satap {
 			std::string getName();
 			std::string getDescription();
 			OutputListModel getOutputListExpected();
-			WorkspaceModel getWorkspace();
+			WorkspaceModel* getWorkspace();
+			CodePageModel* getCodePage();
 			
-			virtual void init() = 0; //generates random input and computes expected output
+			void setCodePage(CodePageModel* codePage);
+			
+			virtual void reset() = 0; //generates random input and computes expected output
 			bool validate();
 		
 		protected:
@@ -28,8 +32,8 @@ namespace satap {
 			std::string _description;
 			//TODO help
 			OutputListModel _outputListExpected;
-			WorkspaceModel _workspace;
-			
+			WorkspaceModel* _workspace;
+			CodePageModel* _codePage;
 	};
 }
 

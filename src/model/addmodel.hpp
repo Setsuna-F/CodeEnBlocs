@@ -11,7 +11,7 @@
 
 namespace satap {
 	
-	class AddModel : BinaryModel {
+	class AddModel : public BinaryModel {
 		
 		public:
 			AddModel();

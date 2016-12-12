@@ -1,5 +1,5 @@
-#ifndef BOOK_BUTTON_HPP
-#define BOOK_BUTTON_HPP
+#ifndef BLOCK_HPP
+#define BLOCK_HPP
 
 #include <gui/Component.hpp>
 #include <gui/ResourceIdentifiers.hpp>

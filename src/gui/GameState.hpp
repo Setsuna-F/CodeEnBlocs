@@ -21,6 +21,7 @@ public:
 private:
 	sf::Sprite				mBackgroundSprite;
 	GUI::Container			mGUIContainer;
+	GUI::Container			mGUIBlocsContainer;
 };
 
 #endif // BOOK_MENUSTATE_HPP

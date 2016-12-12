@@ -1,4 +1,4 @@
-#include <gui/Bloc.hpp>
+#include <gui/Blocs/Bloc.hpp>
 #include <gui/Utility.hpp>
 #include <gui/SoundPlayer.hpp>
 #include <gui/ResourceHolder.hpp>

@@ -14,7 +14,7 @@
 using namespace satap;
 
 AdditionLevelModel::AdditionLevelModel() :
-	LevelModel("Addition", "On va te donner deux nombres, additionne-les et donne le résultat calculé"){
+	LevelModel("Addition", "On va te donner deux nombres, additionne-les et donne le résultat calculé", "Utilise un bloc d'addition après avoir récupéré les deux entrées dans deux variables."){ //TODO better help text
 	_availableBlocks.push_back(new AddModel());
 	_availableBlocks.push_back(new InputModel());
 	_availableBlocks.push_back(new OutputModel());
@@ -27,13 +27,12 @@ void AdditionLevelModel::reset(){
 	int min = 0;
 	int max = 10;
 	int output = 0;
-	
-	
+
 	_workspace->flush();
 	_codePage->flush();
-	InputListModel* input = _workspace->getInputList();	
+	InputListModel* input = _workspace->getInputList();
 	srand(time(NULL));
-	
+
 	for(int i=0; i<2; i++){
 		sct_type foo;
 		int bar;

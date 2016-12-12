@@ -20,9 +20,26 @@ LevelModel::LevelModel(std::string name, std::string description){
 	_codePage = new CodePageModel();
 }
 
+LevelModel::LevelModel(std::string name, std::string description, std::string help){
+	_name = name;
+	_description = description;
+	_help = help;
+	_workspace = new WorkspaceModel();
+	_codePage = new CodePageModel();
+}
+
 LevelModel::LevelModel(std::string name, std::string description, std::vector<BlockModel*> availableBlocks){
 	_name = name;
 	_description = description;
+	_availableBlocks = availableBlocks;
+	_workspace = new WorkspaceModel();
+	_codePage = new CodePageModel();
+}
+
+LevelModel::LevelModel(std::string name, std::string description, std::string help, std::vector<BlockModel*> availableBlocks){
+	_name = name;
+	_description = description;
+	_help = help;
 	_availableBlocks = availableBlocks;
 	_workspace = new WorkspaceModel();
 	_codePage = new CodePageModel();
@@ -34,6 +51,10 @@ std::string LevelModel::getName(){
 
 std::string LevelModel::getDescription(){
 	return _description;
+}
+
+std::string LevelModel::getHelp(){
+	return _help;
 }
 
 std::vector<BlockModel*> LevelModel::getAvailableBlocks(){

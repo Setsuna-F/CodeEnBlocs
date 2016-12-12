@@ -2,7 +2,7 @@
 #define LOOPMODEL_HPP
 #include "blocksimplemodel.hpp"
 #include "blockcompositemodel.hpp"
-
+#include "tools.h"
 /*
  *
  * Description :
@@ -25,8 +25,7 @@ namespace satap {
 			std::vector<BlockModel *> getBlockList();
 			void addBlock(BlockModel * block);
 			void removeBlock(const int index);
-			std::string execute();
-			std::string getCategory();
+			sct_type execute();
 
 		private:
 			//Conditions and / or parameters of the loop

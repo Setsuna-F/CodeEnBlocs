@@ -10,16 +10,14 @@
 */
 
 namespace satap {
-	
 	class AddModel : public BinaryModel {
-		
 		public:
 			AddModel();
 			AddModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
 			AddModel(const BinaryModel & binaryModel);
 			~AddModel();
-			std::string execute();
-			std::string getCategory();
+			sct_type execute();
+
 	};
 }
 

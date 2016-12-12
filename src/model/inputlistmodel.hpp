@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stack>
 #include <string>
+#include "tools.h"
 
 namespace satap{
 
@@ -22,14 +23,14 @@ namespace satap{
 	 */
 	class InputListModel{
 	private:
-		std::stack<std::string> _input;
+		std::stack<sct_type> _input;
 	
 	public:
 		InputListModel();
-		InputListModel(std::stack<std::string> in);
+		InputListModel(std::stack<sct_type> in);
 	
-		void		push(std::string val);
-		std::string pop();
+		void		push(sct_type val);
+		sct_type	pop();
 
 		bool	isEmpty();
 		size_t	size();

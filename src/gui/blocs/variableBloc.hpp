@@ -7,7 +7,8 @@
 namespace satap {
 	class VariableBloc : public GUI::Bloc, public VariableModel {
 		public:
-			VariableBloc(State::Context context, std::string name = "", std::string value = "");
+			VariableBloc(State::Context context, std::string name, sct_type value);
+			VariableBloc(State::Context context);
 	};
 }
 #endif

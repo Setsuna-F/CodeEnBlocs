@@ -1,8 +1,9 @@
 #include <gui/blocs/variableBloc.hpp>
 
-satap::VariableBloc::VariableBloc(State::Context context, std::string name, std::string value) :
+satap::VariableBloc::VariableBloc(State::Context context) :
 	Bloc(context),
-	VariableModel(name, value)
-{
+	VariableModel() {}
 
-}
+satap::VariableBloc::VariableBloc(State::Context context, std::string name, sct_type value) :
+	Bloc(context),
+	VariableModel(name, value) {}

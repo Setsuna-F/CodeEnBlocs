@@ -1,4 +1,5 @@
 #include <gui/Application.hpp>
+#include <model/gamemodel.hpp>
 
 #include <stdexcept>
 #include <iostream>
@@ -10,7 +11,7 @@ int gui();
 
 
 int main(int argc, char**argv){
-	return console();
+	return gui();
 }
 
 int console(){

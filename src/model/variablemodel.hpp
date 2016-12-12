@@ -12,28 +12,31 @@
 #include <iostream>
 #include <string>
 #include "blockcompositemodel.hpp"
+#include "tools.h"
 
 namespace satap{
 
 	class VariableModel : public BlockCompositeModel{
-		
+
 		public:
-			VariableModel(std::string name="", std::string value="");
+
+			VariableModel();
+			VariableModel(std::string name, sct_type value);
 	
 			void setName(std::string n);
 			std::string getName();
 	
-			void setValue(std::string n);
-			std::string getValue();
+			void setValue(sct_type n);
+			sct_type getValue();
 		
-			std::string getCategory();
-			std::string execute();
+			sct_type execute();
 
 		private:
 			//variable name
 			std::string _name;
+		
 			//variable value
-			std::string _value;
+			sct_type _value;
 	};
 
 }

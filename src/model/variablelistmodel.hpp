@@ -14,17 +14,22 @@
 #include <string>
 #include <unordered_map>
 
+#include "variablemodel.hpp"
+
 namespace satap{
 
 	class VariableListModel{
-	private:
-		std::unordered_map<std::string, std::string> _varlist;
-	public:
-		void		setVariable	(std::string name, std::string value);
-		void		setVariable	(std::string value);
-		std::string getValue	(std::string);
-		bool		removeValue	(std::string name);
-		size_t		size		();
+		public:
+			VariableModel*	getVariableModel(std::string name);
+			void			setVariableModel(VariableModel variable);
+			void			setVariable		(std::string name, sct_type value);
+			void			setVariable		(sct_type value);
+			bool			removeValue		(std::string name);
+			sct_type		getValue		(std::string);
+			size_t			size			();
+
+		private:
+		std::unordered_map<std::string, sct_type> _varlist;
 	};
 	
 }

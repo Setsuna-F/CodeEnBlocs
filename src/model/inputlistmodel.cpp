@@ -13,10 +13,10 @@
 using namespace satap;
 
 InputListModel::InputListModel(){}
-InputListModel::InputListModel(std::stack<std::string> in){_input = in;}
+InputListModel::InputListModel(std::stack<sct_type> in):_input(in) {}
 
-void		InputListModel::push(std::string val){_input.push(val);}
-std::string InputListModel::pop(){std::string val=_input.top(); _input.pop(); return val;} //TODO exception if empty
+void		InputListModel::push(sct_type val){_input.push(val);}
+sct_type	InputListModel::pop(){sct_type res = _input.top(); _input.pop(); return res;} //TODO exception if empty
 
 bool	InputListModel::isEmpty(){return _input.empty();}
 size_t	InputListModel::size	  (){return _input.size();}

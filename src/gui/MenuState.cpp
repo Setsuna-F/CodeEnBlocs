@@ -42,13 +42,13 @@ MenuState::MenuState(StateStack& stack, Context context)
 	//	requestStackPush(States::JoinGame);
 	//});
 
-	//auto settingsButton = std::make_shared<GUI::Button>(context);
-	//settingsButton->setPosition(100, 450);
-	//settingsButton->setText("Settings");
-	//settingsButton->setCallback([this] ()
-	//{
-	//	requestStackPush(States::Settings);
-	//});
+	auto settingsButton = std::make_shared<GUI::Button>(context);
+	settingsButton->setPosition(100, 400);
+	settingsButton->setText("Settings");
+	settingsButton->setCallback([this] ()
+	{
+		requestStackPush(States::Settings);
+	});
 
 	auto exitButton = std::make_shared<GUI::Button>(context);
 	exitButton->setPosition(100, 500);
@@ -61,7 +61,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 	mGUIContainer.pack(playButton);
 	//mGUIContainer.pack(hostPlayButton);
 	//mGUIContainer.pack(joinPlayButton);
-	//mGUIContainer.pack(settingsButton);
+	mGUIContainer.pack(settingsButton);
 	mGUIContainer.pack(exitButton);
 
 	// Play menu theme

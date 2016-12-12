@@ -1,10 +1,12 @@
 #include <gui/MusicPlayer.hpp>
 
+#include <iostream>
+
 
 MusicPlayer::MusicPlayer()
 : mMusic()
 , mFilenames()
-, mVolume(100.f)
+, mVolume(20.f)
 {
 	mFilenames[Music::MenuTheme]    = "res/sound/MenuTheme.ogg";
 }
@@ -29,6 +31,19 @@ void MusicPlayer::stop()
 void MusicPlayer::setVolume(float volume)
 {
 	mVolume = volume;
+
+	if (mVolume <= 0.f)
+		mVolume = 0.f;
+
+	if (mVolume >= 100.f)
+		mVolume = 100.f;
+
+	mMusic.setVolume(mVolume);
+}
+
+float MusicPlayer::getVolume() const
+{
+	return mVolume;
 }
 
 void MusicPlayer::setPaused(bool paused)

@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <iostream>
 
 namespace GUI
 {
@@ -50,6 +51,24 @@ void Container::handleEvent(const sf::Event& event)
 			if (hasSelection())
 				mChildren[mSelectedChild]->activate();
 		}
+	}
+	else if (event.type == sf::Event::MouseMoved)
+	{
+		int pointed = 0, next = mSelectedChild;
+		FOREACH(const Component::Ptr& child, mChildren)
+		{
+			bool saveIfIsSelected = child->isSelected();
+			child->handleEvent(event);
+			if (saveIfIsSelected != child->isSelected())
+				next = pointed;
+			pointed ++;
+		}
+		if (next != mSelectedChild && pointed)
+			select(next);
+	}
+	else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::KeyPressed)
+	{
+		mChildren[mSelectedChild]->handleEvent(event);
 	}
 }
 

@@ -38,8 +38,7 @@ class Application
 		MusicPlayer				mMusic;
 		SoundPlayer				mSounds;
 
-		KeyBinding				mKeyBinding1;
-		KeyBinding				mKeyBinding2;
+		KeyBinding				mKeyBinding;
 		StateStack				mStateStack;
 
 		sf::Text				mStatisticsText;

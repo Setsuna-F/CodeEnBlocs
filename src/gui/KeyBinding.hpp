@@ -11,12 +11,8 @@ namespace PlayerAction
 {
 	enum Type
 	{
-		MoveLeft,
-		MoveRight,
-		MoveUp,
-		MoveDown,
-		Fire,
-		LaunchMissile,
+		RunCode,
+		// TODO autres actions comme par exemple des raccourcis pour ouvrir les différents onglets
 		Count
 	};
 }
@@ -28,7 +24,7 @@ class KeyBinding
 
 
 	public:
-		explicit				KeyBinding(int controlPreconfiguration);
+		explicit				KeyBinding();
 
 		void					assignKey(Action action, sf::Keyboard::Key key);
 		sf::Keyboard::Key		getAssignedKey(Action action) const;

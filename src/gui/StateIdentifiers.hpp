@@ -10,6 +10,7 @@ namespace States
 		Title,
 		Menu,
 		Game,
+		Settings,
 	};
 }
 

@@ -28,15 +28,14 @@ class State
 		struct Context
 		{
 								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts,
-									MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys1, KeyBinding& keys2);
+									MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys);
 
 			sf::RenderWindow*	window;
 			TextureHolder*		textures;
 			FontHolder*			fonts;
 			MusicPlayer*		music;
 			SoundPlayer*		sounds;
-			KeyBinding*			keys1;
-			KeyBinding*			keys2;
+			KeyBinding*			keys;
 		};
 
 

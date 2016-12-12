@@ -4,7 +4,8 @@
 #include <gui/StateIdentifiers.hpp>
 #include <gui/TitleState.hpp>
 #include <gui/MenuState.hpp>
-#include "GameState.hpp"
+#include <gui/GameState.hpp>
+#include <gui/SettingsState.hpp>
 
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -15,9 +16,8 @@ Application::Application()
 , mFonts()
 , mMusic()
 , mSounds()
-, mKeyBinding1(1)
-, mKeyBinding2(2)
-, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding1, mKeyBinding2))
+, mKeyBinding()
+, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding))
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
@@ -37,7 +37,8 @@ Application::Application()
 	registerStates();
 	mStateStack.pushState(States::Title);
 
-	mMusic.setVolume(25.f);
+	mMusic.setVolume(20.f);
+	mSounds.setVolume(50.f);
 }
 
 void Application::run()
@@ -113,4 +114,5 @@ void Application::registerStates()
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
+	mStateStack.registerState<SettingsState>(States::Settings);
 }

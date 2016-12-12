@@ -7,6 +7,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <iostream>
 
 namespace GUI
 {
@@ -89,10 +90,31 @@ void Button::deactivate()
 		else
 			changeTexture(Normal);
 	}
+	else
+		changeTexture(Selected);
 }
 
-void Button::handleEvent(const sf::Event&)
+void Button::handleEvent(const sf::Event& event)
 {
+	sf::IntRect r(getPosition().x, getPosition().y, mSprite.getTextureRect().width, mSprite.getTextureRect().height);
+	if (event.type == sf::Event::MouseMoved && r.contains(event.mouseMove.x, event.mouseMove.y) && !isSelected())
+	{
+		select();
+	}
+	else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && r.contains(event.mouseButton.x, event.mouseButton.y))
+	{
+		changeTexture(Pressed);
+	}
+	else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+	{
+		changeTexture(Selected);
+		if (r.contains(event.mouseButton.x, event.mouseButton.y))
+			activate();
+	}
+	else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return || event.key.code == sf::Keyboard::Space)
+	{
+		changeTexture(Pressed);
+	}
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -106,6 +128,13 @@ void Button::changeTexture(Type buttonType)
 {
 	sf::IntRect textureRect(0, 50*buttonType, 200, 50);
 	mSprite.setTextureRect(textureRect);
+}
+
+void Button::scale(float scaleX, float scaleY)
+{
+	mSprite.scale(scaleX, scaleY);
+	sf::FloatRect bounds = mSprite.getLocalBounds();
+	mText.setPosition(mSprite.getScale().x * bounds.width / 2.f, mSprite.getScale().y * bounds.height / 2.f);
 }
 
 }

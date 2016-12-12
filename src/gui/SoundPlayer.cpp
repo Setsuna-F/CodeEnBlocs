@@ -23,21 +23,16 @@ namespace
 SoundPlayer::SoundPlayer()
 : mSoundBuffers()
 , mSounds()
+, mVolume(50.f)
 {
 	char* buffer;
 
-	// Get the current working directory:   
-	if ((buffer = _getcwd(NULL, 0)) == NULL)
-		perror("_getcwd error");
-	else
-	{
-		std::cout << buffer << std::endl;
-		free(buffer);
-	}
 	mSoundBuffers.load(SoundEffect::Button,			"res/sound/Button.wav");
 
 	// Listener points towards the screen (default in SFML)
 	sf::Listener::setDirection(0.f, 0.f, -1.f);
+	
+	setVolume(mVolume);
 }
 
 void SoundPlayer::play(SoundEffect::ID effect)
@@ -54,6 +49,8 @@ void SoundPlayer::play(SoundEffect::ID effect, sf::Vector2f position)
 	sound.setPosition(position.x, -position.y, 0.f);
 	sound.setAttenuation(Attenuation);
 	sound.setMinDistance(MinDistance3D);
+
+	sound.setVolume(mVolume);
 
 	sound.play();
 }
@@ -75,4 +72,24 @@ sf::Vector2f SoundPlayer::getListenerPosition() const
 {
 	sf::Vector3f position = sf::Listener::getPosition();
 	return sf::Vector2f(position.x, -position.y);
+}
+
+void SoundPlayer::setVolume(float volume)
+{
+	mVolume = volume;
+
+	if (mVolume <= 0.f)
+		mVolume = 0.f;
+
+	if (mVolume >= 100.f)
+		mVolume = 100.f;
+
+	// A priori inutile !?
+	for (std::list<sf::Sound>::iterator it = mSounds.begin(); it != mSounds.end(); ++it)
+		it->setVolume(mVolume);
+}
+
+float SoundPlayer::getVolume() const
+{
+	return mVolume;
 }

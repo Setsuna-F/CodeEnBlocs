@@ -18,7 +18,8 @@ OutputModel::~OutputModel() {
 }
 
 sct_type OutputModel::execute() {
-	//
-	sct_type res;
-	return res;
+
+	//mettre l'output dans la liste des outputs
+	
+	return _valOutput;
 }

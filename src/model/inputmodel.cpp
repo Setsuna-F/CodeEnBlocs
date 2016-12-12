@@ -5,16 +5,21 @@
 
 using namespace satap;
 
-InputModel::InputModel(){}
+InputModel::InputModel(): _inputList(new InputListModel()){}
 
-InputModel::InputModel(InputListModel inputList){
-	_inputList = inputList;
+InputModel::InputModel(InputListModel &inputList){
+	_inputList = &inputList;
 }
 
-void InputModel::setInputList(InputListModel inputList){
-	_inputList = inputList;
+void InputModel::setInputList(InputListModel &inputList){
+	_inputList = &inputList;
 }
 
 sct_type InputModel::execute(){
-	return _inputList.pop();
+	sct_type res;
+	res.int_type	= nullptr;
+	res.double_type	= nullptr;
+	res.bool_type	= nullptr;
+	
+	return _inputList?_inputList->pop():res;
 }

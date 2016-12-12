@@ -27,6 +27,15 @@ int main(int argc, char**argv){
 	std::cout << "***********************************" << std::endl;
 	std::cout << std::endl;
 	
+	
+	//testInputModel();
+	//std::cout << std::endl;
+	
+	//testInputListModel();
+	//std::cout << std::endl;
+
+
+/*
 	testIf();
 	std::cout << std::endl;
 	testLoop();
@@ -79,7 +88,7 @@ int main(int argc, char**argv){
 	
 	
 	
-	
+*/	
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -87,7 +96,7 @@ int main(int argc, char**argv){
 	
 	
 	
-	
+	//exempleExercice1();
 
 	
 	

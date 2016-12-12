@@ -1,6 +1,7 @@
 #ifndef OUTPUTMODEL_HPP
 #define OUTPUTMODEL_HPP
 #include "blocksimplemodel.hpp"
+#include "outputlistmodel.hpp"
 #include "tools.h"
 
 /*
@@ -19,6 +20,9 @@ namespace satap {
 			OutputModel();
 			~OutputModel();
 			sct_type execute();
+
+		private:
+			sct_type _valOutput;
 
 	};
 }

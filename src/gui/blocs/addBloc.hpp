@@ -2,7 +2,7 @@
 #define ADD_BLOC_HPP
 
 #include <gui/blocs/Bloc.hpp>
-#include <model\addmodel.hpp>
+#include <model/addmodel.hpp>
 
 namespace satap {
 	class AddBloc : public GUI::Bloc, public AddModel {

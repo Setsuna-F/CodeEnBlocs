@@ -1,6 +1,6 @@
 #include "GameState.hpp"
 #include <gui/Button.hpp>
-#include <gui/Blocs/Bloc.hpp>
+#include <gui/blocs/Bloc.hpp>
 #include <gui/blocs/variableBloc.hpp>
 #include <gui/blocs/addBloc.hpp>
 #include <gui/blocs/inputBloc.hpp>
@@ -34,7 +34,7 @@ GameState::GameState(StateStack& stack, Context context)
 	bloc1->setPosition(340, 300);
 	bloc1->setText("V1");
 	bloc1->setCallback([this]() { });
-	
+
 	auto bloc2 = std::make_shared<satap::AddBloc>(context);
 	bloc2->setPosition(580, 300);
 	bloc2->setText("Add");
@@ -55,7 +55,7 @@ GameState::GameState(StateStack& stack, Context context)
 	mGUIBlocsContainer.pack(inputBloc);
 	mGUIBlocsContainer.pack(bloc1);
 	mGUIBlocsContainer.pack(bloc2);
-	mGUIBlocsContainer.pack(bloc3);	
+	mGUIBlocsContainer.pack(bloc3);
 	mGUIBlocsContainer.pack(outputBloc);
 
 	// Play menu theme

@@ -4,7 +4,6 @@
 
 #include <cmath>
 
-#include <direct.h>  
 #include <stdlib.h>  
 #include <stdio.h>
 #include <iostream>
@@ -31,7 +30,7 @@ SoundPlayer::SoundPlayer()
 
 	// Listener points towards the screen (default in SFML)
 	sf::Listener::setDirection(0.f, 0.f, -1.f);
-	
+
 	setVolume(mVolume);
 }
 

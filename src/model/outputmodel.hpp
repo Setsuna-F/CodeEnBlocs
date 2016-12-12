@@ -15,7 +15,6 @@ namespace satap {
 
 
 	class OutputModel : public BlockSimpleModel {
-
 		public:
 			OutputModel();
 			~OutputModel();

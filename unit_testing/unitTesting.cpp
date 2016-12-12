@@ -15,7 +15,7 @@
 #include "../src/model/outputlistmodel.hpp"
 #include "../src/model/inputlistmodel.hpp"
 #include "../src/model/variablemodel.hpp"
-#include "../src/model/outputmodel.cpp"
+#include "../src/model/outputmodel.hpp"
 #include "../src/model/loopmodel.hpp"
 #include "../src/model/ifmodel.hpp"
 
@@ -2364,8 +2364,8 @@ void testInputModel(){
 /* ================================================== */
 
 
-
-/*----------AAAAAAA-----------*/
+/*
+// /----------AAAAAAA----------- /
 
 
 
@@ -2391,7 +2391,7 @@ std::vector<A*> A::getL(){
 	return vA;
 }
 
-/*----------DDDDDDDD-----------*/
+// / ----------DDDDDDDD----------- /
 
 
 class D: public A{
@@ -2414,7 +2414,7 @@ std::vector<A*> D::getL(){
 	return vA;
 }
 
-/*----------CCCCCCC-----------*/
+// /----------CCCCCCC----------- /
 
 
 
@@ -2461,7 +2461,7 @@ int C::getId(int id){
 
 
 
-/*----------BBBBBB-----------*/
+// /----------BBBBBB----------- /
 
 class B: public A{
 public:
@@ -2501,7 +2501,7 @@ int B::getId(int id){
 
 	return ii?ii->getI():i;
 }
-
+*/
 
 
 
@@ -2575,12 +2575,11 @@ void exempleExercice1(){
 
 	InstructionBlockModel	code2;
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
 	/* debut du code du joueur */
 	//code.setBlock(new InputModel(inputlist), 0);
 	code.setBlock(&v, "variable", 0);

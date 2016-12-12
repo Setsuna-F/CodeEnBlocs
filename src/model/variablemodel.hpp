@@ -20,6 +20,7 @@ namespace satap{
 
 		public:
 
+			VariableModel();
 			VariableModel(std::string name, sct_type value);
 	
 			void setName(std::string n);

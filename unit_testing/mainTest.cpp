@@ -11,7 +11,7 @@
 #include "mainTest.hpp"
 
 
-#include "unitTesting.hpp"
+//#include "unitTesting.hpp"
 
 /*
  penser a faire des variables d'environement (variableList) pour verifiere que 2 variable n'ont pas le meme nom.
@@ -19,13 +19,13 @@
 
 
 
-int main(int argc, char**argv){
+int main_(int argc, char**argv){
 	
-	std::cout << "***********************************" << std::endl;
-	std::cout << "**********| CodeEnBlocs |**********" << std::endl;
-	std::cout << "************| MainTest |***********" << std::endl;
-	std::cout << "***********************************" << std::endl;
-	std::cout << std::endl;
+//	std::cout << "***********************************" << std::endl;
+//	std::cout << "**********| CodeEnBlocs |**********" << std::endl;
+//	std::cout << "************| MainTest |***********" << std::endl;
+//	std::cout << "***********************************" << std::endl;
+//	std::cout << std::endl;
 	
 	
 	//testInputModel();
@@ -89,9 +89,9 @@ int main(int argc, char**argv){
 	
 	
 */	
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
+//	std::cout << std::endl;
+//	std::cout << std::endl;
+//	std::cout << std::endl;
 
 	
 	
@@ -101,10 +101,10 @@ int main(int argc, char**argv){
 	
 	
 	
-	std::cout << std::endl;
-	std::cout << "***********************************" << std::endl;
-	std::cout << "**************| FIN |**************" << std::endl;
-	std::cout << "***********************************" << std::endl;
+//	std::cout << std::endl;
+//	std::cout << "***********************************" << std::endl;
+//	std::cout << "**************| FIN |**************" << std::endl;
+//	std::cout << "***********************************" << std::endl;
 
 	
 	

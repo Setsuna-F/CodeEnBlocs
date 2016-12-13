@@ -1,18 +1,12 @@
-#include <gui/blocs/addBloc.hpp>
+#include "addBloc.hpp"
 
 satap::AddBloc::AddBloc(State::Context context) :
-	Bloc(context) {
-	setText("+");
-}
+	Bloc(context) {}
 
 satap::AddBloc::AddBloc(State::Context context, BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand) :
 	Bloc(context),
-	AddModel(firstOperand, secondOperand) {
-	setText("+");
-}
+	AddModel(firstOperand, secondOperand) {}
 
 satap::AddBloc::AddBloc(State::Context context, const BinaryModel& binaryModel) :
 	Bloc(context),
-	AddModel(binaryModel) {
-	setText("+");
-}
+	AddModel(binaryModel) {}

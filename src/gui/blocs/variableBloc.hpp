@@ -1,8 +1,8 @@
 #ifndef VARIABLE_BLOC_HPP
 #define VARIABLE_BLOC_HPP
 
-#include <gui/blocs/Bloc.hpp>
-#include <model\variablemodel.hpp>
+#include "Bloc.hpp"
+#include "variablemodel.hpp"
 
 namespace satap {
 	class VariableBloc : public Bloc, public VariableModel {

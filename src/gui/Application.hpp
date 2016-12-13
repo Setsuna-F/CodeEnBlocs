@@ -1,12 +1,12 @@
 #ifndef BOOK_APPLICATION_HPP
 #define BOOK_APPLICATION_HPP
 
-#include <gui/ResourceHolder.hpp>
-#include <gui/ResourceIdentifiers.hpp>
-#include <gui/KeyBinding.hpp>
-#include <gui/StateStack.hpp>
-#include <gui/MusicPlayer.hpp>
-#include <gui/SoundPlayer.hpp>
+#include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
+#include "KeyBinding.hpp"
+#include "StateStack.hpp"
+#include "MusicPlayer.hpp"
+#include "SoundPlayer.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

@@ -25,7 +25,6 @@ void VariableListModel::setVariable(std::string name, sct_type value){
 void VariableListModel::setVariable(sct_type value){
 	std::string name="";
 
-	
 	if(value.int_type)
 		name=typeToString(value.int_type);
 	else if(value.double_type)

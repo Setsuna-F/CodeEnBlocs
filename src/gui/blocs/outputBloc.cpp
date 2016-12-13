@@ -1,6 +1,4 @@
-#include <gui/blocs/outputBloc.hpp>
+#include "outputBloc.hpp"
 
 satap::OutputBloc::OutputBloc(State::Context context) :
-	Bloc(context) {
-	setText("Output");
-}
+	Bloc(context) {}

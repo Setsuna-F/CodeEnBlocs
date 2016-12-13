@@ -1,8 +1,8 @@
 #ifndef INPUT_BLOC_HPP
 #define INPUT_BLOC_HPP
 
-#include <gui/blocs/Bloc.hpp>
-#include <model\inputmodel.hpp>
+#include "Bloc.hpp"
+#include "inputmodel.hpp"
 
 namespace satap {
 	class InputBloc : public Bloc, public InputModel {

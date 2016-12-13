@@ -1,5 +1,5 @@
-#include <gui/StateStack.hpp>
-#include <gui/Foreach.hpp>
+#include "StateStack.hpp"
+#include "Foreach.hpp"
 
 #include <cassert>
 

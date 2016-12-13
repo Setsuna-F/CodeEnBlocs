@@ -1,8 +1,8 @@
 #ifndef ADD_BLOC_HPP
 #define ADD_BLOC_HPP
 
-#include <gui/blocs/Bloc.hpp>
-#include <model\addmodel.hpp>
+#include "Bloc.hpp"
+#include "addmodel.hpp"
 
 namespace satap {
 	class AddBloc : public Bloc, public AddModel {

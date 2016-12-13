@@ -8,37 +8,42 @@
 #include "workspacemodel.hpp"
 #include "codepagemodel.hpp"
 #include "blockmodel.hpp"
-
+#include "InstructionBlocks.hpp"
 namespace satap {
-	
+
 	class LevelModel{
-		
+
 		public:
 			LevelModel();
-			LevelModel(std::string name);
-			LevelModel(std::string name, std::string description);
-			LevelModel(std::string name, std::string description, std::vector<BlockModel*> availableBlocks);
+			LevelModel(std::string name, int optimalBlockCount);
+			LevelModel(std::string name, int optimalBlockCount, std::string description);
+			LevelModel(std::string name, int optimalBlockCount, std::string description, std::string help);
+			LevelModel(std::string name, int optimalBlockCount, std::string description, InstructionBlockModel availableBlocks);
+			LevelModel(std::string name, int optimalBlockCount, std::string description, std::string help, InstructionBlockModel availableBlocks);
 			std::string getName();
 			std::string getDescription();
-			std::vector<BlockModel*> getAvailableBlocks();
+			int			getOptimalBlocCount();
+			InstructionBlockModel	getAvailableBlocks();
+			std::string				getHelp();
 			OutputListModel getOutputListExpected();
 			WorkspaceModel* getWorkspace();
-			CodePageModel* getCodePage();
-			
+			CodePageModel*	getCodePage();
+
 			void setCodePage(CodePageModel* codePage);
-			
+
 			virtual void reset() = 0; //generates random input and computes expected output
-			bool validate();
-		
+			int validate();
+
 		protected:
-			std::string _name;
-			std::string _description;
-			//TODO help
-			std::vector<BlockModel*> _availableBlocks; //TODO by default, all the block
-			OutputListModel _outputListExpected;
-			WorkspaceModel* _workspace;
-			CodePageModel* _codePage;
-			
+			std::string		_name;
+			std::string		_description;
+			std::string		_help;
+			int				_optimalBlocCount;
+			InstructionBlockModel _availableBlocks; //TODO by default, all the block
+			OutputListModel		  _outputListExpected;
+			WorkspaceModel*		  _workspace;
+			CodePageModel*		  _codePage;
+
 	};
 }
 

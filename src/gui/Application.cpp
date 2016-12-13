@@ -1,12 +1,12 @@
-#include <gui/Application.hpp>
-#include <gui/Utility.hpp>
-#include <gui/State.hpp>
-#include <gui/StateIdentifiers.hpp>
-#include <gui/TitleState.hpp>
-#include <gui/MenuState.hpp>
-#include <gui/GameState.hpp>
-#include <gui/SettingsState.hpp>
-
+#include "Application.hpp"
+#include "Utility.hpp"
+#include "State.hpp"
+#include "StateIdentifiers.hpp"
+#include "TitleState.hpp"
+#include "MenuState.hpp"
+#include "GameState.hpp"
+#include "SettingsState.hpp"
+#include "ResourcePath.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -25,10 +25,10 @@ Application::Application()
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
 
-	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
+	mFonts.load(Fonts::Main, 	"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/font/Sansation.ttf");
 
-	mTextures.load(Textures::TitleScreen,	"res/img/TitleScreen.png");
-	mTextures.load(Textures::Buttons,		"res/img/Buttons.png");
+	mTextures.load(Textures::TitleScreen,	"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/img/sample.png");
+	mTextures.load(Textures::Buttons,		"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/img/Buttons.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);

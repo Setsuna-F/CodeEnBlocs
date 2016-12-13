@@ -1,5 +1,5 @@
-#include <gui/Utility.hpp>
-#include <gui/Animation.hpp>
+#include "Utility.hpp"
+#include "Animation.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

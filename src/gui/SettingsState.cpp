@@ -1,8 +1,8 @@
-#include <gui/SettingsState.hpp>
-#include <gui/Utility.hpp>
-#include <gui/ResourceHolder.hpp>
-#include <gui/MusicPlayer.hpp>
-#include <gui/SoundPlayer.hpp>
+#include "SettingsState.hpp"
+#include "Utility.hpp"
+#include "ResourceHolder.hpp"
+#include "MusicPlayer.hpp"
+#include "SoundPlayer.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>

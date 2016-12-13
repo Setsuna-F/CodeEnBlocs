@@ -1,7 +1,7 @@
 #ifndef BOOK_TITLESTATE_HPP
 #define BOOK_TITLESTATE_HPP
 
-#include <gui/State.hpp>
+#include "State.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

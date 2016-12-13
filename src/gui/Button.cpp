@@ -1,7 +1,7 @@
-#include <gui/Button.hpp>
-#include <gui/Utility.hpp>
-#include <gui/SoundPlayer.hpp>
-#include <gui/ResourceHolder.hpp>
+#include "Button.hpp"
+#include "Utility.hpp"
+#include "SoundPlayer.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

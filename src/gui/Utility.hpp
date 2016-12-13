@@ -40,5 +40,5 @@ float			length(sf::Vector2f vector);
 sf::Vector2f	unitVector(sf::Vector2f vector);
 
 
-#include <gui/Utility.inl>
+#include "Utility.inl"
 #endif // BOOK_UTILITY_HPP

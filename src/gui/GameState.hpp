@@ -9,6 +9,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 
+
 class GameState : public State
 {
 	public:
@@ -33,4 +34,3 @@ class GameState : public State
 };
 
 #endif // BOOK_MENUSTATE_HPP
-

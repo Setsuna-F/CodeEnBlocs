@@ -1,6 +1,4 @@
-#include <gui/blocs/inputBloc.hpp>
+#include "inputBloc.hpp"
 
 satap::InputBloc::InputBloc(State::Context context) :
-	Bloc(context) {
-	setText("Input");
-}
+	Bloc(context) {}

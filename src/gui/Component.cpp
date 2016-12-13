@@ -1,4 +1,4 @@
-#include <gui/Component.hpp>
+#include "Component.hpp"
 
 namespace GUI
 {

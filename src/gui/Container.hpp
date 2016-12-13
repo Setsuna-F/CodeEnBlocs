@@ -1,7 +1,7 @@
 #ifndef BOOK_CONTAINER_HPP
 #define BOOK_CONTAINER_HPP
 
-#include <gui/Component.hpp>
+#include "Component.hpp"
 
 #include <vector>
 #include <memory>

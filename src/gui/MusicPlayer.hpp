@@ -1,8 +1,8 @@
 #ifndef BOOK_MUSICPLAYER_HPP
 #define BOOK_MUSICPLAYER_HPP
 
-#include <gui/ResourceHolder.hpp>
-#include <gui/ResourceIdentifiers.hpp>
+#include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Audio/Music.hpp>

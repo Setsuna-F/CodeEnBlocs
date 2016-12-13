@@ -1,8 +1,8 @@
-#include <gui/MenuState.hpp>
-#include <gui/Button.hpp>
-#include <gui/Utility.hpp>
-#include <gui/MusicPlayer.hpp>
-#include <gui/ResourceHolder.hpp>
+#include "MenuState.hpp"
+#include "Button.hpp"
+#include "Utility.hpp"
+#include "MusicPlayer.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>

@@ -1,8 +1,8 @@
 #ifndef BOOK_MENUSTATE_HPP
 #define BOOK_MENUSTATE_HPP
 
-#include <gui/State.hpp>
-#include <gui/Container.hpp>
+#include "State.hpp"
+#include "Container.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

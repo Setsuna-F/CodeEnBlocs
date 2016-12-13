@@ -1,15 +1,13 @@
 #include "GameState.hpp"
-#include <gui/Button.hpp>
-#include <gui/Blocs/Bloc.hpp>
-#include <gui/blocs/variableBloc.hpp>
-#include <gui/blocs/addBloc.hpp>
-#include <gui/blocs/inputBloc.hpp>
-#include <gui/blocs/outputBloc.hpp>
-#include <model/gamemodel.hpp>
-#include <model/levelmodel.hpp>
-#include <gui/Utility.hpp>
-#include <gui/MusicPlayer.hpp>
-#include <gui/ResourceHolder.hpp>
+#include "Button.hpp"
+#include "blocs/Bloc.hpp"
+#include "blocs/variableBloc.hpp"
+#include "blocs/addBloc.hpp"
+#include "blocs/inputBloc.hpp"
+#include "blocs/outputBloc.hpp"
+#include "Utility.hpp"
+#include "MusicPlayer.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -22,7 +20,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, mBlocsContainer()
 	, mContext(context)
 {
-	// TODO déplacer ça dans panel de choix de niveau
+	// TODO dÃ©placer Ã§a dans panel de choix de niveau
 	GameModel game;
 	game.loadLevel(0);
 
@@ -52,7 +50,7 @@ GameState::GameState(StateStack& stack, Context context)
 	ennonceButton->setPosition(330, 10);
 	ennonceButton->setText("Ennonce");
 	ennonceButton->setCallback([this]() {
-		// TODO ajouter un State Enoncé
+		// TODO ajouter un State EnoncÃ©
 	});
 	mButtonsContainer.pack(ennonceButton);
 

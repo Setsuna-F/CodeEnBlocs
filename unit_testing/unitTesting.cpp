@@ -15,6 +15,7 @@
 #include "../src/model/outputlistmodel.hpp"
 #include "../src/model/inputlistmodel.hpp"
 #include "../src/model/variablemodel.hpp"
+#include "../src/model/outputmodel.hpp"
 #include "../src/model/loopmodel.hpp"
 #include "../src/model/ifmodel.hpp"
 
@@ -45,6 +46,11 @@
 #include "../src/model/decmodel.hpp"
 
 #include "../src/tools.h"
+
+
+#include "inputmodel.hpp"
+#include "InstructionBlocks.hpp"
+
 
 using namespace satap;
 
@@ -103,7 +109,7 @@ void testVariableListModel(){
 void testOutputListModel(){
 	std::cout<<"Test de OutputModel: "<<std::endl;
 	std::cout<<"Test du contructeur avec param: "<<std::endl;
-
+/*
 	std::vector<std::string> v;
 	v.push_back("stella");
 	v.push_back("stello");
@@ -114,7 +120,7 @@ void testOutputListModel(){
 	satap::OutputListModel out;
 	out.push("soka");
 	out.push("soda");
-	out.clear();
+	out.clear();*/
 }
 
 
@@ -214,66 +220,418 @@ void testLoop(){
 }
 
 
+void testInputlistINT(InputListModel &inputlist, int val_1, int val_2, int val_3){
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la taille d'un inputlist"<<std::endl;
+	if(inputlist.size()!=3)	std::cout<<"Test a echoué: le nombre d'element dans l'input n'est pas exact : "			<<inputlist.size()<<"!=3"<<std::endl;
+	else					std::cout<<"Test est un succé: il y a le bon nombre d'element qui a ete enregistré : "	<<inputlist.size()<<"==3"<<std::endl;
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la validité de chaque element de l'input (Si les entrées sont bonnes)"<<std::endl;
+	std::cout<<std::endl<<"1ER ELEMENT:"<<std::endl;
+	sct_type v1 = inputlist.pop();
+	if(v1.int_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un int nulle"	<<std::endl;
+	else
+		if(*v1.int_type==val_3)
+			std::cout<<"Le test est un succé: La valeur pour un int est bien "<< *v1.int_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v1.int_type <<" au lieu de "<< val_3 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==2)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==2"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=2"	<<std::endl;
+	
+	
+	std::cout<<std::endl<<"2EME ELEMENT:"<<std::endl;
+	sct_type v2 = inputlist.pop();
+	if(v2.int_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un int nulle"	<<std::endl;
+	else
+		if(*v2.int_type==val_2)
+			std::cout<<"Le test est un succé: La valeur pour un int est bien "<< *v2.int_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v2.int_type <<" au lieu de "<< val_2 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==1)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==1"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=1"	<<std::endl;
+	
+	
+	
+	
+	
+	std::cout<<std::endl<<"3EME ELEMENT:"<<std::endl;
+	sct_type v3 = inputlist.pop();
+	if(v3.int_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un int nulle"	<<std::endl;
+	else
+		if(*v3.int_type==val_1)
+			std::cout<<"Le test est un succé: La valeur pour un int est bien "<< *v3.int_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v3.int_type <<" au lieu de "<< val_1 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+	
+	
+	
+	std::cout<<std::endl<<"4EME ELEMENT:"<<std::endl;
+	sct_type v4 = inputlist.pop();
+	if(v4.int_type == nullptr)
+		std::cout<<"Le test est un succé: La valeur pour un int est bien nulle car il n'y a plus d'element"	<<std::endl;
+	else
+		std::cout<<"Le test a echoué: Il ne devrait pas y avoir d'element (On devrait recuperer une valeur 'nullptr')"	<<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+}
 
+void testInputlistDOUBLE(InputListModel &inputlist, double val_1, double val_2, double val_3){
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la taille d'un inputlist"<<std::endl;
+	if(inputlist.size()!=3)	std::cout<<"Test a echoué: le nombre d'element dans l'input n'est pas exact : "			<<inputlist.size()<<"!=3"<<std::endl;
+	else					std::cout<<"Test est un succé: il y a le bon nombre d'element qui a ete enregistré : "	<<inputlist.size()<<"==3"<<std::endl;
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la validité de chaque element de l'input (Si les entrées sont bonnes)"<<std::endl;
+	std::cout<<std::endl<<"1ER ELEMENT:"<<std::endl;
+	sct_type v1 = inputlist.pop();
+	if(v1.double_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un double nulle"	<<std::endl;
+	else
+		if(*v1.double_type==val_3)
+			std::cout<<"Le test est un succé: La valeur pour un double est bien "<< *v1.double_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v1.double_type <<" au lieu de "<< val_3 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==2)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==2"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=2"	<<std::endl;
+	
+	
+	std::cout<<std::endl<<"2EME ELEMENT:"<<std::endl;
+	sct_type v2 = inputlist.pop();
+	if(v2.double_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un double nulle"	<<std::endl;
+	else
+		if(*v2.double_type==val_2)
+			std::cout<<"Le test est un succé: La valeur pour un double est bien "<< *v2.double_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v2.double_type <<" au lieu de "<< val_2 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==1)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==1"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=1"	<<std::endl;
+	
+	
+	
+	
+	
+	std::cout<<std::endl<<"3EME ELEMENT:"<<std::endl;
+	sct_type v3 = inputlist.pop();
+	if(v3.double_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un double nulle"	<<std::endl;
+	else
+		if(*v3.double_type==val_1)
+			std::cout<<"Le test est un succé: La valeur pour un double est bien "<< *v3.double_type <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< *v3.double_type <<" au lieu de "<< val_1 << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+	
+	
+	
+	std::cout<<std::endl<<"4EME ELEMENT:"<<std::endl;
+	sct_type v4 = inputlist.pop();
+	if(v4.double_type == nullptr)
+		std::cout<<"Le test est un succé: La valeur pour un double est bien nulle car il n'y a plus d'element"	<<std::endl;
+	else
+		std::cout<<"Le test a echoué: Il ne devrait pas y avoir d'element (On devrait recuperer une valeur 'nullptr')"	<<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+}
+
+void testInputlistBOOL(InputListModel &inputlist, bool val_1, bool val_2){
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la taille d'un inputlist"<<std::endl;
+	if(inputlist.size()!=2)	std::cout<<"Test a echoué: le nombre d'element dans l'input n'est pas exact : "			<<inputlist.size()<<"!=2"<<std::endl;
+	else					std::cout<<"Test est un succé: il y a le bon nombre d'element qui a ete enregistré : "	<<inputlist.size()<<"==2"<<std::endl;
+	
+	/*---------------------------*/
+	std::cout<<std::endl;
+	std::cout<<"Test de la validité de chaque element de l'input (Si les entrées sont bonnes)"<<std::endl;
+	std::cout<<std::endl<<"1ER ELEMENT:"<<std::endl;
+	sct_type v1 = inputlist.pop();
+	if(v1.bool_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un bool nulle"	<<std::endl;
+	else
+		if(*v1.bool_type==val_2)
+			std::cout<<"Le test est un succé: La valeur pour un bool est bien "<< (*v1.bool_type?"TRUE":"FALSE") <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< (*v1.bool_type?"TRUE":"FALSE") <<" au lieu de "<< (val_2?"TRUE":"FALSE") << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==1)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==1"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=1"	<<std::endl;
+	
+	
+	std::cout<<std::endl<<"2EME ELEMENT:"<<std::endl;
+	sct_type v2 = inputlist.pop();
+	if(v2.bool_type == nullptr)
+		std::cout<<"Le test a echoué: La valeur pour un bool nulle"	<<std::endl;
+	else
+		if(*v2.bool_type==val_1)
+			std::cout<<"Le test est un succé: La valeur pour un bool est bien "<< (*v2.bool_type?"TRUE":"FALSE") <<std::endl;
+		else
+			std::cout<<"Le test a echoué: La valeur recupéré n'est pas celle attendu ( "<< (*v2.bool_type?"TRUE":"FALSE") <<" au lieu de "<<  (val_1?"TRUE":"FALSE")  << " )" <<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+	
+	
+	
+	
+	std::cout<<std::endl<<"3EME ELEMENT:"<<std::endl;
+	sct_type v4 = inputlist.pop();
+	if(v4.bool_type == nullptr)
+		std::cout<<"Le test est un succé: La valeur pour un int est bien nulle car il n'y a plus d'element"	<<std::endl;
+	else
+		std::cout<<"Le test a echoué: Il ne devrait pas y avoir d'element (On devrait recuperer une valeur 'nullptr')"	<<std::endl;
+	
+	std::cout<<std::endl;
+	std::cout<<"Test pour savoir si la liste d'input a retiré son element"<<std::endl;
+	if(inputlist.size()==0)	std::cout<<"Le test est un succé: "	<<inputlist.size()<<"==0"	<<std::endl;
+	else					std::cout<<"Le test a echoué: "		<<inputlist.size()<<"!=0"	<<std::endl;
+}
 
 void testInputListModel(){
  	///////////Test unitaire des input.
 	///////////Constructeur avec parametre:
-	std::cout<<"Test de InputModel: "				 <<std::endl;
-	std::cout<<"Test du contructeur avec param: "<<std::endl;
-	std::stack<std::string> vs;
-	vs.push("stella");
-	vs.push("stello");
-	vs.push("stelli");
-	/*satap::InputListModel invs(vs);
-	if(invs.size()!=3)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=3"<<std::endl;
-	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==3"<<std::endl;
-	*//*---------------------------*/
-
-	/*std::string v1 = invs.pop();
-	if(v1!="stelli")	std::cout<<"Test has FAILED: "	<<v1<<"!=stelli"<<std::endl;
-	else				std::cout<<"Test SUCCESS: "		<<v1<<"==stelli"<<std::endl;
-	if(invs.size()!=2)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=2"<<std::endl;
-	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==2"<<std::endl;
-	*//*---------------------------*/
-
-	
-	/*std::string v2 = invs.pop();
-	if(v2!="stello")	std::cout<<"Test has FAILED: "	<<v2		 <<"!=stello"<<std::endl;
-	else				std::cout<<"Test SUCCESS: "		<<v2		 <<"==stello"<<std::endl;
-	if(invs.size()!=1)	std::cout<<"Test has FAILED: "	<<invs.size()<<"!=1"	 <<std::endl;
-	else				std::cout<<"Test SUCCESS: "		<<invs.size()<<"==1"	 <<std::endl;
-	*//*---------------------------*/
-	
-	///////////Constructeur sans parametre:
+	std::cout<<"Test de InputModel: "			 <<std::endl;
 	std::cout<<"Test du contructeur sans param: "<<std::endl;
-	/*Input in;
-	in.push("soka");
-	in.push("soja");
-	in.push("soya");
-	in.push("jojo");
-	in.push("soda");
-	if(in.size()!=5) std::cout<<"Test has FAILED: "	<<in.size()<<"!=5"<<std::endl;
-	else			 std::cout<<"Test SUCCESS: "	<<in.size()<<"==5"<<std::endl;*/
-	/*---------------------------*/
-
-	/*std::string v3 = in.pop();
-	if(v3!="soda")	std::cout<<"Test has FAILED: "	<<v3		<<"!=soda"<<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<v3		<<"==soda"<<std::endl;
-	if(in.size()!=4)std::cout<<"Test has FAILED: "	<<in.size() <<"!=4"	  <<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==4"	  <<std::endl;*/
-	/*---------------------------*/
 	
-	/*std::string v4 = in.pop();
-	if(v4!="jojo")	std::cout<<"Test has FAILED: "	<<v4		<<"!=jojo"<<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<v4		<<"==jojo"<<std::endl;
-	if(in.size()!=3)std::cout<<"Test has FAILED: "	<<in.size() <<"!=3"	  <<std::endl;
-	else			std::cout<<"Test SUCCESS: "		<<in.size() <<"==3"	  <<std::endl;*/
+	InputListModel	inputlist;		/*Notre liste d'input*/
+	sct_type val_input1;
+	sct_type val_input2;
+	sct_type val_input3;
+	
+	
+	std::cout<<"\t/*------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Int         */"<<std::endl;
+	std::cout<<"\t/*------------------------*/"<<std::endl;
+	
+	/*init la liste des input avec 3 entier de type int */
+	/*On crée nos valeurs*/
+	int val_int1=-42;	/* init avec un nombre negatif */
+	int val_int2=0;		/* init avec un nombre nul */
+	int val_int3=666;	/* init avec un nombre positif */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= &val_int1;
+	val_input1.double_type	= nullptr;
+	val_input1.bool_type	= nullptr;
+	
+	val_input2.int_type		= &val_int2;
+	val_input2.double_type	= nullptr;
+	val_input2.bool_type	= nullptr;
+	
+	val_input3.int_type		= &val_int3;
+	val_input3.double_type	= nullptr;
+	val_input3.bool_type	= nullptr;
+	
+	/*On ajoute nos entré a notre liste d'input*/
+	inputlist.push(val_input1);
+	inputlist.push(val_input2);
+	inputlist.push(val_input3);
+	
+	testInputlistINT(inputlist, val_int1, val_int2, val_int3);
+	
+	
+	
+	std::cout<<"\t/*----------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Double          */"<<std::endl;
+	std::cout<<"\t/*----------------------------*/"<<std::endl;
+	
+	
+	/*init la liste des input avec 3 entier de type int */
+	/*On crée nos valeurs*/
+	double val_double1=-42.666;		/* init avec un nombre negatif */
+	double val_double2=0.1234;		/* init avec un nombre nul */
+	double val_double3=666.00934;	/* init avec un nombre positif */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= nullptr;
+	val_input1.double_type	= &val_double1;
+	val_input1.bool_type	= nullptr;
+	
+	val_input2.int_type		= nullptr;
+	val_input2.double_type	= &val_double2;
+	val_input2.bool_type	= nullptr;
+	
+	val_input3.int_type		= nullptr;
+	val_input3.double_type	= &val_double3;
+	val_input3.bool_type	= nullptr;
+	
+	/*On ajoute nos entré a notre liste d'input*/
+	inputlist.push(val_input1);
+	inputlist.push(val_input2);
+	inputlist.push(val_input3);
+	
+	
+	testInputlistDOUBLE(inputlist, val_double1, val_double2, val_double3);
+	
+	
+	std::cout<<"\t/*--------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Bool          */"<<std::endl;
+	std::cout<<"\t/*--------------------------*/"<<std::endl;
+	
+	
+	/*init la liste des input avec 3 entier de type int */
+	/*On crée nos valeurs*/
+	bool val_bool1=true;		/* init avec un nombre negatif */
+	bool val_bool2=false;		/* init avec un nombre nul */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= nullptr;
+	val_input1.double_type	= nullptr;
+	val_input1.bool_type	= &val_bool1;
+	
+	val_input2.int_type		= nullptr;
+	val_input2.double_type	= nullptr;
+	val_input2.bool_type	= &val_bool2;
+	
+	/*On ajoute nos entré a notre liste d'input*/
+	inputlist.push(val_input1);
+	inputlist.push(val_input2);
+	
+	
+	testInputlistBOOL(inputlist, val_bool1, val_bool2);
+	
+	
 	/*---------------------------*/
+	std::cout<<std::endl;
+	///////////Constructeur sans parametre:
+	std::cout<<"Test du contructeur avec param: "<<std::endl;
+	
+	std::cout<<"\t/*------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Int         */"<<std::endl;
+	std::cout<<"\t/*------------------------*/"<<std::endl;
+	
+	val_int1=-42;	/* init avec un nombre negatif */
+	val_int2=0;		/* init avec un nombre nul */
+	val_int3=666;	/* init avec un nombre positif */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= &val_int1;
+	val_input1.double_type	= nullptr;
+	val_input1.bool_type	= nullptr;
+	
+	val_input2.int_type		= &val_int2;
+	val_input2.double_type	= nullptr;
+	val_input2.bool_type	= nullptr;
+	
+	val_input3.int_type		= &val_int3;
+	val_input3.double_type	= nullptr;
+	val_input3.bool_type	= nullptr;
+	
+	/* On cree notre pile et on ajoute les elements dans cette pile */
+	std::stack<sct_type> val_input_stack_int;
+	val_input_stack_int.push(val_input1);
+	val_input_stack_int.push(val_input2);
+	val_input_stack_int.push(val_input3);
+	
+	InputListModel inputlist_INT_avec_param(val_input_stack_int);
+	testInputlistINT(inputlist_INT_avec_param, val_int1, val_int2, val_int3);
+
+	
+	std::cout<<"\t/*----------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Double          */"<<std::endl;
+	std::cout<<"\t/*----------------------------*/"<<std::endl;
+	
+	
+	/*init la liste des input avec 3 entier de type int */
+	/*On crée nos valeurs*/
+	val_double1=-42.666;		/* init avec un nombre negatif */
+	val_double2=0.1234;		/* init avec un nombre nul */
+	val_double3=666.00934;	/* init avec un nombre positif */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= nullptr;
+	val_input1.double_type	= &val_double1;
+	val_input1.bool_type	= nullptr;
+	
+	val_input2.int_type		= nullptr;
+	val_input2.double_type	= &val_double2;
+	val_input2.bool_type	= nullptr;
+	
+	val_input3.int_type		= nullptr;
+	val_input3.double_type	= &val_double3;
+	val_input3.bool_type	= nullptr;
+	
+	/*On ajoute nos entré a notre liste d'input*/
+	std::stack<sct_type> val_input_stack_double;
+	val_input_stack_double.push(val_input1);
+	val_input_stack_double.push(val_input2);
+	val_input_stack_double.push(val_input3);
+	
+	InputListModel inputlist_DOUBLE_avec_param(val_input_stack_double);
+	testInputlistDOUBLE(inputlist_DOUBLE_avec_param, val_double1, val_double2, val_double3);
+	
+	
+	std::cout<<"\t/*--------------------------*/"<<std::endl;
+	std::cout<<"\t/*            Bool          */"<<std::endl;
+	std::cout<<"\t/*--------------------------*/"<<std::endl;
+	
+	
+	/*init la liste des input avec 3 entier de type int */
+	/*On crée nos valeurs*/
+	val_bool1=true;		/* init avec un nombre negatif */
+	val_bool2=false;		/* init avec un nombre nul */
+	
+	/*On les donnes dans notre structure*/
+	val_input1.int_type		= nullptr;
+	val_input1.double_type	= nullptr;
+	val_input1.bool_type	= &val_bool1;
+	
+	val_input2.int_type		= nullptr;
+	val_input2.double_type	= nullptr;
+	val_input2.bool_type	= &val_bool2;
+	
+	/*On ajoute nos entré a notre liste d'input*/
+	std::stack<sct_type> val_input_stack_bool;
+	val_input_stack_bool.push(val_input1);
+	val_input_stack_bool.push(val_input2);
+	
+	InputListModel inputlist_BOOL_avec_param(val_input_stack_bool);
+	testInputlistBOOL(inputlist_BOOL_avec_param, val_bool1, val_bool2);
+	
 }
-
-
-
 
 
 
@@ -1939,3 +2297,400 @@ void unitTestingNot(){
 		std::cout<<"Error donc probleme de conception (ne devrait pas atteindre cette condition)"<<std::endl;	// CAS double	: retourne error
 	
 }
+
+
+
+
+
+void testInputModel(){
+	std::cout <<"----------Test de input--------"<< std::endl;
+	InputModel input;
+	sct_type var_type1;
+	sct_type var_type2;
+	sct_type var_type3;
+	
+	int int_val1=42;
+	int int_val2=23;
+	int int_val3=666;
+	
+	
+	var_type1.int_type	  = &int_val1;
+	var_type1.double_type = nullptr;
+	var_type1.bool_type	  = nullptr;
+	
+	
+	var_type2.int_type	  = &int_val2;
+	var_type2.double_type = nullptr;
+	var_type2.bool_type	  = nullptr;
+	
+	
+	var_type3.int_type	  = &int_val3;
+	var_type3.double_type = nullptr;
+	var_type3.bool_type	  = nullptr;
+	
+	satap::InputListModel inputList;
+	inputList.push(var_type1);
+	inputList.push(var_type2);
+	inputList.push(var_type3);
+	
+	input.setInputList(inputList);
+	
+	size_t nbInput_deb = inputList.size();
+	std::cout<<"Le nombre d'element dans inputList est de  "<< nbInput_deb <<std::endl;
+	
+	sct_type val_recupe;
+	val_recupe =  input.execute();
+	if(val_recupe.int_type){
+		if(*val_recupe.int_type==int_val3)
+			std::cout<<"Le test est un succé: la valeur est bien "<< *val_recupe.int_type << " = " << int_val3 <<std::endl;
+		else
+			std::cout<<"Le test a echoué: la valeur n'est pas bonne "<< *val_recupe.int_type <<"au lieu de "<< int_val3 <<std::endl;
+	}
+	size_t nbInput_fin = inputList.size();
+
+	if(nbInput_fin == nbInput_deb-1)
+		std::cout<<"Le test est un succé: Le nombre d'element dans inputList a bien ete decrementé "<< nbInput_fin <<std::endl;
+	else
+		std::cout<<"Le test a echoué: Le nombre d'element dans inputList n'a pas changé "<< nbInput_fin <<std::endl;
+
+}
+
+
+
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+
+/*
+// /----------AAAAAAA----------- /
+
+
+
+class A{
+public:
+	A(int i):i(i){}
+	virtual int getId(int id) = 0;
+	int getI(){return i;}
+	virtual std::vector<A*> getL() = 0;
+private:
+	int i;
+};
+
+
+int A::getId(int id){
+	return -1;
+}
+
+
+std::vector<A*> A::getL(){
+	
+	std::vector<A*> vA;
+	return vA;
+}
+
+// / ----------DDDDDDDD----------- /
+
+
+class D: public A{
+public:
+	D(int i):A(i){}
+	int getId(int id);
+	virtual std::vector<A*> getL();
+private:
+};
+int D::getId(int id){
+	std::cout<<"D: [getID] id="<<id<<" = "<<getI()<<std::endl;
+	if (id==getI()) {
+		return id;
+	}
+	return -1;
+}
+std::vector<A*> D::getL(){
+	
+	std::vector<A*> vA;
+	return vA;
+}
+
+// /----------CCCCCCC----------- /
+
+
+
+class C: public A{
+public:
+	C(int i):A(i){
+		l.push_back(new D(5));
+	}
+	void setC(A*);
+	int getId(int id);
+	std::vector<A*> getL();
+
+private:
+	std::vector<A*> l;
+};
+
+
+
+
+void C::setC(A* a){
+	l.push_back(a);
+}
+std::vector<A*> C::getL(){return l;}
+
+int C::getId(int id){
+	std::cout<<"C: [getID] id="<<id<<" = "<<getI()<<std::endl;
+	if (id==getI()) {
+		return id;
+	}
+	A* ii=nullptr;
+	int i=-1;
+	for (std::vector<A*>::iterator it = this->l.begin(); it != this->l.end(); ++it){
+		std::cout<<"C: [FOR] id="<<id<<" = "<<(*it)->getI()<<std::endl;
+		if(id==(*it)->getI())
+			ii = (*it);
+		else
+			 i = (*it)->getId(id);
+	}
+	return ii?ii->getI():i;
+}
+
+
+
+
+
+
+// /----------BBBBBB----------- /
+
+class B: public A{
+public:
+	B(int i):A(i){
+		l.push_back(new C(3));
+		l.push_back(new D(4));
+	}
+	void setC(A*);
+	std::vector<A*> getL();
+	int getId(int id);
+private:
+	std::vector<A*> l;
+};
+
+
+
+void B::setC(A* a){
+	l.push_back(a);
+}
+std::vector<A*> B::getL(){return l;}
+
+int B::getId(int id){
+	std::cout<<"B: [getID] id="<<id<<" = "<<getI()<<std::endl;
+	
+	if (id==getI()) {
+		return id;
+	}
+	A* ii=nullptr;
+	int i=-1;
+	for (std::vector<A*>::iterator it = this->l.begin(); it != this->l.end(); ++it){
+		std::cout<<"B: [FOR] id="<<id<<" = "<<(*it)->getI()<<std::endl;
+		if(id==(*it)->getI())
+			ii = (*it);
+		else
+			i = (*it)->getId(id);
+	}
+
+	return ii?ii->getI():i;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <time.h> //Ne pas oublier d'inclure le fichier time.h
+
+void exempleExercice1(){
+	
+	std::cout<<"DEBUT DE L'EXERCICE 1"<<std::endl;
+	std::cout<<std::endl;
+
+	InputListModel			inputlist;		/*Notre liste d'input*/
+	//OutputListModel			outputlist;		/*Notre liste d'output*/
+	VariableListModel		variablelist;	/*Notre liste de variable*/
+	InstructionBlockModel	code;			/*Notre liste d'instruction (pouvant etre tout et nimporte quels blocks)*/
+	
+	/*init la liste des input avec 3 entier au hasard */
+	for (size_t i=0; i<3; i++) {
+		int val_int=rand();
+		sct_type val_input;
+		val_input.int_type	 = &val_int;
+		val_input.double_type= nullptr;
+		val_input.bool_type	 = nullptr;
+
+		inputlist.push(val_input);
+	}
+	
+	/*Affichage de l'initialisation*/
+	std::cout<<"Avant le CODE:"<<std::endl;
+
+	std::cout<<"Les inputs:"<<std::endl;
+	for (size_t i=0; i<3; i++) {
+		std::cout<<">"<<i<<" |valeur: "<<inputlist.size()<<std::endl;
+	}
+	//std::cout<<"Les output:"<<std::endl;
+	//for (size_t i=0; i<3; i++) {
+	//	std::cout<<">"<<i<<" |valeur: "<<outputlist.size()<<std::endl;
+	//}
+	std::cout<<"Les variables:"<<std::endl;
+	for (size_t i=0; i<3; i++) {
+		std::cout<<">"<<i<<" |valeur: "<<variablelist.size()<<std::endl;
+	}
+	
+	std::cout<<std::endl<<std::endl<<std::endl<<std::endl;
+
+	
+	sct_type val_input;
+	int val_int=42;
+	val_input.int_type	 = &val_int;
+	val_input.double_type= nullptr;
+	val_input.bool_type	 = nullptr;
+	VariableModel v("42", val_input );
+
+
+	InstructionBlockModel	code2;
+
+
+
+
+
+
+	/* debut du code du joueur */
+	//code.setBlock(new InputModel(inputlist), 0);
+	code.setBlock(&v, "variable", 0);
+	code.execute();
+	
+	//code.setBlock(new OutputModel, 0);
+	
+
+	/*
+	 code2.setBlock(&code, 0);
+
+	std::cout<<std::endl<<"idCode = "<<code.getId()<<std::endl<<std::endl;
+	if (code.getBlockById(1)) {
+		std::cout<<std::endl<<"idInput = "<<(*code.getBlockById(1)->execute().int_type)<<std::endl<<std::endl;
+	}
+	else
+		std::cout<<std::endl<<"idInput = ERROR"<<std::endl<<std::endl;
+	*/
+
+	
+	/*
+	//std::cout<<std::endl<<"idCode2 = "<<code2.getId()<<std::endl<<std::endl;
+	BlockModel* bm = code2.getBlockById(1);
+	if (bm) {
+		
+		std::cout<<std::endl<<"idInput = "<<*(bm->execute().int_type)<< "     adres === "<< *v.execute().int_type <<std::endl<<std::endl;
+	}
+	else
+		std::cout<<std::endl<<"idInput = ERROR"<<std::endl<<std::endl;
+*/
+
+	
+	
+	
+	/* fin du code du joueur */
+	
+	
+	
+	
+	
+	
+	//std::cout<<std::endl<<std::endl<<std::endl<<std::endl;
+
+	
+	/*Affichage du resultat*/
+	/*std::cout<<"Apres le CODE:"<<std::endl;
+
+	std::cout<<"Les inputs:"<<std::endl;
+	for (size_t i=0; i<3; i++) {
+		std::cout<<">"<<i<<" |valeur: "<<inputlist.size()<<std::endl;
+	}
+	std::cout<<"Les output:"<<std::endl;
+	for (size_t i=0; i<3; i++) {
+		std::cout<<">"<<i<<" |valeur: "<<outputlist.size()<<std::endl;
+	}
+	std::cout<<"Les variables:"<<std::endl;
+	for (size_t i=0; i<3; i++) {
+		std::cout<<">"<<i<<" |valeur: "<<variablelist.size()<<std::endl;
+	}*/
+
+	std::cout<<std::endl;
+	std::cout<<"FIN DE L4EXERCICE 1"<<std::endl;
+
+
+	/*
+	B b(0);
+	C c(1);
+	D d(2);
+	c.setC(&d);
+	b.setC(&c);
+	//std::cout<< "B0 " << b.getId(2) <<std::endl;
+	std::cout<< "B1 " << b.getL().size() <<std::endl;
+	std::cout<< "B2 " << b.getL()[0]->getL().size() <<std::endl;
+	std::cout<< "B3 " << b.getL()[0]->getL()[0]->getL().size() <<std::endl;
+	
+	std::cout<< "------------------------ " <<std::endl;
+
+	std::cout<< "C1 " << c.getL().size() <<std::endl;
+	std::cout<< "C2 " << c.getL()[0]->getL().size() <<std::endl;
+	//std::cout<< "C3 " << c.getL()[0]->getL()[0]->getL().size() <<std::endl;
+	
+	std::cout<< "------------------------ " <<std::endl;
+	
+	std::cout<< "B0 " << b.getI() <<std::endl;
+	std::cout<< "B1 " << b.getL()[0]->getI() <<std::endl;
+	std::cout<< "B2 " << b.getL()[0]->getL()[0]->getI() <<std::endl;
+	
+	std::cout<< "------------------------ " <<std::endl;
+
+	std::cout<< "B0 " << b.getId(2) <<std::endl;*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+

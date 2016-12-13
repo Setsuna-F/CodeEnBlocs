@@ -2,10 +2,10 @@
 #ifndef BOOK_BUTTON_HPP
 #define BOOK_BUTTON_HPP
 
-#include <gui/Component.hpp>
-#include <gui/ResourceIdentifiers.hpp>
-#include <gui/State.hpp>
-#include <gui/ResourceHolder.hpp>
+#include "Component.hpp"
+#include "ResourceIdentifiers.hpp"
+#include "State.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

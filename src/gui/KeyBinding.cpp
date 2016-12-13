@@ -1,5 +1,5 @@
-#include <gui/KeyBinding.hpp>
-#include <gui/Foreach.hpp>
+#include "KeyBinding.hpp"
+#include "Foreach.hpp"
 
 #include <string>
 #include <algorithm>

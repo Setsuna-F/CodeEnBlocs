@@ -20,8 +20,10 @@ sct_type InputModel::execute(){
 	res.int_type	= nullptr;
 	res.double_type	= nullptr;
 	res.bool_type	= nullptr;
-	
-	return _inputList?_inputList->pop():res;
+
+	res = _inputList->pop();
+
+	return res;
 }
 
 typeBloc InputModel::getType() {

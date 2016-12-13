@@ -27,6 +27,7 @@ sct_type OutputModel::execute() {
 		val = "true";
 	else
 		val = "false";
+	std::cout << "Output :" << val << std::endl;
 	_outPutList->push(val);
 	return _valOutput;
 }

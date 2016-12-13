@@ -1,5 +1,6 @@
 #include "gui/GameState.hpp"
 #include "gui/Button.hpp"
+#include "gui/GameButton.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
@@ -22,6 +23,8 @@ GameState::GameState(StateStack& stack, Context context)
 	, mBlocsContainer()
 	, mContext(context)
 {
+	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
+
 	// TODO déplacer ça dans panel de choix de niveau
 	GameModel game;
 	game.loadLevel(0);
@@ -32,25 +35,25 @@ GameState::GameState(StateStack& stack, Context context)
 
 	/////////// States Buttons ///////////
 
-	auto exitButton = std::make_shared<GUI::Button>(context);
+	auto exitButton = std::make_shared<GUI::GameButton>(context);
 	exitButton->setPosition(10, 10);
-	exitButton->setText("Exit");
+	exitButton->setSprite(context, Textures::ExitButton);
 	exitButton->setCallback([this]() {
 		requestStackPush(States::Menu);
 	});
 	mButtonsContainer.pack(exitButton);
 
-	auto settingsButton = std::make_shared<GUI::Button>(context);
-	settingsButton->setPosition(170, 10);
-	settingsButton->setText("Settings");
+	auto settingsButton = std::make_shared<GUI::GameButton>(context);
+	settingsButton->setPosition(70, 10);
+	settingsButton->setSprite(context, Textures::DescriptionButton);
 	settingsButton->setCallback([this]() { 
 		requestStackPush(States::Settings);
 	});
 	mButtonsContainer.pack(settingsButton);
 
-	auto ennonceButton = std::make_shared<GUI::Button>(context);
-	ennonceButton->setPosition(330, 10);
-	ennonceButton->setText("Ennonce");
+	auto ennonceButton = std::make_shared<GUI::GameButton>(context);
+	ennonceButton->setPosition(130, 10);
+	ennonceButton->setSprite(context, Textures::HelpButton);
 	ennonceButton->setCallback([this]() {
 		// TODO ajouter un State Enoncé
 	});
@@ -58,25 +61,25 @@ GameState::GameState(StateStack& stack, Context context)
 
 	/////////// Actions Buttons ///////////
 
-	auto resetAction = std::make_shared<GUI::Button>(context);
-	resetAction->setPosition(200, 600);
-	resetAction->setText("Reset");
+	auto resetAction = std::make_shared<GUI::GameButton>(context);
+	resetAction->setPosition(250, 10);
+	resetAction->setSprite(context, Textures::ResetButton);
 	resetAction->setCallback([this]() {
 		resetCode();
 	});
 	mButtonsContainer.pack(resetAction);
 
-	auto loopAction = std::make_shared<GUI::Button>(context);
-	loopAction->setPosition(400, 600);
-	loopAction->setText("Loop");
+	auto loopAction = std::make_shared<GUI::GameButton>(context);
+	loopAction->setPosition(310, 10);
+	loopAction->setSprite(context, Textures::LoopButton);
 	loopAction->setCallback([this]() {
 		toggleLoop();
 	});
 	mButtonsContainer.pack(loopAction);
 
-	auto startAction = std::make_shared<GUI::Button>(context);
-	startAction->setPosition(600, 600);
-	startAction->setText("Start");
+	auto startAction = std::make_shared<GUI::GameButton>(context);
+	startAction->setPosition(370, 10);
+	startAction->setSprite(context, Textures::ExecuteButton);
 	startAction->setCallback([this]() {
 		startExecute();
 	});
@@ -127,18 +130,18 @@ GameState::GameState(StateStack& stack, Context context)
 	// Test
 	InputBloc* in = ((InputBloc*) addBloc(InputBlocType));
 	OutputBloc* out = ((OutputBloc*) addBloc(OutputBlocType));
-	VariableBloc* var = ((VariableBloc*) addBloc(VariableBlocType));
-	AssignmentBloc* assignVarIn = ((AssignmentBloc*) addBloc(AssignementBlocType));
-	AssignmentBloc* assignOutVar = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	//VariableBloc* var = ((VariableBloc*) addBloc(VariableBlocType));
+	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	//AssignmentBloc* assignOutVar = ((AssignmentBloc*) addBloc(AssignementBlocType));
 
-	assignVarIn->setFirstOperand(var);
-	assignVarIn->setSecondOperand(in);
+	//assignVarIn->setFirstOperand(var);
+	assign->setFirstOperand(out);
 
-	assignOutVar->setFirstOperand(out);
-	assignOutVar->setSecondOperand(var);
+	//assignOutVar->setFirstOperand(out);
+	assign->setSecondOperand(in);
 
-	mCurrentLevel->getCodePage()->addBlock(assignVarIn);
-	mCurrentLevel->getCodePage()->addBlock(assignOutVar);
+	mCurrentLevel->getCodePage()->addBlock(assign);
+	//mCurrentLevel->getCodePage()->addBlock(assignOutVar);
 }
 
 void GameState::draw()
@@ -146,6 +149,8 @@ void GameState::draw()
 	sf::RenderWindow& window = *getContext().window;
 
 	window.clear();
+
+	window.draw(mBackgroundSprite);
 
 	window.draw(mButtonsContainer);
 	window.draw(mBlocsContainer);
@@ -167,7 +172,7 @@ bool GameState::handleEvent(const sf::Event& event) {
 
 Bloc * GameState::addBloc(satap::typeBloc t)
 {
-	int posX = 200, posY = 300;
+	int posX = 540, posY = 70;
 
 	Bloc* b;
 	std::shared_ptr<Bloc> bl;

@@ -98,8 +98,18 @@ int LevelModel::validate(){ //TODO à tester
 	OutputListModel* outputList = _workspace->getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList->size();
-	if((size != expectedSize) || !(std::equal(_outputListExpected.getOutputList().begin(), _outputListExpected.getOutputList().begin() + expectedSize, outputList->getOutputList().begin())))
-		return 0;
+
+	// CA RETOURNE UNE EXCEPTION
+	//if ((size != expectedSize) || !(std::equal(_outputListExpected.getOutputList().begin(), _outputListExpected.getOutputList().begin() + expectedSize, outputList->getOutputList().begin())))
+	//	return 0;
+	if (size != expectedSize) {
+		for (int i = 0; i < size; i++) {
+			std::string out = outputList->getValByIndex(i);
+			std::string outExpected = _outputListExpected.getValByIndex(i);
+		}
+	}
+	
+
 	int score = 1;
 	if(size<2*_optimalBlocCount+1)
 		score++;

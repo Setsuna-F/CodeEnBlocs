@@ -28,7 +28,17 @@ Application::Application()
 	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
 
 	mTextures.load(Textures::TitleScreen,	"res/img/sample.png");
-	mTextures.load(Textures::Buttons,		"res/img/Buttons.png");
+	mTextures.load(Textures::GameBackgroud, "res/img/Background2.png");
+
+	mTextures.load(Textures::Buttons,			"res/img/Buttons.png");
+	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi.png");
+	mTextures.load(Textures::ExecuteButton,		"res/img/button-execute-bi.png");
+	mTextures.load(Textures::ResetButton,		"res/img/button-reset-bi.png");
+	mTextures.load(Textures::LoopButton,		"res/img/button-loop-bi.png");
+	mTextures.load(Textures::HelpButton,		"res/img/button-help-bi.png");
+	mTextures.load(Textures::DescriptionButton, "res/img/button-description-bi.png");
+
+
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);

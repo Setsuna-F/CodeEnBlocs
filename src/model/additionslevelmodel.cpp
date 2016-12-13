@@ -3,7 +3,7 @@
 #include <string>
 #include "../tools.h"
 
-#include "additionlevelmodel.hpp"
+#include "additionslevelmodel.hpp"
 #include "inputlistmodel.hpp"
 #include "addmodel.hpp"
 #include "inputmodel.hpp"
@@ -14,20 +14,18 @@
 
 using namespace satap;
 
-AdditionLevelModel::AdditionLevelModel() :
-
-	LevelModel("Addition", 10, "On va te donner deux nombres, additionne-les et donne le résultat calculé.", "Utilise un bloc d'addition après avoir récupéré les deux entrées dans deux variables."){ //TODO better help text
-	_availableBlocks.setBlock(new AddModel(), "Addition");
-	_availableBlocks.setBlock(new InputModel(), "Input");
-	_availableBlocks.setBlock(new OutputModel(), "Output");
-	_availableBlocks.setBlock(new VariableModel(), "Variable");
-	_availableBlocks.setBlock(new ValueModel(),		"ValueModel");
-	_availableBlocks.setBlock(new AssignmentModel(), "AssignmentModel");
-
+AdditionsLevelModel::AdditionsLevelModel() :
+	LevelModel("Additions", 20, "On va te donner plusieurs nombres, additionne-les tous et donne le résultat calculé.", "Additionne les deux premiers chiffres, puis additionne le résultat avec le chiffre suivant, et ainsi de suite."){ //TODO Find optimal block count
+		_availableBlocks.setBlock(new AddModel(), "Addition");
+		_availableBlocks.setBlock(new InputModel(), "Input");
+		_availableBlocks.setBlock(new OutputModel(), "Output");
+		_availableBlocks.setBlock(new VariableModel(), "Variable");
+		_availableBlocks.setBlock(new ValueModel(),		"ValueModel");
+		_availableBlocks.setBlock(new AssignmentModel(), "AssignmentModel");
 	reset();
 }
 
-void AdditionLevelModel::reset(){
+void AdditionsLevelModel::reset(){
 	int min = 0;
 	int max = 9;
 	int output = 0;
@@ -37,7 +35,7 @@ void AdditionLevelModel::reset(){
 	InputListModel* input = _workspace->getInputList();
 	srand(time(NULL));
 
-	for(int i=0; i<2; i++){
+	for(int i=0; i<5; i++){
 		sct_type foo;
 		int bar;
 		foo.double_type = nullptr;

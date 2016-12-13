@@ -9,7 +9,6 @@ using namespace satap;
 int console();
 int gui();
 
-
 int main(int argc, char**argv){
 	return gui();
 }
@@ -22,6 +21,7 @@ int console(){
 
 	LevelModel* currentLevel = game.getCurrentLevel();
 	std::cout << currentLevel->getName() << std::endl;
+	std::cout << currentLevel->getOptimalBlocCount() << std::endl;
 	std::cout << currentLevel->getDescription() << std::endl;
 	std::cout << currentLevel->getHelp() << std::endl;
 

@@ -17,10 +17,10 @@
 
 class SoundPlayer;
 
-namespace GUI
+namespace satap
 {
 
-	class Bloc : public Component
+	class Bloc : public GUI::Component
 	{
 	public:
 		typedef std::shared_ptr<Bloc>		Ptr;

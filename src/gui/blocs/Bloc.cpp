@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
-namespace GUI
+namespace satap
 {
 
 	Bloc::Bloc(State::Context context)

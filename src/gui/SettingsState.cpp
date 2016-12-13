@@ -110,6 +110,8 @@ void SettingsState::draw()
 {
 	sf::RenderWindow& window = *getContext().window;
 
+	// window.clear(); Si commenté, crée un effet de "pause" de la vue précédente au panneau de settings.
+
 	window.draw(mBackgroundSprite);
 	window.draw(mGUIContainer);
 }

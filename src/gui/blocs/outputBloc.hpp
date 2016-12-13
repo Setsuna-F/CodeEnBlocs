@@ -5,7 +5,7 @@
 #include <model\outputmodel.hpp>
 
 namespace satap {
-	class OutputBloc : public GUI::Bloc, public OutputModel {
+	class OutputBloc : public Bloc, public OutputModel {
 	public:
 		OutputBloc(State::Context context);
 	};

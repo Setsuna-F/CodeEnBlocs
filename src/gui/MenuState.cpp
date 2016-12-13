@@ -20,7 +20,6 @@ MenuState::MenuState(StateStack& stack, Context context)
 	playButton->setText("Play");
 	playButton->setCallback([this] ()
 	{
-		requestStackPop();
 		requestStackPush(States::Game);
 	});
 
@@ -72,7 +71,8 @@ void MenuState::draw()
 {
 	sf::RenderWindow& window = *getContext().window;
 
-	window.setView(window.getDefaultView());
+	window.clear();
+	//window.setView(window.getDefaultView());
 
 	window.draw(mBackgroundSprite);
 	window.draw(mGUIContainer);

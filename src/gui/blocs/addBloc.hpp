@@ -5,7 +5,7 @@
 #include <model\addmodel.hpp>
 
 namespace satap {
-	class AddBloc : public GUI::Bloc, public AddModel {
+	class AddBloc : public Bloc, public AddModel {
 	public:
 		AddBloc(State::Context context);
 		AddBloc(State::Context context, BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);

@@ -15,9 +15,8 @@ namespace Textures
 {
 	enum ID
 	{
-		Entities,
-		Jungle,
 		TitleScreen,
+		Background,
 		Buttons,
 		Explosion,
 		Particle,
@@ -35,7 +34,15 @@ namespace Textures
 		OutputSpawner,
 		ValueSpawner,
 		VariableSpawner,
-		CurseurSprite
+		CurseurSprite,
+		TutorialBegin,
+		Tutorial0,
+		Tutorial1,
+		Tutorial2,
+		Tutorial3,
+		Tutorial4,
+		Tutorial5,
+		TutorialEnd,
 	};
 }
 

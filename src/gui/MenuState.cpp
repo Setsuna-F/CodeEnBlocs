@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <iostream>
 
 
 MenuState::MenuState(StateStack& stack, Context context)
@@ -20,7 +21,14 @@ MenuState::MenuState(StateStack& stack, Context context)
 	playButton->setText("Play");
 	playButton->setCallback([this] ()
 	{
-		requestStackPush(States::Game);
+		if (*getContext().tutorial)
+		{
+			// TODO chargement de l'arbre des niveaux
+			std::cout << "TODO dans MenuState push LevelManagerState à la place de GameState" << std::endl;
+			requestStackPush(States::LevelManager);
+		}
+		else
+			requestStackPush(States::Tutorial);
 	});
 
 	//auto hostPlayButton = std::make_shared<GUI::Button>(context);

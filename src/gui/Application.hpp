@@ -37,6 +37,8 @@ class Application
 	  	FontHolder				mFonts;
 		MusicPlayer				mMusic;
 		SoundPlayer				mSounds;
+		bool					mTutorial;
+		int						mNumLevel;
 
 		KeyBinding				mKeyBinding;
 		StateStack				mStateStack;

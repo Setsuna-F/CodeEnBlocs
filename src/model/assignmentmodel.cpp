@@ -33,3 +33,7 @@ sct_type AssignmentModel::execute() {
 
 	return value;
 }
+
+typeBloc AssignmentModel::getType() {
+	return AssignementBlocType;
+}

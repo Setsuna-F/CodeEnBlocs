@@ -41,6 +41,7 @@ namespace satap{
 			return block;
 		}
 			sct_type execute();
+			typeBloc getType();
 		private:
 			InputListModel *_inputList; //TODO not inputlist but Game : then, game.getInputList().pop();
 

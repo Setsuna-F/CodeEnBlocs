@@ -24,7 +24,7 @@ namespace satap {
 			BlockCompositeModel* getSecondOperand();
 			void setSecondOperand(BlockCompositeModel* operand);
 			virtual sct_type execute() = 0;
-
+			typeBloc getType();
 		private:
 			//operand 1
 			BlockCompositeModel* _firstOperand;

@@ -155,8 +155,22 @@ bool GameState::handleEvent(const sf::Event& event) {
 template<class T>
 void GameState::addBloc()
 {
-	std::cout << "Ajout d'un bloc " << std::endl;
 	auto b = std::make_shared<T>(mContext);
+	if (b->getType() == VariableBlocType) {
+		std::cout << "Ajout d'un bloc de type var" << std::endl;
+	}
+	else if (b->getType() == AssignementBlocType) {
+		std::cout << "Ajout d'un bloc de type <-" << std::endl;
+	}
+	else if (b->getType() == InputBlocType) {
+		std::cout << "Ajout d'un bloc de type In" << std::endl;
+	}
+	else if (b->getType() == OutputBlocType) {
+		std::cout << "Ajout d'un bloc de type Out" << std::endl;
+	}
+	else if (b->getType() == OperateurBinaireBlocType) {
+		std::cout << "Ajout d'un bloc de type opéBin" << std::endl;
+	}
 	b->setPosition(200, 300);
 	b->setCallback([this]() { });
 	mBlocsContainer.pack(b);

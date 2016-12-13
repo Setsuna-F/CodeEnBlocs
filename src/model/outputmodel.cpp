@@ -22,3 +22,7 @@ sct_type OutputModel::execute() {
 	
 	return _valOutput;
 }
+
+typeBloc OutputModel::getType() {
+	return OutputBlocType;
+}

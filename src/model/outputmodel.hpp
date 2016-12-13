@@ -19,6 +19,7 @@ namespace satap {
 			OutputModel();
 			~OutputModel();
 			sct_type execute();
+			typeBloc getType();
 
 		private:
 			sct_type _valOutput;

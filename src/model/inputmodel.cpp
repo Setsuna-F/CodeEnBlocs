@@ -23,3 +23,7 @@ sct_type InputModel::execute(){
 	
 	return _inputList?_inputList->pop():res;
 }
+
+typeBloc InputModel::getType() {
+	return InputBlocType;
+}

@@ -44,6 +44,9 @@ namespace satap {
 	
 	size_t BlockModel::getId(){ return _id; }
 
+	typeBloc BlockModel::getType() {
+		return ND;
+	}
 }
 
 

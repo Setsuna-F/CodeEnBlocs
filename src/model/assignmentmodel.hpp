@@ -15,7 +15,7 @@ namespace satap {
 			VariableModel getVariable();
 			BlockCompositeModel * getBlock();
 			sct_type execute();
-
+			typeBloc getType();
 		private:
 			//
 			VariableModel _variable;

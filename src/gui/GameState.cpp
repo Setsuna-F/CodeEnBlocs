@@ -2,6 +2,7 @@
 #include "gui/Button.hpp"
 #include "gui/GameButton.hpp"
 #include "gui/SpawnerButton.hpp"
+#include "gui/Container.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
@@ -23,7 +24,10 @@ GameState::GameState(StateStack& stack, Context context)
 	, mButtonsContainer()
 	, mBlocsContainer()
 	, mContext(context)
-{
+	, mCurseur(context)
+	, mLi(0)
+	, mCol(0)
+{	
 	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
 
 	// TODO déplacer ça dans panel de choix de niveau
@@ -128,21 +132,19 @@ GameState::GameState(StateStack& stack, Context context)
 	});
 	mButtonsContainer.pack(affectationSpawner);
 
+	//mCurseur.setSprite(context, Textures::CurseurSprite);
+	reloadPositionCurseur();
+	
+
 	// Test
 	InputBloc* in = ((InputBloc*) addBloc(InputBlocType));
-	OutputBloc* out = ((OutputBloc*) addBloc(OutputBlocType));
-	//VariableBloc* var = ((VariableBloc*) addBloc(VariableBlocType));
 	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
-	//AssignmentBloc* assignOutVar = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
 
-	//assignVarIn->setFirstOperand(var);
 	assign->setFirstOperand(out);
-
-	//assignOutVar->setFirstOperand(out);
 	assign->setSecondOperand(in);
 
 	mCurrentLevel->getCodePage()->addBlock(assign);
-	//mCurrentLevel->getCodePage()->addBlock(assignOutVar);
 }
 
 void GameState::draw()
@@ -154,7 +156,11 @@ void GameState::draw()
 	window.draw(mBackgroundSprite);
 
 	window.draw(mButtonsContainer);
-	window.draw(mBlocsContainer);
+	for (int i = 0; i < 12; i++) {
+		window.draw(mBlocsContainer[i]);
+	}
+	
+	window.draw(mCurseur);
 }
 
 bool GameState::update(sf::Time)
@@ -164,6 +170,24 @@ bool GameState::update(sf::Time)
 
 bool GameState::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed) {
+		if (event.key.code == sf::Keyboard::Up) {
+			mLi--;
+			if (mLi < 0)
+				mLi = 0;
+			mCol = getNbElementsOnLine(mLi);
+			reloadPositionCurseur();
+		}
+		else if (event.key.code == sf::Keyboard::Down) {
+			mLi++;
+			if (mLi > 12)
+				mLi = 12;
+			mCol = getNbElementsOnLine(mLi);
+			reloadPositionCurseur();
+		}
+		else if (event.key.code == sf::Keyboard::BackSpace) {
+			effacerLigne(mLi);
+			mCol = 0;
+		}		
 		
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
 		mButtonsContainer.handleEvent(event);
@@ -173,41 +197,65 @@ bool GameState::handleEvent(const sf::Event& event) {
 
 Bloc * GameState::addBloc(satap::typeBloc t)
 {
-	int posX = 540, posY = 70;
-
 	Bloc* b;
 	std::shared_ptr<Bloc> bl;
 
 	if (t == VariableBlocType) {
 		b = new VariableBloc(mContext);
+		b->setSprite(mContext, Textures::VariableSpawner);
 		std::cout << "Ajout d'un bloc de type var" << std::endl;
 	}
 	else if (t == AssignementBlocType) {
 		b = new AssignmentBloc(mContext);
+		b->setSprite(mContext, Textures::AssignmentSpawner);
 		std::cout << "Ajout d'un bloc de type <-" << std::endl;
 	}
 	else if (t == InputBlocType) {
 		b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
+		b->setSprite(mContext, Textures::InputSpawner);
 		std::cout << "Ajout d'un bloc de type In" << std::endl;
 	}
 	else if (t == OutputBlocType) {
 		b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
+		b->setSprite(mContext, Textures::OutputSpawner);
 		std::cout << "Ajout d'un bloc de type Out" << std::endl;
 	}
 	else if (t == AddBlocType) {
 		b = new AddBloc(mContext);
+		b->setSprite(mContext, Textures::AddSpawner);
 		std::cout << "Ajout d'un bloc de type +" << std::endl;
 	}
 
-	b->setPosition(posX, posY);
+	std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
+	b->setPosition(coordBloc.first, coordBloc.second);
 	bl = std::shared_ptr<Bloc>(b);
-	mBlocsContainer.pack(bl);
+	mBlocsContainer[mLi].pack(bl);
+
+	mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
+	// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
+
+
 	return b;
+}
+
+std::pair<int, int> GameState::getCoordonnees(int ligne, int colonne) {
+	int posX = 540, posY = 85;
+	int espaceX = 90, espaceY = 50;
+	return (std::pair<int, int>(posX + colonne * espaceX, posY + ligne * espaceY));
+}
+
+std::pair<int, int> GameState::getCoordonneesCurseur(int ligne) {
+	int posX = 500, posY = 85, espaceY = 50;
+	return (std::pair<int, int>(posX, posY + ligne * espaceY));
 }
 
 void GameState::resetCode() {
 	mCurrentLevel->getCodePage()->flush();
-	mBlocsContainer.flush();
+	for (int i = 0; i < 12; i++) {
+		mBlocsContainer[i].flush();
+	}	
+	mLi = 0;
+	mCol = 0;
 }
 
 void GameState::toggleLoop() {
@@ -218,3 +266,22 @@ void GameState::startExecute() {
 	std::cout << mCurrentLevel->validate() << std::endl;
 }
 
+void GameState::effacerLigne(int ligne) { 
+	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
+	std::cout << "effacer line " << ligne << std::endl;
+	if (getNbElementsOnLine(ligne) > 0) {
+		mCurrentLevel->getCodePage()->deleteLigne(ligne);
+		mBlocsContainer[ligne].flush();
+	}	
+}
+
+int GameState::getNbElementsOnLine(int ligne) {
+	int nbElements = mCurrentLevel->getCodePage()->getNbBlock(ligne);
+	std::cout << "ligne " << ligne << " : " << nbElements << std::endl;
+	return nbElements;
+}
+
+void GameState::reloadPositionCurseur() {
+	std::pair<int, int> coordCurseur = getCoordonneesCurseur(mLi);
+	mCurseur.setPosition(coordCurseur.first, coordCurseur.second);
+}

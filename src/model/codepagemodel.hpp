@@ -17,6 +17,8 @@ namespace satap {
 			void addBlock(BlockModel* block, int i);
 			void removeBlock();
 			void removeBlock(int i);
+			int getNbBlock(int ligne);
+			void deleteLigne(int ligne);
 			BlockModel* getBlock(int i);
 			std::vector<BlockModel*> getBlockList();
 			void flush();

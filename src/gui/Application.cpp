@@ -45,6 +45,8 @@ Application::Application()
 	mTextures.load(Textures::ValueSpawner,		"res/img/block-value.png");	
 	mTextures.load(Textures::VariableSpawner,	"res/img/block-variable.png");	
 
+	mTextures.load(Textures::CurseurSprite,		"res/img/curseur.png");
+
 
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));

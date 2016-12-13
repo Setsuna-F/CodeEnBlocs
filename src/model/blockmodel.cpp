@@ -47,6 +47,10 @@ namespace satap {
 	typeBloc BlockModel::getType() {
 		return ND;
 	}
+
+	int BlockModel::getNbElements() {
+		return 1;
+	}
 }
 
 

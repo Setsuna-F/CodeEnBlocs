@@ -48,3 +48,20 @@ sct_type AssignmentModel::execute() {
 typeBloc AssignmentModel::getType() {
 	return AssignementBlocType;
 }
+
+int AssignmentModel::getNbElements() {
+	if (_firstOperand == NULL && _secondOperand == NULL) {
+		return 1;
+	}
+	else if (_firstOperand == NULL) {
+		return 1 + _secondOperand->getNbElements();
+	}
+	else if (_secondOperand == NULL) {
+		return 1 + _firstOperand->getNbElements();
+	}
+	else {
+		int gauche = _firstOperand->getNbElements();
+		int droite = _secondOperand->getNbElements();
+		return 1 + gauche + droite;
+	}
+}

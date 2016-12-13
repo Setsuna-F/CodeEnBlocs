@@ -51,6 +51,7 @@ namespace satap
 
 		virtual void			handleEvent(const sf::Event& event);
 
+		void					setSprite(State::Context c, Textures::ID id);
 
 	private:
 		virtual void			draw(sf::RenderTarget& target, sf::RenderStates states) const;

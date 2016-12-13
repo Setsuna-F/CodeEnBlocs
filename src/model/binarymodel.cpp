@@ -43,4 +43,21 @@ void BinaryModel::setSecondOperand(BlockCompositeModel* operand) {
 	this->_secondOperand = operand;
 }
 
+int BinaryModel::getNbElements() {
+	if (_firstOperand == NULL && _secondOperand == NULL) {
+		return 1;
+	}
+	else if (_firstOperand == NULL) {
+		return 1 + _secondOperand->getNbElements();
+	}
+	else if (_secondOperand == NULL) {
+		return 1 + _firstOperand->getNbElements();
+	}
+	else {
+		int gauche = _firstOperand->getNbElements();
+		int droite = _secondOperand->getNbElements();
+		return 1 + gauche + droite;
+	}
+}
+
 

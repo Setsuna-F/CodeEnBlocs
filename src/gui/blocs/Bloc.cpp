@@ -16,7 +16,7 @@ namespace satap
 		, mSprite(context.textures->get(Textures::Buttons))
 		, mText("", context.fonts->get(Fonts::Main), 16)
 		, mIsToggle(false)
-		, mSounds(*context.sounds)
+		, mSounds(*context.sounds) 
 	{
 		changeTexture(Normal);
 
@@ -24,88 +24,46 @@ namespace satap
 		mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
 	}
 
-	void Bloc::setCallback(Callback callback)
-	{
+	void Bloc::setCallback(Callback callback) {
 		mCallback = std::move(callback);
 	}
 
-	void Bloc::setText(const std::string& text)
-	{
+	void Bloc::setText(const std::string& text) {
 		mText.setString(text);
 		centerOrigin(mText);
 	}
 
-	void Bloc::setToggle(bool flag)
-	{
+	void Bloc::setToggle(bool flag) {
 		mIsToggle = flag;
 	}
 
-	bool Bloc::isSelectable() const
-	{
-		return true;
+	bool Bloc::isSelectable() const {
+		return false;
 	}
 
-	void Bloc::select()
-	{
-		Component::select();
+	void Bloc::select() {}
 
-		changeTexture(Selected);
-	}
+	void Bloc::deselect() {}
 
-	void Bloc::deselect()
-	{
-		Component::deselect();
+	void Bloc::activate() {}
 
-		changeTexture(Normal);
-	}
+	void Bloc::deactivate() {}
 
-	void Bloc::activate()
-	{
-		Component::activate();
+	void Bloc::handleEvent(const sf::Event&) {}
 
-		// If we are toggle then we should show that the button is pressed and thus "toggled".
-		if (mIsToggle)
-			changeTexture(Pressed);
-
-		if (mCallback)
-			mCallback();
-
-		// If we are not a toggle then deactivate the button since we are just momentarily activated.
-		if (!mIsToggle)
-			deactivate();
-
-		mSounds.play(SoundEffect::Button);
-	}
-
-	void Bloc::deactivate()
-	{
-		Component::deactivate();
-
-		if (mIsToggle)
-		{
-			// Reset texture to right one depending on if we are selected or not.
-			if (isSelected())
-				changeTexture(Selected);
-			else
-				changeTexture(Normal);
-		}
-	}
-
-	void Bloc::handleEvent(const sf::Event&)
-	{
-	}
-
-	void Bloc::draw(sf::RenderTarget& target, sf::RenderStates states) const
-	{
+	void Bloc::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		states.transform *= getTransform();
 		target.draw(mSprite, states);
 		target.draw(mText, states);
 	}
 
-	void Bloc::changeTexture(Type buttonType)
-	{
-		sf::IntRect textureRect(0, 50 * buttonType, 200, 50);
+	void Bloc::changeTexture(Type buttonType) {
+		sf::IntRect textureRect(0, 0, 81, 31);
 		mSprite.setTextureRect(textureRect);
 	}
 
+	void Bloc::setSprite(State::Context c, Textures::ID id) {
+		mSprite = sf::Sprite(c.textures->get(id));
+		changeTexture(Normal);
+	}
 }

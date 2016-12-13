@@ -34,7 +34,8 @@ namespace Textures
 		InputSpawner,
 		OutputSpawner,
 		ValueSpawner,
-		VariableSpawner
+		VariableSpawner,
+		CurseurSprite
 	};
 }
 

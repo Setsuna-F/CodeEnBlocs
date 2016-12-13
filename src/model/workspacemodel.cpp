@@ -1,4 +1,5 @@
 #include "workspacemodel.hpp"
+#include "inputlistmodel.hpp"
 
 using namespace satap;
 

@@ -1,12 +1,12 @@
 #ifndef WORKSPACEMODEL_HPP
 #define WORKSPACEMODEL_HPP
 
-#include "inputlistmodel.hpp"
 #include "outputlistmodel.hpp"
 #include "variablelistmodel.hpp"
 
 namespace satap {
-	
+	class InputListModel;
+
 	class WorkspaceModel{
 		
 		public:

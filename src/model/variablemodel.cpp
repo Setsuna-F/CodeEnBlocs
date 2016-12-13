@@ -7,6 +7,7 @@
 //
 
 #include "variablemodel.hpp"
+#include "blockcompositemodel.hpp"
 
 using namespace satap;
 

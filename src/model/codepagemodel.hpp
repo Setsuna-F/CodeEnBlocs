@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "blockmodel.hpp"
+#include "InstructionBlocks.hpp"
 
 namespace satap {
 	
@@ -22,7 +23,8 @@ namespace satap {
 			void execute();
 
 		private:
-			std::vector<BlockModel*> _blockList;
+			//std::vector<BlockModel*> _blockList;
+			InstructionBlockModel _blockList;
 	};
 }
 

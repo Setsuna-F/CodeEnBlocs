@@ -2,7 +2,8 @@
 #define IFMODEL_HPP
 #include "blocksimplemodel.hpp"
 #include "blockcompositemodel.hpp"
-#include "tools.h"
+#include "InstructionBlocks.hpp"
+
 /*
  *
  * Description :
@@ -23,15 +24,15 @@ namespace satap {
 		public:
 			IfModel();
 			IfModel(std::vector<BlockCompositeModel *> conditionList);
-			IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockListtrue);
-			IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockListtrue, std::vector<BlockModel *> blockListfalse);
+			IfModel(std::vector<BlockCompositeModel *> conditionList, InstructionBlockModel blockListtrue);
+			IfModel(std::vector<BlockCompositeModel *> conditionList, InstructionBlockModel blockListtrue, InstructionBlockModel blockListfalse);
 			~IfModel();
 			std::vector<BlockCompositeModel *> getConditionList();
 
 			void addCondtion		(BlockCompositeModel * blockCM);
 			void removeCondition	(const int index);
-			std::vector<BlockModel *> getBlockListTrue();
-			std::vector<BlockModel *> getBlockListFalse();
+			InstructionBlockModel	getBlockListTrue();
+			InstructionBlockModel	getBlockListFalse();
 			void addBlockTrue		(BlockModel * block);
 			void addBlockFalse		(BlockModel * block);
 			void removeBlockTrue	(const int index);
@@ -44,8 +45,8 @@ namespace satap {
 			std::vector<BlockCompositeModel *> _conditionList;
 
 			//block list
-			std::vector<BlockModel *> _blockListTrue;
-			std::vector<BlockModel *> _blockListFalse;
+			InstructionBlockModel _blockListTrue;
+			InstructionBlockModel _blockListFalse;
 	};
 }
 

@@ -2,31 +2,31 @@
 
 using namespace satap;
 
-LevelModel::LevelModel(){
-	_workspace = new WorkspaceModel();
-	_codePage = new CodePageModel();
-}
+LevelModel::LevelModel():
+	_name		(""),
+	_description(""),
+	_workspace(new WorkspaceModel()),
+	_codePage (new CodePageModel()){}
 
-LevelModel::LevelModel(std::string name){
-	_name = name;
-	_workspace = new WorkspaceModel();
-	_codePage = new CodePageModel();
-}
+LevelModel::LevelModel(std::string name):
+	_name		(name),
+	_description(""),
+	_workspace	(new WorkspaceModel()),
+	_codePage	(new CodePageModel()){}
 
-LevelModel::LevelModel(std::string name, std::string description){
-	_name = name;
-	_description = description;
-	_workspace = new WorkspaceModel();
-	_codePage = new CodePageModel();
-}
 
-LevelModel::LevelModel(std::string name, std::string description, std::vector<BlockModel*> availableBlocks){
-	_name = name;
-	_description = description;
-	_availableBlocks = availableBlocks;
-	_workspace = new WorkspaceModel();
-	_codePage = new CodePageModel();
-}
+LevelModel::LevelModel(std::string name, std::string description):
+	_name		(name),
+	_description(description),
+	_workspace	(new WorkspaceModel()),
+	_codePage	(new CodePageModel()){}
+
+LevelModel::LevelModel(std::string name, std::string description, InstructionBlockModel availableBlocks):
+	_name			 (name),
+	_description	 (description),
+	_availableBlocks (availableBlocks),
+	_workspace		 (new WorkspaceModel()),
+	_codePage		 (new CodePageModel()){}
 
 std::string LevelModel::getName(){
 	return _name;
@@ -36,7 +36,7 @@ std::string LevelModel::getDescription(){
 	return _description;
 }
 
-std::vector<BlockModel*> LevelModel::getAvailableBlocks(){
+InstructionBlockModel LevelModel::getAvailableBlocks(){
 	return _availableBlocks;
 }
 

@@ -12,7 +12,7 @@ int main(int argc, char**argv){
 }
 
 int console(){
-/*	std::cout << "CodeEnBlocs" << std::endl;
+	std::cout << "CodeEnBlocs" << std::endl;
 	
 	GameModel game;
 	game.loadLevel(0);
@@ -29,8 +29,8 @@ int console(){
 	
 	CodePageModel* codePage = currentLevel->getCodePage();
 	//codePage->addBlock( ... );
-	std::cout << currentLevel->validate() << std::endl;
-*/
+	std::cout <<"validate: "<< currentLevel->validate() << std::endl;
+
 	return 0;
 }
 

@@ -11,35 +11,33 @@ CodePageModel::CodePageModel(std::vector<BlockModel*> blockList){
 }
 
 void CodePageModel::addBlock(BlockModel* block){
-	_blockList.push_back(block);
+	_blockList.setBlock(block, "");
 }
 
 void CodePageModel::addBlock(BlockModel* block, int i){
-	_blockList.insert(_blockList.begin()+i, block);
+	_blockList.setBlock(block, "", i);
 }
 
 void CodePageModel::removeBlock(){
-	_blockList.pop_back();
+	_blockList.removeFromIndex();
 }
 
 void CodePageModel::removeBlock(int i){
-	_blockList.erase(_blockList.begin()+i);
+	_blockList.removeFromIndex(i);
 }
 
 BlockModel* CodePageModel::getBlock(int i){
-	return _blockList[i];
+	return _blockList.getBlockById(i);
 }
 
 void CodePageModel::flush(){
-	_blockList = *(new std::vector<BlockModel*>());
+	//_blockList = *(new std::vector<BlockModel*>());
 }
 
 void CodePageModel::execute(){
-	for(int i=0; i<(int)_blockList.size(); i++){
-		_blockList[i]->execute();
-	}
+	_blockList.execute();
 }
 
 std::vector<BlockModel*> CodePageModel::getBlockList(){
-	return _blockList;
+	return _blockList.getAllBlocks();
 }

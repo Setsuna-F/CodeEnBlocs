@@ -8,27 +8,43 @@
 
 #include <stdio.h>
 #include "blockmodel.hpp"
+#include "Workspacemodel.hpp"
 
 
 namespace satap {
 	
-	BlockModel::BlockModel(): objSingleton(), id(0){
-		objSingleton = UniqueObject::getInstance ();
-
-		id = objSingleton->getValue();
+	BlockModel::BlockModel():
+		objSingleton(),
+		_id(0){
+		objSingleton	= UniqueObject::getInstance ();
+		_id				= objSingleton->getValue();
 		objSingleton->setValue (objSingleton->getValue()+1);
 	}
 	
-	
-	BlockModel* BlockModel::getBlockById(size_t id){
-		//std::cout<<"r0 BLOMOD"<<std::endl;
-		return nullptr;
+	BlockModel::BlockModel(WorkspaceModel &workspace):
+		_workspace(&workspace),
+		objSingleton(),
+		_id(0){
+		objSingleton	= UniqueObject::getInstance ();
+		_id				= objSingleton->getValue();
+		objSingleton->setValue (objSingleton->getValue()+1);
 	}
 	
+	void BlockModel::setWorspace(WorkspaceModel &workspace){
+		_workspace=&workspace;
+	}
+
+	BlockModel* BlockModel::getBlockById(size_t id){
+		return nullptr;
+	}
+
 	BlockModel::~BlockModel(){
 		objSingleton->kill ();
 	}
 	
-	size_t BlockModel::getId(){ return id; }
+	size_t BlockModel::getId(){ return _id; }
 
 }
+
+
+

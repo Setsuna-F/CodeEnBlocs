@@ -17,13 +17,12 @@ IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList) {
 	this->_conditionList = conditionList;
 }
 
-IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockList) {
+IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, InstructionBlockModel blockList) {
 	this->_conditionList = conditionList;
 	this->_blockListTrue = blockList;
 }
 
-IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, std::vector<BlockModel *> blockListtrue, std::vector<BlockModel *> blockListfalse): _conditionList(conditionList), _blockListTrue(blockListtrue), _blockListFalse(blockListfalse) {
-
+IfModel::IfModel(std::vector<BlockCompositeModel *> conditionList, InstructionBlockModel blockListtrue, InstructionBlockModel blockListfalse): _conditionList(conditionList), _blockListTrue(blockListtrue), _blockListFalse(blockListfalse) {
 }
 
 
@@ -43,28 +42,28 @@ void IfModel::removeCondition(const int index) {
 	this->_conditionList.erase(this->_conditionList.begin() + index);
 }
 
-std::vector<BlockModel *> IfModel::getBlockListTrue() {
+InstructionBlockModel IfModel::getBlockListTrue() {
 	return this->_blockListTrue;
 }
 
-std::vector<BlockModel *> IfModel::getBlockListFalse() {
+InstructionBlockModel IfModel::getBlockListFalse() {
 	return this->_blockListFalse;
 }
 
 void IfModel::addBlockTrue(BlockModel * block) {
-	this->_blockListTrue.push_back(block);
+	this->_blockListTrue.setBlock(block, "");
 }
 
 void IfModel::addBlockFalse(BlockModel * block) {
-	this->_blockListFalse.push_back(block);
+	this->_blockListFalse.setBlock(block, "");
 }
 
 void IfModel::removeBlockTrue(const int index) {
-	this->_blockListTrue.erase(this->_blockListTrue.begin() + index);
+	this->_blockListTrue.removeFromIndex(index);
 }
 
 void IfModel::removeBlockFalse(const int index) {
-	this->_blockListFalse.erase(this->_blockListFalse.begin() + index);
+	this->_blockListFalse.removeFromIndex(index);
 }
 
 
@@ -91,18 +90,16 @@ sct_type IfModel::execute() {
 	}
 
 	if (condition == true) {
-		for (std::vector<BlockModel *>::iterator it = this->_blockListTrue.begin(); it != this->_blockListTrue.end(); ++it)
-			(*it)->execute();
+		return this->_blockListTrue.execute();
 	}
 	
 	else {
-		for (std::vector<BlockModel *>::iterator it = this->_blockListFalse.begin(); it != this->_blockListFalse.end(); ++it) 
-			(*it)->execute();
+		return this->_blockListFalse.execute();
 	}
 	
 	result.int_type			=nullptr;
 	result.double_type		=nullptr;
-	result.bool_type 		=&condition;
+	result.bool_type 		=nullptr;
 	return result;
 }
 

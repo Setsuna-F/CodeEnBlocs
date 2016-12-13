@@ -127,4 +127,9 @@ void Container::selectPrevious()
 	select(prev);
 }
 
+void Container::flush() {
+	mChildren.clear();
+	mSelectedChild = -1;
+}
+
 }

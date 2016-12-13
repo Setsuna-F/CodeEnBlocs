@@ -5,7 +5,7 @@
 #include <model\inputmodel.hpp>
 
 namespace satap {
-	class InputBloc : public GUI::Bloc, public InputModel {
+	class InputBloc : public Bloc, public InputModel {
 	public:
 		InputBloc(State::Context context);
 	};

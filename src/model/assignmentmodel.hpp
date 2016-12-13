@@ -10,7 +10,7 @@ namespace satap {
 
 		public:
 			AssignmentModel();
-			AssignmentModel(VariableModel variable, BlockCompositeModel & block);
+			AssignmentModel(VariableModel variable, BlockCompositeModel * block);
 			~AssignmentModel();
 			VariableModel getVariable();
 			BlockCompositeModel * getBlock();

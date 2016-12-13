@@ -5,10 +5,13 @@ using namespace satap;
 AssignmentModel::AssignmentModel() {
 	//
 }
-
-AssignmentModel::AssignmentModel(VariableModel variable, BlockCompositeModel & block) {
-	this->_variable = _variable;
-	this->_block = &block;
+/*
+ * 
+ *
+ */
+AssignmentModel::AssignmentModel(VariableModel variable, BlockCompositeModel * block) {
+	this->_variable = variable;
+	this->_block = block;
 }
 AssignmentModel::~AssignmentModel() {
 	//

@@ -37,3 +37,11 @@ sct_type AssignmentModel::execute() {
 typeBloc AssignmentModel::getType() {
 	return AssignementBlocType;
 }
+
+void satap::AssignmentModel::setVariable(VariableModel & variable) {
+	this->_variable = variable;
+}
+
+void satap::AssignmentModel::setPartieDroite(BlockCompositeModel & block) {
+	this->_block = &block;
+}

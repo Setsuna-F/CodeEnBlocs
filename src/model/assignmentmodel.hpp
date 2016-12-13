@@ -13,7 +13,9 @@ namespace satap {
 			AssignmentModel(VariableModel variable, BlockCompositeModel & block);
 			~AssignmentModel();
 			VariableModel getVariable();
+			void setVariable(VariableModel & variable);
 			BlockCompositeModel * getBlock();
+			void setPartieDroite(BlockCompositeModel & block);
 			sct_type execute();
 			typeBloc getType();
 		private:

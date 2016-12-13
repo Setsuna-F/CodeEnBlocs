@@ -19,7 +19,7 @@ class GameState : public State
 		virtual bool			update(sf::Time dt);
 		virtual bool			handleEvent(const sf::Event& event);
 
-		template<class T> void addBloc();
+		template<class T> std::shared_ptr<T> addBloc();
 
 		void resetCode();
 		void toggleLoop();

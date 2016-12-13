@@ -125,7 +125,21 @@ GameState::GameState(StateStack& stack, Context context)
 	mButtonsContainer.pack(affectationSpawner);
 
 	// Test
+	auto in = addBloc<InputBloc>();
+	auto out = addBloc<OutputBloc>();
+	auto var = addBloc<VariableBloc>();
+	auto assignVarIn = addBloc<AssignmentBloc>();
+	auto assignOutVar = addBloc<AssignmentBloc>();
 
+	assignVarIn->setVariable(*var);
+	assignVarIn->setPartieDroite(*in);
+
+
+	//assignOutVar->setVariable(*out);
+	assignOutVar->setPartieDroite(*var);
+
+	mCurrentLevel->getCodePage()->addBlock(assignVarIn.get());
+	mCurrentLevel->getCodePage()->addBlock(assignOutVar.get());
 }
 
 void GameState::draw()
@@ -153,9 +167,11 @@ bool GameState::handleEvent(const sf::Event& event) {
 }
 
 template<class T>
-void GameState::addBloc()
+std::shared_ptr<T> GameState::addBloc()
 {
-	auto b = std::make_shared<T>(mContext);
+	int posX = 200, posY = 300;
+
+	std::shared_ptr<T> b = std::make_shared<T>(mContext);
 	if (b->getType() == VariableBlocType) {
 		std::cout << "Ajout d'un bloc de type var" << std::endl;
 	}
@@ -169,11 +185,13 @@ void GameState::addBloc()
 		std::cout << "Ajout d'un bloc de type Out" << std::endl;
 	}
 	else if (b->getType() == OperateurBinaireBlocType) {
-		std::cout << "Ajout d'un bloc de type opéBin" << std::endl;
+		std::cout << "Ajout d'un bloc de type opeBin" << std::endl;
 	}
-	b->setPosition(200, 300);
+
+	b->setPosition(posX, posY);
 	b->setCallback([this]() { });
 	mBlocsContainer.pack(b);
+	return b;
 }
 
 void GameState::resetCode() {

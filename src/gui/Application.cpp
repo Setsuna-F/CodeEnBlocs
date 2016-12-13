@@ -38,6 +38,13 @@ Application::Application()
 	mTextures.load(Textures::HelpButton,		"res/img/button-help-bi.png");
 	mTextures.load(Textures::DescriptionButton, "res/img/button-description-bi.png");
 
+	mTextures.load(Textures::AddSpawner,		"res/img/block-add.png");
+	mTextures.load(Textures::AssignmentSpawner, "res/img/block-assignment.png");	
+	mTextures.load(Textures::InputSpawner,		"res/img/block-input.png");	
+	mTextures.load(Textures::OutputSpawner,		"res/img/block-output.png");	
+	mTextures.load(Textures::ValueSpawner,		"res/img/block-value.png");	
+	mTextures.load(Textures::VariableSpawner,	"res/img/block-variable.png");	
+
 
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));

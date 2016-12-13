@@ -1,6 +1,7 @@
 #include "gui/GameState.hpp"
 #include "gui/Button.hpp"
 #include "gui/GameButton.hpp"
+#include "gui/SpawnerButton.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
@@ -87,41 +88,41 @@ GameState::GameState(StateStack& stack, Context context)
 
 	/////////// Spawners Buttons ///////////
 
-	auto inputSpawner = std::make_shared<GUI::Button>(context);
-	inputSpawner->setPosition(1000, 100);
-	inputSpawner->setText("Input");
+	auto inputSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	inputSpawner->setPosition(1020, 100);
+	inputSpawner->setSprite(context, Textures::InputSpawner);
 	inputSpawner->setCallback([this]() {
 		addBloc(InputBlocType);
 	});
 	mButtonsContainer.pack(inputSpawner);
 
-	auto outputSpawner = std::make_shared<GUI::Button>(context);
-	outputSpawner->setPosition(1000, 220);
-	outputSpawner->setText("Output");
+	auto outputSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	outputSpawner->setPosition(1120, 100);
+	outputSpawner->setSprite(context, Textures::OutputSpawner);
 	outputSpawner->setCallback([this]() {
 		addBloc(OutputBlocType);
 	});
 	mButtonsContainer.pack(outputSpawner);
 
-	auto addSpawner = std::make_shared<GUI::Button>(context);
-	addSpawner->setPosition(1000, 340);
-	addSpawner->setText("+");
-	addSpawner->setCallback([this]() {
+	auto addSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	addSpawner->setPosition(1020, 200);
+	addSpawner->setSprite(context, Textures::AddSpawner);
+	addSpawner->setCallback([this]() {		
 		addBloc(AddBlocType);
 	});
 	mButtonsContainer.pack(addSpawner);
 
-	auto varSpawner = std::make_shared<GUI::Button>(context);
-	varSpawner->setPosition(1000, 460);
-	varSpawner->setText("Var");
+	auto varSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	varSpawner->setPosition(1020, 150);
+	varSpawner->setSprite(context, Textures::VariableSpawner);
 	varSpawner->setCallback([this]() {
 		addBloc(VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawner);
 
-	auto affectationSpawner = std::make_shared<GUI::Button>(context);
-	affectationSpawner->setPosition(1000, 580);
-	affectationSpawner->setText("<-");
+	auto affectationSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	affectationSpawner->setPosition(1120, 150);
+	affectationSpawner->setSprite(context, Textures::AssignmentSpawner);
 	affectationSpawner->setCallback([this]() {
 		addBloc(AssignementBlocType);
 	});

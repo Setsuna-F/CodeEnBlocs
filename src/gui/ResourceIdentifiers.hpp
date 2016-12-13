@@ -28,7 +28,13 @@ namespace Textures
 		ResetButton,
 		LoopButton,
 		HelpButton,
-		DescriptionButton
+		DescriptionButton,
+		AddSpawner,
+		AssignmentSpawner,
+		InputSpawner,
+		OutputSpawner,
+		ValueSpawner,
+		VariableSpawner
 	};
 }
 

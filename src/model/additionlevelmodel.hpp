@@ -4,9 +4,9 @@
 #include "levelmodel.hpp"
 
 namespace satap {
-	
+
 	class AdditionLevelModel : public LevelModel{
-		
+
 		public:
 			AdditionLevelModel();
 

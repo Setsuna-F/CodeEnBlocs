@@ -17,7 +17,7 @@ int console(){
 	std::cout << "CodeEnBlocs" << std::endl;
 
 	GameModel game;
-	game.loadLevel(0);
+	game.loadLevel(1);
 
 	LevelModel* currentLevel = game.getCurrentLevel();
 	std::cout << currentLevel->getName() << std::endl;

@@ -43,3 +43,4 @@ void BinaryModel::setSecondOperand(BlockCompositeModel* operand) {
 	this->_secondOperand = operand;
 }
 
+

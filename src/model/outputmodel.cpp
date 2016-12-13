@@ -9,8 +9,8 @@
 
 using namespace satap;
 
-OutputModel::OutputModel() {
-	//
+OutputModel::OutputModel(OutputListModel* outPutList) {
+	_outPutList = outPutList;
 }
 
 OutputModel::~OutputModel() {
@@ -18,7 +18,25 @@ OutputModel::~OutputModel() {
 }
 
 sct_type OutputModel::execute() {
-	//mettre l'output dans la liste des outputs
-	
+	std::string val = "";
+	if (_valOutput.int_type)
+		val = typeToString(_valOutput.int_type);
+	else if (_valOutput.double_type)
+		val = typeToString(_valOutput.double_type);
+	else if (*_valOutput.bool_type == true)
+		val = "true";
+	else
+		val = "false";
+	std::cout << "Output :" << val << std::endl;
+	_outPutList->push(val);
 	return _valOutput;
+}
+
+void OutputModel::setValue(sct_type v)
+{
+	_valOutput = v;
+}
+
+typeBloc OutputModel::getType() {
+	return OutputBlocType;
 }

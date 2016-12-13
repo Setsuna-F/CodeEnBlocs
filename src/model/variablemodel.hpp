@@ -30,6 +30,8 @@ namespace satap{
 			sct_type getValue();
 		
 			sct_type execute();
+			typeBloc getType();
+
 
 		private:
 			//variable name

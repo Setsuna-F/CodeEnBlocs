@@ -34,3 +34,8 @@ sct_type VariableModel::getValue(){
 sct_type VariableModel::execute(){
 	return _value;
 }
+
+typeBloc VariableModel::getType()
+{
+	return VariableBlocType;
+}

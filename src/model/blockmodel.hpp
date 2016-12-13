@@ -9,6 +9,15 @@
 #include "UniqueObject.hpp"
 
 namespace satap{
+
+	enum typeBloc {
+		VariableBlocType,
+		InputBlocType,
+		OutputBlocType,
+		AssignementBlocType,
+		AddBlocType,
+		ND
+	};
 	
 	class WorkspaceModel;
 	
@@ -21,6 +30,7 @@ namespace satap{
 			virtual sct_type execute() = 0;
 			virtual BlockModel* getBlockById(size_t id)/* = 0*/;
 			void setWorspace(WorkspaceModel &workspace);
+			virtual typeBloc getType();
 		private:
 			UniqueObject *objSingleton; /* Notre objet singleton qui s'icrementra a chaque construction de bloc */
 			WorkspaceModel* _workspace;

@@ -1,4 +1,4 @@
-#include "Button.hpp"
+#include "SpawnerButton.hpp"
 #include "Utility.hpp"
 #include "SoundPlayer.hpp"
 #include "ResourceHolder.hpp"
@@ -9,16 +9,15 @@
 
 #include <iostream>
 
-namespace GUI
-{
+using namespace GUI;
 
-Button::Button(State::Context context)
-: mCallback()
-, mSprite(context.textures->get(Textures::Buttons))
-, mText("", context.fonts->get(Fonts::Main), 16)
-, mIsToggle(false)
-, mSounds(*context.sounds)
-, mContext(context)
+SpawnerButton::SpawnerButton(State::Context context)
+	: mCallback()
+	, mSprite(context.textures->get(Textures::Buttons))
+	, mText("", context.fonts->get(Fonts::Main), 16)
+	, mIsToggle(false)
+	, mSounds(*context.sounds)
+	, mContext(context)
 {
 	changeTexture(Normal);
 
@@ -26,42 +25,42 @@ Button::Button(State::Context context)
 	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
 }
 
-void Button::setCallback(Callback callback)
+void SpawnerButton::setCallback(Callback callback)
 {
 	mCallback = std::move(callback);
 }
 
-void Button::setText(const std::string& text)
+void SpawnerButton::setText(const std::string& text)
 {
 	mText.setString(text);
 	centerOrigin(mText);
 }
 
-void Button::setToggle(bool flag)
+void SpawnerButton::setToggle(bool flag)
 {
 	mIsToggle = flag;
 }
 
-bool Button::isSelectable() const
+bool SpawnerButton::isSelectable() const
 {
     return true;
 }
 
-void Button::select()
+void SpawnerButton::select()
 {
 	Component::select();
 
 	changeTexture(Selected);
 }
 
-void Button::deselect()
+void SpawnerButton::deselect()
 {
 	Component::deselect();
 
 	changeTexture(Normal);
 }
 
-void Button::activate()
+void SpawnerButton::activate()
 {
 	Component::activate();
 
@@ -79,7 +78,7 @@ void Button::activate()
 	mSounds.play(SoundEffect::Button);
 }
 
-void Button::deactivate()
+void SpawnerButton::deactivate()
 {
 	Component::deactivate();
 
@@ -95,12 +94,14 @@ void Button::deactivate()
 		changeTexture(Selected);
 }
 
-void Button::handleEvent(const sf::Event& event)
+void SpawnerButton::handleEvent(const sf::Event& event)
 {
-	sf::IntRect r(getPosition().x, getPosition().y, mSprite.getTextureRect().width, mSprite.getTextureRect().height);
-	if (event.type == sf::Event::MouseMoved && r.contains(event.mouseMove.x, event.mouseMove.y) && !isSelected())
+	sf::IntRect r(getPosition().x, getPosition().y, 81, 31);
+	if (event.type == sf::Event::MouseMoved)
 	{
-		select();
+		if (r.contains(event.mouseMove.x, event.mouseMove.y) && !isSelected()) {
+			select();
+		}			
 	}
 	else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && r.contains(event.mouseButton.x, event.mouseButton.y))
 	{
@@ -118,24 +119,29 @@ void Button::handleEvent(const sf::Event& event)
 	}
 }
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void SpawnerButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(mSprite, states);
 	target.draw(mText, states);
 }
 
-void Button::changeTexture(Type buttonType)
+void SpawnerButton::changeTexture(Type buttonType)
 {
-	sf::IntRect textureRect(0, 50*buttonType, 200, 50);
+	sf::IntRect textureRect(0, 0, 81, 31);
 	mSprite.setTextureRect(textureRect);
 }
 
-void Button::scale(float scaleX, float scaleY)
+void SpawnerButton::scale(float scaleX, float scaleY)
 {
 	mSprite.scale(scaleX, scaleY);
 	sf::FloatRect bounds = mSprite.getLocalBounds();
 	mText.setPosition(mSprite.getScale().x * bounds.width / 2.f, mSprite.getScale().y * bounds.height / 2.f);
 }
 
+void SpawnerButton::setSprite(State::Context c, Textures::ID id) {
+	mSprite = sf::Sprite(c.textures->get(id));
+	changeTexture(Normal);
 }
+
+

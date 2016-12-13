@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <exception>
 
 #include "outputlistmodel.hpp"
 #include "workspacemodel.hpp"

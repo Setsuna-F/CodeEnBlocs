@@ -22,6 +22,19 @@ namespace Textures
 		Explosion,
 		Particle,
 		FinishLine,
+		GameBackgroud,
+		ExitButton,
+		ExecuteButton,
+		ResetButton,
+		LoopButton,
+		HelpButton,
+		DescriptionButton,
+		AddSpawner,
+		AssignmentSpawner,
+		InputSpawner,
+		OutputSpawner,
+		ValueSpawner,
+		VariableSpawner
 	};
 }
 

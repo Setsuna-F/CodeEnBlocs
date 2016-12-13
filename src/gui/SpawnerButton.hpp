@@ -1,6 +1,5 @@
-
-#ifndef BOOK_BUTTON_HPP
-#define BOOK_BUTTON_HPP
+#ifndef SPAWNER_BUTTON_HPP
+#define SPAWNER_BUTTON_HPP
 
 #include "Component.hpp"
 #include "ResourceIdentifiers.hpp"
@@ -21,10 +20,10 @@ class SoundPlayer;
 namespace GUI
 {
 
-class Button : public Component
+class SpawnerButton : public Component
 {
     public:
-        typedef std::shared_ptr<Button>		Ptr;
+        typedef std::shared_ptr<SpawnerButton>		Ptr;
         typedef std::function<void()>		Callback;
 
 		enum Type
@@ -37,7 +36,7 @@ class Button : public Component
 
 
 	public:
-								Button(State::Context context);
+		SpawnerButton(State::Context context);
 
         void					setCallback(Callback callback);
         void					setText(const std::string& text);
@@ -53,6 +52,7 @@ class Button : public Component
 
         virtual void			handleEvent(const sf::Event& event);
 
+		void					setSprite(State::Context c, Textures::ID id);
 
 
     private:

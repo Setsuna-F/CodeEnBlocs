@@ -7,7 +7,7 @@
 namespace satap {
 	class OutputBloc : public Bloc, public OutputModel {
 	public:
-		OutputBloc(State::Context context);
+		OutputBloc(State::Context context, OutputListModel* outPutList);
 	};
 }
 #endif

@@ -2,7 +2,7 @@
 #define VARIABLE_BLOC_HPP
 
 #include "Bloc.hpp"
-#include "variablemodel.hpp"
+#include "model/variablemodel.hpp"
 
 namespace satap {
 	class VariableBloc : public Bloc, public VariableModel {

@@ -28,7 +28,7 @@ SoundPlayer::SoundPlayer()
 	char* buffer;
 
 	//mSoundBuffers.load(SoundEffect::Button,			resourcePath()+"Button.wav");
-	mSoundBuffers.load(SoundEffect::Button,			"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/sound/Button.wav");
+	mSoundBuffers.load(SoundEffect::Button,			"res/sound/Button.wav");
 
 	// Listener points towards the screen (default in SFML)
 	sf::Listener::setDirection(0.f, 0.f, -1.f);

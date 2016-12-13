@@ -1,7 +1,7 @@
-#include "Bloc.hpp"
-#include "Utility.hpp"
-#include "SoundPlayer.hpp"
-#include "ResourceHolder.hpp"
+#include "gui/blocs/Bloc.hpp"
+#include "gui/Utility.hpp"
+#include "gui/SoundPlayer.hpp"
+#include "gui/ResourceHolder.hpp"
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

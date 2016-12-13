@@ -1,10 +1,10 @@
 #ifndef BLOCK_HPP
 #define BLOCK_HPP
 
-#include "Component.hpp"
-#include "ResourceIdentifiers.hpp"
-#include "State.hpp"
-#include "ResourceHolder.hpp"
+#include "gui/Component.hpp"
+#include "gui/ResourceIdentifiers.hpp"
+#include "gui/State.hpp"
+#include "gui/ResourceHolder.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

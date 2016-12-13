@@ -2,7 +2,7 @@
 #define ADD_BLOC_HPP
 
 #include "Bloc.hpp"
-#include "addmodel.hpp"
+#include "model/addmodel.hpp"
 
 namespace satap {
 	class AddBloc : public Bloc, public AddModel {

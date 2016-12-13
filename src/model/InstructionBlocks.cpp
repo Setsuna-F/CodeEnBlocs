@@ -59,6 +59,8 @@ std::vector<BlockModel *> InstructionBlockModel::getAllBlocks(){
 
 
 sct_type InstructionBlockModel::execute(){
+	sct_type condition;
 	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it)
-		sct_type condition = (*it)->execute();
+		condition = (*it)->execute();
+	return condition;
 }

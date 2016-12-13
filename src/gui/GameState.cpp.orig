@@ -1,14 +1,27 @@
-#include "gui/GameState.hpp"
-#include "gui/Button.hpp"
+#include "GameState.hpp"
+<<<<<<< HEAD
+#include <gui/Button.hpp>
+#include <gui/Blocs/Bloc.hpp>
+#include <gui/blocs/variableBloc.hpp>
+#include <gui/blocs/addBloc.hpp>
+#include <gui/blocs/inputBloc.hpp>
+#include <gui/blocs/outputBloc.hpp>
+#include <model/gamemodel.hpp>
+#include <model/levelmodel.hpp>
+#include <gui/Utility.hpp>
+#include <gui/MusicPlayer.hpp>
+#include <gui/ResourceHolder.hpp>
+=======
+#include "Button.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
 #include "blocs/inputBloc.hpp"
 #include "blocs/outputBloc.hpp"
-#include "gui/Utility.hpp"
-#include "gui/MusicPlayer.hpp"
-#include "gui/ResourceHolder.hpp"
-#include "model/gamemodel.hpp"
+#include "Utility.hpp"
+#include "MusicPlayer.hpp"
+#include "ResourceHolder.hpp"
+>>>>>>> model-base-classes
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -21,7 +34,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, mBlocsContainer()
 	, mContext(context)
 {
-	// TODO dÃ©placer Ã§a dans panel de choix de niveau
+	// TODO déplacer ça dans panel de choix de niveau
 	GameModel game;
 	game.loadLevel(0);
 
@@ -51,7 +64,7 @@ GameState::GameState(StateStack& stack, Context context)
 	ennonceButton->setPosition(330, 10);
 	ennonceButton->setText("Ennonce");
 	ennonceButton->setCallback([this]() {
-		// TODO ajouter un State EnoncÃ©
+		// TODO ajouter un State Enoncé
 	});
 	mButtonsContainer.pack(ennonceButton);
 
@@ -126,6 +139,44 @@ GameState::GameState(StateStack& stack, Context context)
 
 	// Test
 
+<<<<<<< HEAD
+=======
+	auto inputBloc = std::make_shared<satap::InputBloc>(context);
+	inputBloc->setPosition(100, 300);
+	inputBloc->setText("Input");
+	inputBloc->setCallback([this]() {});
+
+	auto bloc1 = std::make_shared<satap::VariableBloc>(context);
+	bloc1->setPosition(340, 300);
+	bloc1->setText("V1");
+	bloc1->setCallback([this]() { });
+
+	auto bloc2 = std::make_shared<satap::AddBloc>(context);
+	bloc2->setPosition(580, 300);
+	bloc2->setText("Add");
+	bloc2->setCallback([this]() { });
+
+	auto bloc3 = std::make_shared<satap::VariableBloc>(context);
+	bloc3->setPosition(820, 300);
+	bloc3->setText("V2");
+	bloc3->setCallback([this]() { });
+
+	auto outputBloc = std::make_shared<satap::OutputBloc>(context);
+	outputBloc->setPosition(1060, 300);
+	outputBloc->setText("Input");
+	outputBloc->setCallback([this]() {});
+
+	mGUIContainer.pack(exitButton);
+
+	mGUIBlocsContainer.pack(inputBloc);
+	mGUIBlocsContainer.pack(bloc1);
+	mGUIBlocsContainer.pack(bloc2);
+	mGUIBlocsContainer.pack(bloc3);
+	mGUIBlocsContainer.pack(outputBloc);
+
+	// Play menu theme
+	//context.music->play(Music::MenuTheme);
+>>>>>>> model-base-classes
 }
 
 void GameState::draw()
@@ -151,11 +202,12 @@ bool GameState::handleEvent(const sf::Event& event) {
 	}
 	return false;
 }
+<<<<<<< HEAD
 
 template<class T>
 void GameState::addBloc()
 {
-	std::cout << "Ajout d'un bloc " << std::endl;
+	std::cout << "Ajout d'un bloc " b->type() << std::endl;
 	auto b = std::make_shared<T>(mContext);
 	b->setPosition(200, 300);
 	b->setCallback([this]() { });
@@ -174,3 +226,5 @@ void GameState::toggleLoop() {
 void GameState::startExecute() {
 	std::cout << mCurrentLevel->validate() << std::endl;
 }
+=======
+>>>>>>> model-base-classes

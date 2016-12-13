@@ -2,7 +2,7 @@
 #define INPUT_BLOC_HPP
 
 #include "Bloc.hpp"
-#include "inputmodel.hpp"
+#include "model/inputmodel.hpp"
 
 namespace satap {
 	class InputBloc : public Bloc, public InputModel {

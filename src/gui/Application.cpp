@@ -25,10 +25,10 @@ Application::Application()
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
 
-	mFonts.load(Fonts::Main, 	"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/font/Sansation.ttf");
+	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
 
-	mTextures.load(Textures::TitleScreen,	"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/img/sample.png");
-	mTextures.load(Textures::Buttons,		"/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/img/Buttons.png");
+	mTextures.load(Textures::TitleScreen,	"res/img/sample.png");
+	mTextures.load(Textures::Buttons,		"res/img/Buttons.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);

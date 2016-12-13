@@ -1,0 +1,10 @@
+#include "inputBloc.hpp"
+
+satap::InputBloc::InputBloc(State::Context context) :
+<<<<<<< HEAD
+	Bloc(context) {
+	setText("Input");
+}
+=======
+	Bloc(context) {}
+>>>>>>> model-base-classes

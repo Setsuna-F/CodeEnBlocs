@@ -10,7 +10,7 @@ MusicPlayer::MusicPlayer()
 , mVolume(20.f)
 {
 	//mFilenames[Music::MenuTheme]    = "res/sound/MenuTheme.ogg";
-	mFilenames[Music::MenuTheme]    = "/Users/S-Setsuna-F/Documents/Master2/Jeux serieux/CodeEnBlocs/res/sound/MenuTheme.ogg";
+	mFilenames[Music::MenuTheme]    = "res/sound/MenuTheme.ogg";
 }
 
 void MusicPlayer::play(Music::ID theme)

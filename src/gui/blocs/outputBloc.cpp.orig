@@ -1,0 +1,10 @@
+#include "outputBloc.hpp"
+
+satap::OutputBloc::OutputBloc(State::Context context) :
+<<<<<<< HEAD
+	Bloc(context) {
+	setText("Output");
+}
+=======
+	Bloc(context) {}
+>>>>>>> model-base-classes

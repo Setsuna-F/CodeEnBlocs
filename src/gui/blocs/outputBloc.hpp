@@ -2,7 +2,7 @@
 #define OUTPUT_BLOC_HPP
 
 #include "Bloc.hpp"
-#include "outputmodel.hpp"
+#include "model/outputmodel.hpp"
 
 namespace satap {
 	class OutputBloc : public Bloc, public OutputModel {

@@ -9,17 +9,17 @@
 #include "inputmodel.hpp"
 #include "outputmodel.hpp"
 #include "variablemodel.hpp"
-//#include "affectationmodel.hpp"
+#include "assignmentmodel.hpp"
 
 using namespace satap;
 
 AdditionsLevelModel::AdditionsLevelModel() :
-	LevelModel("Additions", 10, "On va te donner deux nombres, additionne-les et donne le résultat calculé.", "Utilise un bloc d'addition après avoir récupéré les deux entrées dans deux variables."){ //TODO better help text
+	LevelModel("Additions", 20, "On va te donner plusieurs nombres, additionne-les tous et donne le résultat calculé.", "Additionne les deux premiers chiffres, puis additionne le résultat avec le chiffre suivant, et ainsi de suite."){ //TODO Find optimal block count
 	_availableBlocks.push_back(new AddModel());
 	_availableBlocks.push_back(new InputModel());
 	_availableBlocks.push_back(new OutputModel());
 	_availableBlocks.push_back(new VariableModel());
-	//_availableBlocks.push_back(new Affectation()); //TODO
+	_availableBlocks.push_back(new AssignmentModel());
 	reset();
 }
 

@@ -43,7 +43,4 @@ void BinaryModel::setSecondOperand(BlockCompositeModel* operand) {
 	this->_secondOperand = operand;
 }
 
-typeBloc BinaryModel::getType() {
-	return OperateurBinaireBlocType;
-}
 

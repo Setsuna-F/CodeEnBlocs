@@ -7,7 +7,7 @@
 namespace satap {
 	class InputBloc : public Bloc, public InputModel {
 	public:
-		InputBloc(State::Context context);
+		InputBloc(State::Context context, InputListModel* inputList);
 	};
 }
 #endif

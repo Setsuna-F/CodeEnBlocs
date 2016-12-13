@@ -15,8 +15,7 @@ namespace satap{
 		InputBlocType,
 		OutputBlocType,
 		AssignementBlocType,
-		OperateurUnaireBlocType,
-		OperateurBinaireBlocType,
+		AddBlocType,
 		ND
 	};
 	

@@ -1,29 +1,24 @@
 #ifndef ASSIGNMENTMODEL_HPP
 #define ASSIGNMENTMODEL_HPP
-#include "operatormodel.hpp"
+#include "binarymodel.hpp"
 #include "variablemodel.hpp"
+#include "outputmodel.hpp"
 
 
 namespace satap {
 
-	class AssignmentModel : public OperatorModel {
+	class AssignmentModel : public BinaryModel {
 
 		public:
 			AssignmentModel();
-			AssignmentModel(VariableModel variable, BlockCompositeModel * block);
+			AssignmentModel(VariableModel* firstOperand, BlockCompositeModel* secondOperand);
 			~AssignmentModel();
-			VariableModel getVariable();
-			void setVariable(VariableModel & variable);
-			BlockCompositeModel * getBlock();
-			void setPartieDroite(BlockCompositeModel & block);
+			BlockModel* getFirstOperand();
+			void setFirstOperand(BlockModel* operand);
 			sct_type execute();
 			typeBloc getType();
-		private:
-			//
-			VariableModel _variable;
-
-			//
-			BlockCompositeModel * _block;
+		protected:
+			BlockModel* _firstOperand;
 	};
 }
 

@@ -17,12 +17,13 @@ using namespace satap;
 AdditionLevelModel::AdditionLevelModel() :
 
 	LevelModel("Addition", 10, "On va te donner deux nombres, additionne-les et donne le résultat calculé.", "Utilise un bloc d'addition après avoir récupéré les deux entrées dans deux variables."){ //TODO better help text
-	_availableBlocks.setBlock(new AddModel(), "Addition");
+	// TODO A débuguer
+	/*_availableBlocks.setBlock(new AddModel(), "Addition");
 	_availableBlocks.setBlock(new InputModel(), "Input");
 	_availableBlocks.setBlock(new OutputModel(), "Output");
 	_availableBlocks.setBlock(new VariableModel(), "Variable");
 	_availableBlocks.setBlock(new ValueModel(),		"ValueModel");
-	_availableBlocks.setBlock(new AssignmentModel(), "AssignmentModel");
+	_availableBlocks.setBlock(new AssignmentModel(), "AssignmentModel");*/
 
 	reset();
 }

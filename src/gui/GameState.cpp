@@ -88,7 +88,7 @@ GameState::GameState(StateStack& stack, Context context)
 	inputSpawner->setPosition(1000, 100);
 	inputSpawner->setText("Input");
 	inputSpawner->setCallback([this]() {
-		addBloc<satap::InputBloc>();
+		addBloc(InputBlocType);
 	});
 	mButtonsContainer.pack(inputSpawner);
 
@@ -96,7 +96,7 @@ GameState::GameState(StateStack& stack, Context context)
 	outputSpawner->setPosition(1000, 220);
 	outputSpawner->setText("Output");
 	outputSpawner->setCallback([this]() {
-		addBloc<satap::OutputBloc>();
+		addBloc(OutputBlocType);
 	});
 	mButtonsContainer.pack(outputSpawner);
 
@@ -104,7 +104,7 @@ GameState::GameState(StateStack& stack, Context context)
 	addSpawner->setPosition(1000, 340);
 	addSpawner->setText("+");
 	addSpawner->setCallback([this]() {
-		addBloc<satap::AddBloc>();
+		addBloc(AddBlocType);
 	});
 	mButtonsContainer.pack(addSpawner);
 
@@ -112,7 +112,7 @@ GameState::GameState(StateStack& stack, Context context)
 	varSpawner->setPosition(1000, 460);
 	varSpawner->setText("Var");
 	varSpawner->setCallback([this]() {
-		addBloc<satap::VariableBloc>();
+		addBloc(VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawner);
 
@@ -120,26 +120,25 @@ GameState::GameState(StateStack& stack, Context context)
 	affectationSpawner->setPosition(1000, 580);
 	affectationSpawner->setText("<-");
 	affectationSpawner->setCallback([this]() {
-		addBloc<satap::AssignmentBloc>();
+		addBloc(AssignementBlocType);
 	});
 	mButtonsContainer.pack(affectationSpawner);
 
 	// Test
-	auto in = addBloc<InputBloc>();
-	auto out = addBloc<OutputBloc>();
-	auto var = addBloc<VariableBloc>();
-	auto assignVarIn = addBloc<AssignmentBloc>();
-	auto assignOutVar = addBloc<AssignmentBloc>();
+	InputBloc* in = ((InputBloc*) addBloc(InputBlocType));
+	OutputBloc* out = ((OutputBloc*) addBloc(OutputBlocType));
+	VariableBloc* var = ((VariableBloc*) addBloc(VariableBlocType));
+	AssignmentBloc* assignVarIn = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	AssignmentBloc* assignOutVar = ((AssignmentBloc*) addBloc(AssignementBlocType));
 
-	assignVarIn->setVariable(*var);
-	assignVarIn->setPartieDroite(*in);
+	assignVarIn->setFirstOperand(var);
+	assignVarIn->setSecondOperand(in);
 
+	assignOutVar->setFirstOperand(out);
+	assignOutVar->setSecondOperand(var);
 
-	//assignOutVar->setVariable(*out);
-	assignOutVar->setPartieDroite(*var);
-
-	mCurrentLevel->getCodePage()->addBlock(assignVarIn.get());
-	mCurrentLevel->getCodePage()->addBlock(assignOutVar.get());
+	mCurrentLevel->getCodePage()->addBlock(assignVarIn);
+	mCurrentLevel->getCodePage()->addBlock(assignOutVar);
 }
 
 void GameState::draw()
@@ -166,31 +165,37 @@ bool GameState::handleEvent(const sf::Event& event) {
 	return false;
 }
 
-template<class T>
-std::shared_ptr<T> GameState::addBloc()
+Bloc * GameState::addBloc(satap::typeBloc t)
 {
 	int posX = 200, posY = 300;
 
-	std::shared_ptr<T> b = std::make_shared<T>(mContext);
-	if (b->getType() == VariableBlocType) {
+	Bloc* b;
+	std::shared_ptr<Bloc> bl;
+
+	if (t == VariableBlocType) {
+		b = new VariableBloc(mContext);
 		std::cout << "Ajout d'un bloc de type var" << std::endl;
 	}
-	else if (b->getType() == AssignementBlocType) {
+	else if (t == AssignementBlocType) {
+		b = new AssignmentBloc(mContext);
 		std::cout << "Ajout d'un bloc de type <-" << std::endl;
 	}
-	else if (b->getType() == InputBlocType) {
+	else if (t == InputBlocType) {
+		b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
 		std::cout << "Ajout d'un bloc de type In" << std::endl;
 	}
-	else if (b->getType() == OutputBlocType) {
+	else if (t == OutputBlocType) {
+		b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
 		std::cout << "Ajout d'un bloc de type Out" << std::endl;
 	}
-	else if (b->getType() == OperateurBinaireBlocType) {
-		std::cout << "Ajout d'un bloc de type opeBin" << std::endl;
+	else if (t == AddBlocType) {
+		b = new AddBloc(mContext);
+		std::cout << "Ajout d'un bloc de type +" << std::endl;
 	}
 
 	b->setPosition(posX, posY);
-	b->setCallback([this]() { });
-	mBlocsContainer.pack(b);
+	bl = std::shared_ptr<Bloc>(b);
+	mBlocsContainer.pack(bl);
 	return b;
 }
 
@@ -206,3 +211,4 @@ void GameState::toggleLoop() {
 void GameState::startExecute() {
 	std::cout << mCurrentLevel->validate() << std::endl;
 }
+

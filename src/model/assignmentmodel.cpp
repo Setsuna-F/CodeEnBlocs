@@ -9,42 +9,42 @@ AssignmentModel::AssignmentModel() {
  * 
  *
  */
-AssignmentModel::AssignmentModel(VariableModel variable, BlockCompositeModel * block) {
-	this->_variable = variable;
-	this->_block = block;
-}
+AssignmentModel::AssignmentModel(VariableModel* firstOperand, BlockCompositeModel* secondOperand)	:
+	BinaryModel(firstOperand, secondOperand) { }
+
 AssignmentModel::~AssignmentModel() {
 	//
 }
 
-VariableModel AssignmentModel::getVariable() {
-	return this->_variable;
+BlockModel * satap::AssignmentModel::getFirstOperand() {
+	return _firstOperand;
 }
 
-BlockCompositeModel * AssignmentModel::getBlock() {
-	return this->_block;
+void satap::AssignmentModel::setFirstOperand(BlockModel * operand) {
+	_firstOperand = operand;
 }
 
 sct_type AssignmentModel::execute() {
 	sct_type value;
-	value.int_type 	= nullptr;
+	value.int_type 		= nullptr;
 	value.double_type 	= nullptr;
 	value.bool_type 	= nullptr;
 
-    value = (this->_block)->execute();
-    this->_variable.setValue(value);
+    value = (_secondOperand)->execute();
+	if (_firstOperand->getType() == OutputBlocType) {
+		OutputModel* out = dynamic_cast<OutputModel*>(_firstOperand);
+		out->setValue(value);
+		out->execute();
+	}
+	else if (_firstOperand->getType() == VariableBlocType) {
+		VariableModel* var = dynamic_cast<VariableModel*>(_firstOperand);
+		var->setValue(value);
+		var->execute();
+	}
 
 	return value;
 }
 
 typeBloc AssignmentModel::getType() {
 	return AssignementBlocType;
-}
-
-void satap::AssignmentModel::setVariable(VariableModel & variable) {
-	this->_variable = variable;
-}
-
-void satap::AssignmentModel::setPartieDroite(BlockCompositeModel & block) {
-	this->_block = &block;
 }

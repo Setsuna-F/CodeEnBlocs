@@ -5,10 +5,12 @@
 #include <gui/Container.hpp>
 #include <model/levelmodel.hpp>
 #include <model/additionlevelmodel.hpp>
+#include "blocs/Bloc.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 
+using namespace satap;
 
 class GameState : public State
 {
@@ -18,8 +20,8 @@ class GameState : public State
 		virtual void			draw();
 		virtual bool			update(sf::Time dt);
 		virtual bool			handleEvent(const sf::Event& event);
-
-		template<class T> std::shared_ptr<T> addBloc();
+		
+		satap::Bloc* addBloc(satap::typeBloc t);
 
 		void resetCode();
 		void toggleLoop();

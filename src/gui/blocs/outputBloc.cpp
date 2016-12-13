@@ -1,4 +1,5 @@
 #include "outputBloc.hpp"
 
-satap::OutputBloc::OutputBloc(State::Context context) :
-	Bloc(context) {}
+satap::OutputBloc::OutputBloc(State::Context context, OutputListModel* outputList) :
+	Bloc(context),
+	OutputModel(outputList) {}

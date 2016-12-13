@@ -7,12 +7,12 @@ using namespace satap;
 
 InputModel::InputModel(): _inputList(new InputListModel()){}
 
-InputModel::InputModel(InputListModel &inputList){
-	_inputList = &inputList;
+InputModel::InputModel(InputListModel* inputList){
+	_inputList = inputList;
 }
 
-void InputModel::setInputList(InputListModel &inputList){
-	_inputList = &inputList;
+void InputModel::setInputList(InputListModel* inputList){
+	_inputList = inputList;
 }
 
 sct_type InputModel::execute(){

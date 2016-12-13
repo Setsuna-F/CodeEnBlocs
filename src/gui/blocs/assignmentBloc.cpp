@@ -3,6 +3,6 @@
 satap::AssignmentBloc::AssignmentBloc(State::Context context) :
 	Bloc(context) {}
 
-satap::AssignmentBloc::AssignmentBloc(State::Context context, VariableModel variable, BlockCompositeModel & block) :
+satap::AssignmentBloc::AssignmentBloc(State::Context context, VariableModel* firstOperand, BlockCompositeModel* secondOperand) :
 	Bloc(context),
-	AssignmentModel(variable, block) {}
+	AssignmentModel(firstOperand, secondOperand) {}

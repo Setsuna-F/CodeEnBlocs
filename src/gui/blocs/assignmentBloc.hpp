@@ -8,7 +8,7 @@ namespace satap {
 	class AssignmentBloc : public Bloc, public AssignmentModel {
 	public:
 		AssignmentBloc(State::Context context);
-		AssignmentBloc(State::Context context, VariableModel variable, BlockCompositeModel & block);
+		AssignmentBloc(State::Context context, VariableModel* firstOperand, BlockCompositeModel* secondOperand);
 	};
 }
 #endif

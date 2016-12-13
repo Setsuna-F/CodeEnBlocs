@@ -9,6 +9,7 @@
 #include "inputmodel.hpp"
 #include "outputmodel.hpp"
 #include "variablemodel.hpp"
+#include "valuemodel.hpp"
 #include "assignmentmodel.hpp"
 
 using namespace satap;
@@ -19,6 +20,7 @@ AdditionLevelModel::AdditionLevelModel() :
 	_availableBlocks.push_back(new InputModel());
 	_availableBlocks.push_back(new OutputModel());
 	_availableBlocks.push_back(new VariableModel());
+	_availableBlocks.push_back(new ValueModel());
 	_availableBlocks.push_back(new AssignmentModel());
 	reset();
 }

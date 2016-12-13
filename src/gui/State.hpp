@@ -28,7 +28,7 @@ class State
 		struct Context
 		{
 								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts,
-									MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys);
+									MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys, bool& tutorial, int& numLevel);
 
 			sf::RenderWindow*	window;
 			TextureHolder*		textures;
@@ -36,6 +36,8 @@ class State
 			MusicPlayer*		music;
 			SoundPlayer*		sounds;
 			KeyBinding*			keys;
+			bool*				tutorial;
+			int*				numLevel;
 		};
 
 

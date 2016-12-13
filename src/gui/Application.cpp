@@ -6,6 +6,8 @@
 #include "MenuState.hpp"
 #include "GameState.hpp"
 #include "SettingsState.hpp"
+#include "TutorialState.hpp"
+#include "LevelManagerState.hpp"
 #include "ResourcePath.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -17,7 +19,9 @@ Application::Application()
 , mMusic()
 , mSounds()
 , mKeyBinding()
-, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding))
+, mTutorial(false)
+, mNumLevel(0)
+, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel))
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
@@ -25,8 +29,15 @@ Application::Application()
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
 
+	// Load musics in MusicPlayer
+
+	// Load sounds in SoundPlayer
+
+	// Load fonts
 	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
 
+	// Load textures
+	mTextures.load(Textures::Background, "res/img/background.png");
 	mTextures.load(Textures::TitleScreen,	"res/img/sample.png");
 	mTextures.load(Textures::GameBackgroud, "res/img/Background2.png");
 
@@ -47,7 +58,12 @@ Application::Application()
 
 	mTextures.load(Textures::CurseurSprite,		"res/img/curseur.png");
 
-
+	mTextures.load(Textures::Tutorial0, "res/img/tuto_img_0.png");
+	mTextures.load(Textures::Tutorial1, "res/img/tuto_img_1.png");
+	mTextures.load(Textures::Tutorial2, "res/img/tuto_img_2.png");
+	mTextures.load(Textures::Tutorial3, "res/img/tuto_img_3.png");
+	mTextures.load(Textures::Tutorial4, "res/img/tuto_img_4.png");
+	mTextures.load(Textures::Tutorial5, "res/img/tuto_img_5.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);
@@ -134,4 +150,6 @@ void Application::registerStates()
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<SettingsState>(States::Settings);
+	mStateStack.registerState<TutorialState>(States::Tutorial);
+	mStateStack.registerState<LevelManagerState>(States::LevelManager);
 }

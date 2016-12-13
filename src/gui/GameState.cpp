@@ -32,7 +32,7 @@ GameState::GameState(StateStack& stack, Context context)
 
 	// TODO déplacer ça dans panel de choix de niveau
 	GameModel game;
-	game.loadLevel(0);
+	game.loadLevel(*context.numLevel);
 
 	mCurrentLevel = game.getCurrentLevel();
 	std::cout << mCurrentLevel->getName() << std::endl;
@@ -44,7 +44,7 @@ GameState::GameState(StateStack& stack, Context context)
 	exitButton->setPosition(10, 10);
 	exitButton->setSprite(context, Textures::ExitButton);
 	exitButton->setCallback([this]() {
-		requestStackPush(States::Menu);
+		requestStackPop();
 	});
 	mButtonsContainer.pack(exitButton);
 

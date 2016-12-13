@@ -11,6 +11,8 @@ namespace States
 		Menu,
 		Game,
 		Settings,
+		Tutorial,
+		LevelManager,
 	};
 }
 

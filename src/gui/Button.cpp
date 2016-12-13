@@ -111,7 +111,7 @@ void Button::handleEvent(const sf::Event& event)
 		if (r.contains(event.mouseButton.x, event.mouseButton.y))
 			activate();
 	}
-	else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return || event.key.code == sf::Keyboard::Space)
+	else if (event.type == sf::Event::KeyPressed && (event.key.code == sf::Keyboard::Return || event.key.code == sf::Keyboard::Space))
 	{
 		changeTexture(Pressed);
 	}

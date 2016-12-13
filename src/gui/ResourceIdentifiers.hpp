@@ -15,13 +15,17 @@ namespace Textures
 {
 	enum ID
 	{
-		Entities,
-		Jungle,
 		TitleScreen,
+		Background,
 		Buttons,
-		Explosion,
-		Particle,
-		FinishLine,
+		TutorialBegin,
+		Tutorial0,
+		Tutorial1,
+		Tutorial2,
+		Tutorial3,
+		Tutorial4,
+		Tutorial5,
+		TutorialEnd,
 	};
 }
 

@@ -5,6 +5,7 @@
 #include "blocs/addBloc.hpp"
 #include "blocs/inputBloc.hpp"
 #include "blocs/outputBloc.hpp"
+#include "blocs/assignmentBloc.hpp"
 #include "gui/Utility.hpp"
 #include "gui/MusicPlayer.hpp"
 #include "gui/ResourceHolder.hpp"
@@ -119,8 +120,7 @@ GameState::GameState(StateStack& stack, Context context)
 	affectationSpawner->setPosition(1000, 580);
 	affectationSpawner->setText("<-");
 	affectationSpawner->setCallback([this]() {
-		std::cout << "<-" << std::endl;
-		// TODO 
+		addBloc<satap::AssignmentBloc>();
 	});
 	mButtonsContainer.pack(affectationSpawner);
 

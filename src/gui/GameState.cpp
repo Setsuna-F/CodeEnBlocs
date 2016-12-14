@@ -1,4 +1,4 @@
-#include "gui/GameState.hpp"
+﻿#include "gui/GameState.hpp"
 #include "gui/Button.hpp"
 #include "gui/GameButton.hpp"
 #include "gui/SpawnerButton.hpp"
@@ -138,7 +138,7 @@ GameState::GameState(StateStack& stack, Context context)
 
 	// Test
 	OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
-	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));	
 	InputBloc* in = ((InputBloc*)addBloc(InputBlocType));
 
 	assign->setFirstOperand(out);

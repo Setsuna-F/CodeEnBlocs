@@ -13,6 +13,8 @@ namespace States
 		Settings,
 		Tutorial,
 		LevelManager,
+		Lose,
+		Win,
 	};
 }
 

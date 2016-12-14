@@ -8,6 +8,8 @@
 #include "SettingsState.hpp"
 #include "TutorialState.hpp"
 #include "LevelManagerState.hpp"
+#include "LoseState.hpp"
+#include "WinState.hpp"
 #include "ResourcePath.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -64,6 +66,9 @@ Application::Application()
 	mTextures.load(Textures::Tutorial3, "res/img/tuto_img_3.png");
 	mTextures.load(Textures::Tutorial4, "res/img/tuto_img_4.png");
 	mTextures.load(Textures::Tutorial5, "res/img/tuto_img_5.png");
+
+	mTextures.load(Textures::Lose, "res/img/lose.png");
+	mTextures.load(Textures::Win, "res/img/win.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);
@@ -152,4 +157,6 @@ void Application::registerStates()
 	mStateStack.registerState<SettingsState>(States::Settings);
 	mStateStack.registerState<TutorialState>(States::Tutorial);
 	mStateStack.registerState<LevelManagerState>(States::LevelManager);
+	mStateStack.registerState<LoseState>(States::Lose);
+	mStateStack.registerState<WinState>(States::Win);
 }

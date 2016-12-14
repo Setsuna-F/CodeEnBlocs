@@ -137,9 +137,9 @@ GameState::GameState(StateStack& stack, Context context)
 	
 
 	// Test
-	InputBloc* in = ((InputBloc*) addBloc(InputBlocType));
-	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
 	OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
+	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
+	InputBloc* in = ((InputBloc*)addBloc(InputBlocType));
 
 	assign->setFirstOperand(out);
 	assign->setSecondOperand(in);
@@ -191,6 +191,10 @@ bool GameState::handleEvent(const sf::Event& event) {
 		
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
 		mButtonsContainer.handleEvent(event);
+	}
+	else if (event.type == sf::Event::KeyReleased)
+	{
+		
 	}
 	return false;
 }
@@ -263,7 +267,13 @@ void GameState::toggleLoop() {
 }
 
 void GameState::startExecute() {
-	std::cout << mCurrentLevel->validate() << std::endl;
+	int score = mCurrentLevel->validate();
+	// TODO à retirer
+	std::cout << score << std::endl;
+	if (score > 0)
+		requestStackPush(States::Win);
+	else
+		requestStackPush(States::Lose);
 }
 
 void GameState::effacerLigne(int ligne) { 

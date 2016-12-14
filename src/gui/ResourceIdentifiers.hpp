@@ -43,6 +43,8 @@ namespace Textures
 		Tutorial4,
 		Tutorial5,
 		TutorialEnd,
+		Lose,
+		Win,
 	};
 }
 

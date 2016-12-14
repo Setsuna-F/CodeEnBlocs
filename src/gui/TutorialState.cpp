@@ -11,6 +11,12 @@ TutorialState::TutorialState(StateStack& stack, Context context)
 , mText()
 , mTextEffectTime(sf::Time::Zero)
 {
+	mText.setFont(context.fonts->get(Fonts::Main));
+	mText.setString("Félicitation ! Tu as fini le didacticiel !\n C'est parti pour le premier niveau.");
+	mText.setColor(sf::Color::Black);
+	centerOrigin(mText);
+	mText.setPosition(sf::Vector2f(context.window->getSize() / 2u));
+
 	mIdTutoImg = Textures::TutorialBegin + 1;
 	mBackgroundSprite.setTexture(context.textures->get(static_cast<Textures::ID>(mIdTutoImg)));
 }
@@ -19,6 +25,9 @@ void TutorialState::draw()
 {
 	sf::RenderWindow& window = *getContext().window;
 	window.draw(mBackgroundSprite);
+	
+	if (mIdTutoImg >= Textures::TutorialEnd)
+		window.draw(mText);
 }
 
 bool TutorialState::update(sf::Time dt)
@@ -40,7 +49,7 @@ bool TutorialState::handleEvent(const sf::Event& event)
 	else if (event.type == sf::Event::MouseButtonReleased)
 		nextImg();
 
-	if (mIdTutoImg == Textures::TutorialEnd)
+	if (mIdTutoImg > Textures::TutorialEnd)
 	{
 		if (*getContext().tutorial)
 			// TODO pop and push levelmanagerstate
@@ -59,14 +68,15 @@ bool TutorialState::handleEvent(const sf::Event& event)
 
 	if (saveMIdTutoImg != mIdTutoImg && mIdTutoImg != Textures::TutorialEnd)
 		mBackgroundSprite.setTexture(getContext().textures->get(static_cast<Textures::ID>(mIdTutoImg)));
+	else if (saveMIdTutoImg != mIdTutoImg && mIdTutoImg >= Textures::TutorialEnd)
+		mBackgroundSprite.setTexture(getContext().textures->get(Textures::Background));
 
 	return false;
 }
 
 void TutorialState::nextImg()
 {
-	if (mIdTutoImg < Textures::TutorialEnd)
-		mIdTutoImg++;
+	mIdTutoImg++;
 }
 
 void TutorialState::previousImg()

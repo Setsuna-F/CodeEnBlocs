@@ -12,7 +12,7 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 : State(stack, context)
 , mGUIContainer()
 {
-	mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
+	mBackgroundSprite.setTexture(context.textures->get(Textures::MenuSettingsBackgroud));
 	
 	// Build key binding buttons and labels
 	//for (std::size_t x = 0; x < 2; ++x)
@@ -37,10 +37,10 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 
 	// Settings : music volume, effect sound volume, ...
 	// Bouttons pour le volume de la musique
-	col++;
-	ligne = 0;
+	//col++;
+	ligne = 3;
 	auto downMusicVolumeButton = std::make_shared<GUI::Button>(context);
-	downMusicVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 300.f);
+	downMusicVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 100.f);
 	downMusicVolumeButton->setText(" - ");
 	downMusicVolumeButton->scale(0.25, 1);
 	downMusicVolumeButton->setCallback([this]()
@@ -50,10 +50,10 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	});
 
 	auto musicVolumeLabbel = std::make_shared<GUI::Label>("Volume musique", *context.fonts);
-	musicVolumeLabbel->setPosition(500.f*col + 150.f, 50.f*ligne + 315.f);
+	musicVolumeLabbel->setPosition(500.f*col + 150.f, 50.f*ligne + 115.f);
 
 	auto upMusicVolumeButton = std::make_shared<GUI::Button>(context);
-	upMusicVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 300.f);
+	upMusicVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 100.f);
 	upMusicVolumeButton->setText(" + ");
 	upMusicVolumeButton->scale(0.25, 1);
 	upMusicVolumeButton->setCallback([this]()
@@ -65,7 +65,7 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	// Bouttons pour le volume des sons
 	ligne++;
 	auto downSoundsVolumeButton = std::make_shared<GUI::Button>(context);
-	downSoundsVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 300.f);
+	downSoundsVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 100.f);
 	downSoundsVolumeButton->setText(" - ");
 	downSoundsVolumeButton->scale(0.25, 1);
 	downSoundsVolumeButton->setCallback([this]()
@@ -75,10 +75,10 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	});
 
 	auto soundsVolumeLabbel = std::make_shared<GUI::Label>("Volume bruitage", *context.fonts);
-	soundsVolumeLabbel->setPosition(500.f*col + 150.f, 50.f*ligne + 315.f);
+	soundsVolumeLabbel->setPosition(500.f*col + 150.f, 50.f*ligne + 115.f);
 
 	auto upSoundsVolumeButton = std::make_shared<GUI::Button>(context);
-	upSoundsVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 300.f);
+	upSoundsVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 100.f);
 	upSoundsVolumeButton->setText(" + ");
 	upSoundsVolumeButton->scale(0.25, 1);
 	upSoundsVolumeButton->setCallback([this]()
@@ -170,12 +170,12 @@ void SettingsState::addButtonLabel(std::size_t index, std::size_t x, std::size_t
 	index += PlayerAction::Count * x;
 
 	mBindingButtons[index] = std::make_shared<GUI::Button>(context);
-	mBindingButtons[index]->setPosition(400.f*x + 80.f, 50.f*y + 300.f);
+	mBindingButtons[index]->setPosition(400.f*x + 80.f, 50.f*y + 100.f);
 	mBindingButtons[index]->setText(text);
 	mBindingButtons[index]->setToggle(true);
 
 	mBindingLabels[index] = std::make_shared<GUI::Label>("", *context.fonts);
-	mBindingLabels[index]->setPosition(400.f*x + 300.f, 50.f*y + 315.f);
+	mBindingLabels[index]->setPosition(400.f*x + 300.f, 50.f*y + 115.f);
 
 	mGUIContainer.pack(mBindingButtons[index]);
 	mGUIContainer.pack(mBindingLabels[index]);

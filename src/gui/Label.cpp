@@ -11,6 +11,7 @@ namespace GUI
 Label::Label(const std::string& text, const FontHolder& fonts)
 : mText(text, fonts.get(Fonts::Main), 16)
 {
+	mText.setColor(sf::Color::Black);
 }
 
 bool Label::isSelectable() const

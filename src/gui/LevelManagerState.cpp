@@ -14,7 +14,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 , mGUIContainer()
 , mGameModel()
 {
-	mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
+	mBackgroundSprite.setTexture(context.textures->get(Textures::LevelManagerBackgroud));
 
 	auto exitButton = std::make_shared<GUI::Button>(context);
 	exitButton->setPosition(10, 10);

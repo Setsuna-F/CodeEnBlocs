@@ -23,6 +23,7 @@ namespace satap {
 			BlockCompositeModel* getOperand();
 			void setOperand(BlockCompositeModel* operand);
 			virtual sct_type execute() = 0;
+			int getNbElements();
 
 		private:
 			//operand

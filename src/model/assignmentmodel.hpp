@@ -17,6 +17,7 @@ namespace satap {
 			void setFirstOperand(BlockModel* operand);
 			sct_type execute();
 			typeBloc getType();
+			int getNbElements();
 		protected:
 			BlockModel* _firstOperand;
 	};

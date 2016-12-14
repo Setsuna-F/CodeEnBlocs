@@ -41,3 +41,11 @@ void CodePageModel::execute(){
 std::vector<BlockModel*> CodePageModel::getBlockList(){
 	return _blockList.getAllBlocks();
 }
+
+int CodePageModel::getNbBlock(int ligne) {
+	return _blockList.getNbElements(ligne);
+}
+
+void CodePageModel::deleteLigne(int ligne) {
+	_blockList.removeFromIndex(ligne);
+}

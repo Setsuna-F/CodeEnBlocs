@@ -64,3 +64,13 @@ sct_type InstructionBlockModel::execute(){
 		condition = (*it)->execute();
 	return condition;
 }
+
+int satap::InstructionBlockModel::getNbElements(int ligne)
+{
+	if (_blockList.size() <= ligne) {
+		return 0;
+	}
+	else {
+		return _blockList.at(ligne)->getNbElements();
+	}	
+}

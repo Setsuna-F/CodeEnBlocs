@@ -26,6 +26,7 @@ namespace satap{
 		BlockModel*					getBlockById(size_t id);
 		std::vector<BlockModel *>	getAllBlocks();
 		sct_type					execute();
+		int							getNbElements(int ligne);
 	private:
 		std::vector<BlockModel *> _blockList;
 		std::vector<std::string > _blockListName;

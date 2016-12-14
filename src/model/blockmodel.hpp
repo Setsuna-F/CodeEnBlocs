@@ -31,7 +31,8 @@ namespace satap{
 			virtual BlockModel* getBlockById(size_t id)/* = 0*/;
 			void setWorspace(WorkspaceModel &workspace);
 			virtual typeBloc getType();
-		private:
+			virtual int getNbElements();
+		protected:
 			UniqueObject *objSingleton; /* Notre objet singleton qui s'icrementra a chaque construction de bloc */
 			WorkspaceModel* _workspace;
 			size_t _id;

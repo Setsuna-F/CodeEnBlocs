@@ -33,6 +33,8 @@ namespace satap{
 			typeBloc getType();
 
 
+
+
 		private:
 			//variable name
 			std::string _name;

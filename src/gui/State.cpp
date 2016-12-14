@@ -3,13 +3,15 @@
 
 
 State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts,
-	MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys)
+	MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys, bool& tutorial, int& numLevel)
 : window(&window)
 , textures(&textures)
 , fonts(&fonts)
 , music(&music)
 , sounds(&sounds)
 , keys(&keys)
+, tutorial(&tutorial)
+, numLevel(&numLevel)
 {
 }
 

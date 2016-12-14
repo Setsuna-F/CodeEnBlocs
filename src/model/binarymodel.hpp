@@ -24,10 +24,11 @@ namespace satap {
 			BlockCompositeModel* getSecondOperand();
 			void setSecondOperand(BlockCompositeModel* operand);
 			virtual sct_type execute() = 0;
+			int getNbElements();
 		protected:
-			//operand 1
+			//operand gauche
 			BlockCompositeModel* _firstOperand;
-			//operand 2
+			//operand droite
 			BlockCompositeModel* _secondOperand;
 	};
 }

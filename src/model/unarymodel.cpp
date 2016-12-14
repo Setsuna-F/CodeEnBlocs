@@ -33,3 +33,11 @@ void UnaryModel::setOperand(BlockCompositeModel* operand) {
 	this->_operand = operand;
 }
 
+int UnaryModel::getNbElements() {
+	if (_operand == NULL) {
+		return 1;
+	}
+	else {
+		return 1 + _operand->getNbElements();
+	}	
+}

@@ -58,12 +58,16 @@ Application::Application()
 
 	mTextures.load(Textures::CurseurSprite,		"res/img/curseur.png");
 
-	mTextures.load(Textures::Tutorial0, "res/img/tuto_img_0.png");
-	mTextures.load(Textures::Tutorial1, "res/img/tuto_img_1.png");
-	mTextures.load(Textures::Tutorial2, "res/img/tuto_img_2.png");
-	mTextures.load(Textures::Tutorial3, "res/img/tuto_img_3.png");
-	mTextures.load(Textures::Tutorial4, "res/img/tuto_img_4.png");
-	mTextures.load(Textures::Tutorial5, "res/img/tuto_img_5.png");
+	mTextures.load(Textures::Tutorial0, "res/img/tuto/tuto-0.png");
+	mTextures.load(Textures::Tutorial1, "res/img/tuto/tuto-1.png");
+	mTextures.load(Textures::Tutorial2, "res/img/tuto/tuto-2.png");
+	mTextures.load(Textures::Tutorial3, "res/img/tuto/tuto-3.png");
+	mTextures.load(Textures::Tutorial4, "res/img/tuto/tuto-4.png");
+	mTextures.load(Textures::Tutorial5, "res/img/tuto/tuto-5.png");
+	mTextures.load(Textures::Tutorial6, "res/img/tuto/tuto-6.png");
+	mTextures.load(Textures::Tutorial7, "res/img/tuto/tuto-7.png");
+	mTextures.load(Textures::Tutorial8, "res/img/tuto/tuto-8.png");
+	mTextures.load(Textures::Tutorial9, "res/img/tuto/tuto-9.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);

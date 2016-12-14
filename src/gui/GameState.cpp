@@ -137,9 +137,9 @@ GameState::GameState(StateStack& stack, Context context)
 	
 
 	// Test
-	InputBloc* in = ((InputBloc*) addBloc(InputBlocType));
-	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
 	OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
+	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));	
+	InputBloc* in = ((InputBloc*)addBloc(InputBlocType));
 
 	assign->setFirstOperand(out);
 	assign->setSecondOperand(in);

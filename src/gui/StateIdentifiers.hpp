@@ -14,7 +14,7 @@ namespace States
 		Tutorial,
 		LevelManager,
 		Lose,
-		Win,
+		Win
 	};
 }
 

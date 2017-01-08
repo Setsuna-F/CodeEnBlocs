@@ -15,7 +15,7 @@
 using namespace satap;
 
 AdditionsLevelModel::AdditionsLevelModel() :
-	LevelModel("Additions", 20, "On va te donner plusieurs nombres, additionne-les tous et donne le résultat calculé.", "Additionne les deux premiers chiffres, puis additionne le résultat avec le chiffre suivant, et ainsi de suite."){ //TODO Find optimal block count
+	LevelModel("Additions", 20, "On va te donner plusieurs nombres, \nadditionne-les tous et donne le résultat calculé.", "Additionne les deux premiers chiffres, puis additionne \nle résultat avec le chiffre suivant, et ainsi de suite."){ //TODO Find optimal block count
 		// TODO a débugger
 		/*
 		_availableBlocks.setBlock(new AddModel(), "Addition");

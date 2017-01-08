@@ -12,7 +12,7 @@ TutorialState::TutorialState(StateStack& stack, Context context)
 , mTextEffectTime(sf::Time::Zero)
 {
 	mText.setFont(context.fonts->get(Fonts::Main));
-	mText.setString("Félicitation ! Tu as fini le didacticiel !\n C'est parti pour le premier niveau.");
+	mText.setString("Felicitation ! Tu as fini le didacticiel !\n C'est parti pour le premier niveau.");
 	mText.setColor(sf::Color::Black);
 	centerOrigin(mText);
 	mText.setPosition(sf::Vector2f(context.window->getSize() / 2u));

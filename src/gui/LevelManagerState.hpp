@@ -1,9 +1,17 @@
 #ifndef BOOK_LEVELMANAGERSTATE_HPP
 #define BOOK_LEVELMANAGERSTATE_HPP
 
+
+#ifdef __APPLESOKA__
+#include "State.hpp"
+#include "Container.hpp"
+#include "gamemodel.hpp"
+#else
 #include "State.hpp"
 #include "Container.hpp"
 #include "model/gamemodel.hpp"
+#endif
+
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

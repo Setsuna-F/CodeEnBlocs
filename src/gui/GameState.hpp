@@ -1,12 +1,23 @@
 #ifndef GAMESTATE_HPP
 #define GAMESTATE_HPP
 
+
+#ifdef __APPLESOKA__
+#include "State.hpp"
+#include "Container.hpp"
+#include "levelmodel.hpp"
+#include "additionlevelmodel.hpp"
+#include "Curseur.hpp"
+#include "blocs/Bloc.hpp"
+#else
 #include <gui/State.hpp>
 #include <gui/Container.hpp>
 #include <model/levelmodel.hpp>
 #include <model/additionlevelmodel.hpp>
 #include "gui/Curseur.hpp"
 #include "blocs/Bloc.hpp"
+#endif
+
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -21,7 +32,7 @@ class GameState : public State
 		virtual void			draw();
 		virtual bool			update(sf::Time dt);
 		virtual bool			handleEvent(const sf::Event& event);
-		
+
 		satap::Bloc* addBloc(satap::typeBloc t);
 
 		void resetCode();
@@ -42,7 +53,7 @@ class GameState : public State
 		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
-		int								mLi, mCol; // Coordonnées du curseur (là ou va être placé le prochain bloc)
+		int								mLi, mCol; // Coordonnï¿½es du curseur (lï¿½ ou va ï¿½tre placï¿½ le prochain bloc)
 };
 
 #endif // BOOK_MENUSTATE_HPP

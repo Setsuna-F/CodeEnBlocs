@@ -24,7 +24,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 		if (*getContext().tutorial)
 		{
 			// TODO chargement de l'arbre des niveaux
-			std::cout << "TODO dans MenuState push LevelManagerState à la place de GameState" << std::endl;
+			std::cout << "TODO dans MenuState push LevelManagerState different la place de GameState" << std::endl;
 			requestStackPush(States::LevelManager);
 		}
 		else

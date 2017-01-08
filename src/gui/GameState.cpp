@@ -1,4 +1,20 @@
-﻿#include "gui/GameState.hpp"
+﻿#ifdef __APPLESOKA__
+#include "GameState.hpp"
+#include "Button.hpp"
+#include "GameButton.hpp"
+#include "SpawnerButton.hpp"
+#include "Bloc.hpp"
+#include "variableBloc.hpp"
+#include "addBloc.hpp"
+#include "inputBloc.hpp"
+#include "outputBloc.hpp"
+#include "assignmentBloc.hpp"
+#include "Utility.hpp"
+#include "MusicPlayer.hpp"
+#include "ResourceHolder.hpp"
+#include "gamemodel.hpp"
+#else
+#include "gui/GameState.hpp"
 #include "gui/Button.hpp"
 #include "gui/GameButton.hpp"
 #include "gui/SpawnerButton.hpp"
@@ -13,6 +29,7 @@
 #include "gui/MusicPlayer.hpp"
 #include "gui/ResourceHolder.hpp"
 #include "model/gamemodel.hpp"
+#endif
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -27,7 +44,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, mCurseur(context)
 	, mLi(0)
 	, mCol(0)
-{	
+{
 	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
 
 	// TODO déplacer ça dans panel de choix de niveau
@@ -51,7 +68,7 @@ GameState::GameState(StateStack& stack, Context context)
 	auto settingsButton = std::make_shared<GUI::GameButton>(context);
 	settingsButton->setPosition(70, 10);
 	settingsButton->setSprite(context, Textures::DescriptionButton);
-	settingsButton->setCallback([this]() { 
+	settingsButton->setCallback([this]() {
 		requestStackPush(States::Settings);
 	});
 	mButtonsContainer.pack(settingsButton);
@@ -111,7 +128,7 @@ GameState::GameState(StateStack& stack, Context context)
 	auto addSpawner = std::make_shared<GUI::SpawnerButton>(context);
 	addSpawner->setPosition(1020, 200);
 	addSpawner->setSprite(context, Textures::AddSpawner);
-	addSpawner->setCallback([this]() {		
+	addSpawner->setCallback([this]() {
 		addBloc(AddBlocType);
 	});
 	mButtonsContainer.pack(addSpawner);
@@ -134,11 +151,11 @@ GameState::GameState(StateStack& stack, Context context)
 
 	//mCurseur.setSprite(context, Textures::CurseurSprite);
 	reloadPositionCurseur();
-	
+
 
 	// Test
 	OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
-	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));	
+	AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
 	InputBloc* in = ((InputBloc*)addBloc(InputBlocType));
 
 	assign->setFirstOperand(out);
@@ -159,7 +176,7 @@ void GameState::draw()
 	for (int i = 0; i < 12; i++) {
 		window.draw(mBlocsContainer[i]);
 	}
-	
+
 	window.draw(mCurseur);
 }
 
@@ -187,14 +204,14 @@ bool GameState::handleEvent(const sf::Event& event) {
 		else if (event.key.code == sf::Keyboard::BackSpace) {
 			effacerLigne(mLi);
 			mCol = 0;
-		}		
-		
+		}
+
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
 		mButtonsContainer.handleEvent(event);
 	}
 	else if (event.type == sf::Event::KeyReleased)
 	{
-		
+
 	}
 	return false;
 }
@@ -257,7 +274,7 @@ void GameState::resetCode() {
 	mCurrentLevel->getCodePage()->flush();
 	for (int i = 0; i < 12; i++) {
 		mBlocsContainer[i].flush();
-	}	
+	}
 	mLi = 0;
 	mCol = 0;
 }
@@ -276,13 +293,13 @@ void GameState::startExecute() {
 		requestStackPush(States::Lose);
 }
 
-void GameState::effacerLigne(int ligne) { 
+void GameState::effacerLigne(int ligne) {
 	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
 	std::cout << "effacer line " << ligne << std::endl;
 	if (getNbElementsOnLine(ligne) > 0) {
 		mCurrentLevel->getCodePage()->deleteLigne(ligne);
 		mBlocsContainer[ligne].flush();
-	}	
+	}
 }
 
 int GameState::getNbElementsOnLine(int ligne) {

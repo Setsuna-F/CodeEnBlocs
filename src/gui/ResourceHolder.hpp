@@ -26,7 +26,7 @@ class ResourceHolder
 
 
 	private:
-		std::map<Identifier, std::unique_ptr<Resource>>	mResourceMap;
+		std::map<Identifier, std::unique_ptr<Resource> >	mResourceMap;
 };
 
 //#include "gui/ResourceHolder.inl"

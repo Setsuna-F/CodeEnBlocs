@@ -1,10 +1,19 @@
 #ifndef BLOCK_HPP
 #define BLOCK_HPP
 
+
+#ifdef __APPLESOKA__
+#include "Component.hpp"
+#include "ResourceIdentifiers.hpp"
+#include "State.hpp"
+#include "ResourceHolder.hpp"
+#else
 #include "gui/Component.hpp"
 #include "gui/ResourceIdentifiers.hpp"
 #include "gui/State.hpp"
 #include "gui/ResourceHolder.hpp"
+#endif
+
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>

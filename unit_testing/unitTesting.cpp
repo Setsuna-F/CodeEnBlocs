@@ -2303,7 +2303,7 @@ void unitTestingNot(){
 
 
 void testInputModel(){
-	std::cout <<"----------Test de input--------"<< std::endl;
+/*	std::cout <<"----------Test de input--------"<< std::endl;
 	InputModel input;
 	sct_type var_type1;
 	sct_type var_type2;
@@ -2352,7 +2352,7 @@ void testInputModel(){
 		std::cout<<"Le test est un succé: Le nombre d'element dans inputList a bien ete decrementé "<< nbInput_fin <<std::endl;
 	else
 		std::cout<<"Le test a echoué: Le nombre d'element dans inputList n'a pas changé "<< nbInput_fin <<std::endl;
-
+*/
 }
 
 

@@ -1,7 +1,15 @@
+#ifdef __APPLESOKA__
+#include "Bloc.hpp"
+#include "Utility.hpp"
+#include "SoundPlayer.hpp"
+#include "ResourceHolder.hpp"
+#else
 #include "gui/blocs/Bloc.hpp"
 #include "gui/Utility.hpp"
 #include "gui/SoundPlayer.hpp"
 #include "gui/ResourceHolder.hpp"
+#endif
+
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
@@ -16,7 +24,7 @@ namespace satap
 		, mSprite(context.textures->get(Textures::Buttons))
 		, mText("", context.fonts->get(Fonts::Main), 16)
 		, mIsToggle(false)
-		, mSounds(*context.sounds) 
+		, mSounds(*context.sounds)
 	{
 		changeTexture(Normal);
 

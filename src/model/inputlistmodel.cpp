@@ -34,7 +34,8 @@ std::string satap::InputListModel::toString() {
 	std::string s = "";
 	for (auto &i : _input) {
 		if (i.int_type) {
-			s += "" + std::to_string(*i.int_type) + "\n";
+			int t = *i.int_type;
+			s += "" + std::to_string(t) + "\n";
 		}
 		else if (i.double_type) {
 			s += "" + std::to_string(*i.double_type) + "\n";

@@ -40,7 +40,7 @@ void IOLevelModel::reset(){
 	foo.double_type = nullptr;
 	foo.bool_type = nullptr;
 	bar = min + (rand() % (int)(max - min + 1));
-	foo.int_type = &bar;
+	foo.int_type = new int(bar);
 	output = *(foo.int_type);
 	input->push(foo);
 	//_workspace->setInputList(input);

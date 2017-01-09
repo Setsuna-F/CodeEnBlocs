@@ -45,8 +45,8 @@ GameState::GameState(StateStack& stack, Context context)
 	mInputString.setFont(context.fonts->get(Fonts::Main));
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	mInputString.setColor(sf::Color::Black);
-	centerOrigin(mInputString);
-	mInputString.setPosition(sf::Vector2f(window_size.x*0.07, window_size.y*0.28));
+	//centerOrigin(mInputString);
+	mInputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
 
 	// Débug
 	std::cout << "Inputs" << std::endl;
@@ -218,7 +218,7 @@ void GameState::draw()
 
 bool GameState::update(sf::Time)
 {
-	//mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	return true;
 }
 

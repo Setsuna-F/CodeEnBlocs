@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 
 class TitleState : public State
@@ -23,6 +24,10 @@ class TitleState : public State
 
 		bool				mShowText;
 		sf::Time			mTextEffectTime;
+
+		sf::Time			mDelayDisplay;
+		sf::Color			mColorTransparency;
+		sf::RectangleShape	mDarkenedScreen;
 };
 
 #endif // BOOK_TITLESTATE_HPP

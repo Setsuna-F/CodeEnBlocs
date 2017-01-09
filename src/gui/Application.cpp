@@ -2,6 +2,7 @@
 #include "Utility.hpp"
 #include "State.hpp"
 #include "StateIdentifiers.hpp"
+#include "SplashScreenState.hpp"
 #include "TitleState.hpp"
 #include "MenuState.hpp"
 #include "GameState.hpp"
@@ -36,7 +37,8 @@ Application::Application()
 	// Load sounds in SoundPlayer
 
 	// Load fonts
-	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
+	mFonts.load(Fonts::Main, "res/font/Charlatan.otf");
+	mFonts.load(Fonts::Normal, "res/font/Sansation.ttf");
 
 	// Load textures
 	mTextures.load(Textures::Background, "res/img/background.png");
@@ -46,7 +48,7 @@ Application::Application()
 	mTextures.load(Textures::LevelManagerBackgroud, "res/img/Background7.png");
 
 	mTextures.load(Textures::Buttons,			"res/img/Buttons.png");
-	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi.png");
+	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi-1.png");
 	mTextures.load(Textures::ExecuteButton,		"res/img/button-execute-bi.png");
 	mTextures.load(Textures::ResetButton,		"res/img/button-reset-bi.png");
 	mTextures.load(Textures::LoopButton,		"res/img/button-loop-bi.png");
@@ -81,7 +83,7 @@ Application::Application()
 	mStatisticsText.setCharacterSize(10u);
 
 	registerStates();
-	mStateStack.pushState(States::Title);
+	mStateStack.pushState(States::SplashSreen);
 
 	mMusic.setVolume(20.f);
 	mSounds.setVolume(50.f);
@@ -157,6 +159,7 @@ void Application::updateStatistics(sf::Time dt)
 
 void Application::registerStates()
 {
+	mStateStack.registerState<SplashScreenState>(States::SplashSreen);
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);

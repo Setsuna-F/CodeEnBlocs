@@ -52,6 +52,7 @@ class Button : public Component
         virtual void			deactivate();
 
         virtual void			handleEvent(const sf::Event& event);
+		void					setSound(SoundEffect::ID s);
 
 
 
@@ -67,6 +68,7 @@ class Button : public Component
         bool					mIsToggle;
 		SoundPlayer&			mSounds;
 		State::Context			mContext;
+		SoundEffect::ID			mSoundPlayed;
 };
 
 }

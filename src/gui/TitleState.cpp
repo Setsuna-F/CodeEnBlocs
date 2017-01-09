@@ -10,6 +10,9 @@ TitleState::TitleState(StateStack& stack, Context context)
 , mText()
 , mShowText(true)
 , mTextEffectTime(sf::Time::Zero)
+, mDelayDisplay(sf::Time::Zero)
+, mColorTransparency(sf::Color::Black)
+, mDarkenedScreen()
 {
 	mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
 
@@ -18,6 +21,12 @@ TitleState::TitleState(StateStack& stack, Context context)
 	mText.setColor(sf::Color::Black);
 	centerOrigin(mText);
 	mText.setPosition(sf::Vector2f(context.window->getSize() / 2u));
+	
+	sf::RenderWindow& window = *getContext().window;
+	sf::Vector2u window_size = window.getSize();
+	mDarkenedScreen.setSize(sf::Vector2f(window_size.x, window_size.y));
+	mDarkenedScreen.setPosition(0, 0);
+	mDarkenedScreen.setFillColor(mColorTransparency);
 }
 
 void TitleState::draw()
@@ -27,16 +36,32 @@ void TitleState::draw()
 
 	if (mShowText)
 		window.draw(mText);
+
+	mDarkenedScreen.setFillColor(mColorTransparency);
+	window.draw(mDarkenedScreen);
 }
 
 bool TitleState::update(sf::Time dt)
 {
 	mTextEffectTime += dt;
+	mDelayDisplay += dt;
 
 	if (mTextEffectTime >= sf::seconds(0.5f))
 	{
 		mShowText = !mShowText;
 		mTextEffectTime = sf::Time::Zero;
+	}
+
+	if (mDelayDisplay < sf::seconds(2.0f))
+	{
+		if (mColorTransparency.a > 6)
+		{
+			mColorTransparency.a -= 6;
+		}
+		else
+		{
+			mColorTransparency.a = 0;
+		}
 	}
 
 	return true;

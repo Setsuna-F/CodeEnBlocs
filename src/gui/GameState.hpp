@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 using namespace satap;
 
@@ -43,6 +44,14 @@ class GameState : public State
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
 		int								mLi, mCol; // Coordonnées du curseur (là ou va être placé le prochain bloc)
+
+		sf::RectangleShape				mRectAlphaBackground;
+		sf::Sprite						mSpriteConfirmationExit;
+		sf::Text						mTextConfirmationExit;
+		bool							mShowConfirmationExit;
+		bool							mExiting;
+		GUI::Container					mButtonsContainerConfirmationExit;
+		sf::Time						mDelayExit;
 };
 
 #endif // BOOK_MENUSTATE_HPP

@@ -39,6 +39,21 @@ GameState::GameState(StateStack& stack, Context context)
 
 	sf::RenderWindow& window = *getContext().window;
 	sf::Vector2u window_size = window.getSize();
+	
+	////// Inputs ////// // TODO a terminer
+
+	mInputString.setFont(context.fonts->get(Fonts::Main));
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mInputString.setColor(sf::Color::Black);
+	centerOrigin(mInputString);
+	mInputString.setPosition(sf::Vector2f(window_size.x*0.07, window_size.y*0.28));
+
+	// Débug
+	std::cout << "Inputs" << std::endl;
+	std::cout << mCurrentLevel->getWorkspace()->getInputList()->toString() << std::endl;
+	std::cout << "Fin Inputs" << std::endl;
+
+	////// Instructions //////
 
 	mInstructionSprite.setTexture(context.textures->get(Textures::Background));
 	mInstructionSprite.setPosition(window_size.x*0.1, window_size.y*0.1);
@@ -190,6 +205,8 @@ void GameState::draw()
 
 	window.draw(mCurseur);
 
+	window.draw(mInputString);
+
 	if (showInstructions) {
 		window.draw(mInstructionsAlphaBackgroung);
 		window.draw(mInstructionSprite);
@@ -201,6 +218,7 @@ void GameState::draw()
 
 bool GameState::update(sf::Time)
 {
+	//mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	return true;
 }
 

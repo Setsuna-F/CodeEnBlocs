@@ -40,7 +40,7 @@ class GameState : public State
 		Context							mContext;
 		sf::RectangleShape				mInstructionsAlphaBackgroung;
 		sf::Sprite						mBackgroundSprite, mInstructionSprite;
-		sf::Text						mLevelTitle, mLevelDescription, mLevelTip;
+		sf::Text						mLevelTitle, mLevelDescription, mLevelTip, mInputString, mOutputString, mVariablesString;
 		GUI::Container					mButtonsContainer;
 		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
 		GUI::Curseur					mCurseur;

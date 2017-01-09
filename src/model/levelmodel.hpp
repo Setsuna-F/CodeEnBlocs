@@ -35,6 +35,8 @@ namespace satap {
 			virtual void reset() = 0; //generates random input and computes expected output
 			int validate();
 
+			
+
 		protected:
 			std::string		_name;
 			std::string		_description;

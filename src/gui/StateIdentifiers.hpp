@@ -7,6 +7,7 @@ namespace States
 	enum ID
 	{
 		None,
+		SplashSreen,
 		Title,
 		Menu,
 		Game,

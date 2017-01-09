@@ -132,4 +132,9 @@ void Container::flush() {
 	mSelectedChild = -1;
 }
 
+int GUI::Container::getNbChildren() const
+{
+	return mChildren.size();
+}
+
 }

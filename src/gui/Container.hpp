@@ -25,6 +25,7 @@ class Container : public Component
         virtual void		handleEvent(const sf::Event& event);
 
 		void				flush();
+		int					getNbChildren() const;
 
 
     private:

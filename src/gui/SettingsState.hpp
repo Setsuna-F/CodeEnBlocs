@@ -9,6 +9,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 #include <array>
 
@@ -33,6 +34,11 @@ class SettingsState : public State
 		GUI::Container										mGUIContainer;
 		std::array<GUI::Button::Ptr, PlayerAction::Count>	mBindingButtons;
 		std::array<GUI::Label::Ptr, PlayerAction::Count> 	mBindingLabels;
+
+		sf::RectangleShape									mRectAlphaBackground;
+		sf::Sprite											mSpriteBinding;
+		bool												mShowTextBinding;
+		sf::Text											mTextBinding;
 };
 
 #endif // BOOK_SETTINGSSTATE_HPP

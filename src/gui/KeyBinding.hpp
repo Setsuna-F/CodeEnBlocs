@@ -12,6 +12,7 @@ namespace PlayerAction
 	enum Type
 	{
 		RunCode,
+		EraseLine,
 		// TODO autres actions comme par exemple des raccourcis pour ouvrir les différents onglets
 		Count
 	};

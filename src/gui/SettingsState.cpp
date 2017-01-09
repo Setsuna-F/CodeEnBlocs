@@ -11,6 +11,7 @@
 SettingsState::SettingsState(StateStack& stack, Context context)
 : State(stack, context)
 , mGUIContainer()
+, mShowTextBinding(false)
 {
 	mBackgroundSprite.setTexture(context.textures->get(Textures::MenuSettingsBackgroud));
 	
@@ -104,6 +105,25 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	backButton->setCallback(std::bind(&SettingsState::requestStackPop, this));
 
 	mGUIContainer.pack(backButton);
+
+	// Préparation feedback binding
+	sf::RenderWindow& window = *getContext().window;
+	sf::Vector2u window_size = window.getSize();
+
+	mSpriteBinding.setTexture(context.textures->get(Textures::Background));
+	centerOrigin(mSpriteBinding);
+	mSpriteBinding.setPosition(window_size.x*0.5, window_size.y*0.5);
+	mSpriteBinding.setScale(0.5, 0.5);
+
+	mRectAlphaBackground.setSize(sf::Vector2f(window_size.x, window_size.y));
+	mRectAlphaBackground.setPosition(0, 0);
+	mRectAlphaBackground.setFillColor(sf::Color(0, 0, 0, 120));
+
+	mTextBinding.setFont(context.fonts->get(Fonts::Main));
+	mTextBinding.setString("Press any key to bind");
+	mTextBinding.setColor(sf::Color::Black);
+	centerOrigin(mTextBinding);
+	mTextBinding.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.5));
 }
 
 void SettingsState::draw()
@@ -114,6 +134,13 @@ void SettingsState::draw()
 
 	window.draw(mBackgroundSprite);
 	window.draw(mGUIContainer);
+
+	if (mShowTextBinding)
+	{
+		window.draw(mRectAlphaBackground);
+		window.draw(mSpriteBinding);
+		window.draw(mTextBinding);
+	}
 }
 
 bool SettingsState::update(sf::Time)
@@ -136,6 +163,8 @@ bool SettingsState::handleEvent(const sf::Event& event)
 				getContext().keys->assignKey(static_cast<PlayerAction::Type>(i), event.key.code);
 
 				mBindingButtons[i]->deactivate();
+
+				mShowTextBinding = false;
 			}
 			break;
 		}
@@ -146,6 +175,10 @@ bool SettingsState::handleEvent(const sf::Event& event)
 		updateLabels();
 	else
 		mGUIContainer.handleEvent(event);
+
+	for (std::size_t i = 0; i < PlayerAction::Count; ++i)
+		if (mBindingButtons[i]->isActive())
+			mShowTextBinding = true;
 
 	return false;
 }

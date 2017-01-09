@@ -3,6 +3,7 @@
 #include "gui/GameButton.hpp"
 #include "gui/SpawnerButton.hpp"
 #include "gui/Container.hpp"
+#include "gui/KeyBinding.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
@@ -251,7 +252,9 @@ bool GameState::handleEvent(const sf::Event& event) {
 		return false;
 	}
 
-	if (event.type == sf::Event::KeyPressed) {
+
+
+	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::Up) {
 			mLi--;
 			if (mLi < 0)
@@ -269,7 +272,11 @@ bool GameState::handleEvent(const sf::Event& event) {
 		else if (event.key.code == sf::Keyboard::BackSpace) {
 			effacerLigne(mLi);
 			mCol = 0;
-		}		
+		}
+		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::RunCode))
+		{
+			startExecute();
+		}
 		
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
 		

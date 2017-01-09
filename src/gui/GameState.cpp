@@ -27,6 +27,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, mCurseur(context)
 	, mLi(0)
 	, mCol(0)
+	, showInstructions(true)
 {	
 	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
 
@@ -35,8 +36,35 @@ GameState::GameState(StateStack& stack, Context context)
 	game.loadLevel(*context.numLevel);
 
 	mCurrentLevel = game.getCurrentLevel();
-	std::cout << mCurrentLevel->getName() << std::endl;
-	std::cout << mCurrentLevel->getDescription() << std::endl;
+
+	sf::RenderWindow& window = *getContext().window;
+	sf::Vector2u window_size = window.getSize();
+
+	mInstructionSprite.setTexture(context.textures->get(Textures::Background));
+	mInstructionSprite.setPosition(window_size.x*0.1, window_size.y*0.1);
+	mInstructionSprite.setScale(0.8, 0.8);
+	
+	mInstructionsAlphaBackgroung.setSize(sf::Vector2f(window_size.x, window_size.y));
+	mInstructionsAlphaBackgroung.setPosition(0, 0);
+	mInstructionsAlphaBackgroung.setFillColor(sf::Color(0,0,0,120));
+
+	mLevelTitle.setFont(context.fonts->get(Fonts::Main));
+	mLevelTitle.setString(mCurrentLevel->getName());
+	mLevelTitle.setColor(sf::Color::Black);
+	centerOrigin(mLevelTitle);
+	mLevelTitle.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.2));
+
+	mLevelDescription.setFont(context.fonts->get(Fonts::Main));
+	mLevelDescription.setString(mCurrentLevel->getDescription());
+	mLevelDescription.setColor(sf::Color::Black);
+	centerOrigin(mLevelDescription);
+	mLevelDescription.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.4));
+
+	mLevelTip.setFont(context.fonts->get(Fonts::Main));
+	mLevelTip.setString(mCurrentLevel->getHelp());
+	mLevelTip.setColor(sf::Color::Black);
+	centerOrigin(mLevelTip);
+	mLevelTip.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.6));
 
 	/////////// States Buttons ///////////
 
@@ -60,7 +88,7 @@ GameState::GameState(StateStack& stack, Context context)
 	ennonceButton->setPosition(130, 10);
 	ennonceButton->setSprite(context, Textures::HelpButton);
 	ennonceButton->setCallback([this]() {
-		// TODO ajouter un State Enoncé
+		showInstructions = true;
 	});
 	mButtonsContainer.pack(ennonceButton);
 
@@ -159,8 +187,16 @@ void GameState::draw()
 	for (int i = 0; i < 12; i++) {
 		window.draw(mBlocsContainer[i]);
 	}
-	
+
 	window.draw(mCurseur);
+
+	if (showInstructions) {
+		window.draw(mInstructionsAlphaBackgroung);
+		window.draw(mInstructionSprite);
+		window.draw(mLevelTitle);
+		window.draw(mLevelDescription);
+		window.draw(mLevelTip);
+	}	
 }
 
 bool GameState::update(sf::Time)
@@ -190,7 +226,10 @@ bool GameState::handleEvent(const sf::Event& event) {
 		}		
 		
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
-		mButtonsContainer.handleEvent(event);
+		if (showInstructions && event.type == sf::Event::MouseButtonReleased) {
+			showInstructions = false;
+		}
+		mButtonsContainer.handleEvent(event);		
 	}
 	else if (event.type == sf::Event::KeyReleased)
 	{

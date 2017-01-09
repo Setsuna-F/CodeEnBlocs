@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 using namespace satap;
 
@@ -37,12 +38,15 @@ class GameState : public State
 
 	private:
 		Context							mContext;
-		sf::Sprite						mBackgroundSprite;
+		sf::RectangleShape				mInstructionsAlphaBackgroung;
+		sf::Sprite						mBackgroundSprite, mInstructionSprite;
+		sf::Text						mLevelTitle, mLevelDescription, mLevelTip;
 		GUI::Container					mButtonsContainer;
 		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
 		int								mLi, mCol; // Coordonnées du curseur (là ou va être placé le prochain bloc)
+		bool							showInstructions;
 };
 
 #endif // BOOK_MENUSTATE_HPP

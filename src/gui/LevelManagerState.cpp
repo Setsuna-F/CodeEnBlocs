@@ -73,7 +73,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 	mGUIContainer.pack(levelButton2);
 
 	// Play menu theme
-	context.music->play(Music::MenuTheme);
+	//context.music->play(Music::MenuTheme);
 }
 
 void LevelManagerState::draw()

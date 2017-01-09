@@ -123,6 +123,7 @@ GameState::GameState(StateStack& stack, Context context)
 	auto resetAction = std::make_shared<GUI::GameButton>(context);
 	resetAction->setPosition(250, 10);
 	resetAction->setSprite(context, Textures::ResetButton);
+	resetAction->setSound(SoundEffect::WrinkledPaper);
 	resetAction->setCallback([this]() {
 		resetCode();
 	});

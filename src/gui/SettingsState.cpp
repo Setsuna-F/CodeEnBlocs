@@ -31,9 +31,10 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 
 	// Build key binding buttons and labels
 	addButtonLabel(PlayerAction::RunCode, col, ligne, "Run code ", context);
-
 	ligne++;
 
+	addButtonLabel(PlayerAction::EraseLine, col, ligne, "Erase line ", context);
+	ligne++;
 	// TODO autres binding
 
 	// Settings : music volume, effect sound volume, ...

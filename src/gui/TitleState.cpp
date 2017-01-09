@@ -1,5 +1,6 @@
 #include "TitleState.hpp"
 #include "Utility.hpp"
+#include "MusicPlayer.hpp"
 #include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -18,6 +19,8 @@ TitleState::TitleState(StateStack& stack, Context context)
 	mText.setColor(sf::Color::Black);
 	centerOrigin(mText);
 	mText.setPosition(sf::Vector2f(context.window->getSize() / 2u));
+
+	context.music->play(Music::MenuTheme);
 }
 
 void TitleState::draw()

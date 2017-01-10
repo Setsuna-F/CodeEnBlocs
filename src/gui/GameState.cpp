@@ -41,13 +41,35 @@ GameState::GameState(StateStack& stack, Context context)
 	game.loadLevel(*context.numLevel);
 
 	mCurrentLevel = game.getCurrentLevel();
-	std::cout << mCurrentLevel->getName() << std::endl;
-	std::cout << mCurrentLevel->getDescription() << std::endl;
 
 
 	// Fenetre confirmation quitter level (avec fond grisé, boutons yes/no,...)
 	sf::RenderWindow& window = *getContext().window;
 	sf::Vector2u window_size = window.getSize();
+	
+	////// Inputs //////
+
+	mInputString.setFont(context.fonts->get(Fonts::Main));
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mInputString.setColor(sf::Color::Black);
+	mInputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	// Débug
+	/*std::cout << "Inputs" << std::endl;
+	std::cout << mCurrentLevel->getWorkspace()->getInputList()->toString() << std::endl;
+	std::cout << "Fin Inputs" << std::endl;*/
+
+	mVariablesString.setFont(context.fonts->get(Fonts::Main));
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setColor(sf::Color::Black);
+	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	mOutputString.setFont(context.fonts->get(Fonts::Main));
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
+	mOutputString.setColor(sf::Color::Black);
+	mOutputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	////// Instructions //////
 
 	mInstructionSprite.setTexture(context.textures->get(Textures::Background));
 	mInstructionSprite.setPosition(window_size.x*0.1, window_size.y*0.1);
@@ -230,8 +252,10 @@ void GameState::draw()
 	for (int i = 0; i < 12; i++) {
 		window.draw(mBlocsContainer[i]);
 	}
-	
+
 	window.draw(mCurseur);
+
+	window.draw(mInputString);
 
 	if (showInstructions) {
 		window.draw(mInstructionsAlphaBackgroung);
@@ -265,6 +289,10 @@ bool GameState::update(sf::Time dt)
 			requestStackPop();
 		}
 	}
+	
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	return true;
 }
 

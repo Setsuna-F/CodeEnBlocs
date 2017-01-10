@@ -18,8 +18,8 @@ class WinState : public State
 
 
 	private:
-		sf::Sprite			mBackgroundSprite;
-		sf::Text			mText;
+		sf::Sprite			mBackgroundSprite, mStarsSprite;
+		sf::Text			mText, mBravoText, mLevelText, mBlocsText;
 
 		bool				mShowText;
 		sf::Time			mTextEffectTime;

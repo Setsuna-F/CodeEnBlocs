@@ -33,7 +33,9 @@ class GameState : public State
 		std::pair<int, int> getCoordonneesCurseur(int ligne);
 		void effacerLigne(int ligne);
 		int getNbElementsOnLine(int ligne);
+		int getNbBlocs();
 		void reloadPositionCurseur();
+
 
 
 	private:

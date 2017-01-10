@@ -46,6 +46,9 @@ class Application
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
+
+		int						mScore, mNbBlocsUsed;
+		std::string				mNameLevel;
 };
 
 #endif // BOOK_APPLICATION_HPP

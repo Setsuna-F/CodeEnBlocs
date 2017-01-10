@@ -47,7 +47,10 @@ namespace Textures
 		Tutorial9,
 		TutorialEnd,
 		Lose,
-		Win,
+		Win1,
+		Win2,
+		Win3,
+		WinBackground
 	};
 }
 

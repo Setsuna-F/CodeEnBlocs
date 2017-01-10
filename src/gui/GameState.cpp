@@ -425,6 +425,10 @@ void GameState::toggleLoop() {
 
 void GameState::startExecute() {
 	int score = mCurrentLevel->validate();
+	*mContext.score = score;
+	*mContext.nameLevel = mCurrentLevel->getName();
+	*mContext.nbBlocsUsed = getNbBlocs();
+
 	// TODO à retirer
 	std::cout << score << std::endl;
 	if (score > 0)
@@ -446,6 +450,17 @@ int GameState::getNbElementsOnLine(int ligne) {
 	//int nbElements = mCurrentLevel->getCodePage()->getNbBlock(ligne);
 	int nbElements = mBlocsContainer[mLi].getNbChildren();
 	std::cout << "ligne " << ligne << " : " << nbElements << std::endl;
+	return nbElements;
+}
+
+int GameState::getNbBlocs() {
+	int nbElements = 0;
+	
+	for (int i = 0; i < 12; i++) {
+		int n = mBlocsContainer[i].getNbChildren();
+		nbElements += n;
+	}
+
 	return nbElements;
 }
 

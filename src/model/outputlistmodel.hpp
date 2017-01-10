@@ -31,6 +31,7 @@ namespace satap {
 		std::vector<std::string> getOutputList();
 		std::string getValByIndex(unsigned int i);
 		size_t		size();
+		std::string		toString();
 	};
 }
 

@@ -40,18 +40,27 @@ GameState::GameState(StateStack& stack, Context context)
 	sf::RenderWindow& window = *getContext().window;
 	sf::Vector2u window_size = window.getSize();
 	
-	////// Inputs ////// // TODO a terminer
+	////// Inputs //////
 
 	mInputString.setFont(context.fonts->get(Fonts::Main));
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	mInputString.setColor(sf::Color::Black);
-	//centerOrigin(mInputString);
 	mInputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
 
 	// Débug
-	std::cout << "Inputs" << std::endl;
+	/*std::cout << "Inputs" << std::endl;
 	std::cout << mCurrentLevel->getWorkspace()->getInputList()->toString() << std::endl;
-	std::cout << "Fin Inputs" << std::endl;
+	std::cout << "Fin Inputs" << std::endl;*/
+
+	mVariablesString.setFont(context.fonts->get(Fonts::Main));
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setColor(sf::Color::Black);
+	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	mOutputString.setFont(context.fonts->get(Fonts::Main));
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
+	mOutputString.setColor(sf::Color::Black);
+	mOutputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
 
 	////// Instructions //////
 
@@ -219,6 +228,8 @@ void GameState::draw()
 bool GameState::update(sf::Time)
 {
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	return true;
 }
 

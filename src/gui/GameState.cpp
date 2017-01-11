@@ -337,7 +337,6 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 
 
 	std::cerr << "1- " << __FUNCTION__ <<std::endl;
-
 	if(mCurrentLevel->getCodePage()->getNbBlock(0) == 0){ //Si la ligne est vide alors
 		std::cerr << "2- " << __FUNCTION__ <<std::endl;
 		if(isValideBlock(t)){
@@ -364,6 +363,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
 				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setFirstOperand(dynamic_cast<BlockModel*>(bloc_tmp));
+				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
 				//dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
 				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType);
 			}
@@ -416,8 +416,15 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 					std::cerr << "12- " << __FUNCTION__ <<std::endl;
 
 					std::cerr << "FALSE IF "<< t << __FUNCTION__ <<std::endl;
-					BlockCompositeModel *blockmodel_tmp = assignBlock->getSecondOperand();
+					BlockCompositeModel * blockmodel_tmp = assignBlock->getSecondOperand();
+/*					std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
 					recusiveAdd(blockmodel_tmp, t);
+					std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
+*/
+					std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
+					assignBlock->setSecondOperand(recusiveAdd(blockmodel_tmp, t));
+					std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
+
 				}
 			}
 			/*else{
@@ -436,7 +443,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 	}
 }
 
-void GameState::recusiveAdd(BlockCompositeModel* block, satap::typeBloc t){
+BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::typeBloc t){
 
 	std::cout << "Type int " << block->getType() <<std::endl;
 	std::cout << "Type add " << t <<std::endl;
@@ -488,6 +495,7 @@ void GameState::recusiveAdd(BlockCompositeModel* block, satap::typeBloc t){
 				BinaryModel* binblock = dynamic_cast<BinaryModel*>(binary_block);
 				binblock->setType(t);
 				binblock->setFirstOperand(btmp);//Je met le precedent bloc dans le nouveau bloc
+				binblock->setSecondOperand(nullptr);//Je met le precedent bloc dans le nouveau bloc
 				block = binblock;//Et je remplace le bloc par le nouveau
 
 				std::cout << "Type + " << block->getType() <<std::endl;
@@ -497,7 +505,6 @@ void GameState::recusiveAdd(BlockCompositeModel* block, satap::typeBloc t){
 		}
 	}
 	else{ //Sinon si on a un bloc de type AddModel(a, b) par exemple
-		//std::cout << "TYPE ADDMODEL PAR EXEMPLE" <<std::endl;
 		if(isOperatorFunctionBlock(block->getType())){ //Si notre bloc courant est un operateur binaire alors
 			BinaryModel* binblock = dynamic_cast<BinaryModel*>(block);
 			if(binblock->getSecondOperand()==nullptr){
@@ -514,8 +521,10 @@ void GameState::recusiveAdd(BlockCompositeModel* block, satap::typeBloc t){
 					BlockCompositeModel* compoblock = dynamic_cast<BlockCompositeModel*>(binary_block);
 					compoblock->setType(t);
 					binblock->setSecondOperand(compoblock);
-					//std::cout << "Type ++ " << binblock->getSecondOperand()->getType() <<std::endl;
+					std::cout << "Type ++ " << binblock->getSecondOperand()->getType() <<std::endl;
 
+					//compoblock->setOperand(btmp);//Je met le precedent bloc dans le nouveau bloc
+					//block = compoblock;//Et je remplace le bloc par le nouveau
 				}
 			}
 		}
@@ -551,6 +560,7 @@ void GameState::recusiveAdd(BlockCompositeModel* block, satap::typeBloc t){
 			block = binblock;//Et je remplace le bloc par le nouveau
 		}
 	}*/
+	return block;
 }
 
 bool GameState::isValideBlock(satap::typeBloc t){

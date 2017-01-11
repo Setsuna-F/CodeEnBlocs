@@ -57,7 +57,7 @@ class GameState : public State
 		bool isUnaryFunctionBlock    (typeBloc t);
 		bool isOperatorFunctionBlock (typeBloc t);
 
-		void recusiveAdd	(BlockCompositeModel* block, satap::typeBloc t);
+		BlockCompositeModel* recusiveAdd	(BlockCompositeModel* &block, satap::typeBloc t);
 
 		Bloc *factoryBlock(typeBloc t);
 

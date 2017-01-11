@@ -329,21 +329,14 @@ void GameState::reloadPositionCurseur() {
  * \param t est le type de bloc a ajouter a la ligne donnée.
  */
 void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
-//return ;
-	// mCurrentLevel->getCodePage()->addBlock(assign);
 	std::shared_ptr<Bloc> bloc_ptr;
-
-
-
-
 	std::cerr << "1- " << __FUNCTION__ <<std::endl;
-	if(mCurrentLevel->getCodePage()->getNbBlock(0) == 0){ //Si la ligne est vide alors
+	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0){ //Si la ligne est vide alors
 		std::cerr << "2- " << __FUNCTION__ <<std::endl;
 		if(isValideBlock(t)){
 			std::cerr << "3- " << __FUNCTION__ <<std::endl;
-			//std::cerr << "ERROR: INTERNE " << __FUNCTION__ <<std::endl;
 			Bloc * bloc_tmp = factoryBlock(t);
-			//bloc_tmp->setType(t);
+
 			std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 			bloc_tmp->setPosition(coordBloc.first, coordBloc.second);
 			bloc_ptr = std::shared_ptr<Bloc>(bloc_tmp);
@@ -364,7 +357,6 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 
 				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setFirstOperand(dynamic_cast<BlockModel*>(bloc_tmp));
 				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
-				//dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
 				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType);
 			}
 			else{
@@ -373,20 +365,18 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			}
 		}
 		else{
-			std::cerr << "6- " << __FUNCTION__ <<std::endl;
 			std::cerr << "ERROR: " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
 		}
 	}else{
-		if(mCurrentLevel->getCodePage()->getBlockByIndex(0)->getType() == AssignementBlocType){
+		if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == AssignementBlocType){
 			std::cerr << "7- " << __FUNCTION__ <<std::endl;
-			AssignmentModel* assignBlock = dynamic_cast<AssignmentModel*>(mCurrentLevel->getCodePage()->getBlockByIndex(0));
+			AssignmentModel* assignBlock = dynamic_cast<AssignmentModel*>(mCurrentLevel->getCodePage()->getBlockByIndex(mLi));
 			if(assignBlock->getSecondOperand()==nullptr){
 				std::cerr << "8- " << __FUNCTION__ <<std::endl;
 			 	if(!isBooleanBlock(t)){
 					std::cerr << "9- " << __FUNCTION__ <<std::endl;
 					if(!isValideBlock(t) && !isFunctionBlock(t)){
 						std::cerr << "10- " << __FUNCTION__ <<std::endl;
-						std::cerr << "TRUE IF " << __FUNCTION__ <<std::endl;
 						Bloc * bloc_assign_tmp= factoryBlock(t);
 
 						std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -405,25 +395,14 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				}
 			}
 			else if (assignBlock->getSecondOperand() != nullptr){
-				std::cout << "11- [ getType- "<< assignBlock->getType() << " ] -11" << __FUNCTION__ <<std::endl;
-				std::cout << "11- [ getType- "<< t << " ] -11" << __FUNCTION__ <<std::endl;
-				std::cout << "11- [ getType- "<< mCurrentLevel->getCodePage()->getBlockByIndex(0)->getType() << " ] -11" << __FUNCTION__ <<std::endl;
-
-			//	if(( (isBinaryBlock(assignBlock->getSecondOperand()->getType()) && !isBinaryBlock(t))
-			//	  || (!isBinaryBlock(assignBlock->getSecondOperand()->getType()) && isBinaryBlock(t)))
-			//	  && (assignBlock->getSecondOperand()->getType()!=t) && (t != AssignementBlocType))
-				  {
+				if (t != AssignementBlocType){
 					std::cerr << "12- " << __FUNCTION__ <<std::endl;
 
-					std::cerr << "FALSE IF "<< t << __FUNCTION__ <<std::endl;
 					BlockCompositeModel * blockmodel_tmp = assignBlock->getSecondOperand();
-/*					std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
-					recusiveAdd(blockmodel_tmp, t);
-					std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
-*/
-					std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
+
+					//std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
 					assignBlock->setSecondOperand(recusiveAdd(blockmodel_tmp, t));
-					std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
+					//std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
 
 				}
 			}
@@ -435,8 +414,8 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				std::cerr << "isUn: " << t << " " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
 			}*/
 		}
-		else if(mCurrentLevel->getCodePage()->getBlockByIndex(0)->getType() == IfBlocType){
-			std::cerr << "14- " << __FUNCTION__ <<std::endl;
+		else if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == IfBlocType){
+			//std::cerr << "14- " << __FUNCTION__ <<std::endl;
 			std::cerr << "Type IfBlocType " << __FUNCTION__ <<std::endl;
 		}
 		//std::cerr << "LIGNE NON VIDE : " << __FUNCTION__ <<mCurrentLevel->getCodePage()->getBlockByIndex(0)->getId()<<std::endl;
@@ -445,15 +424,15 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 
 BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::typeBloc t){
 
-	std::cout << "Type int " << block->getType() <<std::endl;
-	std::cout << "Type add " << t <<std::endl;
+	//std::cout << "Type int " << block->getType() <<std::endl;
+	//std::cout << "Type add " << t <<std::endl;
 	std::shared_ptr<Bloc> bloc_ptr;
 
 	if(isUnaryBlock(block->getType())){
-		std::cout << "___________" << t <<std::endl;
+		//std::cout << "___________" << t <<std::endl;
 		if(isBaseFunctionBlock(block->getType())){ //Si la fonction est composable et donc peut avoir 1 parametre
-			std::cout << "___________" << t <<std::endl;
-			BinaryModel* btmp = dynamic_cast<BinaryModel*>(block);
+			std::cout << " " << t <<std::endl;
+			//BinaryModel* btmp = dynamic_cast<BinaryModel*>(block);
 
 			/*if(btmp->getOperand()==nullptr){//Si notre operateur n'a pas d'elements a l'interrieur alors
 				if(isUnaryBlock(t)){ //Si t est soit un input soit un NOT(n) soit un ...
@@ -480,7 +459,6 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 			}*/
 		}
 		else{//Si on a un input par exemple
-			std::cout << "TYPE INPUT PAR EXEMPLE" <<std::endl;
 			if(isOperatorFunctionBlock(t)){//Si on a une fonction binaire
 				BlockCompositeModel* btmp = block;
 				Bloc * binary_block= factoryBlock(t); // On crée le nouveau type
@@ -497,9 +475,6 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 				binblock->setFirstOperand(btmp);//Je met le precedent bloc dans le nouveau bloc
 				binblock->setSecondOperand(nullptr);//Je met le precedent bloc dans le nouveau bloc
 				block = binblock;//Et je remplace le bloc par le nouveau
-
-				std::cout << "Type + " << block->getType() <<std::endl;
-				//std::cout << "Type ++ " << binblock->getSecondOperand()->getType() <<std::endl;
 
 			}
 		}
@@ -521,51 +496,15 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 					BlockCompositeModel* compoblock = dynamic_cast<BlockCompositeModel*>(binary_block);
 					compoblock->setType(t);
 					binblock->setSecondOperand(compoblock);
-					std::cout << "Type ++ " << binblock->getSecondOperand()->getType() <<std::endl;
-
-					//compoblock->setOperand(btmp);//Je met le precedent bloc dans le nouveau bloc
-					//block = compoblock;//Et je remplace le bloc par le nouveau
 				}
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-/*
-	std::shared_ptr<Bloc> bloc_ptr;
-	std::cerr << "AvantIF " << __FUNCTION__ <<std::endl;
-	if(( (isBinaryBlock(block->getType()) && !isBinaryBlock(t))
-	  || (!isBinaryBlock(block->getType()) && isBinaryBlock(t)))){
-	//if(/ *!(isFunctionBlock(t) &&* / (block->getType() != t) / *&& isUnaryBlock(block->getType())* /){ //Si le bloc courant n'est pas un bloc de fonction et donc s'il n'a aucun element a integrer.
-		std::cerr << "PremierIF " << __FUNCTION__ <<std::endl;
-		BlockCompositeModel* btmp = block; //On copie l'objet du bloc principal
-		Bloc * binary_block= factoryBlock(t); // On crée le nouveau type
-		if(isBinaryBlock(t)){ //Si le type a ajouter est binaire alors
-			std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
-			binary_block->setPosition(coordBloc.first, coordBloc.second);
-			bloc_ptr = std::shared_ptr<Bloc>(binary_block);
-			mBlocsContainer[mLi].pack(bloc_ptr);
-			mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-			// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
-
-			BinaryModel* binblock = dynamic_cast<BinaryModel*>(binary_block);
-			binblock->setType(block->getType());
-			binblock->setFirstOperand(btmp);//Je met le precedent bloc dans le nouveau bloc
-			block = binblock;//Et je remplace le bloc par le nouveau
-		}
-	}*/
 	return block;
 }
 
 bool GameState::isValideBlock(satap::typeBloc t){
 	bool isValide=false;
-	//std::cerr << "Avant VALIDE "<< t << " isVal="<<(isValide?"true":"false") << __FUNCTION__ <<std::endl;
 	switch (t) {
 		case BlocType:
 		case IfBlocType:
@@ -577,14 +516,12 @@ bool GameState::isValideBlock(satap::typeBloc t){
 			isValide=true;
 		break;
 	}
-	//std::cerr << "Apres VALIDE "<< t << " isVal="<<(isValide?"true ":"false ") << __FUNCTION__ <<std::endl;
 	return isValide;
 }
 
 
 bool GameState::isBinaryBlock(satap::typeBloc t){
 	bool isValide=false;
-	//std::cerr << "Avant VALIDE "<< t << " isVal="<<(isValide?"true ":"false ") << __FUNCTION__ <<std::endl;
 	switch (t) {
 		case AddBlocType:
 		case AssignementBlocType:
@@ -597,7 +534,6 @@ bool GameState::isBinaryBlock(satap::typeBloc t){
 			isValide=true;
 		break;
 	}
-	//std::cerr << "Apres VALIDE "<< t << " isVal="<<(isValide?"true ":"false ") << __FUNCTION__ <<std::endl;
 
 	return isValide;
 }

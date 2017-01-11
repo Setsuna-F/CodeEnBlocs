@@ -14,6 +14,7 @@
 #include "gui/MusicPlayer.hpp"
 #include "gui/ResourceHolder.hpp"
 #include "model/gamemodel.hpp"
+#include "SoundPlayer.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -33,7 +34,10 @@ GameState::GameState(StateStack& stack, Context context)
 	, mExiting(false)
 	, mButtonsContainerConfirmationExit()
 	, mDelayExit(sf::Time::Zero)
-{	
+{
+	for (int i = 0; i < 12; i++)
+		mBlocsContainer.push_back(std::make_shared<GUI::Container>());
+
 	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
 
 	// TODO déplacer ça dans panel de choix de niveau
@@ -139,7 +143,7 @@ GameState::GameState(StateStack& stack, Context context)
 	auto resetAction = std::make_shared<GUI::GameButton>(context);
 	resetAction->setPosition(250, 10);
 	resetAction->setSprite(context, Textures::ResetButton);
-	resetAction->setSound(SoundEffect::WrinkledPaper);
+	resetAction->setSound(SoundEffect::Eraser1);
 	resetAction->setCallback([this]() {
 		resetCode();
 	});
@@ -216,6 +220,7 @@ GameState::GameState(StateStack& stack, Context context)
 	assign->setSecondOperand(in);
 
 	mCurrentLevel->getCodePage()->addBlock(assign);
+
 }
 
 void GameState::draw()
@@ -228,7 +233,7 @@ void GameState::draw()
 
 	window.draw(mButtonsContainer);
 	for (int i = 0; i < 12; i++) {
-		window.draw(mBlocsContainer[i]);
+		window.draw(*mBlocsContainer[i]);
 	}
 	
 	window.draw(mCurseur);
@@ -278,27 +283,32 @@ bool GameState::handleEvent(const sf::Event& event) {
 
 
 	if (event.type == sf::Event::KeyReleased) {
-		if (event.key.code == sf::Keyboard::Up) {
+		if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::Up)) {
 			mLi--;
 			if (mLi < 0)
 				mLi = 0;
 			mCol = getNbElementsOnLine(mLi);
 			reloadPositionCurseur();
 		}
-		else if (event.key.code == sf::Keyboard::Down) {
+		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::Down)) {
 			mLi++;
 			if (mLi > 11)
 				mLi = 11;
 			mCol = getNbElementsOnLine(mLi);
 			reloadPositionCurseur();
 		}
-		else if (event.key.code == sf::Keyboard::BackSpace) {
+		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::EraseLine)) {
+			getContext().sounds->play(SoundEffect::Eraser1);
 			effacerLigne(mLi);
 			mCol = 0;
 		}
 		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::RunCode))
 		{
 			startExecute();
+		}
+		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::NewLine))
+		{
+			newLine(mLi);
 		}
 		
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
@@ -330,44 +340,49 @@ bool GameState::handleEvent(const sf::Event& event) {
 
 Bloc * GameState::addBloc(satap::typeBloc t)
 {
-	Bloc* b;
+	Bloc* b = nullptr;
 	std::shared_ptr<Bloc> bl;
+	if (mCol < 5)
+	{
 
-	if (t == VariableBlocType) {
-		b = new VariableBloc(mContext);
-		b->setSprite(mContext, Textures::VariableSpawner);
-		std::cout << "Ajout d'un bloc de type var" << std::endl;
-	}
-	else if (t == AssignementBlocType) {
-		b = new AssignmentBloc(mContext);
-		b->setSprite(mContext, Textures::AssignmentSpawner);
-		std::cout << "Ajout d'un bloc de type <-" << std::endl;
-	}
-	else if (t == InputBlocType) {
-		b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
-		b->setSprite(mContext, Textures::InputSpawner);
-		std::cout << "Ajout d'un bloc de type In" << std::endl;
-	}
-	else if (t == OutputBlocType) {
-		b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
-		b->setSprite(mContext, Textures::OutputSpawner);
-		std::cout << "Ajout d'un bloc de type Out" << std::endl;
-	}
-	else if (t == AddBlocType) {
-		b = new AddBloc(mContext);
-		b->setSprite(mContext, Textures::AddSpawner);
-		std::cout << "Ajout d'un bloc de type +" << std::endl;
-	}
+		if (t == VariableBlocType) {
+			b = new VariableBloc(mContext);
+			b->setSprite(mContext, Textures::VariableSpawner);
+			std::cout << "Ajout d'un bloc de type var" << std::endl;
+		}
+		else if (t == AssignementBlocType) {
+			b = new AssignmentBloc(mContext);
+			b->setSprite(mContext, Textures::AssignmentSpawner);
+			std::cout << "Ajout d'un bloc de type <-" << std::endl;
+		}
+		else if (t == InputBlocType) {
+			b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
+			b->setSprite(mContext, Textures::InputSpawner);
+			std::cout << "Ajout d'un bloc de type In" << std::endl;
+		}
+		else if (t == OutputBlocType) {
+			b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
+			b->setSprite(mContext, Textures::OutputSpawner);
+			std::cout << "Ajout d'un bloc de type Out" << std::endl;
+		}
+		else if (t == AddBlocType) {
+			b = new AddBloc(mContext);
+			b->setSprite(mContext, Textures::AddSpawner);
+			std::cout << "Ajout d'un bloc de type +" << std::endl;
+		}
 
-	std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
-	b->setPosition(coordBloc.first, coordBloc.second);
-	bl = std::shared_ptr<Bloc>(b);
-	mBlocsContainer[mLi].pack(bl);
+		std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
+		b->setPosition(coordBloc.first, coordBloc.second);
+		bl = std::shared_ptr<Bloc>(b);
+		std::cout << "1ca plante ??" << std::endl;
+		std::cout << "1ca plante ??" << mBlocsContainer[mLi]->getNbChildren() << std::endl;
+		mBlocsContainer[mLi]->pack(bl);
+		std::cout << "1ca plante ??" << std::endl;
 
-	mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-	// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
+		mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
+		// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
-
+	}
 	return b;
 }
 
@@ -385,7 +400,7 @@ std::pair<int, int> GameState::getCoordonneesCurseur(int ligne) {
 void GameState::resetCode() {
 	mCurrentLevel->getCodePage()->flush();
 	for (int i = 0; i < 12; i++) {
-		mBlocsContainer[i].flush();
+		mBlocsContainer[i]->flush();
 	}	
 	mLi = 0;
 	mCol = 0;
@@ -405,19 +420,38 @@ void GameState::startExecute() {
 		requestStackPush(States::Lose);
 }
 
-void GameState::effacerLigne(int ligne) { 
-	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
-	std::cout << "effacer line " << ligne << std::endl;
+void GameState::effacerLigne(int ligne)
+{
 	if (getNbElementsOnLine(ligne) > 0) {
-		mCurrentLevel->getCodePage()->deleteLigne(ligne);
-		mBlocsContainer[ligne].flush();
+		if(mCurrentLevel->getCodePage()->getNbBlock(ligne) > 0)
+			mCurrentLevel->getCodePage()->deleteLigne(ligne);
+		mBlocsContainer[ligne]->flush();
 	}	
 }
 
+void GameState::newLine(int line)
+{
+	// TODO insérer ligne dans le model -> décaler lignes dessous
+	std::cout << "TODO insérer ligne dans model" << std::endl;
+	if (getNbElementsOnLine(11) == 0)
+	{
+		for (int l = line; l<11; l++)
+		{
+			for (int i = 0; i < mBlocsContainer[l]->getNbChildren(); i++)
+				mBlocsContainer[l]->getComponent(i)->setPosition(mBlocsContainer[l]->getComponent(i)->getPosition().x, mBlocsContainer[l]->getComponent(i)->getPosition().y + 50);
+		}
+		mCol = 0;
+		std::vector<GUI::Container::Ptr>::iterator it = mBlocsContainer.begin() + line;
+		mBlocsContainer.insert(it, std::make_shared<GUI::Container>());
+		mBlocsContainer.pop_back();
+	}
+}
+
+
+
 int GameState::getNbElementsOnLine(int ligne) {
-	//int nbElements = mCurrentLevel->getCodePage()->getNbBlock(ligne);
-	int nbElements = mBlocsContainer[mLi].getNbChildren();
-	std::cout << "ligne " << ligne << " : " << nbElements << std::endl;
+	int nbElements = mBlocsContainer[ligne]->getNbChildren();
+	//std::cout << "ligne " << ligne << " : " << nbElements << std::endl;
 	return nbElements;
 }
 

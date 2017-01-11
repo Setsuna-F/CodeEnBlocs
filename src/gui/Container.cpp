@@ -137,4 +137,10 @@ int GUI::Container::getNbChildren() const
 	return mChildren.size();
 }
 
+Component::Ptr GUI::Container::getComponent(int i) const
+{
+	if(i < getNbChildren())
+		return mChildren[i];
+}
+
 }

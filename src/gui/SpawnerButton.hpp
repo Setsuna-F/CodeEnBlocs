@@ -53,6 +53,7 @@ class SpawnerButton : public Component
         virtual void			handleEvent(const sf::Event& event);
 
 		void					setSprite(State::Context c, Textures::ID id);
+		void					setSound(SoundEffect::ID s);
 
 
     private:
@@ -67,6 +68,7 @@ class SpawnerButton : public Component
         bool					mIsToggle;
 		SoundPlayer&			mSounds;
 		State::Context			mContext;
+		SoundEffect::ID			mSoundPlayed;
 };
 
 }

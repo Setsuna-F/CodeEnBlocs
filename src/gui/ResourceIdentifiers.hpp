@@ -75,8 +75,24 @@ namespace SoundEffect
 {
 	enum ID
 	{
+		NoSound,
 		Button,
 		WrinkledPaper,
+		OpeningBook,
+		ClosingBook,
+		Page,
+		Pages,
+		Eraser1,
+		Eraser2,
+		Pencil1,
+		Pencil2,
+		Pencil3,
+		Pencil4,
+		Pencil5,
+		Pencil6,
+		Pencil7,
+		Pencil8,
+		Pencil9,
 	};
 }
 

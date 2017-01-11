@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 
 class MenuState : public State
@@ -21,6 +22,14 @@ class MenuState : public State
 	private:
 		sf::Sprite				mBackgroundSprite;
 		GUI::Container			mGUIContainer;
+
+		sf::RectangleShape		mRectAlphaBackground;
+		GUI::Container			mButtonsContainerConfirmationExit;
+		sf::Sprite				mSpriteConfirmationExit;
+		sf::Text				mTextConfirmationExit;
+		bool					mShowConfirmationExit;
+		bool					mExiting;
+		sf::Time				mDelayExit;
 };
 
 #endif // BOOK_MENUSTATE_HPP

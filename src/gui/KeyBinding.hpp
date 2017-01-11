@@ -13,6 +13,9 @@ namespace PlayerAction
 	{
 		RunCode,
 		EraseLine,
+		NewLine,
+		Up,
+		Down,
 		// TODO autres actions comme par exemple des raccourcis pour ouvrir les différents onglets
 		Count
 	};

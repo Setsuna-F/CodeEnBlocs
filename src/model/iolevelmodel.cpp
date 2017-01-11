@@ -1,4 +1,4 @@
-#include <stdlib.h>
+﻿#include <stdlib.h>
 #include <time.h>
 #include <string>
 #include "../tools.h"
@@ -14,7 +14,7 @@
 using namespace satap;
 
 IOLevelModel::IOLevelModel() :
-	LevelModel("Entree / Sortie", 2, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée \n et Output pour restituer une valeur en sortie."){
+	LevelModel("Entrée / Sortie", 2, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée \n et Output pour restituer une valeur en sortie."){
 		
 		// TODO a débugger
 		/*

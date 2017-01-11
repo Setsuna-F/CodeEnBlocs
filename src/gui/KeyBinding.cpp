@@ -9,8 +9,11 @@
 KeyBinding::KeyBinding()
 : mKeyMap()
 {
-	mKeyMap[sf::Keyboard::Return] = PlayerAction::RunCode;
+	mKeyMap[sf::Keyboard::Return] = PlayerAction::NewLine;
 	mKeyMap[sf::Keyboard::BackSpace] = PlayerAction::EraseLine;
+	mKeyMap[sf::Keyboard::R] = PlayerAction::RunCode;
+	mKeyMap[sf::Keyboard::Up] = PlayerAction::Up;
+	mKeyMap[sf::Keyboard::Down] = PlayerAction::Down;
 	
 	//mKeyMap[sf::Keyboard::Left]	 = PlayerAction::MoveLeft;
 	//mKeyMap[sf::Keyboard::Right] = PlayerAction::MoveRight;

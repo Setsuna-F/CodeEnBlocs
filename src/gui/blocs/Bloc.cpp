@@ -19,12 +19,13 @@
 namespace satap
 {
 
-	Bloc::Bloc(State::Context context)
+	Bloc::Bloc(State::Context context, typeBloc typebloc)
 		: mCallback()
 		, mSprite(context.textures->get(Textures::Buttons))
 		, mText("", context.fonts->get(Fonts::Main), 16)
 		, mIsToggle(false)
 		, mSounds(*context.sounds)
+		, mTypeBlock(typebloc)
 	{
 		changeTexture(Normal);
 

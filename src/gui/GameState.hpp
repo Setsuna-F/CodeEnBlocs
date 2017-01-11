@@ -16,6 +16,7 @@
 #include <model/additionlevelmodel.hpp>
 #include "gui/Curseur.hpp"
 #include "blocs/Bloc.hpp"
+#include "model/BlockModel.hpp"
 #endif
 
 
@@ -34,6 +35,7 @@ class GameState : public State
 		virtual bool			handleEvent(const sf::Event& event);
 
 		satap::Bloc* addBloc(satap::typeBloc t);
+		void addBlocks(satap::BlockModel *block, satap::typeBloc t);
 
 		void resetCode();
 		void toggleLoop();
@@ -41,10 +43,23 @@ class GameState : public State
 
 		std::pair<int, int> getCoordonnees(int ligne, int colonne);
 		std::pair<int, int> getCoordonneesCurseur(int ligne);
-		void effacerLigne(int ligne);
-		int getNbElementsOnLine(int ligne);
+
+		void effacerLigne         (int ligne);
+		int  getNbElementsOnLine  (int ligne);
 		void reloadPositionCurseur();
 
+		bool isUnaryBlock   (typeBloc t);
+		bool isValideBlock  (typeBloc t);
+		bool isBinaryBlock  (typeBloc t);
+		bool isBooleanBlock (typeBloc t);
+		bool isFunctionBlock(typeBloc t);
+		bool isBaseFunctionBlock     (typeBloc t);
+		bool isUnaryFunctionBlock    (typeBloc t);
+		bool isOperatorFunctionBlock (typeBloc t);
+
+		void recusiveAdd	(BlockCompositeModel* block, satap::typeBloc t);
+
+		Bloc *factoryBlock(typeBloc t);
 
 	private:
 		Context							mContext;

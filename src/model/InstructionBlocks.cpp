@@ -23,6 +23,12 @@ void InstructionBlockModel::setBlock(BlockModel *block, std::string blockType){
 	_blockListName.push_back(blockType);
 }
 
+void InstructionBlockModel::setBlock(BlockModel *block, satap::typeBloc t){
+	block->setType(t);
+	_blockList.push_back(block);
+	_typeList.push_back(t);
+}
+
 
 void InstructionBlockModel::removeFromIndex(size_t index){
 	this->_blockList.erase(this->_blockList.begin() + index);
@@ -35,14 +41,33 @@ void InstructionBlockModel::removeFromIndex(){
 }
 
 
+/**
+ * \brief   permet d'avoir recuperer un pointeur sur un BlockModel
+ * 			depuis la position dans le vecteur de BlockModel.
+ *
+ * \param index est le numero de la position d'un bloc dans le vecteur de BlockModel.
+ *
+ * \return un pointeur sur un BlockModel qui se trouve dans le vecteur de BlockModel.
+ */
+BlockModel* InstructionBlockModel::getBlockByIndex(size_t index){
+	if(this->_blockList.size()<index) //Si index est plus grand que la tille du tableau en lui meme
+		return NULL; //On retourne null
+
+	return this->_blockList[index];
+}
+
+
 BlockModel* InstructionBlockModel::getBlockById(size_t id){
+	std::cout<<"\n-------------------------" <<std::endl;
+	std::cout<<"id = "<<id <<std::endl;
+	std::cout<<"this->id = "<< this->getId() <<std::endl;
 	if (id==this->getId()){
 		return this;
 	}
-	
+
 	BlockModel *block=nullptr;
 	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
-		
+		std::cout<<"it->id = "<< (*it)->getId() <<std::endl;
 		if ((*it)->getId() == id){
 			return *it;
 		}
@@ -72,5 +97,5 @@ int satap::InstructionBlockModel::getNbElements(int ligne)
 	}
 	else {
 		return _blockList.at(ligne)->getNbElements();
-	}	
+	}
 }

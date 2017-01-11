@@ -21,14 +21,18 @@ namespace satap{
 
 		void setBlock		(BlockModel *block, std::string blockType, size_t startingId);
 		void setBlock		(BlockModel *block, std::string blockType);
+		void setBlock		(BlockModel *block, satap::typeBloc t);
+
 		void removeFromIndex();
 		void removeFromIndex(size_t index);
+		BlockModel* 				getBlockByIndex(size_t index);
 		BlockModel*					getBlockById(size_t id);
 		std::vector<BlockModel *>	getAllBlocks();
 		sct_type					execute();
 		int							getNbElements(int ligne);
 	private:
 		std::vector<BlockModel *> _blockList;
+		std::vector<satap::typeBloc > _typeList;
 		std::vector<std::string > _blockListName;
 	};
 }

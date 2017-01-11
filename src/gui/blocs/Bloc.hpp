@@ -12,6 +12,7 @@
 #include "gui/ResourceIdentifiers.hpp"
 #include "gui/State.hpp"
 #include "gui/ResourceHolder.hpp"
+#include "model/BlockModel.hpp"
 #endif
 
 
@@ -45,7 +46,7 @@ namespace satap
 
 
 	public:
-		Bloc(State::Context context);
+		Bloc(State::Context context, typeBloc);
 
 		void					setCallback(Callback callback);
 		void					setText(const std::string& text);
@@ -62,6 +63,8 @@ namespace satap
 
 		void					setSprite(State::Context c, Textures::ID id);
 
+		typeBloc				getType(){return mTypeBlock;}
+
 	private:
 		virtual void			draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		void					changeTexture(Type buttonType);
@@ -73,6 +76,7 @@ namespace satap
 		sf::Text				mText;
 		bool					mIsToggle;
 		SoundPlayer&			mSounds;
+		typeBloc				mTypeBlock;
 	};
 
 }

@@ -12,7 +12,7 @@
 
 
 namespace satap {
-	
+
 	BlockModel::BlockModel():
 		objSingleton(),
 		_id(0){
@@ -20,7 +20,7 @@ namespace satap {
 		_id				= objSingleton->getValue();
 		objSingleton->setValue (objSingleton->getValue()+1);
 	}
-	
+
 	BlockModel::BlockModel(WorkspaceModel &workspace):
 		_workspace(&workspace),
 		objSingleton(),
@@ -29,7 +29,7 @@ namespace satap {
 		_id				= objSingleton->getValue();
 		objSingleton->setValue (objSingleton->getValue()+1);
 	}
-	
+
 	void BlockModel::setWorspace(WorkspaceModel &workspace){
 		_workspace=&workspace;
 	}
@@ -41,17 +41,14 @@ namespace satap {
 	BlockModel::~BlockModel(){
 		objSingleton->kill ();
 	}
-	
+
 	size_t BlockModel::getId(){ return _id; }
 
-	typeBloc BlockModel::getType() {
+	/*typeBloc BlockModel::getType() {
 		return ND;
-	}
+	}*/
 
 	int BlockModel::getNbElements() {
 		return 1;
 	}
 }
-
-
-

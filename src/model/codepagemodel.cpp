@@ -18,6 +18,12 @@ void CodePageModel::addBlock(BlockModel* block, int i){
 	_blockList.setBlock(block, "", i);
 }
 
+
+void CodePageModel::addBlock(BlockModel* block, satap::typeBloc t){
+	_blockList.setBlock(block, t);
+}
+
+
 void CodePageModel::removeBlock(){
 	_blockList.removeFromIndex();
 }
@@ -30,12 +36,18 @@ BlockModel* CodePageModel::getBlock(int i){
 	return _blockList.getBlockById(i);
 }
 
+
+BlockModel* CodePageModel::getBlockByIndex(int i){
+	return _blockList.getBlockByIndex(i);
+}
+
+
 void CodePageModel::flush(){
 	//_blockList = *(new std::vector<BlockModel*>());
 }
 
-void CodePageModel::execute(){
-	_blockList.execute();
+sct_type CodePageModel::execute(){
+	return _blockList.execute();
 }
 
 std::vector<BlockModel*> CodePageModel::getBlockList(){

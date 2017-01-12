@@ -11,15 +11,15 @@ namespace satap {
 
 		public:
 			AssignmentModel();
-			AssignmentModel(VariableModel* firstOperand, BlockCompositeModel* secondOperand);
+			AssignmentModel(BlockModel* firstOperand, BlockCompositeModel* secondOperand);
 			~AssignmentModel();
-			BlockModel* getFirstOperand();
-			void setFirstOperand(BlockModel* operand);
+			//BlockModel* getFirstOperand();
+			//void setFirstOperand(BlockModel* operand);
 			sct_type execute();
-			typeBloc getType();
+			//typeBloc getType();
 			int getNbElements();
-		protected:
-			BlockModel* _firstOperand;
+		//protected:
+		//	BlockModel* _firstOperand;
 	};
 }
 

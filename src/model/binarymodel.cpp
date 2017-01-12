@@ -13,7 +13,7 @@ BinaryModel::BinaryModel() {
 	//
 }
 
-BinaryModel::BinaryModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand) {
+BinaryModel::BinaryModel(BlockModel* firstOperand, BlockCompositeModel* secondOperand) {
 	this->_firstOperand = firstOperand;
 	this->_secondOperand = secondOperand;
 }
@@ -27,11 +27,11 @@ BinaryModel::~BinaryModel() {
 	//
 }
 
-BlockCompositeModel* BinaryModel::getFirstOperand() {
+BlockModel* BinaryModel::getFirstOperand() {
 	return this->_firstOperand;
 }
 
-void BinaryModel::setFirstOperand(BlockCompositeModel* operand) {
+void BinaryModel::setFirstOperand(BlockModel* operand) {
 	this->_firstOperand = operand;
 }
 
@@ -59,5 +59,3 @@ int BinaryModel::getNbElements() {
 		return 1 + gauche + droite;
 	}
 }
-
-

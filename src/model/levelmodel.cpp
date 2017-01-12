@@ -12,9 +12,9 @@ LevelModel::LevelModel():
 
 LevelModel::LevelModel(std::string name, int optimalBlockCount):
 	_name		(name),
-	_optimalBlocCount(optimalBlockCount),
 	_description(""),
 	_help		(""),
+	_optimalBlocCount(optimalBlockCount),
 	_workspace	(new WorkspaceModel()),
 	_codePage	(new CodePageModel()){}
 
@@ -23,28 +23,28 @@ LevelModel::LevelModel(std::string name, int optimalBlockCount, std::string desc
 	_name		(name),
 	_description(description),
 	_help		(""),
-	_codePage	(new CodePageModel()),
+	_optimalBlocCount(optimalBlockCount),
 	_workspace	(new WorkspaceModel()),
-	_optimalBlocCount(optimalBlockCount){}
+	_codePage	(new CodePageModel()){}
 
 
 LevelModel::LevelModel(std::string name, int optimalBlockCount, std::string description, std::string help):
 	_name		(name),
 	_description(description),
-	_codePage	(new CodePageModel()),
-	_workspace	(new WorkspaceModel()),
 	_help		(help),
-	_optimalBlocCount(optimalBlockCount){}
+	_optimalBlocCount(optimalBlockCount),
+	_workspace	(new WorkspaceModel()),
+	_codePage	(new CodePageModel()){}
 
 
 LevelModel::LevelModel(std::string name, int optimalBlockCount, std::string description, InstructionBlockModel availableBlocks):
 	_name		(name),
 	_description(description),
-	_codePage	(new CodePageModel()),
-	_workspace	(new WorkspaceModel()),
 	_help		(""),
 	_optimalBlocCount(optimalBlockCount),
-	_availableBlocks(availableBlocks){}
+	_availableBlocks(availableBlocks),
+	_workspace	(new WorkspaceModel()),
+	_codePage	(new CodePageModel()){}
 
 
 LevelModel::LevelModel(std::string name, int optimalBlockCount, std::string description, std::string help, InstructionBlockModel availableBlocks){
@@ -95,6 +95,7 @@ void LevelModel::setCodePage(CodePageModel* codePage){
 
 int LevelModel::validate(){ //TODO à tester
 	_codePage->execute();
+
 	OutputListModel* outputList = _workspace->getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList->size();
@@ -108,7 +109,7 @@ int LevelModel::validate(){ //TODO à tester
 			std::string outExpected = _outputListExpected.getValByIndex(i);
 		}
 	}
-	
+
 
 	int score = 1;
 	if(size<2*_optimalBlocCount+1)

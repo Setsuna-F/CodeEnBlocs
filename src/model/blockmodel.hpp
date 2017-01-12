@@ -42,11 +42,12 @@ namespace satap{
 			virtual sct_type execute() = 0;
 			virtual BlockModel* getBlockById(size_t id)/* = 0*/;
 			void setWorspace(WorkspaceModel &workspace);
-			/*virtual*/ typeBloc getType(){
-				//std::cout << "GETTYPE !!!! "<<std::endl;
+			virtual typeBloc getType(){
 				return _type;
 			}
-			/*virtual*/ void setType(typeBloc t){_type=t;}
+			virtual void setType(typeBloc t){
+				_type=t;
+			}
 			/*virtual */int getNbElements();
 		protected:
 			UniqueObject *objSingleton; /* Notre objet singleton qui s'icrementra a chaque construction de bloc */

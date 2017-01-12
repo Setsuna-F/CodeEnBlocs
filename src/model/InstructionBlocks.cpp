@@ -7,7 +7,7 @@
 //
 
 #include "InstructionBlocks.hpp"
-
+#include "AssignmentModel.hpp"
 using namespace satap;
 
 InstructionBlockModel::InstructionBlockModel(){}
@@ -58,16 +58,13 @@ BlockModel* InstructionBlockModel::getBlockByIndex(size_t index){
 
 
 BlockModel* InstructionBlockModel::getBlockById(size_t id){
-	std::cout<<"\n-------------------------" <<std::endl;
-	std::cout<<"id = "<<id <<std::endl;
-	std::cout<<"this->id = "<< this->getId() <<std::endl;
 	if (id==this->getId()){
 		return this;
 	}
 
 	BlockModel *block=nullptr;
 	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
-		std::cout<<"it->id = "<< (*it)->getId() <<std::endl;
+		//std::cout<<"it->id = "<< (*it)->getId() <<std::endl;
 		if ((*it)->getId() == id){
 			return *it;
 		}
@@ -85,8 +82,32 @@ std::vector<BlockModel *> InstructionBlockModel::getAllBlocks(){
 
 sct_type InstructionBlockModel::execute(){
 	sct_type condition;
-	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it)
-		condition = (*it)->execute();
+
+	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
+		//condition = (*it)->execute();
+		if((*it)->getType() == AssignementBlocType){
+			AssignmentModel* assignModel = dynamic_cast<AssignmentModel*>(*it);
+			condition = assignModel->execute();
+			/*if(condition.int_type!=nullptr)	{
+				std::cout<< "fichier : " << __FILE__ << std::endl << " fonction : "<< __FUNCTION__ << std::endl;
+				std::cout<< "val : " << *condition.int_type << std::endl;
+				std::cout<< "-----------------------------------" << std::endl;
+			}
+			else if(condition.double_type!=nullptr)	{
+				std::cout<< "fichier : " << __FILE__ << " fonction : "<< __FUNCTION__ << std::endl;
+				std::cout<< "val : " << *condition.double_type << std::endl;
+				std::cout<< "-----------------------------------" << std::endl;
+			}
+			else if(condition.bool_type!=nullptr)	{
+				std::cout<< "fichier : " << __FILE__ << " fonction : "<< __FUNCTION__ << std::endl;
+				std::cout<< "val : " << *condition.bool_type << std::endl;
+				std::cout<< "-----------------------------------" << std::endl;
+			}
+			else{
+				std::cout<< "ERREUR: " << __FUNCTION__ << std::endl;
+			}*/
+		}
+	}
 	return condition;
 }
 

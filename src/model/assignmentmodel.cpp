@@ -6,23 +6,23 @@ AssignmentModel::AssignmentModel() {
 	//
 }
 /*
- * 
+ *
  *
  */
-AssignmentModel::AssignmentModel(VariableModel* firstOperand, BlockCompositeModel* secondOperand)	:
+AssignmentModel::AssignmentModel(BlockModel* firstOperand, BlockCompositeModel* secondOperand)	:
 	BinaryModel(firstOperand, secondOperand) { }
 
 AssignmentModel::~AssignmentModel() {
 	//
 }
 
-BlockModel * satap::AssignmentModel::getFirstOperand() {
+/*BlockModel * satap::AssignmentModel::getFirstOperand() {
 	return _firstOperand;
 }
 
 void satap::AssignmentModel::setFirstOperand(BlockModel * operand) {
 	_firstOperand = operand;
-}
+}*/
 
 sct_type AssignmentModel::execute() {
 	sct_type value;
@@ -30,25 +30,37 @@ sct_type AssignmentModel::execute() {
 	value.double_type 	= nullptr;
 	value.bool_type 	= nullptr;
 
-    value = (_secondOperand)->execute();
-	if (_firstOperand->getType() == OutputBlocType) {
-		OutputModel* out = dynamic_cast<OutputModel*>(_firstOperand);
-		out->setValue(value);
-		out->execute();
+	if(_secondOperand)
+		value = (_secondOperand)->execute();
+	else{
+		value.int_type 		= nullptr;
+		value.double_type 	= nullptr;
+		value.bool_type 	= nullptr;
+		return value;
 	}
-	else if (_firstOperand->getType() == VariableBlocType) {
-		VariableModel* var = dynamic_cast<VariableModel*>(_firstOperand);
-		var->setValue(value);
-		var->execute();
-	}
+
+	if(!((value.int_type==nullptr)&&(value.double_type==nullptr)&&(value.bool_type==nullptr)))
+		if (getFirstOperand()->getType() == OutputBlocType) {
+			OutputModel* out = dynamic_cast<OutputModel*>(getFirstOperand());
+			out->setValue(value);
+			out->execute();
+		}
+		else if (getFirstOperand()->getType() == VariableBlocType) {
+			VariableModel* var = dynamic_cast<VariableModel*>(getFirstOperand());
+			var->setValue(value);
+			var->execute();
+		}
+		else{
+			std::cout<< "ERREUR: " << __FUNCTION__ << std::endl;
+		}
 
 	return value;
 }
 
-typeBloc AssignmentModel::getType() {
+/*typeBloc AssignmentModel::getType() {
 	return AssignementBlocType;
 }
-
+*/
 int AssignmentModel::getNbElements() {
 	if (_firstOperand == NULL && _secondOperand == NULL) {
 		return 1;

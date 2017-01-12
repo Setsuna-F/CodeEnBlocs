@@ -16,18 +16,18 @@ namespace satap {
 
 		public:
 			BinaryModel();
-			BinaryModel(BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
+			BinaryModel(BlockModel* firstOperand, BlockCompositeModel* secondOperand);
 			BinaryModel(const BinaryModel & binaryModel);
 			~BinaryModel();
-			BlockCompositeModel* getFirstOperand();
-			void setFirstOperand(BlockCompositeModel* operand);
+			BlockModel* getFirstOperand();
+			void setFirstOperand(BlockModel* operand);
 			BlockCompositeModel* getSecondOperand();
 			void setSecondOperand(BlockCompositeModel* operand);
 			virtual sct_type execute() = 0;
 			int getNbElements();
 		protected:
 			//operand gauche
-			BlockCompositeModel* _firstOperand;
+			BlockModel* _firstOperand;
 			//operand droite
 			BlockCompositeModel* _secondOperand;
 	};

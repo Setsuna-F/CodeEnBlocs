@@ -358,9 +358,23 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
-				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setFirstOperand(dynamic_cast<BlockModel*>(bloc_tmp));
-				dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
-				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType);
+
+				//BlockCompositeModel* compofirstop = dynamic_cast<BlockCompositeModel*>(bloc_tmp);
+				/*BlockModel* compo = dynamic_cast<BlockModel*>(bloc_tmp);
+				std::cout << "Type int (avant setType) -> " << compo->getType() <<std::endl;
+				compo->setType(t);
+				std::cout << "Type int (apres setType) -> " << compo->getType() <<std::endl;*/
+				//BlockCompositeModel* compofirstop = dynamic_cast<BlockCompositeModel*>(bloc_tmp);
+				BlockModel* compofirstop = dynamic_cast<BlockModel*>(bloc_tmp);
+				if(compofirstop == nullptr)
+					std::cout << "ERREUR: "<< __FUNCTION__ <<std::endl;
+				else{
+					compofirstop->setWorspace(*mCurrentLevel->getWorkspace());
+					compofirstop->setType(t);
+					dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setFirstOperand(compofirstop);
+					dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
+					mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType);
+				}
 			}
 			else{
 				std::cerr << "5- " << __FUNCTION__ <<std::endl;

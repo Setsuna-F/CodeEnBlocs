@@ -34,7 +34,7 @@ class GameState : public State
 		virtual bool			update(sf::Time dt);
 		virtual bool			handleEvent(const sf::Event& event);
 
-		satap::Bloc* addBloc(satap::typeBloc t);
+		//satap::Bloc* addBloc(satap::typeBloc t);
 		void addBlocks(satap::BlockModel *block, satap::typeBloc t);
 
 		void resetCode();

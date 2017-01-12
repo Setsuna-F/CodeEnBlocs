@@ -31,6 +31,7 @@
 #include "model/gamemodel.hpp"
 #include "model/addmodel.hpp"
 #endif
+#include "score.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -224,7 +225,7 @@ bool GameState::handleEvent(const sf::Event& event) {
 	return false;
 }
 
-Bloc * GameState::addBloc(satap::typeBloc t)
+/*Bloc * GameState::addBloc(satap::typeBloc t)
 {
 	Bloc* b=NULL;
 	std::shared_ptr<Bloc> bl;
@@ -265,7 +266,7 @@ Bloc * GameState::addBloc(satap::typeBloc t)
 
 
 	return b;
-}
+}*/
 
 std::pair<int, int> GameState::getCoordonnees(int ligne, int colonne) {
 	int posX = 540, posY = 85;
@@ -295,8 +296,10 @@ void GameState::startExecute() {
 	int score = mCurrentLevel->validate();
 	// TODO à retirer
 	std::cout << score << std::endl;
-	if (score > 0)
+	if (score > 0){
 		requestStackPush(States::Win);
+		//saveLevel(score, mCurrentLevel->getName());
+	}
 	else
 		requestStackPush(States::Lose);
 }

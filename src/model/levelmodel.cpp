@@ -94,6 +94,8 @@ void LevelModel::setCodePage(CodePageModel* codePage){
 }
 
 int LevelModel::validate(){ //TODO à tester
+	int score = 1;
+	std::string out, outExpected;
 	_codePage->execute();
 	OutputListModel* outputList = _workspace->getOutputList();
 	int expectedSize = _outputListExpected.size();
@@ -103,14 +105,15 @@ int LevelModel::validate(){ //TODO à tester
 	//if ((size != expectedSize) || !(std::equal(_outputListExpected.getOutputList().begin(), _outputListExpected.getOutputList().begin() + expectedSize, outputList->getOutputList().begin())))
 	//	return 0;
 	if (size != expectedSize) {
-		for (int i = 0; i < size; i++) {
-			std::string out = outputList->getValByIndex(i);
-			std::string outExpected = _outputListExpected.getValByIndex(i);
-		}
+		return 0;
+	}
+	for (int i = 0; i < size; i++) {
+		out = outputList->getValByIndex(i);
+		outExpected = _outputListExpected.getValByIndex(i);
+		if(out != outExpected)
+			return 0;
 	}
 	
-
-	int score = 1;
 	if(size<2*_optimalBlocCount+1)
 		score++;
 	if(size<_optimalBlocCount+1)

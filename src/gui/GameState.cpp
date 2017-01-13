@@ -81,12 +81,12 @@ GameState::GameState(StateStack& stack, Context context)
 	mVariablesString.setFont(context.fonts->get(Fonts::Main));
 	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
 	mVariablesString.setColor(sf::Color::Black);
-	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.17, window_size.y*0.23));
 
 	mOutputString.setFont(context.fonts->get(Fonts::Main));
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	mOutputString.setColor(sf::Color::Black);
-	mOutputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+	mOutputString.setPosition(sf::Vector2f(window_size.x*0.32, window_size.y*0.23));
 
 	////// Instructions //////
 
@@ -282,6 +282,8 @@ void GameState::draw()
 	window.draw(mCurseur);
 
 	window.draw(mInputString);
+	window.draw(mVariablesString);
+	window.draw(mOutputString);
 
 	if (showInstructions) {
 		window.draw(mInstructionsAlphaBackgroung);
@@ -450,6 +452,11 @@ void GameState::toggleLoop() {
 
 void GameState::startExecute() {
 	int score = mCurrentLevel->validate();
+
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
+
 	*mContext.score = score;
 	*mContext.nameLevel = mCurrentLevel->getName();
 	*mContext.nbBlocsUsed = getNbBlocs();

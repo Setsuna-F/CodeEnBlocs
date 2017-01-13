@@ -27,6 +27,7 @@ namespace satap{
 			bool			removeValue		(std::string name);
 			sct_type		getValue		(std::string);
 			size_t			size			();
+			std::string		toString		();
 		private:
 		std::unordered_map<std::string, sct_type> _varlist;
 	};

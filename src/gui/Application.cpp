@@ -2,6 +2,7 @@
 #include "Utility.hpp"
 #include "State.hpp"
 #include "StateIdentifiers.hpp"
+#include "SplashScreenState.hpp"
 #include "TitleState.hpp"
 #include "MenuState.hpp"
 #include "GameState.hpp"
@@ -15,15 +16,18 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
 Application::Application()
-: mWindow(sf::VideoMode(1280, 720), "CodeEnBlocs", sf::Style::Close)
-, mTextures()
-, mFonts()
-, mMusic()
-, mSounds()
-, mKeyBinding()
-, mTutorial(false)
-, mNumLevel(0)
-, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel))
+	: mWindow(sf::VideoMode(1280, 720), "CodeEnBlocs", sf::Style::Close)
+	, mTextures()
+	, mFonts()
+	, mMusic()
+	, mSounds()
+	, mKeyBinding()
+	, mTutorial(false)
+	, mNumLevel(0)
+	, mScore(0)
+	, mNameLevel("")
+	, mNbBlocsUsed(0)
+	, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel, mScore, mNameLevel, mNbBlocsUsed))
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
@@ -36,7 +40,8 @@ Application::Application()
 	// Load sounds in SoundPlayer
 
 	// Load fonts
-	mFonts.load(Fonts::Main, 	"res/font/Sansation.ttf");
+	mFonts.load(Fonts::Main, "res/font/Charlatan.otf");
+	mFonts.load(Fonts::Normal, "res/font/Sansation.ttf");
 
 	// Load textures
 	mTextures.load(Textures::Background, "res/img/background.png");
@@ -46,7 +51,7 @@ Application::Application()
 	mTextures.load(Textures::LevelManagerBackgroud, "res/img/Background7.png");
 
 	mTextures.load(Textures::Buttons,			"res/img/Buttons.png");
-	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi.png");
+	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi-1.png");
 	mTextures.load(Textures::ExecuteButton,		"res/img/button-execute-bi.png");
 	mTextures.load(Textures::ResetButton,		"res/img/button-reset-bi.png");
 	mTextures.load(Textures::LoopButton,		"res/img/button-loop-bi.png");
@@ -74,14 +79,17 @@ Application::Application()
 	mTextures.load(Textures::Tutorial9, "res/img/tuto/tuto-9.png");
 
 	mTextures.load(Textures::Lose, "res/img/lose.png");
-	mTextures.load(Textures::Win, "res/img/win.png");
+	mTextures.load(Textures::Win1, "res/img/level-end-score-1.png");
+	mTextures.load(Textures::Win2, "res/img/level-end-score-2.png");
+	mTextures.load(Textures::Win3, "res/img/level-end-score-3.png");
+	mTextures.load(Textures::WinBackground, "res/img/level-end-inner-background.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);
 	mStatisticsText.setCharacterSize(10u);
 
 	registerStates();
-	mStateStack.pushState(States::Title);
+	mStateStack.pushState(States::SplashSreen);
 
 	mMusic.setVolume(20.f);
 	mSounds.setVolume(50.f);
@@ -157,6 +165,7 @@ void Application::updateStatistics(sf::Time dt)
 
 void Application::registerStates()
 {
+	mStateStack.registerState<SplashScreenState>(States::SplashSreen);
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);

@@ -18,6 +18,7 @@ GameButton::GameButton(State::Context context)
 	, mIsToggle(false)
 	, mSounds(*context.sounds)
 	, mContext(context)
+	, mSoundPlayed(SoundEffect::Button)
 {
 	changeTexture(Normal);
 
@@ -64,6 +65,8 @@ void GameButton::activate()
 {
 	Component::activate();
 
+	mSounds.play(mSoundPlayed);
+
     // If we are toggle then we should show that the button is pressed and thus "toggled".
 	if (mIsToggle)
 		changeTexture(Pressed);
@@ -74,8 +77,6 @@ void GameButton::activate()
     // If we are not a toggle then deactivate the button since we are just momentarily activated.
 	if (!mIsToggle)
 		deactivate();
-
-	mSounds.play(SoundEffect::Button);
 }
 
 void GameButton::deactivate()
@@ -150,6 +151,11 @@ void GameButton::scale(float scaleX, float scaleY)
 void GameButton::setSprite(State::Context c, Textures::ID id) {
 	mSprite = sf::Sprite(c.textures->get(id));
 	changeTexture(Normal);
+}
+
+void GUI::GameButton::setSound(SoundEffect::ID s)
+{
+	mSoundPlayed = s;
 }
 
 

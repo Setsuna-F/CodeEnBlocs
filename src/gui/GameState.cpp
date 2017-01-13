@@ -19,6 +19,7 @@
 #include "gui/GameButton.hpp"
 #include "gui/SpawnerButton.hpp"
 #include "gui/Container.hpp"
+#include "gui/KeyBinding.hpp"
 #include "blocs/Bloc.hpp"
 #include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
@@ -46,6 +47,11 @@ GameState::GameState(StateStack& stack, Context context)
 	, mCurseur(context)
 	, mLi(0)
 	, mCol(0)
+	, showInstructions(true)
+	, mShowConfirmationExit(false)
+	, mExiting(false)
+	, mButtonsContainerConfirmationExit()
+	, mDelayExit(sf::Time::Zero)
 {
 	mBackgroundSprite.setTexture(context.textures->get(Textures::GameBackgroud));
 
@@ -54,8 +60,94 @@ GameState::GameState(StateStack& stack, Context context)
 	game.loadLevel(*context.numLevel);
 
 	mCurrentLevel = game.getCurrentLevel();
-	std::cout << mCurrentLevel->getName() << std::endl;
-	std::cout << mCurrentLevel->getDescription() << std::endl;
+
+
+	// Fenetre confirmation quitter level (avec fond grisé, boutons yes/no,...)
+	sf::RenderWindow& window = *getContext().window;
+	sf::Vector2u window_size = window.getSize();
+
+	////// Inputs //////
+
+	mInputString.setFont(context.fonts->get(Fonts::Main));
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mInputString.setColor(sf::Color::Black);
+	mInputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	// Débug
+	/*std::cout << "Inputs" << std::endl;
+	std::cout << mCurrentLevel->getWorkspace()->getInputList()->toString() << std::endl;
+	std::cout << "Fin Inputs" << std::endl;*/
+
+	mVariablesString.setFont(context.fonts->get(Fonts::Main));
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setColor(sf::Color::Black);
+	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	mOutputString.setFont(context.fonts->get(Fonts::Main));
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
+	mOutputString.setColor(sf::Color::Black);
+	mOutputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
+
+	////// Instructions //////
+
+	mInstructionSprite.setTexture(context.textures->get(Textures::Background));
+	mInstructionSprite.setPosition(window_size.x*0.1, window_size.y*0.1);
+	mInstructionSprite.setScale(0.8, 0.8);
+
+	mInstructionsAlphaBackgroung.setSize(sf::Vector2f(window_size.x, window_size.y));
+	mInstructionsAlphaBackgroung.setPosition(0, 0);
+	mInstructionsAlphaBackgroung.setFillColor(sf::Color(0,0,0,120));
+
+	mLevelTitle.setFont(context.fonts->get(Fonts::Main));
+	mLevelTitle.setString(mCurrentLevel->getName());
+	mLevelTitle.setColor(sf::Color::Black);
+	centerOrigin(mLevelTitle);
+	mLevelTitle.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.2));
+
+	mLevelDescription.setFont(context.fonts->get(Fonts::Main));
+	mLevelDescription.setString(mCurrentLevel->getDescription());
+	mLevelDescription.setColor(sf::Color::Black);
+	centerOrigin(mLevelDescription);
+	mLevelDescription.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.4));
+
+	mLevelTip.setFont(context.fonts->get(Fonts::Main));
+	mLevelTip.setString(mCurrentLevel->getHelp());
+	mLevelTip.setColor(sf::Color::Black);
+	centerOrigin(mLevelTip);
+	mLevelTip.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.6));
+
+
+	mSpriteConfirmationExit.setTexture(context.textures->get(Textures::Background));
+	centerOrigin(mSpriteConfirmationExit);
+	mSpriteConfirmationExit.setPosition(window_size.x*0.5, window_size.y*0.5);
+	mSpriteConfirmationExit.setScale(0.5, 0.5);
+
+	mRectAlphaBackground.setSize(sf::Vector2f(window_size.x, window_size.y));
+	mRectAlphaBackground.setPosition(0, 0);
+	mRectAlphaBackground.setFillColor(sf::Color(0, 0, 0, 120));
+
+	mTextConfirmationExit.setFont(context.fonts->get(Fonts::Main));
+	mTextConfirmationExit.setString("Are you sure to exit ?");
+	mTextConfirmationExit.setColor(sf::Color::Black);
+	centerOrigin(mTextConfirmationExit);
+	mTextConfirmationExit.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.4));
+
+	auto yesConfirmationExitButton = std::make_shared<GUI::Button>(context);
+	yesConfirmationExitButton->setSound(SoundEffect::WrinkledPaper);
+	yesConfirmationExitButton->setText("Yes");
+	yesConfirmationExitButton->setPosition(sf::Vector2f(window_size.x*0.30, window_size.y*0.55));
+	yesConfirmationExitButton->setCallback([this]() {
+		mExiting = true;
+	});
+	mButtonsContainerConfirmationExit.pack(yesConfirmationExitButton);
+
+	auto noConfirmationExitButton = std::make_shared<GUI::Button>(context);
+	noConfirmationExitButton->setText("No");
+	noConfirmationExitButton->setPosition(sf::Vector2f(window_size.x*0.55, window_size.y*0.55));
+	noConfirmationExitButton->setCallback([this]() {
+		mShowConfirmationExit = false;
+	});
+	mButtonsContainerConfirmationExit.pack(noConfirmationExitButton);
 
 	/////////// States Buttons ///////////
 
@@ -63,7 +155,7 @@ GameState::GameState(StateStack& stack, Context context)
 	exitButton->setPosition(10, 10);
 	exitButton->setSprite(context, Textures::ExitButton);
 	exitButton->setCallback([this]() {
-		requestStackPop();
+		mShowConfirmationExit = true;
 	});
 	mButtonsContainer.pack(exitButton);
 
@@ -79,7 +171,7 @@ GameState::GameState(StateStack& stack, Context context)
 	ennonceButton->setPosition(130, 10);
 	ennonceButton->setSprite(context, Textures::HelpButton);
 	ennonceButton->setCallback([this]() {
-		// TODO ajouter un State Enoncé
+		showInstructions = true;
 	});
 	mButtonsContainer.pack(ennonceButton);
 
@@ -88,6 +180,7 @@ GameState::GameState(StateStack& stack, Context context)
 	auto resetAction = std::make_shared<GUI::GameButton>(context);
 	resetAction->setPosition(250, 10);
 	resetAction->setSprite(context, Textures::ResetButton);
+	resetAction->setSound(SoundEffect::WrinkledPaper);
 	resetAction->setCallback([this]() {
 		resetCode();
 	});
@@ -187,15 +280,58 @@ void GameState::draw()
 	}
 
 	window.draw(mCurseur);
+
+	window.draw(mInputString);
+
+	if (showInstructions) {
+		window.draw(mInstructionsAlphaBackgroung);
+		window.draw(mInstructionSprite);
+		window.draw(mLevelTitle);
+		window.draw(mLevelDescription);
+		window.draw(mLevelTip);
+	}
+	if (mShowConfirmationExit) {
+		window.draw(mRectAlphaBackground);
+		window.draw(mSpriteConfirmationExit);
+		window.draw(mTextConfirmationExit);
+		window.draw(mButtonsContainerConfirmationExit);
+	}
+
+
+	if (mExiting)
+	{
+		mRectAlphaBackground.setFillColor(mRectAlphaBackground.getFillColor()+sf::Color(0,0,0,1));
+		window.draw(mRectAlphaBackground);
+	}
 }
 
-bool GameState::update(sf::Time)
+bool GameState::update(sf::Time dt)
 {
+	if (mExiting)
+	{
+		mDelayExit += dt;
+		if (mDelayExit > sf::seconds(4.75f))
+		{
+			requestStackPop();
+		}
+	}
+
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	return true;
 }
 
 bool GameState::handleEvent(const sf::Event& event) {
-	if (event.type == sf::Event::KeyPressed) {
+	if (mShowConfirmationExit)
+	{
+		mButtonsContainerConfirmationExit.handleEvent(event);
+		return false;
+	}
+
+
+
+	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::Up) {
 			mLi--;
 			if (mLi < 0)
@@ -205,8 +341,8 @@ bool GameState::handleEvent(const sf::Event& event) {
 		}
 		else if (event.key.code == sf::Keyboard::Down) {
 			mLi++;
-			if (mLi > 12)
-				mLi = 12;
+			if (mLi > 11)
+				mLi = 11;
 			mCol = getNbElementsOnLine(mLi);
 			reloadPositionCurseur();
 		}
@@ -214,8 +350,28 @@ bool GameState::handleEvent(const sf::Event& event) {
 			effacerLigne(mLi);
 			mCol = 0;
 		}
-
+		else if (event.key.code == getContext().keys->getAssignedKey(PlayerAction::RunCode))
+		{
+			startExecute();
+		}
 	} else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased || event.type == sf::Event::MouseMoved) {
+		if (showInstructions && event.type == sf::Event::MouseButtonReleased) {
+			showInstructions = false;
+		}
+
+		else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.x > 505 && event.mouseButton.x < 995 && event.mouseButton.y > 70 && event.mouseButton.y < 70 + 50*12)
+		{
+			int ligne = 0;
+			while (50 * ligne + 70 < event.mouseButton.y)
+			{
+				ligne++;
+			}
+			mLi = ligne-1;
+			mCol = getNbElementsOnLine(mLi);
+			reloadPositionCurseur();
+		}
+
+
 		mButtonsContainer.handleEvent(event);
 	}
 	else if (event.type == sf::Event::KeyReleased)
@@ -294,11 +450,15 @@ void GameState::toggleLoop() {
 
 void GameState::startExecute() {
 	int score = mCurrentLevel->validate();
+	*mContext.score = score;
+	*mContext.nameLevel = mCurrentLevel->getName();
+	*mContext.nbBlocsUsed = getNbBlocs();
+
 	// TODO à retirer
 	std::cout << score << std::endl;
 	if (score > 0){
 		requestStackPush(States::Win);
-		//saveLevel(score, mCurrentLevel->getName());
+		saveLevel(score, mCurrentLevel->getName());
 	}
 	else
 		requestStackPush(States::Lose);
@@ -314,8 +474,20 @@ void GameState::effacerLigne(int ligne) {
 }
 
 int GameState::getNbElementsOnLine(int ligne) {
-	int nbElements = mCurrentLevel->getCodePage()->getNbBlock(ligne);
+	//int nbElements = mCurrentLevel->getCodePage()->getNbBlock(ligne);
+	int nbElements = mBlocsContainer[mLi].getNbChildren();
 	std::cout << "ligne " << ligne << " : " << nbElements << std::endl;
+	return nbElements;
+}
+
+int GameState::getNbBlocs() {
+	int nbElements = 0;
+
+	for (int i = 0; i < 12; i++) {
+		int n = mBlocsContainer[i].getNbChildren();
+		nbElements += n;
+	}
+
 	return nbElements;
 }
 

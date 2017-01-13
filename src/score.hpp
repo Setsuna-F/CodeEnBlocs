@@ -1,6 +1,5 @@
 #ifndef SCORE_HPP
 #define SCORE_HPP
-using namespace satap;
 
 class vector;
 

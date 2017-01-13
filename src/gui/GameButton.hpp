@@ -5,6 +5,7 @@
 #include "ResourceIdentifiers.hpp"
 #include "State.hpp"
 #include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -53,20 +54,22 @@ class GameButton : public Component
         virtual void			handleEvent(const sf::Event& event);
 
 		void					setSprite(State::Context c, Textures::ID id);
+		void					setSound(SoundEffect::ID s);
 
 
-    private:
+
+	protected:
         virtual void			draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		void					changeTexture(Type buttonType);
 
 
-    private:
         Callback				mCallback;
         sf::Sprite				mSprite;
         sf::Text				mText;
         bool					mIsToggle;
 		SoundPlayer&			mSounds;
 		State::Context			mContext;
+		SoundEffect::ID			mSoundPlayed;
 };
 
 }

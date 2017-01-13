@@ -22,6 +22,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 using namespace satap;
 
@@ -44,8 +45,9 @@ class GameState : public State
 		std::pair<int, int> getCoordonnees(int ligne, int colonne);
 		std::pair<int, int> getCoordonneesCurseur(int ligne);
 
-		void effacerLigne         (int ligne);
-		int  getNbElementsOnLine  (int ligne);
+		void effacerLigne		(int ligne);
+		int getNbElementsOnLine	(int ligne);
+		int getNbBlocs();
 		void reloadPositionCurseur();
 
 		bool isUnaryBlock   (typeBloc t);
@@ -61,14 +63,25 @@ class GameState : public State
 
 		Bloc *factoryBlock(typeBloc t);
 
+
 	private:
 		Context							mContext;
-		sf::Sprite						mBackgroundSprite;
+		sf::RectangleShape				mInstructionsAlphaBackgroung;
+		sf::Sprite						mBackgroundSprite, mInstructionSprite;
+		sf::Text						mLevelTitle, mLevelDescription, mLevelTip, mInputString, mOutputString, mVariablesString;
 		GUI::Container					mButtonsContainer;
 		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
 		int								mLi, mCol; // Coordonn�es du curseur (l� ou va �tre plac� le prochain bloc)
+		sf::RectangleShape				mRectAlphaBackground;
+		sf::Sprite						mSpriteConfirmationExit;
+		sf::Text						mTextConfirmationExit;
+		bool							mShowConfirmationExit;
+		bool							mExiting;
+		bool							showInstructions;
+		GUI::Container					mButtonsContainerConfirmationExit;
+		sf::Time						mDelayExit;
 };
 
 #endif // BOOK_MENUSTATE_HPP

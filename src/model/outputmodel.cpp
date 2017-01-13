@@ -23,11 +23,11 @@ OutputModel::~OutputModel() {
 sct_type OutputModel::execute() {
 	std::string val = "";
 	if (_valOutput.int_type){
-		val = typeToString(_valOutput.int_type);
-		std::cout << "DANS INT :" << std::endl;
+		val = typeToString(*_valOutput.int_type);
+		std::cout << "DANS INT : " << *_valOutput.int_type << std::endl;
 	}
 	else if (_valOutput.double_type){
-		val = typeToString(_valOutput.double_type);
+		val = typeToString(*_valOutput.double_type);
 		std::cout << "DANS DOUBLE :" << std::endl;
 	}
 	else if (_valOutput.bool_type ){

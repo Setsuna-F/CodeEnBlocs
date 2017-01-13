@@ -3,7 +3,8 @@
 
 
 State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts,
-	MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys, bool& tutorial, int& numLevel)
+	MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys, bool& tutorial, int& numLevel,
+	int& score, std::string& nameLevel, int& nbBlocsUsed)
 : window(&window)
 , textures(&textures)
 , fonts(&fonts)
@@ -12,6 +13,9 @@ State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontH
 , keys(&keys)
 , tutorial(&tutorial)
 , numLevel(&numLevel)
+, score(&score)
+, nameLevel(&nameLevel)
+, nbBlocsUsed(&nbBlocsUsed)
 {
 }
 

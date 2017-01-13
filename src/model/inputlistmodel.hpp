@@ -13,6 +13,7 @@
 #include <stack>
 #include <string>
 #include "tools.h"
+#include <SFML/Graphics/Text.hpp>
 
 namespace satap{
 
@@ -23,14 +24,16 @@ namespace satap{
 	 */
 	class InputListModel{
 	private:
-		std::stack<sct_type> _input;
+		std::vector<sct_type> _input;
 	
 	public:
 		InputListModel();
-		InputListModel(std::stack<sct_type> in);
+		InputListModel(std::vector<sct_type> in);
 	
 		void		push(sct_type val);
 		sct_type	pop();
+
+		std::string	toString();
 
 		bool	isEmpty();
 		size_t	size();

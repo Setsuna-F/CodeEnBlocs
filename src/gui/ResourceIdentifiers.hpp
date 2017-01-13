@@ -47,7 +47,10 @@ namespace Textures
 		Tutorial9,
 		TutorialEnd,
 		Lose,
-		Win,
+		Win1,
+		Win2,
+		Win3,
+		WinBackground
 	};
 }
 
@@ -67,6 +70,7 @@ namespace Fonts
 	enum ID
 	{
 		Main,
+		Normal,
 	};
 }
 
@@ -74,13 +78,8 @@ namespace SoundEffect
 {
 	enum ID
 	{
-		AlliedGunfire,
-		EnemyGunfire,
-		Explosion1,
-		Explosion2,
-		LaunchMissile,
-		CollectPickup,
 		Button,
+		WrinkledPaper,
 	};
 }
 

@@ -74,5 +74,26 @@ size_t VariableListModel::size(){
 	return _varlist.size();
 }
 
+std::string satap::VariableListModel::toString()
+{
+	std::string s = "";
+	for (auto var : _varlist) {
+		std::string name = var.first;
+
+		std::string value;
+		if (var.second.bool_type)
+			value = std::to_string(*var.second.bool_type);
+		else if (var.second.double_type)
+			value = std::to_string(*var.second.double_type);
+		else if (var.second.int_type)
+			value = std::to_string(*var.second.int_type);
+		else
+			value = "?";
+
+		s += name + "=" + value + "\n";
+	}
+	return s;
+}
+
 
 

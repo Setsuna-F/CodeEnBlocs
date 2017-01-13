@@ -7,6 +7,7 @@ namespace States
 	enum ID
 	{
 		None,
+		SplashSreen,
 		Title,
 		Menu,
 		Game,
@@ -14,7 +15,7 @@ namespace States
 		Tutorial,
 		LevelManager,
 		Lose,
-		Win,
+		Win
 	};
 }
 

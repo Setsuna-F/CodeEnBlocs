@@ -14,7 +14,7 @@
 using namespace satap;
 
 IOLevelModel::IOLevelModel() :
-	LevelModel("Entree / Sortie", 2, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée et Output pour restituer une valeur en sortie."){
+	LevelModel("Entree / Sortie", 2, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée \n et Output pour restituer une valeur en sortie."){
 		
 		// TODO a débugger
 		/*
@@ -40,7 +40,7 @@ void IOLevelModel::reset(){
 	foo.double_type = nullptr;
 	foo.bool_type = nullptr;
 	bar = min + (rand() % (int)(max - min + 1));
-	foo.int_type = &bar;
+	foo.int_type = new int(bar);
 	output = *(foo.int_type);
 	input->push(foo);
 	//_workspace->setInputList(input);

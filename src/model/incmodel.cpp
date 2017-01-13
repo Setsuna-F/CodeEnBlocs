@@ -37,19 +37,19 @@ sct_type IncModel::execute() {
 	res.bool_type		=nullptr;
 
 	operand = this->UnaryModel::getOperand()->execute();
-	
+
 	/*cas int*/
 	if(operand.int_type){
 		int res_add=*operand.int_type+1;
-		res.int_type=&res_add;
+		res.int_type=new int(res_add);
 		std::fflush(stdout);
 	}
 	/*cas double*/
 	else if (operand.double_type){
 		double res_add=*operand.double_type+1;
-		res.double_type=&res_add;
+		res.double_type=new double(res_add);
 		std::fflush(stdout);
 	}
-	
+
 	return res;
 }

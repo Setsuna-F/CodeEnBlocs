@@ -30,14 +30,14 @@ sct_type NotModel::execute() {
 	op.int_type		= nullptr;
 	op.double_type	= nullptr;
 	op.bool_type	= nullptr;
-	
+
 	op = this->UnaryModel::getOperand()->execute();
-	
+
 	/*Cas bool*/
 	if(op.bool_type){
 		bool res_tmp = *op.bool_type;
 		res_tmp = !res_tmp;
-		op.bool_type = &res_tmp;
+		op.bool_type = new bool(res_tmp);
 		std::fflush(stdout);
 	}
 	/*Cas erreur*/
@@ -47,6 +47,6 @@ sct_type NotModel::execute() {
 		op.bool_type	= nullptr;
 		return op;
 	}
-	
+
 	return op;
 }

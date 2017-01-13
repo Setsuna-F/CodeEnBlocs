@@ -34,21 +34,21 @@ sct_type PrimeModel::execute() {
 	op.int_type		= nullptr;
 	op.double_type	= nullptr;
 	op.bool_type	= nullptr;
-	
+
 	op = this->UnaryModel::getOperand()->execute();
 	if(op.int_type){
 		bool result = this->isPrime(*op.int_type);
 		std::fflush(stdout);
 		op.int_type		= nullptr;
 		op.double_type	= nullptr;
-		op.bool_type	= &result;
+		op.bool_type	= new bool(result);
 	}
 	else{
 		op.int_type		= nullptr;
 		op.double_type	= nullptr;
 		op.bool_type	= nullptr;
 	}
-	
+
 	return op;
 }
 

@@ -5,21 +5,21 @@ using namespace satap;
 ValueModel::ValueModel(){}
 
 ValueModel::ValueModel(int value){
-	_value.int_type = &value;
+	_value.int_type = new int(value);
 	_value.double_type = nullptr;
 	_value.bool_type = nullptr;
 }
 
 ValueModel::ValueModel(double value){
 	_value.int_type = nullptr;
-	_value.double_type = &value;
+	_value.double_type = new double(value);
 	_value.bool_type = nullptr;
 }
 
 ValueModel::ValueModel(bool value){
 	_value.int_type = nullptr;
 	_value.double_type = nullptr;
-	_value.bool_type = &value;
+	_value.bool_type = new bool(value);
 }
 
 ValueModel::ValueModel(sct_type value): _value(value){}

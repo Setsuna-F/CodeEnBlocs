@@ -76,7 +76,7 @@ sct_type MinModel::execute() {
 		int res_min = res_first;
 		if(res_first > res_second)
 			res_min = res_second;
-		res.int_type=&res_min;
+		res.int_type=new int(res_min);
 		std::fflush(stdout);
 	}
 	/*cas double*/
@@ -84,7 +84,7 @@ sct_type MinModel::execute() {
 		double res_min = res_first;
 		if(res_first > res_second)
 			res_min = res_second;
-		res.double_type=&res_min;
+		res.double_type=new double(res_min);
 		std::fflush(stdout);
 	}
 

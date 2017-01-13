@@ -38,7 +38,7 @@ sct_type AbsModel::execute() {
 		if (res_tmp < 0) {
 			res_tmp = res_tmp*(-1);
 		}
-		op.int_type = &res_tmp;
+		op.int_type = new int(res_tmp);
 		std::fflush(stdout);
 	}
 	else if(op.double_type){
@@ -46,7 +46,7 @@ sct_type AbsModel::execute() {
 		if (res_tmp < 0) {
 			res_tmp = res_tmp*(-1);
 		}
-		op.double_type = &res_tmp;
+		op.double_type = new double(res_tmp);
 		std::fflush(stdout);
 	}
 	/*Cas erreur*/

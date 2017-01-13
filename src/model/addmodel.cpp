@@ -86,9 +86,5 @@ sct_type AddModel::execute() {
 		std::fflush(stdout);
 	}
 
-	std::cout << "RES= "<< *res.int_type<<std::endl;
-	std::cout << "FST= "<< res_first <<std::endl;
-	std::cout << "SCD= "<< res_second<<std::endl;
-
 	return res;
 }

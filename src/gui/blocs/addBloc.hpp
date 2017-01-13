@@ -14,7 +14,7 @@ namespace satap {
 	class AddBloc : public Bloc, public AddModel {
 	public:
 		AddBloc(State::Context context);
-		AddBloc(State::Context context, BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand);
+		AddBloc(State::Context context, BlockCompositeModel* &firstOperand, BlockCompositeModel* &secondOperand);
 		AddBloc(State::Context context, const BinaryModel& binaryModel);
 	};
 }

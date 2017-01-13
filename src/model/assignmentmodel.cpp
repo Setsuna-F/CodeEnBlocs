@@ -39,7 +39,9 @@ sct_type AssignmentModel::execute() {
 		return value;
 	}
 
-	if(!((value.int_type==nullptr)&&(value.double_type==nullptr)&&(value.bool_type==nullptr)))
+	std::cout << "RES[assignement]= "<< *value.int_type<<std::endl;
+
+	if(!((value.int_type==nullptr)&&(value.double_type==nullptr)&&(value.bool_type==nullptr))){
 		if (getFirstOperand()->getType() == OutputBlocType) {
 			OutputModel* out = dynamic_cast<OutputModel*>(getFirstOperand());
 			out->setValue(value);
@@ -53,7 +55,7 @@ sct_type AssignmentModel::execute() {
 		else{
 			std::cout<< "ERREUR: " << __FUNCTION__ << std::endl;
 		}
-
+	}
 	return value;
 }
 

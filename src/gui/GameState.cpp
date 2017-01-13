@@ -47,9 +47,9 @@ GameState::GameState(StateStack& stack, Context context)
 	, mCurseur(context)
 	, mLi(0)
 	, mCol(0)
-	, showInstructions(true)
 	, mShowConfirmationExit(false)
 	, mExiting(false)
+	, showInstructions(true)
 	, mButtonsContainerConfirmationExit()
 	, mDelayExit(sf::Time::Zero)
 {
@@ -70,7 +70,7 @@ GameState::GameState(StateStack& stack, Context context)
 
 	mInputString.setFont(context.fonts->get(Fonts::Main));
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
-	mInputString.setColor(sf::Color::Black);
+	mInputString.setFillColor(sf::Color::Black);
 	mInputString.setPosition(sf::Vector2f(window_size.x*0.06, window_size.y*0.23));
 
 	// Débug
@@ -80,12 +80,12 @@ GameState::GameState(StateStack& stack, Context context)
 
 	mVariablesString.setFont(context.fonts->get(Fonts::Main));
 	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
-	mVariablesString.setColor(sf::Color::Black);
+	mVariablesString.setFillColor(sf::Color::Black);
 	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.17, window_size.y*0.23));
 
 	mOutputString.setFont(context.fonts->get(Fonts::Main));
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
-	mOutputString.setColor(sf::Color::Black);
+	mOutputString.setFillColor(sf::Color::Black);
 	mOutputString.setPosition(sf::Vector2f(window_size.x*0.32, window_size.y*0.23));
 
 	////// Instructions //////
@@ -100,19 +100,19 @@ GameState::GameState(StateStack& stack, Context context)
 
 	mLevelTitle.setFont(context.fonts->get(Fonts::Main));
 	mLevelTitle.setString(mCurrentLevel->getName());
-	mLevelTitle.setColor(sf::Color::Black);
+	mLevelTitle.setFillColor(sf::Color::Black);
 	centerOrigin(mLevelTitle);
 	mLevelTitle.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.2));
 
 	mLevelDescription.setFont(context.fonts->get(Fonts::Main));
 	mLevelDescription.setString(mCurrentLevel->getDescription());
-	mLevelDescription.setColor(sf::Color::Black);
+	mLevelDescription.setFillColor(sf::Color::Black);
 	centerOrigin(mLevelDescription);
 	mLevelDescription.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.4));
 
 	mLevelTip.setFont(context.fonts->get(Fonts::Main));
 	mLevelTip.setString(mCurrentLevel->getHelp());
-	mLevelTip.setColor(sf::Color::Black);
+	mLevelTip.setFillColor(sf::Color::Black);
 	centerOrigin(mLevelTip);
 	mLevelTip.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.6));
 
@@ -128,7 +128,7 @@ GameState::GameState(StateStack& stack, Context context)
 
 	mTextConfirmationExit.setFont(context.fonts->get(Fonts::Main));
 	mTextConfirmationExit.setString("Are you sure to exit ?");
-	mTextConfirmationExit.setColor(sf::Color::Black);
+	mTextConfirmationExit.setFillColor(sf::Color::Black);
 	centerOrigin(mTextConfirmationExit);
 	mTextConfirmationExit.setPosition(sf::Vector2f(window_size.x*0.5, window_size.y*0.4));
 
@@ -711,6 +711,8 @@ bool GameState::isValideBlock(satap::typeBloc t){
 		case VariableBlocType:
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -729,6 +731,8 @@ bool GameState::isBinaryBlock(satap::typeBloc t){
 		//>= <= > < !=
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 
 	return isValide;
@@ -744,6 +748,8 @@ bool GameState::isUnaryBlock(satap::typeBloc t){
 		case NotBlocType:
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -755,6 +761,8 @@ bool GameState::isBooleanBlock(satap::typeBloc t){
 		//>= <= > < !=
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -772,6 +780,8 @@ bool GameState::isFunctionBlock(satap::typeBloc t){
 		//>= <= > < !=
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -783,6 +793,8 @@ bool GameState::isBaseFunctionBlock(satap::typeBloc t){
 		case NotBlocType:
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -798,6 +810,8 @@ bool GameState::isOperatorFunctionBlock(satap::typeBloc t){
 		//>= <= > < !=
 			isValide=true;
 		break;
+		default:
+			break;
 	}
 	return isValide;
 }
@@ -810,6 +824,8 @@ bool GameState::isUnaryFunctionBlock(satap::typeBloc t){
 		//++ -- ...
 			isValide=true;
 		break;
+		default:
+  			break;
 	}
 	return isValide;
 }

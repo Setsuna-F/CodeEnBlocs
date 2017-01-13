@@ -11,7 +11,7 @@ InputModel::InputModel(InputListModel* inputList){
 	_inputList = inputList;
 }
 
-void InputModel::setInputList(InputListModel* inputList){
+void InputModel::setInputList(InputListModel* &inputList){
 	_inputList = inputList;
 }
 

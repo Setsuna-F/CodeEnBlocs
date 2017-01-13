@@ -3,7 +3,7 @@
 satap::AddBloc::AddBloc(State::Context context) :
 	Bloc(context, AddBlocType) {}
 
-satap::AddBloc::AddBloc(State::Context context, BlockCompositeModel* firstOperand, BlockCompositeModel* secondOperand) :
+satap::AddBloc::AddBloc(State::Context context, BlockCompositeModel* &firstOperand, BlockCompositeModel* &secondOperand) :
 	Bloc(context, AddBlocType),
 	AddModel(firstOperand, secondOperand) {}
 

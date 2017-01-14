@@ -24,18 +24,18 @@ sct_type OutputModel::execute() {
 	std::string val = "";
 	if (_valOutput.int_type){
 		val = typeToString(*_valOutput.int_type);
-		std::cout << "DANS INT : " << *_valOutput.int_type << std::endl;
+		//std::cout << "DANS INT : " << *_valOutput.int_type << std::endl;
 	}
 	else if (_valOutput.double_type){
 		val = typeToString(*_valOutput.double_type);
-		std::cout << "DANS DOUBLE :" << std::endl;
+		//std::cout << "DANS DOUBLE :" << std::endl;
 	}
 	else if (_valOutput.bool_type ){
 		val = (*_valOutput.bool_type?"true":"false");
-		std::cout << "DANS BOOL :" << std::endl;
+		//std::cout << "DANS BOOL :" << std::endl;
 	}
 
-	std::cout << "Output :" << val << std::endl;
+	//std::cout << "Output :" << val << std::endl;
 	_outPutList->push(val);
 	return _valOutput;
 }

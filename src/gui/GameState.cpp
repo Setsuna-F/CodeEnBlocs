@@ -475,8 +475,9 @@ void GameState::effacerLigne(int ligne) {
 	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
 	std::cout << "effacer line " << ligne << std::endl;
 	if (getNbElementsOnLine(ligne) > 0) {
-		mCurrentLevel->getCodePage()->deleteLigne(ligne);
+		//mCurrentLevel->getCodePage()->deleteLigne(ligne);
 		mBlocsContainer[ligne].flush();
+		mCurrentLevel->getCodePage()->deleteLigne(ligne);
 	}
 }
 
@@ -512,11 +513,11 @@ void GameState::reloadPositionCurseur() {
  */
 void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 	std::shared_ptr<Bloc> bloc_ptr;
-	std::cerr << "1- " << __FUNCTION__ <<std::endl;
+	//std::cerr << "1- " << __FUNCTION__ <<std::endl;
 	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0){ //Si la ligne est vide alors
-		std::cerr << "2- " << __FUNCTION__ <<std::endl;
+		//std::cerr << "2- " << __FUNCTION__ <<std::endl;
 		if(isValideBlock(t)){
-			std::cerr << "3- " << __FUNCTION__ <<std::endl;
+			//std::cerr << "3- " << __FUNCTION__ <<std::endl;
 			Bloc * bloc_tmp = factoryBlock(t);
 
 			std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -527,7 +528,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
 			if(t == OutputBlocType || t == VariableBlocType){
-				std::cerr << "4- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "4- " << __FUNCTION__ <<std::endl;
 				//std::cerr << "ERROR: OUT OU VARIABLE " << __FUNCTION__ <<std::endl;
 				Bloc * bloc_assign_tmp= factoryBlock(AssignementBlocType);
 				std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -556,7 +557,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				}
 			}
 			else{
-				std::cerr << "5- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "5- " << __FUNCTION__ <<std::endl;
 				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_tmp), t);
 			}
 		}
@@ -565,14 +566,14 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 		}
 	}else{
 		if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == AssignementBlocType){
-			std::cerr << "7- " << __FUNCTION__ <<std::endl;
+			//std::cerr << "7- " << __FUNCTION__ <<std::endl;
 			AssignmentModel* assignBlock = dynamic_cast<AssignmentModel*>(mCurrentLevel->getCodePage()->getBlockByIndex(mLi));
 			if(assignBlock->getSecondOperand()==nullptr){
-				std::cerr << "8- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "8- " << __FUNCTION__ <<std::endl;
 			 	if(!isBooleanBlock(t)){
-					std::cerr << "9- " << __FUNCTION__ <<std::endl;
+					//std::cerr << "9- " << __FUNCTION__ <<std::endl;
 					if(!isValideBlock(t) && !isFunctionBlock(t)){
-						std::cerr << "10- " << __FUNCTION__ <<std::endl;
+						//std::cerr << "10- " << __FUNCTION__ <<std::endl;
 						Bloc * bloc_assign_tmp= factoryBlock(t);
 
 						std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -592,7 +593,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			}
 			else if (assignBlock->getSecondOperand() != nullptr){
 				if (t != AssignementBlocType){
-					std::cerr << "12- " << __FUNCTION__ <<std::endl;
+					//std::cerr << "12- " << __FUNCTION__ <<std::endl;
 
 					BlockCompositeModel * blockmodel_tmp = assignBlock->getSecondOperand();
 

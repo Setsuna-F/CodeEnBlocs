@@ -34,6 +34,23 @@ void InstructionBlockModel::removeFromIndex(size_t index){
 	this->_blockList.erase(this->_blockList.begin() + index);
 	this->_blockListName.erase(this->_blockListName.begin() + index);
 }
+void InstructionBlockModel::nullBlockFromIndex(size_t index){
+	//this->_blockList.erase(this->_blockList.begin() + index);
+	//this->_blockListName.erase(this->_blockListName.begin() + index);
+	//std::cout<<"Je passe ici "<< __FUNCTION__ <<std::endl;
+	if(index >= this->_blockList.size()){
+		std::cout<<"Il y a beaucoupe de bloc [Il ne devrait pas y en avoir]"<<std::endl;
+	}
+	else{
+		std::cout<<"Il reste un bloc"<<std::endl;
+		BlockModel *bm = new AssignmentModel();
+		this->_blockList[index]=bm;
+		this->_blockList.erase(this->_blockList.begin() + index);
+
+	}
+	std::cout<<"TAILLE DES BLOCS RESTANT : "<< this->_blockList.size() <<std::endl;
+
+}
 
 void InstructionBlockModel::removeFromIndex(){
 	this->_blockList.pop_back();

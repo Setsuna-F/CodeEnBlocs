@@ -59,5 +59,6 @@ int CodePageModel::getNbBlock(int ligne) {
 }
 
 void CodePageModel::deleteLigne(int ligne) {
-	_blockList.removeFromIndex(ligne);
+	//_blockList.removeFromIndex(ligne);
+	_blockList.nullBlockFromIndex(ligne);
 }

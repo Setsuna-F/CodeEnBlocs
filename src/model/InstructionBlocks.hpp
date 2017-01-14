@@ -25,6 +25,7 @@ namespace satap{
 
 		void removeFromIndex();
 		void removeFromIndex(size_t index);
+		void nullBlockFromIndex(size_t index);
 		BlockModel* 				getBlockByIndex(size_t index);
 		BlockModel*					getBlockById(size_t id);
 		std::vector<BlockModel *>	getAllBlocks();

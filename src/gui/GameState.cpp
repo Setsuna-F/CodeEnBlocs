@@ -255,6 +255,9 @@ GameState::GameState(StateStack& stack, Context context)
 	reloadPositionCurseur();
 
 
+	for(size_t i = 0; i<12; i++)
+		mBlocsContainerDeleted[i]=1;
+
 	// Test
 	//OutputBloc* out = ((OutputBloc*)addBloc(OutputBlocType));
 	//AssignmentBloc* assign = ((AssignmentBloc*) addBloc(AssignementBlocType));
@@ -472,12 +475,24 @@ void GameState::startExecute() {
 }
 
 void GameState::effacerLigne(int ligne) {
+	size_t countDel=0;
+	//Calcul du nombre delement supprimé avant la ligne 'ligne'.
+	for(size_t i=0; i<12; i++){
+		if(i <= ligne) //Pour toutes les lignes en dessous de la ligne elle meme
+		if(mBlocsContainerDeleted[i]==0)
+			countDel++;
+	}
+
+
 	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
 	std::cout << "effacer line " << ligne << std::endl;
 	if (getNbElementsOnLine(ligne) > 0) {
+		if(mBlocsContainerDeleted[ligne]==0)
+			std::cout<< "la ligne est deja supprmé" <<std::endl;
 		//mCurrentLevel->getCodePage()->deleteLigne(ligne);
 		mBlocsContainer[ligne].flush();
-		mCurrentLevel->getCodePage()->deleteLigne(ligne);
+		mCurrentLevel->getCodePage()->deleteLigne(ligne-countDel);
+		mBlocsContainerDeleted[ligne]=0;
 	}
 }
 
@@ -512,9 +527,12 @@ void GameState::reloadPositionCurseur() {
  * \param t est le type de bloc a ajouter a la ligne donnée.
  */
 void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
+	if(mLi > mCurrentLevel->getCodePage()->getBlockList().size())
+		return ;
 	std::shared_ptr<Bloc> bloc_ptr;
 	//std::cerr << "1- " << __FUNCTION__ <<std::endl;
-	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0){ //Si la ligne est vide alors
+	//if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0){ //Si la ligne est vide alors
+	if((mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0) || (mBlocsContainerDeleted[mLi]==0)){ //Si la ligne est vide alors
 		//std::cerr << "2- " << __FUNCTION__ <<std::endl;
 		if(isValideBlock(t)){
 			//std::cerr << "3- " << __FUNCTION__ <<std::endl;
@@ -553,12 +571,14 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 					compofirstop->setType(t);
 					dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setFirstOperand(compofirstop);
 					dynamic_cast<AssignmentBloc*>(bloc_assign_tmp)->setSecondOperand(nullptr);
-					mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType);
+					mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_assign_tmp), AssignementBlocType, mLi);
+					mBlocsContainerDeleted[mLi]=1;
 				}
 			}
 			else{
 				//std::cerr << "5- " << __FUNCTION__ <<std::endl;
-				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_tmp), t);
+				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_tmp), t, mLi);
+				mBlocsContainerDeleted[mLi]=1;
 			}
 		}
 		else{

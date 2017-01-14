@@ -16,6 +16,7 @@ namespace satap {
 			void addBlock(BlockModel* block);
 			void addBlock(BlockModel* block, int i);
 			void addBlock(BlockModel* block, satap::typeBloc t);
+			void addBlock(BlockModel* block, satap::typeBloc t, size_t lineNumber);
 			void removeBlock();
 			void removeBlock(int i);
 			int getNbBlock(int ligne);

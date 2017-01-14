@@ -24,6 +24,12 @@ void CodePageModel::addBlock(BlockModel* block, satap::typeBloc t){
 }
 
 
+
+void CodePageModel::addBlock(BlockModel* block, satap::typeBloc t, size_t lineNumber){
+	_blockList.setBlock(block, t, lineNumber);
+}
+
+
 void CodePageModel::removeBlock(){
 	_blockList.removeFromIndex();
 }

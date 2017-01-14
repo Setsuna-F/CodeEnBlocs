@@ -21,16 +21,16 @@ Application::Application()
 	, mFonts()
 	, mMusic()
 	, mSounds()
-	, mKeyBinding()
 	, mTutorial(false)
 	, mNumLevel(0)
-	, mScore(0)
-	, mNameLevel("")
-	, mNbBlocsUsed(0)
+	, mKeyBinding()
 	, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel, mScore, mNameLevel, mNbBlocsUsed))
-, mStatisticsText()
-, mStatisticsUpdateTime()
-, mStatisticsNumFrames(0)
+	, mStatisticsText()
+	, mStatisticsUpdateTime()
+	, mStatisticsNumFrames(0)
+	, mScore(0)
+	, mNbBlocsUsed(0)
+	, mNameLevel("")
 {
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
@@ -59,11 +59,11 @@ Application::Application()
 	mTextures.load(Textures::DescriptionButton, "res/img/button-description-bi.png");
 
 	mTextures.load(Textures::AddSpawner,		"res/img/block-add.png");
-	mTextures.load(Textures::AssignmentSpawner, "res/img/block-assignment.png");	
-	mTextures.load(Textures::InputSpawner,		"res/img/block-input.png");	
-	mTextures.load(Textures::OutputSpawner,		"res/img/block-output.png");	
-	mTextures.load(Textures::ValueSpawner,		"res/img/block-value.png");	
-	mTextures.load(Textures::VariableSpawner,	"res/img/block-variable.png");	
+	mTextures.load(Textures::AssignmentSpawner, "res/img/block-assignment.png");
+	mTextures.load(Textures::InputSpawner,		"res/img/block-input.png");
+	mTextures.load(Textures::OutputSpawner,		"res/img/block-output.png");
+	mTextures.load(Textures::ValueSpawner,		"res/img/block-value.png");
+	mTextures.load(Textures::VariableSpawner,	"res/img/block-variable.png");
 
 	mTextures.load(Textures::CurseurSprite,		"res/img/curseur.png");
 

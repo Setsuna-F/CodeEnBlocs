@@ -71,6 +71,7 @@ class GameState : public State
 		sf::Text						mLevelTitle, mLevelDescription, mLevelTip, mInputString, mOutputString, mVariablesString;
 		GUI::Container					mButtonsContainer;
 		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
+		int								mBlocsContainerDeleted[12]; // tableau qui contiendra les lignes supprimées.
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
 		int								mLi, mCol; // Coordonn�es du curseur (l� ou va �tre plac� le prochain bloc)

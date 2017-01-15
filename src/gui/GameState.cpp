@@ -476,6 +476,8 @@ void GameState::startExecute() {
 	std::cout << score << std::endl;
 	if (score > 0){
 		requestStackPush(States::Win);
+		mContext.scores->at(*getContext().numLevel) = score;
+		mContext.scores->at(*getContext().numLevel+1) = 0;
 		saveLevel(score, mCurrentLevel->getName());
 	}
 	else
@@ -521,7 +523,7 @@ int GameState::getNbBlocs() {
 	int nbElements = 0;
 
 	for (int i = 0; i < 12; i++) {
-		int n = mBlocsContainer[i].getNbChildren();
+		int n = mBlocsContainer[i]->getNbChildren();
 		nbElements += n;
 	}
 
@@ -552,7 +554,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 			bloc_tmp->setPosition(coordBloc.first, coordBloc.second);
 			bloc_ptr = std::shared_ptr<Bloc>(bloc_tmp);
-			mBlocsContainer[mLi].pack(bloc_ptr);
+			mBlocsContainer[mLi]->pack(bloc_ptr);
 			mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 			// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
@@ -563,7 +565,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 				bloc_assign_tmp->setPosition(coordBloc.first, coordBloc.second);
 				bloc_ptr = std::shared_ptr<Bloc>(bloc_assign_tmp);
-				mBlocsContainer[mLi].pack(bloc_ptr);
+				mBlocsContainer[mLi]->pack(bloc_ptr);
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
@@ -608,7 +610,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 						std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 						bloc_assign_tmp->setPosition(coordBloc.first, coordBloc.second);
 						bloc_ptr = std::shared_ptr<Bloc>(bloc_assign_tmp);
-						mBlocsContainer[mLi].pack(bloc_ptr);
+						mBlocsContainer[mLi]->pack(bloc_ptr);
 						mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 						// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
@@ -692,7 +694,7 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 				std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 				binary_block->setPosition(coordBloc.first, coordBloc.second);
 				bloc_ptr = std::shared_ptr<Bloc>(binary_block);
-				mBlocsContainer[mLi].pack(bloc_ptr);
+				mBlocsContainer[mLi]->pack(bloc_ptr);
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
@@ -715,7 +717,7 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 					std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 					binary_block->setPosition(coordBloc.first, coordBloc.second);
 					bloc_ptr = std::shared_ptr<Bloc>(binary_block);
-					mBlocsContainer[mLi].pack(bloc_ptr);
+					mBlocsContainer[mLi]->pack(bloc_ptr);
 					mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 					// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 

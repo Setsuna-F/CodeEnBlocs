@@ -27,13 +27,20 @@ Application::Application()
 	, mScore(0)
 	, mNameLevel("")
 	, mNbBlocsUsed(0)
-	, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel, mScore, mNameLevel, mNbBlocsUsed))
+	, mScores()
+	, mStateStack(State::Context(mWindow, mTextures, mFonts, mMusic, mSounds, mKeyBinding, mTutorial, mNumLevel, mScore, mNameLevel, mNbBlocsUsed, mScores))
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
 {
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
+
+	// TODO init avec fichier des scores
+	// Pour l'instant init en dur
+	mScores.push_back(-1);
+	mScores.push_back(-1);
+	mScores.push_back(-1);
 
 	// Load musics in MusicPlayer
 

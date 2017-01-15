@@ -49,6 +49,7 @@ class Application
 
 		int						mScore, mNbBlocsUsed;
 		std::string				mNameLevel;
+		std::vector<int>		mScores;
 };
 
 #endif // BOOK_APPLICATION_HPP

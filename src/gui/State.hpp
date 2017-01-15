@@ -8,6 +8,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include <memory>
+#include <vector>
 
 
 namespace sf
@@ -29,7 +30,7 @@ class State
 		{
 								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts,
 									MusicPlayer& music, SoundPlayer& sounds, KeyBinding& keys, bool& tutorial, 
-									int& numLevel, int& score, std::string& nameLevel, int& nbBlocsUsed);
+									int& numLevel, int& score, std::string& nameLevel, int& nbBlocsUsed, std::vector<int>& scores);
 
 			sf::RenderWindow*	window;
 			TextureHolder*		textures;
@@ -42,6 +43,7 @@ class State
 			int*				score;
 			std::string*		nameLevel;
 			int*				nbBlocsUsed;
+			std::vector<int>*	scores;
 		};
 
 

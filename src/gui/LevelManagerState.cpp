@@ -15,6 +15,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 , mGUIContainer()
 , mGameModel()
 , mText("", context.fonts->get(Fonts::Main), 50)
+, mLevelButtons()
 {
 	mBackgroundSprite.setTexture(context.textures->get(Textures::LevelManagerBackgroud));
 
@@ -55,6 +56,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton0);
+	mLevelButtons.push_back(levelButton0);
 	numLevel++;
 
 	auto levelButton1 = std::make_shared<GUI::LevelButton>(context);
@@ -66,6 +68,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton1);
+	mLevelButtons.push_back(levelButton1);
 	numLevel++;
 
 	auto levelButton2 = std::make_shared<GUI::LevelButton>(context);
@@ -77,6 +80,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton2);
+	mLevelButtons.push_back(levelButton2);
 	numLevel++;
 
 	auto levelButton3 = std::make_shared<GUI::LevelButton>(context);
@@ -89,6 +93,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton3);
+	mLevelButtons.push_back(levelButton3);
 	numLevel++;
 
 	auto levelButton4 = std::make_shared<GUI::LevelButton>(context);
@@ -101,6 +106,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton4);
+	mLevelButtons.push_back(levelButton4);
 	numLevel++;
 
 	auto levelButton5 = std::make_shared<GUI::LevelButton>(context);
@@ -113,6 +119,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton5);
+	mLevelButtons.push_back(levelButton5);
 	numLevel++;
 
 	auto levelButton6 = std::make_shared<GUI::LevelButton>(context);
@@ -125,6 +132,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton6);
+	mLevelButtons.push_back(levelButton6);
 	numLevel++;
 
 	auto levelButton7 = std::make_shared<GUI::LevelButton>(context);
@@ -137,6 +145,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton7);
+	mLevelButtons.push_back(levelButton7);
 	numLevel++;
 
 	auto levelButton8 = std::make_shared<GUI::LevelButton>(context);
@@ -149,6 +158,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton8);
+	mLevelButtons.push_back(levelButton8);
 	numLevel++;
 
 	auto levelButton9 = std::make_shared<GUI::LevelButton>(context);
@@ -161,18 +171,20 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton9);
+	mLevelButtons.push_back(levelButton9);
 	numLevel++;
 
-	auto levelButto10 = std::make_shared<GUI::LevelButton>(context);
-	levelButto10->setPosition(760, 150);
+	auto levelButton10 = std::make_shared<GUI::LevelButton>(context);
+	levelButton10->setPosition(760, 150);
 	//levelButton8->setText(mGameModel.getLevel(numLevel)->getName());
-	levelButto10->setText("???");
-	levelButto10->setCallback([this, numLevel]()
+	levelButton10->setText("???");
+	levelButton10->setCallback([this, numLevel]()
 	{
 		//*getContext().numLevel = numLevel;
 		//requestStackPush(States::Game);
 	});
-	mGUIContainer.pack(levelButto10);
+	mGUIContainer.pack(levelButton10);
+	mLevelButtons.push_back(levelButton10);
 	numLevel++;
 
 	auto levelButton11 = std::make_shared<GUI::LevelButton>(context);
@@ -185,6 +197,7 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 		//requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton11);
+	mLevelButtons.push_back(levelButton11);
 	numLevel++;
 
 	// Play menu theme
@@ -218,24 +231,19 @@ bool LevelManagerState::handleEvent(const sf::Event& event)
 
 void LevelManagerState::onActivate()
 {
-	//TODO
-	for (int i = 0; i<mGUIContainer.getNbChildren(); i++)
+	for (int i = 0; i<getContext().scores->size(); i++)
 	{
-		//allez voir dans les scores et changer texture bouton en fonction
-		//		* si -1 -> lock
-		//		* si 0 -> zero star
-		//		* si 1 -> one star
-		//		* si 2 -> two stars
-		//		* si 3 -> three stars
-	//	if()
 
-	//	else if()
-
-	//	else if()
-
-	//	else if()
-
-	//	else if()
+		if (getContext().scores->at(i) == -1)
+			mLevelButtons[i]->setTexture(Textures::LevelManagerButtonLock);
+		else if (getContext().scores->at(i) == 0)
+			mLevelButtons[i]->setTexture(Textures::LevelManagerButtonZeroStar);
+		else if(getContext().scores->at(i) == 1)
+			mLevelButtons[i]->setTexture(Textures::LevelManagerButtonOneStar);
+		else if(getContext().scores->at(i) == 2)
+			mLevelButtons[i]->setTexture(Textures::LevelManagerButtonTwoStars);
+		else if(getContext().scores->at(i) == 3)
+			mLevelButtons[i]->setTexture(Textures::LevelManagerButtonThreeStars);
 	}
 }
 

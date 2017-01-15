@@ -10,6 +10,7 @@
 #include "State.hpp"
 #include "Container.hpp"
 #include "model/gamemodel.hpp"
+#include "LevelButton.hpp"
 #endif
 
 
@@ -33,6 +34,7 @@ class LevelManagerState : public State
 		GUI::Container			mGUIContainer;
 		satap::GameModel		mGameModel;
 		sf::Text				mText;
+		std::vector<GUI::LevelButton::Ptr> mLevelButtons;
 };
 
 #endif // BOOK_LEVELMANAGERSTATE_HPP

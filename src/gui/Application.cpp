@@ -45,7 +45,8 @@ Application::Application()
 	mTextures.load(Textures::TitleScreen, "res/img/title-screen.png");
 	mTextures.load(Textures::GameBackgroud, "res/img/Background2.png");
 	mTextures.load(Textures::MenuSettingsBackgroud, "res/img/Background6.png");
-	mTextures.load(Textures::LevelManagerBackgroud, "res/img/Background7.png");
+	//mTextures.load(Textures::LevelManagerBackgroud, "res/img/Background7.png");
+	mTextures.load(Textures::LevelManagerBackgroud, "res/img/level-selection-background.png");
 
 	mTextures.load(Textures::Buttons,			"res/img/Buttons.png");
 	mTextures.load(Textures::ExitButton,		"res/img/button-exit-bi-1.png");
@@ -54,6 +55,11 @@ Application::Application()
 	mTextures.load(Textures::LoopButton,		"res/img/button-loop-bi.png");
 	mTextures.load(Textures::HelpButton,		"res/img/button-help-bi.png");
 	mTextures.load(Textures::DescriptionButton, "res/img/button-description-bi.png");
+	mTextures.load(Textures::LevelManagerButtonLock, "res/img/level-menu-background-lock.png");
+	mTextures.load(Textures::LevelManagerButtonZeroStar, "res/img/level-menu-background-score-0.png");
+	mTextures.load(Textures::LevelManagerButtonOneStar, "res/img/level-menu-background-score-1.png");
+	mTextures.load(Textures::LevelManagerButtonTwoStars, "res/img/level-menu-background-score-2.png");
+	mTextures.load(Textures::LevelManagerButtonThreeStars, "res/img/level-menu-background-score-3.png");
 
 	mTextures.load(Textures::AddSpawner,		"res/img/block-add.png");
 	mTextures.load(Textures::AssignmentSpawner, "res/img/block-assignment.png");	
@@ -77,6 +83,7 @@ Application::Application()
 
 	mTextures.load(Textures::Lose, "res/img/lose.png");
 	mTextures.load(Textures::Win, "res/img/win.png");
+
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.f, 5.f);

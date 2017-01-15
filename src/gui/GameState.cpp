@@ -374,10 +374,7 @@ Bloc * GameState::addBloc(satap::typeBloc t)
 		std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
 		b->setPosition(coordBloc.first, coordBloc.second);
 		bl = std::shared_ptr<Bloc>(b);
-		std::cout << "1ca plante ??" << std::endl;
-		std::cout << "1ca plante ??" << mBlocsContainer[mLi]->getNbChildren() << std::endl;
 		mBlocsContainer[mLi]->pack(bl);
-		std::cout << "1ca plante ??" << std::endl;
 
 		mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 		// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)

@@ -1,6 +1,6 @@
 
-#ifndef BOOK_BUTTON_HPP
-#define BOOK_BUTTON_HPP
+#ifndef LEVEL_BUTTON_HPP
+#define LEVEL_BUTTON_HPP
 
 #include "Component.hpp"
 #include "ResourceIdentifiers.hpp"
@@ -21,10 +21,10 @@ class SoundPlayer;
 namespace GUI
 {
 
-class Button : public Component
+class LevelButton : public Component
 {
     public:
-        typedef std::shared_ptr<Button>		Ptr;
+        typedef std::shared_ptr<LevelButton>		Ptr;
         typedef std::function<void()>		Callback;
 
 		enum Type
@@ -37,12 +37,11 @@ class Button : public Component
 
 
 	public:
-								Button(State::Context context);
+								LevelButton(State::Context context);
 
         void					setCallback(Callback callback);
         void					setText(const std::string& text);
         void					setToggle(bool flag);
-		void					scale(float scaleX, float scaleY);
 
         virtual bool			isSelectable() const;
         virtual void			select();
@@ -70,8 +69,9 @@ class Button : public Component
 		SoundPlayer&			mSounds;
 		State::Context			mContext;
 		SoundEffect::ID			mSoundPlayed;
+		Textures::ID			mTexture;
 };
 
 }
 
-#endif // BOOK_BUTTON_HPP
+#endif // LEVEL_BUTTON_HPP

@@ -17,12 +17,14 @@ class LevelManagerState : public State
 		virtual void			draw();
 		virtual bool			update(sf::Time dt);
 		virtual bool			handleEvent(const sf::Event& event);
+		virtual void			onActivate();
 
 
 	private:
 		sf::Sprite				mBackgroundSprite;
 		GUI::Container			mGUIContainer;
-		satap::GameModel				mGameModel;
+		satap::GameModel		mGameModel;
+		sf::Text				mText;
 };
 
 #endif // BOOK_LEVELMANAGERSTATE_HPP

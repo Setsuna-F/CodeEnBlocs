@@ -53,6 +53,7 @@ class Button : public Component
 
         virtual void			handleEvent(const sf::Event& event);
 		void					setSound(SoundEffect::ID s);
+		void					setTexture(Textures::ID t);
 
 
 

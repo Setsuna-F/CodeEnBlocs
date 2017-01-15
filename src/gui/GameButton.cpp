@@ -24,6 +24,9 @@ GameButton::GameButton(State::Context context)
 
 	sf::FloatRect bounds = mSprite.getLocalBounds();
 	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+
+	srand(time(NULL));
+	mSoundPlayed = static_cast<SoundEffect::ID>(rand() % 9 + SoundEffect::Pencil1);
 }
 
 void GameButton::setCallback(Callback callback)
@@ -65,7 +68,8 @@ void GameButton::activate()
 {
 	Component::activate();
 
-	mSounds.play(mSoundPlayed);
+	if (mSoundPlayed != SoundEffect::NoSound)
+		mSounds.play(mSoundPlayed);
 
     // If we are toggle then we should show that the button is pressed and thus "toggled".
 	if (mIsToggle)
@@ -97,7 +101,7 @@ void GameButton::deactivate()
 
 void GameButton::handleEvent(const sf::Event& event)
 {
-	sf::IntRect r(getPosition().x, getPosition().y, 56, 56);
+	sf::IntRect r(getPosition().x, getPosition().y, mSprite.getTextureRect().width*mSprite.getScale().x, mSprite.getTextureRect().height*mSprite.getScale().y);
 	if (event.type == sf::Event::MouseMoved)
 	{
 		if (r.contains(event.mouseMove.x, event.mouseMove.y) && !isSelected()) {

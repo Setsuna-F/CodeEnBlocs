@@ -1,5 +1,6 @@
-#ifndef SPAWNER_BUTTON_HPP
-#define SPAWNER_BUTTON_HPP
+
+#ifndef LEVEL_BUTTON_HPP
+#define LEVEL_BUTTON_HPP
 
 #include "Component.hpp"
 #include "ResourceIdentifiers.hpp"
@@ -20,10 +21,10 @@ class SoundPlayer;
 namespace GUI
 {
 
-class SpawnerButton : public Component
+class LevelButton : public Component
 {
     public:
-        typedef std::shared_ptr<SpawnerButton>		Ptr;
+        typedef std::shared_ptr<LevelButton>		Ptr;
         typedef std::function<void()>		Callback;
 
 		enum Type
@@ -36,12 +37,11 @@ class SpawnerButton : public Component
 
 
 	public:
-		SpawnerButton(State::Context context);
+								LevelButton(State::Context context);
 
         void					setCallback(Callback callback);
         void					setText(const std::string& text);
         void					setToggle(bool flag);
-		void					scale(float scaleX, float scaleY);
 
         virtual bool			isSelectable() const;
         virtual void			select();
@@ -51,9 +51,9 @@ class SpawnerButton : public Component
         virtual void			deactivate();
 
         virtual void			handleEvent(const sf::Event& event);
-
-		void					setSprite(State::Context c, Textures::ID id);
 		void					setSound(SoundEffect::ID s);
+		void					setTexture(Textures::ID t);
+
 
 
     private:
@@ -69,8 +69,9 @@ class SpawnerButton : public Component
 		SoundPlayer&			mSounds;
 		State::Context			mContext;
 		SoundEffect::ID			mSoundPlayed;
+		Textures::ID			mTexture;
 };
 
 }
 
-#endif // BOOK_BUTTON_HPP
+#endif // LEVEL_BUTTON_HPP

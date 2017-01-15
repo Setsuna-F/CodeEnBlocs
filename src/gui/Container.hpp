@@ -27,6 +27,7 @@ class Container : public Component
 		void				flush();
 		int					getNbChildren() const;
 
+		Component::Ptr		getComponent(int) const;
 
     private:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;

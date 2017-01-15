@@ -35,20 +35,31 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 
 	addButtonLabel(PlayerAction::EraseLine, col, ligne, "Erase line ", context);
 	ligne++;
+
+	addButtonLabel(PlayerAction::NewLine, col, ligne, "New line ", context);
+	ligne++;
+
+	addButtonLabel(PlayerAction::Up, col, ligne, "Top line ", context);
+	ligne++;
+
+	addButtonLabel(PlayerAction::Down, col, ligne, "Bottom line ", context);
+	ligne++;
 	// TODO autres binding
 
 	// Settings : music volume, effect sound volume, ...
 	// Bouttons pour le volume de la musique
 	//col++;
-	ligne = 3;
+	ligne++;
+	ligne++;
 	auto downMusicVolumeButton = std::make_shared<GUI::Button>(context);
 	downMusicVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 100.f);
 	downMusicVolumeButton->setText(" - ");
+	downMusicVolumeButton->setSound(SoundEffect::NoSound);
 	downMusicVolumeButton->scale(0.25, 1);
 	downMusicVolumeButton->setCallback([this]()
 	{
 		MusicPlayer& music = *getContext().music;
-		music.setVolume(music.getVolume() - 5.f);
+		music.setVolume(music.getVolume() - 2.5f);
 	});
 
 	auto musicVolumeLabbel = std::make_shared<GUI::Label>("Volume musique", *context.fonts);
@@ -57,11 +68,12 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	auto upMusicVolumeButton = std::make_shared<GUI::Button>(context);
 	upMusicVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 100.f);
 	upMusicVolumeButton->setText(" + ");
+	upMusicVolumeButton->setSound(SoundEffect::NoSound);
 	upMusicVolumeButton->scale(0.25, 1);
 	upMusicVolumeButton->setCallback([this]()
 	{
 		MusicPlayer& music = *getContext().music;
-		music.setVolume(music.getVolume() + 5.f);
+		music.setVolume(music.getVolume() + 2.5f);
 	});
 
 	// Bouttons pour le volume des sons
@@ -69,11 +81,13 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	auto downSoundsVolumeButton = std::make_shared<GUI::Button>(context);
 	downSoundsVolumeButton->setPosition(500.f*col + 80.f, 50.f*ligne + 100.f);
 	downSoundsVolumeButton->setText(" - ");
+	downSoundsVolumeButton->setSound(SoundEffect::NoSound);
 	downSoundsVolumeButton->scale(0.25, 1);
 	downSoundsVolumeButton->setCallback([this]()
 	{
 		SoundPlayer& sounds = *getContext().sounds;
 		sounds.setVolume(sounds.getVolume() - 5.f);
+		sounds.play(static_cast<SoundEffect::ID>(rand() % 16 + SoundEffect::WrinkledPaper));
 	});
 
 	auto soundsVolumeLabbel = std::make_shared<GUI::Label>("Volume bruitage", *context.fonts);
@@ -82,11 +96,13 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	auto upSoundsVolumeButton = std::make_shared<GUI::Button>(context);
 	upSoundsVolumeButton->setPosition(500.f*col + 300.f, 50.f*ligne + 100.f);
 	upSoundsVolumeButton->setText(" + ");
+	upSoundsVolumeButton->setSound(SoundEffect::NoSound);
 	upSoundsVolumeButton->scale(0.25, 1);
 	upSoundsVolumeButton->setCallback([this]()
 	{
 		SoundPlayer& sounds = *getContext().sounds;
 		sounds.setVolume(sounds.getVolume() + 5.f);
+		sounds.play(static_cast<SoundEffect::ID>(rand() % 16 + SoundEffect::WrinkledPaper));
 	});
 
 

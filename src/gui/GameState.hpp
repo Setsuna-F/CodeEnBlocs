@@ -1,4 +1,4 @@
-#ifndef GAMESTATE_HPP
+﻿#ifndef GAMESTATE_HPP
 #define GAMESTATE_HPP
 
 
@@ -45,8 +45,9 @@ class GameState : public State
 		std::pair<int, int> getCoordonnees(int ligne, int colonne);
 		std::pair<int, int> getCoordonneesCurseur(int ligne);
 
-		void effacerLigne		(int ligne);
-		int getNbElementsOnLine	(int ligne);
+		void effacerLigne(int ligne);
+		void newLine(int);
+		int getNbElementsOnLine(int ligne);
 		int getNbBlocs();
 		void reloadPositionCurseur();
 
@@ -70,7 +71,7 @@ class GameState : public State
 		sf::Sprite						mBackgroundSprite, mInstructionSprite;
 		sf::Text						mLevelTitle, mLevelDescription, mLevelTip, mInputString, mOutputString, mVariablesString;
 		GUI::Container					mButtonsContainer;
-		GUI::Container					mBlocsContainer[12]; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
+		std::vector<GUI::Container::Ptr>				mBlocsContainer; // Un tableau ? mBlocsContainer[0] = 1ere ligne, mBlocsContainer[1] = 2e ligne, etc...
 		GUI::Curseur					mCurseur;
 		satap::LevelModel*				mCurrentLevel;
 		int								mLi, mCol; // Coordonn�es du curseur (l� ou va �tre plac� le prochain bloc)

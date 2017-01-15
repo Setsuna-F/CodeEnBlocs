@@ -1,4 +1,4 @@
-#include "Button.hpp"
+#include "LevelButton.hpp"
 #include "Utility.hpp"
 #include "SoundPlayer.hpp"
 #include "ResourceHolder.hpp"
@@ -12,71 +12,76 @@
 namespace GUI
 {
 
-Button::Button(State::Context context)
+LevelButton::LevelButton(State::Context context)
 : mCallback()
-, mSprite(context.textures->get(Textures::Buttons))
-, mText("", context.fonts->get(Fonts::Main), 16)
+, mSprite(context.textures->get(Textures::LevelManagerButtonLock))
+, mText("", context.fonts->get(Fonts::Main), 40)
 , mIsToggle(false)
 , mSounds(*context.sounds)
 , mContext(context)
 , mSoundPlayed(SoundEffect::Button)
+, mTexture(Textures::LevelManagerButtonLock)
 {
 	changeTexture(Normal);
-
+	mText.setFillColor(sf::Color::Black);
+	scale(0.55f, 0.5f);
 	sf::FloatRect bounds = mSprite.getLocalBounds();
-	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+	mText.setPosition(bounds.width * 0.5f, bounds.height * 0.7f);
 
 	srand(time(NULL));
 	mSoundPlayed = static_cast<SoundEffect::ID>(rand() % 9 + SoundEffect::Pencil1);
+
+
+	setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
 }
 
-void Button::setCallback(Callback callback)
+void LevelButton::setCallback(Callback callback)
 {
 	mCallback = std::move(callback);
 }
 
-void Button::setText(const std::string& text)
+void LevelButton::setText(const std::string& text)
 {
 	mText.setString(text);
 	centerOrigin(mText);
 }
 
-void Button::setToggle(bool flag)
+void LevelButton::setToggle(bool flag)
 {
 	mIsToggle = flag;
 }
 
-bool Button::isSelectable() const
+bool LevelButton::isSelectable() const
 {
     return true;
 }
 
-void Button::select()
+void LevelButton::select()
 {
 	Component::select();
 
 	changeTexture(Selected);
 }
 
-void Button::deselect()
+void LevelButton::deselect()
 {
 	Component::deselect();
 
 	changeTexture(Normal);
 }
 
-void Button::activate()
+void LevelButton::activate()
 {
 	Component::activate();
 
-	if(mSoundPlayed != SoundEffect::NoSound)
+	if(mSoundPlayed != SoundEffect::NoSound && mTexture != Textures::LevelManagerButtonLock)
 		mSounds.play(mSoundPlayed);
 
     // If we are toggle then we should show that the button is pressed and thus "toggled".
 	if (mIsToggle)
 		changeTexture(Pressed);
 
-	if (mCallback)
+	if (mCallback && mTexture != Textures::LevelManagerButtonLock)
 		mCallback();
 
     // If we are not a toggle then deactivate the button since we are just momentarily activated.
@@ -84,7 +89,7 @@ void Button::activate()
 		deactivate();
 }
 
-void Button::deactivate()
+void LevelButton::deactivate()
 {
 	Component::deactivate();
 
@@ -100,9 +105,10 @@ void Button::deactivate()
 		changeTexture(Selected);
 }
 
-void Button::handleEvent(const sf::Event& event)
+void LevelButton::handleEvent(const sf::Event& event)
 {
-	sf::IntRect r(getPosition().x, getPosition().y, mSprite.getTextureRect().width*mSprite.getScale().x, mSprite.getTextureRect().height*mSprite.getScale().y);
+	sf::IntRect bounds = mSprite.getTextureRect();
+	sf::IntRect r(getPosition().x - bounds.width * getScale().x / 2.f, getPosition().y - bounds.height * getScale().y / 2.f, bounds.width*getScale().x, bounds.height*getScale().y);
 	if (event.type == sf::Event::MouseMoved && r.contains(event.mouseMove.x, event.mouseMove.y) && !isSelected())
 	{
 		select();
@@ -123,36 +129,31 @@ void Button::handleEvent(const sf::Event& event)
 	}
 }
 
-void Button::setSound(SoundEffect::ID s)
+void LevelButton::setSound(SoundEffect::ID s)
 {
 	mSoundPlayed = s;
 }
 
-void Button::setTexture(Textures::ID t)
+void LevelButton::setTexture(Textures::ID t)
 {
+	mTexture = t;
 	mSprite.setTexture(mContext.textures->get(t), true);
-	sf::FloatRect bounds = mSprite.getLocalBounds();
-	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+	//sf::FloatRect bounds = mSprite.getLocalBounds();
+	//mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
 }
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void LevelButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(mSprite, states);
-	target.draw(mText, states);
+	if(mTexture != Textures::LevelManagerButtonLock)
+		target.draw(mText, states);
 }
 
-void Button::changeTexture(Type buttonType)
+void LevelButton::changeTexture(Type buttonType)
 {
-	sf::IntRect textureRect(0, 50*buttonType, 200, 50);
-	mSprite.setTextureRect(textureRect);
-}
-
-void Button::scale(float scaleX, float scaleY)
-{
-	mSprite.scale(scaleX, scaleY);
-	sf::FloatRect bounds = mSprite.getLocalBounds();
-	mText.setPosition(mSprite.getScale().x * bounds.width / 2.f, mSprite.getScale().y * bounds.height / 2.f);
+	//sf::IntRect textureRect(0, 50*buttonType, 200, 50);
+	//mSprite.setTextureRect(textureRect);
 }
 
 }

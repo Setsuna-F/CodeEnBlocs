@@ -23,13 +23,29 @@ namespace
 SoundPlayer::SoundPlayer()
 : mSoundBuffers()
 , mSounds()
-, mVolume(50.f)
+, mVolume(40.f)
 {
 	char* buffer;
 
 	//mSoundBuffers.load(SoundEffect::Button,			resourcePath()+"Button.wav");
-	
+
 	mSoundBuffers.load(SoundEffect::Button, "res/sound/Button.wav");
+	mSoundBuffers.load(SoundEffect::OpeningBook, "res/sound/opening_book.wav");
+	mSoundBuffers.load(SoundEffect::ClosingBook, "res/sound/closing_book.wav");
+	mSoundBuffers.load(SoundEffect::Page, "res/sound/page.wav");
+	mSoundBuffers.load(SoundEffect::Pages, "res/sound/pages.wav");
+	mSoundBuffers.load(SoundEffect::Eraser1, "res/sound/eraser1.wav");
+	mSoundBuffers.load(SoundEffect::Eraser2, "res/sound/eraser2.wav");
+	mSoundBuffers.load(SoundEffect::Pencil1, "res/sound/pencil1.wav");
+	mSoundBuffers.load(SoundEffect::Pencil2, "res/sound/pencil2.wav");
+	mSoundBuffers.load(SoundEffect::Pencil3, "res/sound/pencil3.wav");
+	mSoundBuffers.load(SoundEffect::Pencil4, "res/sound/pencil4.wav");
+	mSoundBuffers.load(SoundEffect::Pencil5, "res/sound/pencil5.wav");
+	mSoundBuffers.load(SoundEffect::Pencil6, "res/sound/pencil6.wav");
+	mSoundBuffers.load(SoundEffect::Pencil7, "res/sound/pencil7.wav");
+	mSoundBuffers.load(SoundEffect::Pencil8, "res/sound/pencil8.wav");
+	mSoundBuffers.load(SoundEffect::Pencil9, "res/sound/pencil9.wav");
+
 	mSoundBuffers.load(SoundEffect::WrinkledPaper, "res/sound/wrinkled_paper.wav");
 
 	// Listener points towards the screen (default in SFML)

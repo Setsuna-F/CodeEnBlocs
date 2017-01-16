@@ -59,7 +59,8 @@ bool TutorialState::handleEvent(const sf::Event& event)
 			bool& tutorial = *getContext().tutorial;
 			tutorial = true;
 			*getContext().numLevel = 0;
-			getContext().scores->at(*getContext().numLevel) = 0;
+			if(getContext().scores->at(*getContext().numLevel) < 0)
+				getContext().scores->at(*getContext().numLevel) = 0;
 			saveAllScore(*getContext().scores);
 			requestStackPop();
 			requestStackPush(States::LevelManager);

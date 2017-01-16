@@ -14,7 +14,7 @@ using namespace GUI;
 SpawnerButton::SpawnerButton(State::Context context)
 	: mCallback()
 	, mSprite(context.textures->get(Textures::Buttons))
-	, mText("", context.fonts->get(Fonts::Main), 16)
+	, mText("", context.fonts->get(Fonts::Main), 24)
 	, mIsToggle(false)
 	, mSounds(*context.sounds)
 	, mContext(context)
@@ -22,7 +22,8 @@ SpawnerButton::SpawnerButton(State::Context context)
 	changeTexture(Normal);
 
 	sf::FloatRect bounds = mSprite.getLocalBounds();
-	mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+	mText.setFillColor(sf::Color::Black);
+	mText.setPosition(bounds.width * 0.7f, bounds.height * 0.5f);
 
 	srand(time(NULL));
 	mSoundPlayed = static_cast<SoundEffect::ID>(rand() % 9 + SoundEffect::Pencil1);

@@ -11,9 +11,14 @@
 
 using namespace satap;
 
-VariableModel::VariableModel(){}
+VariableModel::VariableModel()
+: _name()
+, _value()
+{
+	_value = new sct_type();
+}
 
-VariableModel::VariableModel(std::string name, sct_type value): _name(name), _value(value){}
+VariableModel::VariableModel(std::string name, sct_type value): _name(name), _value(&value){}
 
 void VariableModel::setName(std::string n){
 	_name = n;
@@ -24,15 +29,17 @@ std::string VariableModel::getName(){
 }
 
 void VariableModel::setValue(sct_type value){
-	_value = value;
+	*_value->bool_type = *value.bool_type;
+	*_value->double_type = *value.double_type;
+	*_value->int_type = *value.int_type;
 }
 
 sct_type VariableModel::getValue(){
-	return _value;
+	return *_value;
 }
 
 sct_type VariableModel::execute(){
-	return _value;
+	return *_value;
 }
 
 typeBloc VariableModel::getType()

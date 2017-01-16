@@ -226,8 +226,58 @@ GameState::GameState(StateStack& stack, Context context)
 	});
 	mButtonsContainer.pack(outputSpawner);
 
+	auto varSpawnerA = std::make_shared<GUI::SpawnerButton>(context);
+	varSpawnerA->setPosition(1020, 150);
+	varSpawnerA->setSprite(context, Textures::VariableSpawner);
+	varSpawnerA->setText("a");
+	varSpawnerA->setCallback([this]() {
+		//addBloc(VariableBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
+	});
+	mButtonsContainer.pack(varSpawnerA);
+
+	auto varSpawnerB = std::make_shared<GUI::SpawnerButton>(context);
+	varSpawnerB->setPosition(1120, 150);
+	varSpawnerB->setSprite(context, Textures::VariableSpawner);
+	varSpawnerB->setText("b");
+	varSpawnerB->setCallback([this]() {
+		//addBloc(VariableBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
+	});
+	mButtonsContainer.pack(varSpawnerB);
+
+	auto varSpawnerC = std::make_shared<GUI::SpawnerButton>(context);
+	varSpawnerC->setPosition(1020, 200);
+	varSpawnerC->setSprite(context, Textures::VariableSpawner);
+	varSpawnerC->setText("c");
+	varSpawnerC->setCallback([this]() {
+		//addBloc(VariableBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
+	});
+	mButtonsContainer.pack(varSpawnerC);
+
+	auto varSpawnerD = std::make_shared<GUI::SpawnerButton>(context);
+	varSpawnerD->setPosition(1120, 200);
+	varSpawnerD->setSprite(context, Textures::VariableSpawner);
+	varSpawnerD->setText("d");
+	varSpawnerD->setCallback([this]() {
+		//addBloc(VariableBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
+	});
+	mButtonsContainer.pack(varSpawnerD);
+
+	auto affectationSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	affectationSpawner->setPosition(1020, 250);
+	affectationSpawner->setSprite(context, Textures::AssignmentSpawner);
+	affectationSpawner->setCallback([this]() {
+		//addBloc(AssignementBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, AssignementBlocType);
+
+	});
+	mButtonsContainer.pack(affectationSpawner);
+
 	auto addSpawner = std::make_shared<GUI::SpawnerButton>(context);
-	addSpawner->setPosition(1020, 200);
+	addSpawner->setPosition(1020, 300);
 	addSpawner->setSprite(context, Textures::AddSpawner);
 	addSpawner->setCallback([this]() {
 		//addBloc(AddBlocType);
@@ -236,24 +286,35 @@ GameState::GameState(StateStack& stack, Context context)
 	});
 	mButtonsContainer.pack(addSpawner);
 
-	auto varSpawner = std::make_shared<GUI::SpawnerButton>(context);
-	varSpawner->setPosition(1020, 150);
-	varSpawner->setSprite(context, Textures::VariableSpawner);
-	varSpawner->setCallback([this]() {
-		//addBloc(VariableBlocType);
-		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
-	});
-	mButtonsContainer.pack(varSpawner);
-
-	auto affectationSpawner = std::make_shared<GUI::SpawnerButton>(context);
-	affectationSpawner->setPosition(1120, 150);
-	affectationSpawner->setSprite(context, Textures::AssignmentSpawner);
-	affectationSpawner->setCallback([this]() {
-		//addBloc(AssignementBlocType);
-		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, AssignementBlocType);
+	auto subSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	subSpawner->setPosition(1120, 300);
+	subSpawner->setSprite(context, Textures::SubSpawner);
+	subSpawner->setCallback([this]() {
+		//addBloc(AddBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, SubBlocType);
 
 	});
-	mButtonsContainer.pack(affectationSpawner);
+	mButtonsContainer.pack(subSpawner);
+
+	auto multSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	multSpawner->setPosition(1020, 350);
+	multSpawner->setSprite(context, Textures::MultSpawner);
+	multSpawner->setCallback([this]() {
+		//addBloc(AddBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, MultBlocType);
+
+	});
+	mButtonsContainer.pack(multSpawner);
+
+	auto divSpawner = std::make_shared<GUI::SpawnerButton>(context);
+	divSpawner->setPosition(1120, 350);
+	divSpawner->setSprite(context, Textures::DivSpawner);
+	divSpawner->setCallback([this]() {
+		//addBloc(AddBlocType);
+		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, DivBlocType);
+
+	});
+	mButtonsContainer.pack(divSpawner);
 
 	//mCurseur.setSprite(context, Textures::CurseurSprite);
 	reloadPositionCurseur();

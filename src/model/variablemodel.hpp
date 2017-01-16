@@ -40,7 +40,7 @@ namespace satap{
 			std::string _name;
 		
 			//variable value
-			sct_type _value;
+			sct_type* _value;
 	};
 
 }

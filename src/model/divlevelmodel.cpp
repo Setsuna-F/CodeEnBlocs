@@ -17,14 +17,6 @@ using namespace satap;
 DivLevelModel::DivLevelModel() :
 
 	LevelModel("Division", 10, "On va te donner deux nombres, \ndivise-les et donne le résultat calculé.", "Utilise un bloc de division après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
-	// TODO A débuguer
-	/*_availableBlocks.setBlock(new AddModel(), "Addition");
-	_availableBlocks.setBlock(new InputModel(), "Input");
-	_availableBlocks.setBlock(new OutputModel(), "Output");
-	_availableBlocks.setBlock(new VariableModel(), "Variable");
-	_availableBlocks.setBlock(new ValueModel(),		"ValueModel");
-	_availableBlocks.setBlock(new AssignmentModel(), "AssignmentModel");*/
-
 	reset();
 }
 
@@ -50,5 +42,5 @@ void DivLevelModel::reset(){
 		//_workspace->setInputList(input);
 	}
 	_outputListExpected = *(new OutputListModel());
-	_outputListExpected.push(std::to_string(output));
+	_outputListExpected.push(typeToString(output));
 }

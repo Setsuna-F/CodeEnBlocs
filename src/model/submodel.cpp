@@ -72,13 +72,13 @@ sct_type SubModel::execute() {
 
 	/*cas int*/
 	if(isinteger){
-		int res_add=res_first-res_second;
+		int res_add=res_second-res_first;
 		res.int_type=new int(res_add);
 		std::fflush(stdout);
 	}
 	/*cas double*/
 	else{
-		double res_add=res_first-res_second;
+		double res_add=res_second-res_first;
 		res.double_type=new double(res_add);
 		std::fflush(stdout);
 	}

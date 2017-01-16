@@ -577,9 +577,9 @@ void GameState::reloadPositionCurseur() {
 void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 	std::shared_ptr<Bloc> bloc_ptr;
 	std::cerr << "1- " << __FUNCTION__ <<std::endl;
-	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0){ //Si la ligne est vide alors
+	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0 || (mBlocsContainerDeleted[mLi]==0)){ //Si la ligne est vide alors
 		std::cerr << "2- " << __FUNCTION__ <<std::endl;
-		if(isValideBlock(t)){
+		if(isValideBlock(t) || t == VariableBlocType){
 			std::cerr << "3- " << __FUNCTION__ <<std::endl;
 			Bloc * bloc_tmp = factoryBlock(t);
 
@@ -774,7 +774,6 @@ bool GameState::isValideBlock(satap::typeBloc t){
 		case WhileBlocType:
 		case OutputBlocType:
 		case FonctionBlocType:
-		case VariableBlocType:
 			isValide=true;
 		break;
 		default:
@@ -811,6 +810,7 @@ bool GameState::isUnaryBlock(satap::typeBloc t){
 	bool isValide=false;
 	switch (t) {
 		case InputBlocType:
+		case VariableBlocType:
 		case NotBlocType:
 			isValide=true;
 		break;

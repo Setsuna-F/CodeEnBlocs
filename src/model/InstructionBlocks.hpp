@@ -22,9 +22,11 @@ namespace satap{
 		void setBlock		(BlockModel *block, std::string blockType, size_t startingId);
 		void setBlock		(BlockModel *block, std::string blockType);
 		void setBlock		(BlockModel *block, satap::typeBloc t);
+		void setBlock		(BlockModel *block, satap::typeBloc t, size_t lineNumber);
 
 		void removeFromIndex();
 		void removeFromIndex(size_t index);
+		void nullBlockFromIndex(size_t index);
 		BlockModel* 				getBlockByIndex(size_t index);
 		BlockModel*					getBlockById(size_t id);
 		std::vector<BlockModel *>	getAllBlocks();

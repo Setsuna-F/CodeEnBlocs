@@ -478,7 +478,7 @@ void GameState::startExecute() {
 	std::cout << score << std::endl;
 	if (score > 0){
 		requestStackPush(States::Win);
-		if(mContext.scores->at(*getContext().numLevel) == -1)
+		if(mContext.scores->at(*getContext().numLevel) < score)
 			mContext.scores->at(*getContext().numLevel) = score;
 		if (mContext.scores->at(*getContext().numLevel+1) == -1)
 			mContext.scores->at(*getContext().numLevel+1) = 0;

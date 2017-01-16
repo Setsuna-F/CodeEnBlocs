@@ -23,6 +23,10 @@ void CodePageModel::addBlock(BlockModel* block, satap::typeBloc t){
 	_blockList.setBlock(block, t);
 }
 
+void CodePageModel::addBlock(BlockModel* block, satap::typeBloc t, size_t lineNumber){
+	_blockList.setBlock(block, t, lineNumber);
+}
+
 
 void CodePageModel::removeBlock(){
 	_blockList.removeFromIndex();
@@ -59,5 +63,6 @@ int CodePageModel::getNbBlock(int ligne) {
 }
 
 void CodePageModel::deleteLigne(int ligne) {
-	_blockList.removeFromIndex(ligne);
+	//_blockList.removeFromIndex(ligne);
+	_blockList.nullBlockFromIndex(ligne);
 }

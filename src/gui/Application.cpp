@@ -59,7 +59,7 @@ Application::Application()
 	// Load textures
 	mTextures.load(Textures::Background, "res/img/background.png");
 	mTextures.load(Textures::TitleScreen, "res/img/title-screen.png");
-	mTextures.load(Textures::GameBackgroud, "res/img/Background2.png");
+	mTextures.load(Textures::GameBackgroud, "res/img/Background2b.png");
 	mTextures.load(Textures::MenuSettingsBackgroud, "res/img/Background6.png");
 	//mTextures.load(Textures::LevelManagerBackgroud, "res/img/Background7.png");
 	mTextures.load(Textures::LevelManagerBackgroud, "res/img/level-selection-background.png");

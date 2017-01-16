@@ -484,7 +484,10 @@ void GameState::startExecute() {
 		saveAllScore(*getContext().scores);
 	}
 	else
+	{
 		requestStackPush(States::Lose);
+		mCurrentLevel->reset();
+	}
 }
 
 /*void GameState::effacerLigne(int ligne)

@@ -9,7 +9,7 @@
 #include "InstructionBlocks.hpp"
 #include "AssignmentModel.hpp"
 
-#include <unistd.h>
+//#include <unistd.h>
 #include <iostream>
 
 using namespace satap;
@@ -108,6 +108,9 @@ std::vector<BlockModel *> InstructionBlockModel::getAllBlocks(){
 
 sct_type InstructionBlockModel::execute(){
 	sct_type condition;
+	condition.int_type = nullptr;
+	condition.double_type = nullptr;
+	condition.bool_type = nullptr;
 
 	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
 		//condition = (*it)->execute();

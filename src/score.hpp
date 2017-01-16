@@ -28,6 +28,9 @@ struct sct_score{
 void saveLevel(int score, std::string namelevel);
 
 
+void saveAllScore(std::vector<int>);
+
+
 /**
  *
  * \fun std::vector<sct_score> getAllScore()
@@ -37,6 +40,8 @@ void saveLevel(int score, std::string namelevel);
  */
 std::vector<sct_score> getAllScore();
 
+
+std::vector<int> getAllScoreWithoutName();
 
 
 /**

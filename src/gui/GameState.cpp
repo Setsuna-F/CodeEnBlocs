@@ -478,7 +478,8 @@ void GameState::startExecute() {
 		requestStackPush(States::Win);
 		mContext.scores->at(*getContext().numLevel) = score;
 		mContext.scores->at(*getContext().numLevel+1) = 0;
-		saveLevel(score, mCurrentLevel->getName());
+		//saveLevel(score, mCurrentLevel->getName());
+		saveAllScore(*getContext().scores);
 	}
 	else
 		requestStackPush(States::Lose);

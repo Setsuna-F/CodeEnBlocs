@@ -12,6 +12,8 @@
 #include "LoseState.hpp"
 #include "WinState.hpp"
 #include "ResourcePath.hpp"
+#include "score.hpp"
+
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -38,9 +40,13 @@ Application::Application()
 
 	// TODO init avec fichier des scores
 	// Pour l'instant init en dur
-	mScores.push_back(-1);
-	mScores.push_back(-1);
-	mScores.push_back(-1);
+	for(int i=0; i<12; i++)
+		mScores.push_back(-1);
+
+	std::vector<int> vect_score = getAllScoreWithoutName();
+	for (int i = 0; i<vect_score.size(); i++)
+		mScores[i] = vect_score[i];
+		
 
 	// Load musics in MusicPlayer
 

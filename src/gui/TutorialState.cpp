@@ -1,6 +1,7 @@
 #include "TutorialState.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"
+#include "score.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
@@ -52,14 +53,14 @@ bool TutorialState::handleEvent(const sf::Event& event)
 	if (mIdTutoImg > Textures::TutorialEnd)
 	{
 		if (*getContext().tutorial)
-			// TODO pop and push levelmanagerstate
 			requestStackPop();
 		else
 		{
-			// TODO Charger Level 0
 			bool& tutorial = *getContext().tutorial;
 			tutorial = true;
 			*getContext().numLevel = 0;
+			getContext().scores->at(*getContext().numLevel) = 0;
+			saveAllScore(*getContext().scores);
 			requestStackPop();
 			requestStackPush(States::LevelManager);
 			requestStackPush(States::Game);

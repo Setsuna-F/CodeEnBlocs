@@ -14,16 +14,30 @@ using namespace std;
  * \param score le score du level courant
  * \param namelevel le nom du level courant
  */
-void saveLevel(int score, std::string namelevel){
-    std::string name = to_string(score) + namelevel;
+void saveLevel(int score, std::string namelevel) {
+	std::string name = to_string(score) + namelevel;
 
-    ofstream fichier("../res/allScores.ceg", ios::out | ios::app);  // ouverture en écriture avec effacement du fichier ouvert
-    if(fichier){
-        fichier << name << "\n";
-        fichier.close();
-    }
-    else
-        cerr << "Impossible d'ouvrir le fichier !" << endl;
+	ofstream fichier("../res/allScores.ceg", ios::out | ios::app);  // ouverture en écriture avec effacement du fichier ouvert
+	if (fichier) {
+		fichier << name << "\n";
+		fichier.close();
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
+}
+
+
+void saveAllScore(std::vector<int> vect_score) {
+	ofstream fichier("../res/allScores.ceg", ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+	if (fichier) {
+		for (int i = 0; i < vect_score.size(); i++)
+		{
+			fichier << to_string(vect_score[i]) << "\n";
+		}
+		fichier.close();
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
 }
 
 
@@ -35,33 +49,54 @@ void saveLevel(int score, std::string namelevel){
  * \brief fonction qui recupere tous les scores du fichier allScores.txt
  * \return un vector de structure sur les scores.
  */
-std::vector<sct_score> getAllScore(){
-    std::vector<sct_score> vect_score;
-    ifstream fichier("../res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
-    if(fichier){
-        std::string ligne;
-        printf ("Tous les scores: \n");
-        while(getline(fichier, ligne)) {
-             char str [40];
-             int i;
+std::vector<sct_score> getAllScore() {
+	std::vector<sct_score> vect_score;
+	ifstream fichier("../res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
+	if (fichier) {
+		std::string ligne;
+		printf("Tous les scores: \n");
+		while (getline(fichier, ligne)) {
+			char str[40];
+			int i;
 
-             sscanf (ligne.c_str(),"%d%s",&i, str);
-             sct_score sct_s;
-             sct_s.score=i;
-             sct_s.namelevel=str;
+			sscanf(ligne.c_str(), "%d%s", &i, str);
+			sct_score sct_s;
+			sct_s.score = i;
+			sct_s.namelevel = str;
 
-             vect_score.push_back(sct_s);
-        }
+			vect_score.push_back(sct_s);
+		}
 
-        fichier.close();
-    }
-    else
-        cerr << "Impossible d'ouvrir le fichier !" << endl;
+		fichier.close();
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
 
-    return vect_score;
+	return vect_score;
 }
 
+std::vector<int> getAllScoreWithoutName() {
+	std::vector<int> vect_score;
+	ifstream fichier("../res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
+	if (fichier) {
+		std::string ligne;
+		printf("Tous les scores: \n");
+		while (getline(fichier, ligne)) {
+			char str[40];
+			int i;
+			
+			sscanf(ligne.c_str(), "%d", &i);
 
+			vect_score.push_back(i);
+		}
+
+		fichier.close();
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
+
+	return vect_score;
+}
 
 /**
  *

@@ -26,7 +26,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 	playButton->setSound(SoundEffect::Pages);
 	playButton->setCallback([this] ()
 	{
-		if (*getContext().tutorial)
+		if (*getContext().tutorial || getContext().scores->at(0) != -1)
 		{
 			requestStackPush(States::LevelManager);
 		}

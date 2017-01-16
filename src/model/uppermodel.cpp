@@ -43,8 +43,14 @@ sct_type UpperModel::execute() {
 	res.double_type		=nullptr;
 	res.bool_type		=nullptr;
 
-	firstOperand = this->BinaryModel::getFirstOperand()->execute();
-	secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	if(this->BinaryModel::getFirstOperand())
+		firstOperand = this->BinaryModel::getFirstOperand()->execute();
+	else
+		return res;
+	if(this->BinaryModel::getSecondOperand())
+		secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	else
+		return res;
 
 	bool isinteger=true; // cette variable va nous servir a voir si les deux param sont des int ou des doubles
 	double res_first=0;

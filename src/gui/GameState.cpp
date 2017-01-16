@@ -483,6 +483,8 @@ void GameState::toggleLoop() {
 }
 
 void GameState::startExecute() {
+	if(mLi == 0 && mCol == 0)
+		return ;
 	int score = mCurrentLevel->validate();
 
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
@@ -994,7 +996,7 @@ std::string GameState::variablesToString() {
 		notSet = true;
 		value = "?";
 	}
-	
+
 	if (!notSet) {
 		s += name + "=" + value + "\n";
 	}
@@ -1067,6 +1069,6 @@ std::string GameState::variablesToString() {
 	if (!notSet) {
 		s += name + "=" + value + "\n";
 	}
-	
+
 	return s;
 }

@@ -41,8 +41,14 @@ sct_type OrModel::execute() {
 	res.double_type		=nullptr;
 	res.bool_type		=nullptr;
 
-	firstOperand  = this->BinaryModel::getFirstOperand()->execute();
-	secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	if(this->BinaryModel::getFirstOperand())
+		firstOperand = this->BinaryModel::getFirstOperand()->execute();
+	else
+		return res;
+	if(this->BinaryModel::getSecondOperand())
+		secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	else
+		return res;
 
 	/*Cas bool*/
 	if(firstOperand.bool_type && secondOperand.bool_type){

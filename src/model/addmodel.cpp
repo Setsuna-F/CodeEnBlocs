@@ -26,6 +26,7 @@ AddModel::~AddModel() {
 }
 
 sct_type AddModel::execute() {
+
 	sct_type firstOperand;
 	firstOperand.int_type		=nullptr;
 	firstOperand.double_type	=nullptr;
@@ -42,7 +43,17 @@ sct_type AddModel::execute() {
 	res.bool_type		=nullptr;
 
 	firstOperand = this->BinaryModel::getFirstOperand()->execute();
-	secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	if(this->BinaryModel::getSecondOperand())
+		secondOperand = this->BinaryModel::getSecondOperand()->execute();
+	else
+		return res;
+
+	if((firstOperand.int_type==nullptr)&&(firstOperand.double_type==nullptr)&&(firstOperand.bool_type==nullptr))
+		std::cout<< "ERREUR: LE PREMIER ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" <<std::endl;
+
+	if((secondOperand.int_type==nullptr)&&(secondOperand.double_type==nullptr)&&(secondOperand.bool_type==nullptr))
+		std::cout<< "ERREUR: LE SECOND ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" <<std::endl;
+
 
 	bool isinteger=true; // cette variable va nous servir a voir si les deux param sont des int ou des doubles
 	double res_first=0;

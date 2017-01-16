@@ -30,17 +30,26 @@ void DivLevelModel::reset(){
 	InputListModel* input = _workspace->getInputList();
 	srand(time(NULL));
 
-	for(int i=0; i<2; i++){
-		sct_type foo;
-		int bar;
-		foo.double_type = nullptr;
-		foo.bool_type = nullptr;
-		bar = min + (rand() % (int)(max - min + 1));
-		foo.int_type = new int(bar);
-		output += *(foo.int_type);
-		input->push(foo);
-		//_workspace->setInputList(input);
-	}
+	sct_type foo;
+	int bar;
+	foo.double_type = nullptr;
+	foo.bool_type = nullptr;
+	bar = min + (rand() % (int)(max - min + 1))+1;
+	foo.int_type = new int(bar);
+	output += *(foo.int_type);
+	input->push(foo);
+	//_workspace->setInputList(input);
+
+	foo.double_type = nullptr;
+	foo.bool_type = nullptr;
+	bar = min + (rand() % (int)(max - min + 1));
+	foo.int_type = new int(bar);
+	output += *(foo.int_type);
+	input->push(foo);
+	//_workspace->setInputList(input);
+
+
+
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));
 }

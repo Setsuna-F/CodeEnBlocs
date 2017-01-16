@@ -30,9 +30,11 @@ sct_type AssignmentModel::execute() {
 	value.double_type 	= nullptr;
 	value.bool_type 	= nullptr;
 
-	if(_secondOperand)
+	if(_secondOperand){
 		value = (_secondOperand)->execute();
+	}
 	else{
+		std::cout<< "ERREUR: PAS DE SECOND ARGUMENT : [FONCTION : " << __FUNCTION__ << "]" <<std::endl;
 		value.int_type 		= nullptr;
 		value.double_type 	= nullptr;
 		value.bool_type 	= nullptr;
@@ -54,6 +56,7 @@ sct_type AssignmentModel::execute() {
 			std::cout<< "ERREUR: " << __FUNCTION__ << std::endl;
 		}
 	}
+
 	return value;
 }
 

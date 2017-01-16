@@ -96,13 +96,17 @@ void LevelModel::setCodePage(CodePageModel* codePage){
 int LevelModel::validate(){ //TODO à tester
 	int score = 1;
 	std::string out, outExpected;
-	_codePage->execute();
+	sct_type val_exec = _codePage->execute();
+
+
+	if(val_exec.int_type == nullptr && val_exec.bool_type == nullptr && val_exec.double_type == nullptr)
+		return 0;
 
 	OutputListModel* outputList = _workspace->getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList->size();
 
-	std::cout << "Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
+	//std::cout << "Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
 
 	if (size != expectedSize) {
 		return 0;

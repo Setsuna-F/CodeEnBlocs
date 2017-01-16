@@ -27,6 +27,7 @@ void MultLevelModel::reset(){
 	double output = 0;
     double output1 = 0;
     double output2 = 0;
+	bool op=false;
 
 	_workspace->flush();
 	_codePage->flush();
@@ -42,7 +43,11 @@ void MultLevelModel::reset(){
             foo.bool_type = nullptr;
             bar = min + (rand() % (int)(max - min + 1));
             foo.int_type = new int(bar);
-            output1 = *(foo.int_type);
+			if(op) output1 = bar;
+			else{
+				output2 = bar;
+				op=true;
+			}
             input->push(foo);
         }
         else{
@@ -54,11 +59,19 @@ void MultLevelModel::reset(){
 			foo.double_type = new double(bar);
             foo.bool_type = nullptr;
             foo.int_type = nullptr;
-            output2 = *(foo.double_type);
-            input->push(foo);
+			if(op) output1 = bar;
+			else{
+				output2 = bar;
+				op=true;
+			}
+	        input->push(foo);
         }
     }
-    output = output1*output2;
+	std::cout<<"-------------------------------"<<std::endl;
+	std::cout<<"J'ai : "<<output1<<std::endl;
+	std::cout<<"J'ai : "<<output2<<std::endl;
+	output = output1*output2;
+	std::cout<<"Dans le level je veux: "<<output<<std::endl;
 
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));

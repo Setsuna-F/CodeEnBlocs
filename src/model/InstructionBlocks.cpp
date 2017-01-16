@@ -116,6 +116,7 @@ sct_type InstructionBlockModel::execute(){
 		if((*it)->getType() == AssignementBlocType){
 			AssignmentModel* assignModel = dynamic_cast<AssignmentModel*>(*it);
 			condition = assignModel->execute();
+			std::cout<< "ERREUR: PAS D'ARGUMENT" << __FUNCTION__ << std::endl;
 		}
 	}
 	return condition;

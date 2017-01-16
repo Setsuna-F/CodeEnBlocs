@@ -16,14 +16,14 @@ using namespace satap;
 
 DivLevelModel::DivLevelModel() :
 
-	LevelModel("Division", 10, "On va te donner deux nombres, \ndivise-les et donne le résultat calculé.", "Utilise un bloc de division après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
+	LevelModel("Division", 10, "On va te donner deux nombres, \ndivise-les et donne le résultat calculé.", "Utilise un bloc de division."){ //TODO better help text
 	reset();
 }
 
 void DivLevelModel::reset(){
 	int min = 0;
 	int max = 9;
-	int output = 0;
+	double output = 0;
 
 	_workspace->flush();
 	_codePage->flush();

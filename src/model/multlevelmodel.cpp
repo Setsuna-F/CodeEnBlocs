@@ -16,7 +16,7 @@ using namespace satap;
 
 MultLevelModel::MultLevelModel() :
 
-	LevelModel("Multiplication", 10, "On va te donner deux nombres, \nmultiplie-les et donne le résultat calculé.", "Utilise un bloc de multiplication après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
+	LevelModel("Multiplication", 5, "On va te donner deux nombres, \nmultiplie-les et donne le résultat calculé.", "Utilise un bloc de multiplication après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
 
 	reset();
 }
@@ -24,9 +24,9 @@ MultLevelModel::MultLevelModel() :
 void MultLevelModel::reset(){
 	int min = 0;
 	int max = 9;
-	int output = 0;
-    int output1 = 0;
-    int output2 = 0;
+	double output = 0;
+    double output1 = 0;
+    double output2 = 0;
 
 	_workspace->flush();
 	_codePage->flush();
@@ -46,14 +46,12 @@ void MultLevelModel::reset(){
             input->push(foo);
         }
         else{
-            sct_type foo;
-            double bar;
-            int q;
-            int d;
-            q = min + (rand() % (int)(max - min + 1));
-            d = min + (rand() % (int)(max - min + 1)) + 1;
-            bar = (double)(min + (rand() % (int)(max - min + 1))) + (double)(q/d);
-            foo.double_type = new double(bar);
+			sct_type foo;
+			double bar;
+			double q;
+			q = min + (rand() % (int)(100 - min + 1));
+			bar = (double)(min + (rand() % (int)(max - min + 1))) + (double)(q/100);
+			foo.double_type = new double(bar);
             foo.bool_type = nullptr;
             foo.int_type = nullptr;
             output2 = *(foo.double_type);
@@ -61,6 +59,7 @@ void MultLevelModel::reset(){
         }
     }
     output = output1*output2;
+
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));
 }

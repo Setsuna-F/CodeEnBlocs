@@ -73,7 +73,7 @@ sct_type AddModel::execute() {
 	/*cas int*/
 	if(isinteger){
 		int res_add=res_first+res_second;
-		//std::cout<<"val = "<< res_add <<std::endl;
+		std::cout<<"val = "<< res_add <<std::endl;
 		res.int_type=new int(res_add);
 		//std::cout<<"val = "<< *res.int_type <<std::endl;
 
@@ -82,6 +82,7 @@ sct_type AddModel::execute() {
 	/*cas double*/
 	else{
 		double res_add=res_first+res_second;
+		std::cout<<"val = "<< res_add <<std::endl;
 		res.double_type=new double(res_add);
 		std::fflush(stdout);
 	}

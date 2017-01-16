@@ -40,6 +40,8 @@ void VariableModel::setValue(sct_type value) {
 		else
 			*_value_ptr->bool_type = *value.bool_type;
 	}
+	else
+		_value_ptr->bool_type = nullptr;
 
 	if (value.int_type != nullptr)
 	{
@@ -48,6 +50,8 @@ void VariableModel::setValue(sct_type value) {
 		else
 			*_value_ptr->int_type = *value.int_type;
 	}
+	else
+		_value_ptr->int_type = nullptr;
 
 	if (value.double_type != nullptr)
 	{
@@ -56,6 +60,8 @@ void VariableModel::setValue(sct_type value) {
 		else
 			*_value_ptr->double_type = *value.double_type;
 	}
+	else
+		_value_ptr->double_type = nullptr;
 }
 
 void satap::VariableModel::setValuePtr(sct_type * n)

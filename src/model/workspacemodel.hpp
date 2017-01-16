@@ -20,6 +20,7 @@ namespace satap {
 			void setOutputList(OutputListModel* outputList);
 			void setVariableList(VariableListModel* variableList);
 			void flush();
+			void reload();
 
 		private:
 			InputListModel* _inputList;

@@ -95,5 +95,10 @@ std::string satap::VariableListModel::toString()
 	return s;
 }
 
+void satap::VariableListModel::clear()
+{
+	_varlist.clear();
+}
+
 
 

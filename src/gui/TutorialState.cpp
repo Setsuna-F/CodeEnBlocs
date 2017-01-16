@@ -52,7 +52,7 @@ bool TutorialState::handleEvent(const sf::Event& event)
 
 	if (mIdTutoImg > Textures::TutorialEnd)
 	{
-		if (*getContext().tutorial)
+		if (*getContext().tutorial || getContext().scores->at(0) != -1)
 			requestStackPop();
 		else
 		{

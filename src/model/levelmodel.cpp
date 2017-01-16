@@ -99,18 +99,22 @@ int LevelModel::validate(){ //TODO à tester
 	sct_type val_exec = _codePage->execute();
 
 
+	std::cout << "coucou coucou coucou coucou" << std::endl;
 	if(val_exec.int_type == nullptr && val_exec.bool_type == nullptr && val_exec.double_type == nullptr)
 		return 0;
 
+	std::cout << "coucou coucou coucou coucou" << std::endl;
 	OutputListModel* outputList = _workspace->getOutputList();
 	int expectedSize = _outputListExpected.size();
 	int size = outputList->size();
 
-	std::cout << "size :" << size<< "     Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
+	std::cout << "coucou coucou coucou coucou" << std::endl;
+	//std::cout << "size :" << size<< "     Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
 
 	if (size != expectedSize) {
 		return 0;
 	}
+	std::cout << "coucou coucou coucou coucou" << std::endl;
 	for (int i = 0; i < size; i++) {
 		out = outputList->getValByIndex(i);
 		outExpected = _outputListExpected.getValByIndex(i);

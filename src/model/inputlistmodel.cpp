@@ -13,9 +13,17 @@
 using namespace satap;
 
 InputListModel::InputListModel(){}
-InputListModel::InputListModel(std::vector<sct_type> in):_input(in) {}
+InputListModel::InputListModel(std::vector<sct_type> in):_input(in), _saveinput()
+{
+	for (int i = 0; i < _input.size(); i++)
+		_saveinput.push_back(sct_type(_input.at(i)));
+}
 
-void InputListModel::push(sct_type val){_input.push_back(val);}
+void InputListModel::push(sct_type val)
+{
+	_input.push_back(val);
+	_saveinput.push_back(sct_type(val));
+}
 
 sct_type InputListModel::pop(){
 	sct_type res;			 /* On initialise le resultat a nullptr */
@@ -53,4 +61,17 @@ std::string satap::InputListModel::toString() {
 
 bool	InputListModel::isEmpty	()	{return _input.empty();}
 size_t	InputListModel::size	()	{return _input.size();}
+
+void satap::InputListModel::clear()
+{
+	_input.clear();
+	_saveinput.clear();
+}
+
+void satap::InputListModel::reload()
+{
+	_input.clear();
+	for (int i = 0; i < _saveinput.size(); i++)
+		_input.push_back(sct_type(_saveinput.at(i)));
+}
 

@@ -4,7 +4,9 @@
 using namespace satap;
 
 WorkspaceModel::WorkspaceModel(){
-	flush();
+	_inputList = new InputListModel();
+	_outputList = new OutputListModel();
+	_variableList = new VariableListModel();
 }
 
 WorkspaceModel::WorkspaceModel(InputListModel* inputList, OutputListModel* outputList, VariableListModel* variableList){
@@ -38,7 +40,16 @@ void WorkspaceModel::setVariableList(VariableListModel* variableList){
 }
 
 void WorkspaceModel::flush(){
-	_inputList = new InputListModel();
-	_outputList = new OutputListModel();
-	_variableList = new VariableListModel();
+	_inputList->clear();
+	_outputList->clear();
+	_variableList->clear();
 }
+
+void satap::WorkspaceModel::reload()
+{
+	_inputList->reload();
+	_outputList->clear();
+	_variableList->clear();
+}
+
+

@@ -28,6 +28,7 @@ namespace satap{
 			sct_type		getValue		(std::string);
 			size_t			size			();
 			std::string		toString		();
+			void clear();
 		private:
 		std::unordered_map<std::string, sct_type> _varlist;
 	};

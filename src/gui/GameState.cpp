@@ -388,9 +388,9 @@ bool GameState::update(sf::Time dt)
 		}
 	}
 
-	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
-	mVariablesString.setString(variablesToString());
-	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
+	//mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	//mVariablesString.setString(variablesToString());
+	//mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	return true;
 }
 
@@ -458,6 +458,16 @@ bool GameState::handleEvent(const sf::Event& event) {
 	return false;
 }
 
+void GameState::onActivate()
+{
+	mCurrentLevel->getWorkspace()->reload();
+	mBlocVarA.setValue(sct_type());
+	mBlocVarB.setValue(sct_type());
+	mBlocVarC.setValue(sct_type());
+	mBlocVarD.setValue(sct_type());
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+}
+
 
 std::pair<int, int> GameState::getCoordonnees(int ligne, int colonne) {
 	int posX = 540, posY = 85;
@@ -486,7 +496,7 @@ void GameState::startExecute() {
 	if(mLi == 0 && mCol == 0)
 		return ;
 	int score = mCurrentLevel->validate();
-
+	std::cout << "coucou coucou coucou coucou ooooooohhhhhh" << std::endl;
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	mVariablesString.setString(variablesToString());
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
@@ -502,7 +512,7 @@ void GameState::startExecute() {
 	*mContext.score = score;
 	*mContext.nameLevel = mCurrentLevel->getName();
 
-	if (score > 0){
+	if (score > 0 && score <= 3){
 		requestStackPush(States::Win);
 		if(mContext.scores->at(*getContext().numLevel) < score)
 			mContext.scores->at(*getContext().numLevel) = score;
@@ -514,11 +524,7 @@ void GameState::startExecute() {
 	else
 	{
 		requestStackPush(States::Lose);
-		mCurrentLevel->reset();
-		mBlocVarA.setValuePtr(new sct_type());
-		mBlocVarB.setValuePtr(new sct_type());
-		mBlocVarC.setValuePtr(new sct_type());
-		mBlocVarD.setValuePtr(new sct_type());
+		//mCurrentLevel->reset();
 	}
 }
 
@@ -551,6 +557,10 @@ void GameState::effacerLigne(int ligne) {
 		mCurrentLevel->getCodePage()->deleteLigne(ligne-countDel);
 		mBlocsContainerDeleted[ligne]=0;
 	}
+
+	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
+	mVariablesString.setString(variablesToString());
+	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 }
 
 

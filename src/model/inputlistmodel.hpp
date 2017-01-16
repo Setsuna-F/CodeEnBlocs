@@ -25,6 +25,7 @@ namespace satap{
 	class InputListModel{
 	private:
 		std::vector<sct_type> _input;
+		std::vector<sct_type> _saveinput;
 	
 	public:
 		InputListModel();
@@ -37,6 +38,8 @@ namespace satap{
 
 		bool	isEmpty();
 		size_t	size();
+		void clear();
+		void reload();
 	};
 
 }

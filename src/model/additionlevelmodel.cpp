@@ -15,7 +15,7 @@
 using namespace satap;
 
 AdditionLevelModel::AdditionLevelModel() :
-	LevelModel("Addition", 10, "On va te donner deux nombres, \nadditionne-les et donne le résultat calculé.", "Utilise un bloc d'addition après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
+	LevelModel("Addition", 5, "On va te donner deux nombres, \nadditionne-les et donne le résultat calculé.", "Utilise un bloc d'addition après avoir récupéré \nles deux entrées dans deux variables."){ //TODO better help text
 	reset();
 }
 

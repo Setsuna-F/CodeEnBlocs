@@ -14,8 +14,8 @@
 using namespace satap;
 
 IOLevelModel::IOLevelModel() :
-	LevelModel("Entrée / Sortie", 2, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée \n et Output pour restituer une valeur en sortie."){
-		
+	LevelModel("Entrée / Sortie", 3, "On va te donner un nombre, tu dois le restituer tel quel.", "Utilise le bloc Input pour lire une valeur en entrée \n et Output pour restituer une valeur en sortie."){
+
 		// TODO a débugger
 		/*
 		_availableBlocks.setBlock(new InputModel(), "Input");

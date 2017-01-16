@@ -458,50 +458,6 @@ bool GameState::handleEvent(const sf::Event& event) {
 	return false;
 }
 
-/*Bloc * GameState::addBloc(satap::typeBloc t)
-{
-	Bloc* b=NULL;
-	std::shared_ptr<Bloc> bl;
-	if (mCol < 5)
-	{
-
-		if (t == VariableBlocType) {
-			b = new VariableBloc(mContext);
-			b->setSprite(mContext, Textures::VariableSpawner);
-			std::cout << "Ajout d'un bloc de type var" << std::endl;
-		}
-		else if (t == AssignementBlocType) {
-			b = new AssignmentBloc(mContext);
-			b->setSprite(mContext, Textures::AssignmentSpawner);
-			std::cout << "Ajout d'un bloc de type <-" << std::endl;
-		}
-		else if (t == InputBlocType) {
-			b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
-			b->setSprite(mContext, Textures::InputSpawner);
-			std::cout << "Ajout d'un bloc de type In" << std::endl;
-		}
-		else if (t == OutputBlocType) {
-			b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
-			b->setSprite(mContext, Textures::OutputSpawner);
-			std::cout << "Ajout d'un bloc de type Out" << std::endl;
-		}
-		else if (t == AddBlocType) {
-			b = new AddBloc(mContext);
-			b->setSprite(mContext, Textures::AddSpawner);
-			std::cout << "Ajout d'un bloc de type +" << std::endl;
-		}
-
-		std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
-		b->setPosition(coordBloc.first, coordBloc.second);
-		bl = std::shared_ptr<Bloc>(b);
-		mBlocsContainer[mLi]->pack(bl);
-
-		mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-		// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
-
-	}
-	return b;
-}*/
 
 std::pair<int, int> GameState::getCoordonnees(int ligne, int colonne) {
 	int posX = 540, posY = 85;
@@ -515,10 +471,8 @@ std::pair<int, int> GameState::getCoordonneesCurseur(int ligne) {
 }
 
 void GameState::resetCode() {
-	//mCurrentLevel->getCodePage()->flush();
 	for (int i = 0; i < 12; i++) {
 		effacerLigne(i);
-		//mBlocsContainer[i]->flush();
 	}
 	mLi = 0;
 	mCol = 0;
@@ -535,12 +489,17 @@ void GameState::startExecute() {
 	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 
+	*mContext.nbBlocsUsed = getNbBlocs();
+	if(score != 0){
+		score=1;
+		if(*mContext.nbBlocsUsed<2*mCurrentLevel->getOptimalBlocCount()+1)
+			score++;
+		if(*mContext.nbBlocsUsed<mCurrentLevel->getOptimalBlocCount()+1)
+			score++;
+	}
 	*mContext.score = score;
 	*mContext.nameLevel = mCurrentLevel->getName();
-	*mContext.nbBlocsUsed = getNbBlocs();
 
-	// TODO à retirer
-	std::cout << score << std::endl;
 	if (score > 0){
 		requestStackPush(States::Win);
 		if(mContext.scores->at(*getContext().numLevel) < score)
@@ -668,15 +627,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				bloc_ptr = std::shared_ptr<Bloc>(bloc_assign_tmp);
 				mBlocsContainer[mLi]->pack(bloc_ptr);
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
-
-				//BlockCompositeModel* compofirstop = dynamic_cast<BlockCompositeModel*>(bloc_tmp);
-				/*BlockModel* compo = dynamic_cast<BlockModel*>(bloc_tmp);
-				std::cout << "Type int (avant setType) -> " << compo->getType() <<std::endl;
-				compo->setType(t);
-				std::cout << "Type int (apres setType) -> " << compo->getType() <<std::endl;*/
-				//BlockCompositeModel* compofirstop = dynamic_cast<BlockCompositeModel*>(bloc_tmp);
 				BlockModel* compofirstop = dynamic_cast<BlockModel*>(bloc_tmp);
 				if(compofirstop == nullptr)
 					std::cout << "ERREUR: "<< __FUNCTION__ <<std::endl;
@@ -714,8 +665,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 						bloc_assign_tmp->setPosition(coordBloc.first, coordBloc.second);
 						bloc_ptr = std::shared_ptr<Bloc>(bloc_assign_tmp);
 						mBlocsContainer[mLi]->pack(bloc_ptr);
-						mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-						// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
+						mCol++;
 
 						BlockCompositeModel* compoblock = dynamic_cast<BlockCompositeModel*>(bloc_assign_tmp);
 						compoblock->setType(t);
@@ -728,46 +678,27 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			else if (assignBlock->getSecondOperand() != nullptr){
 				if (t != AssignementBlocType){
 					std::cerr << "12- " << __FUNCTION__ <<std::endl;
-
 					BlockCompositeModel * blockmodel_tmp = assignBlock->getSecondOperand();
-
-					//std::cout << "Type int (avant recusive)" << blockmodel_tmp->getType() <<std::endl;
 					assignBlock->setSecondOperand(recusiveAdd(blockmodel_tmp, t));
-					//std::cout << "Type int (apres recusive)" << blockmodel_tmp->getType() <<std::endl;
-
 				}
 			}
-			/*else{
-				std::cerr << "13- " << __FUNCTION__ <<std::endl;
-				std::cerr << "ERROR: " << t << " " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
-				std::cerr << "getType: " << t << " " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
-				std::cerr << "isBin: " << t << " " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
-				std::cerr << "isUn: " << t << " " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
-			}*/
 		}
 		else if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == IfBlocType){
 			//std::cerr << "14- " << __FUNCTION__ <<std::endl;
 			std::cerr << "Type IfBlocType " << __FUNCTION__ <<std::endl;
 		}
-		//std::cerr << "LIGNE NON VIDE : " << __FUNCTION__ <<mCurrentLevel->getCodePage()->getBlockByIndex(0)->getId()<<std::endl;
 	}
 }
 
 BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::typeBloc t){
-
-	//std::cout << "Type int " << block->getType() <<std::endl;
-	//std::cout << "Type add " << t <<std::endl;
 	std::shared_ptr<Bloc> bloc_ptr;
-
 	if(isUnaryBlock(block->getType())){
-		//std::cout << "___________" << t <<std::endl;
 		if(isBaseFunctionBlock(block->getType())){ //Si la fonction est composable et donc peut avoir 1 parametre
 			std::cout << " " << t <<std::endl;
 			//BinaryModel* btmp = dynamic_cast<BinaryModel*>(block);
 
 			/*if(btmp->getOperand()==nullptr){//Si notre operateur n'a pas d'elements a l'interrieur alors
 				if(isUnaryBlock(t)){ //Si t est soit un input soit un NOT(n) soit un ...
-					std::cout << "___________" << t <<std::endl;
 
 					//BlockCompositeModel* btmp = dynamic_cast<UnaryModel*>(block); //On copie l'objet du bloc principal
 					Bloc * binary_block= factoryBlock(t); // On crée le nouveau type
@@ -799,8 +730,6 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 				bloc_ptr = std::shared_ptr<Bloc>(binary_block);
 				mBlocsContainer[mLi]->pack(bloc_ptr);
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
-				std::cout << " SUB " << std::endl;
 
 				BinaryModel* binblock = dynamic_cast<BinaryModel*>(binary_block);
 				binblock->setType(t);
@@ -823,7 +752,6 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 					bloc_ptr = std::shared_ptr<Bloc>(binary_block);
 					mBlocsContainer[mLi]->pack(bloc_ptr);
 					mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
-					// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
 					BlockCompositeModel* compoblock = dynamic_cast<BlockCompositeModel*>(binary_block);
 					compoblock->setType(t);

@@ -8,6 +8,10 @@
 
 #include "InstructionBlocks.hpp"
 #include "AssignmentModel.hpp"
+
+#include <unistd.h>
+#include <iostream>
+
 using namespace satap;
 
 InstructionBlockModel::InstructionBlockModel(){}

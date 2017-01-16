@@ -111,7 +111,6 @@ int LevelModel::validate(){ //TODO à tester
 	for (int i = 0; i < size; i++) {
 		out = outputList->getValByIndex(i);
 		outExpected = _outputListExpected.getValByIndex(i);
-		std::cout<< "out="<<out<<"   outExpected="<<outExpected <<std::endl;
 		if(out != outExpected)
 			return 0;
 	}

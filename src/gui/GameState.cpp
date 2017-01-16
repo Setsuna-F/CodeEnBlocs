@@ -1,27 +1,32 @@
 ﻿
-#include "gui/GameState.hpp"
 #include "gui/Button.hpp"
-#include "gui/GameButton.hpp"
-#include "gui/SpawnerButton.hpp"
+#include "gui/Utility.hpp"
+#include "gui/GameState.hpp"
 #include "gui/Container.hpp"
+#include "gui/GameButton.hpp"
 #include "gui/KeyBinding.hpp"
+#include "gui/MusicPlayer.hpp"
+#include "gui/SpawnerButton.hpp"
+#include "gui/ResourceHolder.hpp"
+
 #include "blocs/Bloc.hpp"
-#include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
+#include "blocs/subBloc.hpp"
+#include "blocs/divBloc.hpp"
+#include "blocs/multBloc.hpp"
 #include "blocs/inputBloc.hpp"
 #include "blocs/outputBloc.hpp"
+#include "blocs/variableBloc.hpp"
 #include "blocs/assignmentBloc.hpp"
-#include "gui/Utility.hpp"
-#include "gui/MusicPlayer.hpp"
-#include "gui/ResourceHolder.hpp"
-#include "model/gamemodel.hpp"
+
 #include "model/addmodel.hpp"
+#include "model/gamemodel.hpp"
 
 #include "score.hpp"
 #include "SoundPlayer.hpp"
 
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 using namespace satap;
 

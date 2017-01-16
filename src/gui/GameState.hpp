@@ -67,6 +67,8 @@ class GameState : public State
 
 		void setVarible(int);
 
+		std::string variablesToString();
+
 
 	private:
 		Context							mContext;

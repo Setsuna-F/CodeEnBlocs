@@ -1,27 +1,32 @@
 ﻿
-#include "gui/GameState.hpp"
 #include "gui/Button.hpp"
-#include "gui/GameButton.hpp"
-#include "gui/SpawnerButton.hpp"
+#include "gui/Utility.hpp"
+#include "gui/GameState.hpp"
 #include "gui/Container.hpp"
+#include "gui/GameButton.hpp"
 #include "gui/KeyBinding.hpp"
+#include "gui/MusicPlayer.hpp"
+#include "gui/SpawnerButton.hpp"
+#include "gui/ResourceHolder.hpp"
+
 #include "blocs/Bloc.hpp"
-#include "blocs/variableBloc.hpp"
 #include "blocs/addBloc.hpp"
+#include "blocs/subBloc.hpp"
+#include "blocs/divBloc.hpp"
+#include "blocs/multBloc.hpp"
 #include "blocs/inputBloc.hpp"
 #include "blocs/outputBloc.hpp"
+#include "blocs/variableBloc.hpp"
 #include "blocs/assignmentBloc.hpp"
-#include "gui/Utility.hpp"
-#include "gui/MusicPlayer.hpp"
-#include "gui/ResourceHolder.hpp"
-#include "model/gamemodel.hpp"
+
 #include "model/addmodel.hpp"
+#include "model/gamemodel.hpp"
 
 #include "score.hpp"
 #include "SoundPlayer.hpp"
 
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 using namespace satap;
 
@@ -510,9 +515,10 @@ std::pair<int, int> GameState::getCoordonneesCurseur(int ligne) {
 }
 
 void GameState::resetCode() {
-	mCurrentLevel->getCodePage()->flush();
+	//mCurrentLevel->getCodePage()->flush();
 	for (int i = 0; i < 12; i++) {
-		mBlocsContainer[i]->flush();
+		effacerLigne(i);
+		//mBlocsContainer[i]->flush();
 	}
 	mLi = 0;
 	mCol = 0;
@@ -794,6 +800,7 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 				mBlocsContainer[mLi]->pack(bloc_ptr);
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 				// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
+				std::cout << " SUB " << std::endl;
 
 				BinaryModel* binblock = dynamic_cast<BinaryModel*>(binary_block);
 				binblock->setType(t);
@@ -991,6 +998,21 @@ Bloc * GameState::factoryBlock(satap::typeBloc t){
 		b = new AddBloc(mContext);
 		b->setSprite(mContext, Textures::AddSpawner);
 		std::cout << "Ajout d'un bloc de type +" << std::endl;
+	}
+	else if (t == SubBlocType) {
+		b = new SubBloc(mContext);
+		b->setSprite(mContext, Textures::SubSpawner);
+		std::cout << "Ajout d'un bloc de type -" << std::endl;
+	}
+	else if (t == DivBlocType) {
+		b = new DivBloc(mContext);
+		b->setSprite(mContext, Textures::DivSpawner);
+		std::cout << "Ajout d'un bloc de type /" << std::endl;
+	}
+	else if (t == MultBlocType) {
+		b = new MultBloc(mContext);
+		b->setSprite(mContext, Textures::MultSpawner);
+		std::cout << "Ajout d'un bloc de type *" << std::endl;
 	}
 
 	return b;

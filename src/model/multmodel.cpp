@@ -72,13 +72,17 @@ sct_type MultModel::execute() {
 
 	/*cas int*/
 	if(isinteger){
-		int res_add=res_first*res_second;
+		int res_add=res_second*res_first;
+		//std::cout<<"val="<<res_second<<std::endl;
+		//std::cout<<"val="<<res_first<<std::endl;
+		//std::cout<<"val="<<res_add<<std::endl;
+		//std::cout<<"val="<<res_second<<"*"<<res_first<<"="<<res_add<<std::endl;
 		res.int_type=new int(res_add);
 		std::fflush(stdout);
 	}
 	/*cas double*/
 	else{
-		double res_add=res_first*res_second;
+		double res_add=res_second*res_first;
 		res.double_type=new double(res_add);
 		std::fflush(stdout);
 	}

@@ -100,7 +100,7 @@ Application::Application()
 	mTextures.load(Textures::Tutorial8, "res/img/tuto/tuto-8.png");
 	mTextures.load(Textures::Tutorial9, "res/img/tuto/tuto-9.png");
 
-	mTextures.load(Textures::Lose, "res/img/lose.png");
+	mTextures.load(Textures::Lose, "res/img/level-end-score-0.png");
 	mTextures.load(Textures::Win1, "res/img/level-end-score-1.png");
 	mTextures.load(Textures::Win2, "res/img/level-end-score-2.png");
 	mTextures.load(Textures::Win3, "res/img/level-end-score-3.png");

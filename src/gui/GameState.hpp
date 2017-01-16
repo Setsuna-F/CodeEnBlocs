@@ -13,6 +13,7 @@
 #include <gui/State.hpp>
 #include <gui/Container.hpp>
 #include <model/levelmodel.hpp>
+#include <gui/blocs/variableBloc.hpp>
 #include <model/additionlevelmodel.hpp>
 #include "gui/Curseur.hpp"
 #include "blocs/Bloc.hpp"
@@ -64,6 +65,8 @@ class GameState : public State
 
 		Bloc *factoryBlock(typeBloc t);
 
+		void setVarible(int);
+
 
 	private:
 		Context							mContext;
@@ -84,6 +87,11 @@ class GameState : public State
 		bool							showInstructions;
 		GUI::Container					mButtonsContainerConfirmationExit;
 		sf::Time						mDelayExit;
+		satap::VariableBloc				mBlocVarA;
+		satap::VariableBloc				mBlocVarB;
+		satap::VariableBloc				mBlocVarC;
+		satap::VariableBloc				mBlocVarD;
+		satap::VariableBloc				mBlocVarSelected;
 };
 
 #endif // BOOK_MENUSTATE_HPP

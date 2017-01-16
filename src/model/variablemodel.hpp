@@ -25,9 +25,11 @@ namespace satap{
 	
 			void setName(std::string n);
 			std::string getName();
-	
+
 			void setValue(sct_type n);
+			void setValuePtr(sct_type* n);
 			sct_type getValue();
+			sct_type* VariableModel::getValuePtr();
 		
 			sct_type execute();
 			typeBloc getType();
@@ -40,7 +42,8 @@ namespace satap{
 			std::string _name;
 		
 			//variable value
-			sct_type* _value;
+			sct_type _value;
+			sct_type* _value_ptr;
 	};
 
 }

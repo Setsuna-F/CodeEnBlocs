@@ -22,7 +22,7 @@ namespace satap
 	Bloc::Bloc(State::Context context, typeBloc typebloc)
 		: mCallback()
 		, mSprite(context.textures->get(Textures::Buttons))
-		, mText("", context.fonts->get(Fonts::Main), 16)
+		, mText("", context.fonts->get(Fonts::Main), 24)
 		, mIsToggle(false)
 		, mSounds(*context.sounds)
 		, mTypeBlock(typebloc)
@@ -30,7 +30,8 @@ namespace satap
 		changeTexture(Normal);
 
 		sf::FloatRect bounds = mSprite.getLocalBounds();
-		mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+		mText.setFillColor(sf::Color::Black);
+		mText.setPosition(bounds.width * 0.7f, bounds.height * 0.5f);
 	}
 
 	void Bloc::setCallback(Callback callback) {

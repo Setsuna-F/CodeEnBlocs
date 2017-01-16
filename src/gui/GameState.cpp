@@ -38,6 +38,11 @@ GameState::GameState(StateStack& stack, Context context)
 	, showInstructions(true)
 	, mButtonsContainerConfirmationExit()
 	, mDelayExit(sf::Time::Zero)
+	, mBlocVarA(mContext)
+	, mBlocVarB(mContext)
+	, mBlocVarC(mContext)
+	, mBlocVarD(mContext)
+	, mBlocVarSelected(mContext)
 {
 	for (int i = 0; i < 12; i++)
 		mBlocsContainer.push_back(std::make_shared<GUI::Container>());
@@ -215,8 +220,10 @@ GameState::GameState(StateStack& stack, Context context)
 	varSpawnerA->setPosition(1020, 150);
 	varSpawnerA->setSprite(context, Textures::VariableSpawner);
 	varSpawnerA->setText("a");
+	mBlocVarA.setName("a");
 	varSpawnerA->setCallback([this]() {
 		//addBloc(VariableBlocType);
+		setVarible(1);
 		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawnerA);
@@ -225,8 +232,10 @@ GameState::GameState(StateStack& stack, Context context)
 	varSpawnerB->setPosition(1120, 150);
 	varSpawnerB->setSprite(context, Textures::VariableSpawner);
 	varSpawnerB->setText("b");
+	mBlocVarB.setName("b");
 	varSpawnerB->setCallback([this]() {
 		//addBloc(VariableBlocType);
+		setVarible(2);
 		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawnerB);
@@ -235,8 +244,10 @@ GameState::GameState(StateStack& stack, Context context)
 	varSpawnerC->setPosition(1020, 200);
 	varSpawnerC->setSprite(context, Textures::VariableSpawner);
 	varSpawnerC->setText("c");
+	mBlocVarC.setName("c");
 	varSpawnerC->setCallback([this]() {
 		//addBloc(VariableBlocType);
+		setVarible(3);
 		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawnerC);
@@ -245,8 +256,10 @@ GameState::GameState(StateStack& stack, Context context)
 	varSpawnerD->setPosition(1120, 200);
 	varSpawnerD->setSprite(context, Textures::VariableSpawner);
 	varSpawnerD->setText("d");
+	mBlocVarD.setName("d");
 	varSpawnerD->setCallback([this]() {
 		//addBloc(VariableBlocType);
+		setVarible(4);
 		addBlocks(NULL/*mCurrentLevel->getCodePage()->getBlock(0)*/, VariableBlocType);
 	});
 	mButtonsContainer.pack(varSpawnerD);
@@ -535,6 +548,10 @@ void GameState::startExecute() {
 	{
 		requestStackPush(States::Lose);
 		mCurrentLevel->reset();
+		mBlocVarA.setValuePtr(new sct_type());
+		mBlocVarB.setValuePtr(new sct_type());
+		mBlocVarC.setValuePtr(new sct_type());
+		mBlocVarD.setValuePtr(new sct_type());
 	}
 }
 
@@ -947,8 +964,12 @@ bool GameState::isUnaryFunctionBlock(satap::typeBloc t){
 Bloc * GameState::factoryBlock(satap::typeBloc t){
 	Bloc* b=NULL;
 	if (t == VariableBlocType) {
-		b = new VariableBloc(mContext);
-		b->setSprite(mContext, Textures::VariableSpawner);
+		VariableBloc * b1 = new VariableBloc(mContext);
+		b1->setName(mBlocVarSelected.getName());
+		b1->setText(mBlocVarSelected.getName());
+		b1->setValuePtr(mBlocVarSelected.getValuePtr());
+		b1->setSprite(mContext, Textures::VariableSpawner);
+		b = b1;
 		std::cout << "Ajout d'un bloc de type var" << std::endl;
 	}
 	else if (t == AssignementBlocType) {
@@ -973,4 +994,32 @@ Bloc * GameState::factoryBlock(satap::typeBloc t){
 	}
 
 	return b;
+}
+
+void GameState::setVarible(int var)
+{
+	switch (var)
+	{
+		case 1:
+			mBlocVarSelected.setName(mBlocVarA.getName());
+			mBlocVarSelected.setValuePtr(mBlocVarA.getValuePtr());
+
+			break;
+		case 2:
+			mBlocVarSelected.setName(mBlocVarB.getName());
+			mBlocVarSelected.setValuePtr(mBlocVarB.getValuePtr());
+
+			break;
+		case 3:
+			mBlocVarSelected.setName(mBlocVarC.getName());
+			mBlocVarSelected.setValuePtr(mBlocVarC.getValuePtr());
+
+			break;
+		case 4:
+			mBlocVarSelected.setName(mBlocVarD.getName());
+			mBlocVarSelected.setValuePtr(mBlocVarD.getValuePtr());
+
+			break;
+	}
+
 }

@@ -67,7 +67,7 @@ void SubLevelModel::reset(){
 			input->push(foo);
         }
     }
-    output = output1-output2;
+    output = output2-output1;
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));
 }

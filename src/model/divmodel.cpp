@@ -79,21 +79,21 @@ sct_type DivModel::execute() {
 
 
 	/*cas int*/
-	if(isinteger){
-		int res_div=res_second/res_first;
-		//std::cout<<"val="<<res_second<<std::endl;
-		//std::cout<<"val="<<res_first<<std::endl;
-		//std::cout<<"val="<<res_div<<std::endl;
-		//std::cout<<"val="<<res_second<<"/"<<res_first<<"="<<res_div<<std::endl;
-		res.int_type=new int(res_div);
-		std::fflush(stdout);
-	}
-	/*cas double*/
-	else{
+	//if(isinteger){
 		double res_div=res_second/res_first;
+		std::cout<<"val="<<res_second<<std::endl;
+		std::cout<<"val="<<res_first<<std::endl;
+		std::cout<<"val="<<res_div<<std::endl;
+		std::cout<<"val="<<res_second<<"/"<<res_first<<"="<<res_div<<std::endl;
+	//	res.int_type=new int(res_div);
+	//	std::fflush(stdout);
+	//}
+	/*cas double*/
+	//else{
+	//	double res_div=res_second/res_first;
 		res.double_type=new double(res_div);
 		std::fflush(stdout);
-	}
+	//}
 
 	return res;
 

@@ -605,6 +605,8 @@ void GameState::reloadPositionCurseur() {
  * \param t est le type de bloc a ajouter a la ligne donnée.
  */
 void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
+	if(mLi > mCurrentLevel->getCodePage()->getBlockList().size())
+		return ;
 	std::shared_ptr<Bloc> bloc_ptr;
 	std::cerr << "1- " << __FUNCTION__ <<std::endl;
 	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0 || (mBlocsContainerDeleted[mLi]==0)){ //Si la ligne est vide alors

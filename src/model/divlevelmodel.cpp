@@ -24,6 +24,8 @@ void DivLevelModel::reset(){
 	int min = 0;
 	int max = 9;
 	double output = 0;
+	double output1 = 0;
+	double output2 = 0;
 
 	_workspace->flush();
 	_codePage->flush();
@@ -34,22 +36,22 @@ void DivLevelModel::reset(){
 	int bar;
 	foo.double_type = nullptr;
 	foo.bool_type = nullptr;
-	bar = min + (rand() % (int)(max - min + 1))+1;
+	bar = min + (rand() % (int)(max - min + 1));
 	foo.int_type = new int(bar);
-	output += *(foo.int_type);
+	output1 = *(foo.int_type);
 	input->push(foo);
 	//_workspace->setInputList(input);
 
 	foo.double_type = nullptr;
 	foo.bool_type = nullptr;
-	bar = min + (rand() % (int)(max - min + 1));
+	bar = min + (rand() % (int)(max - min + 1))+1;
 	foo.int_type = new int(bar);
-	output += *(foo.int_type);
+	output2 = *(foo.int_type);
 	input->push(foo);
 	//_workspace->setInputList(input);
 
 
-
+	output = output1/output2;
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));
 }

@@ -106,7 +106,7 @@ int LevelModel::validate(){ //TODO à tester
 	int expectedSize = _outputListExpected.size();
 	int size = outputList->size();
 
-	//std::cout << "Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
+	std::cout << "size :" << size<< "     Output :" << outputList->getValByIndex(0) << "     OutputExpected :" << _outputListExpected.getValByIndex(0) << std::endl;
 
 	if (size != expectedSize) {
 		return 0;

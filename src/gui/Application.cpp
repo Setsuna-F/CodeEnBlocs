@@ -78,6 +78,9 @@ Application::Application()
 	mTextures.load(Textures::LevelManagerButtonThreeStars, "res/img/level-menu-background-score-3.png");
 
 	mTextures.load(Textures::AddSpawner,		"res/img/block-add.png");
+	mTextures.load(Textures::SubSpawner,		"res/img/block-sub.png");
+	mTextures.load(Textures::MultSpawner,		"res/img/block-mul.png");
+	mTextures.load(Textures::DivSpawner,		"res/img/block-div.png");
 	mTextures.load(Textures::AssignmentSpawner, "res/img/block-assignment.png");	
 	mTextures.load(Textures::InputSpawner,		"res/img/block-input.png");	
 	mTextures.load(Textures::OutputSpawner,		"res/img/block-output.png");	

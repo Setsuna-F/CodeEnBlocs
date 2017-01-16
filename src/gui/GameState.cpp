@@ -1,19 +1,4 @@
-﻿#ifdef __APPLESOKA__
-#include "GameState.hpp"
-#include "Button.hpp"
-#include "GameButton.hpp"
-#include "SpawnerButton.hpp"
-#include "Bloc.hpp"
-#include "variableBloc.hpp"
-#include "addBloc.hpp"
-#include "inputBloc.hpp"
-#include "outputBloc.hpp"
-#include "assignmentBloc.hpp"
-#include "Utility.hpp"
-#include "MusicPlayer.hpp"
-#include "ResourceHolder.hpp"
-#include "gamemodel.hpp"
-#else
+﻿
 #include "gui/GameState.hpp"
 #include "gui/Button.hpp"
 #include "gui/GameButton.hpp"
@@ -31,7 +16,7 @@
 #include "gui/ResourceHolder.hpp"
 #include "model/gamemodel.hpp"
 #include "model/addmodel.hpp"
-#endif
+
 #include "score.hpp"
 #include "SoundPlayer.hpp"
 

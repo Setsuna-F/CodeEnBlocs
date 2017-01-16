@@ -987,7 +987,8 @@ std::string GameState::variablesToString() {
 	if (var.bool_type) {
 		value = std::to_string(*var.bool_type);
 	} else if (var.double_type) {
-		value = std::to_string(*var.double_type);
+		//value = std::to_string(*var.double_type);
+		value = typeToString(*var.double_type);
 	} else if (var.int_type) {
 		value = std::to_string(*var.int_type);
 	} else {
@@ -1008,7 +1009,8 @@ std::string GameState::variablesToString() {
 		value = std::to_string(*var.bool_type);
 	}
 	else if (var.double_type) {
-		value = std::to_string(*var.double_type);
+		//value = std::to_string(*var.double_type);
+		value = typeToString(*var.double_type);
 	}
 	else if (var.int_type) {
 		value = std::to_string(*var.int_type);
@@ -1031,7 +1033,8 @@ std::string GameState::variablesToString() {
 		value = std::to_string(*var.bool_type);
 	}
 	else if (var.double_type) {
-		value = std::to_string(*var.double_type);
+		//value = std::to_string(*var.double_type);
+		value = typeToString(*var.double_type);
 	}
 	else if (var.int_type) {
 		value = std::to_string(*var.int_type);
@@ -1054,7 +1057,8 @@ std::string GameState::variablesToString() {
 		value = std::to_string(*var.bool_type);
 	}
 	else if (var.double_type) {
-		value = std::to_string(*var.double_type);
+		//value = std::to_string(*var.double_type);
+		value = typeToString(*var.double_type);
 	}
 	else if (var.int_type) {
 		value = std::to_string(*var.int_type);

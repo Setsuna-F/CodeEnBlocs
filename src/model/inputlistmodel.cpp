@@ -38,7 +38,8 @@ std::string satap::InputListModel::toString() {
 			s += "" + std::to_string(t) + "\n";
 		}
 		else if (i.double_type) {
-			s += "" + std::to_string(*i.double_type) + "\n";
+			//s += "" + std::to_string(*i.double_type) + "\n";
+			s += "" + typeToString(*i.double_type) + "\n";
 		}
 		else if (i.bool_type) {
 			s += "" + std::to_string(*i.bool_type) + "\n";

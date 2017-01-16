@@ -24,9 +24,9 @@ SubLevelModel::SubLevelModel() :
 void SubLevelModel::reset(){
 	int min = 0;
 	int max = 50;
-    int output = 0;
-    int output1 = 0;
-    int output2 = 0;
+    double output = 0;
+    double output1 = 0;
+    double output2 = 0;
 
 	_workspace->flush();
 	_codePage->flush();
@@ -46,14 +46,12 @@ void SubLevelModel::reset(){
             input->push(foo);
         }
         else{
-            sct_type foo;
-            double bar;
-            int q;
-            int d;
-            q = min + (rand() % (int)(max - min + 1));
-            d = min + (rand() % (int)(max - min + 1)) + 1;
-            bar = (min + (rand() % (int)(max - min + 1))) + (q/d);
-            foo.double_type = new double(bar);
+			sct_type foo;
+			double bar;
+			double q;
+			q = min + (rand() % (int)(100 - min + 1));
+			bar = (double)(min + (rand() % (int)(max - min + 1))) + (double)(q/100);
+			foo.double_type = new double(bar);
             foo.bool_type = nullptr;
             foo.int_type = nullptr;
             output2 = *(foo.double_type);

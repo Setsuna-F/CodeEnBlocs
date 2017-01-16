@@ -113,28 +113,9 @@ sct_type InstructionBlockModel::execute(){
 	condition.bool_type = nullptr;
 
 	for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
-		//condition = (*it)->execute();
 		if((*it)->getType() == AssignementBlocType){
 			AssignmentModel* assignModel = dynamic_cast<AssignmentModel*>(*it);
 			condition = assignModel->execute();
-			/*if(condition.int_type!=nullptr)	{
-				std::cout<< "fichier : " << __FILE__ << std::endl << " fonction : "<< __FUNCTION__ << std::endl;
-				std::cout<< "val : " << *condition.int_type << std::endl;
-				std::cout<< "-----------------------------------" << std::endl;
-			}
-			else if(condition.double_type!=nullptr)	{
-				std::cout<< "fichier : " << __FILE__ << " fonction : "<< __FUNCTION__ << std::endl;
-				std::cout<< "val : " << *condition.double_type << std::endl;
-				std::cout<< "-----------------------------------" << std::endl;
-			}
-			else if(condition.bool_type!=nullptr)	{
-				std::cout<< "fichier : " << __FILE__ << " fonction : "<< __FUNCTION__ << std::endl;
-				std::cout<< "val : " << *condition.bool_type << std::endl;
-				std::cout<< "-----------------------------------" << std::endl;
-			}
-			else{
-				std::cout<< "ERREUR: " << __FUNCTION__ << std::endl;
-			}*/
 		}
 	}
 	return condition;

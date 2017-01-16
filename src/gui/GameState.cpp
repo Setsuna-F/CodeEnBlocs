@@ -78,7 +78,7 @@ GameState::GameState(StateStack& stack, Context context)
 	std::cout << "Fin Inputs" << std::endl;*/
 
 	mVariablesString.setFont(context.fonts->get(Fonts::Main));
-	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setString(variablesToString());
 	mVariablesString.setFillColor(sf::Color::Black);
 	mVariablesString.setPosition(sf::Vector2f(window_size.x*0.17, window_size.y*0.23));
 
@@ -389,7 +389,7 @@ bool GameState::update(sf::Time dt)
 	}
 
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
-	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setString(variablesToString());
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 	return true;
 }
@@ -486,7 +486,7 @@ void GameState::startExecute() {
 	int score = mCurrentLevel->validate();
 
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
-	mVariablesString.setString(mCurrentLevel->getWorkspace()->getVariableList()->toString());
+	mVariablesString.setString(variablesToString());
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
 
 	*mContext.nbBlocsUsed = getNbBlocs();
@@ -972,4 +972,101 @@ void GameState::setVarible(int var)
 			break;
 	}
 
+}
+
+
+std::string GameState::variablesToString() {
+	std::string s = "";
+
+	// Var A
+	bool notSet = false;
+	sct_type var = mBlocVarA.getValue();
+	std::string name = "a";
+
+	std::string value;
+	if (var.bool_type) {
+		value = std::to_string(*var.bool_type);
+	} else if (var.double_type) {
+		value = std::to_string(*var.double_type);
+	} else if (var.int_type) {
+		value = std::to_string(*var.int_type);
+	} else {
+		notSet = true;
+		value = "?";
+	}
+	
+	if (!notSet) {
+		s += name + "=" + value + "\n";
+	}
+
+	// Var B
+	notSet = false;
+	var = mBlocVarB.getValue();
+	name = "b";
+
+	if (var.bool_type) {
+		value = std::to_string(*var.bool_type);
+	}
+	else if (var.double_type) {
+		value = std::to_string(*var.double_type);
+	}
+	else if (var.int_type) {
+		value = std::to_string(*var.int_type);
+	}
+	else {
+		notSet = true;
+		value = "?";
+	}
+
+	if (!notSet) {
+		s += name + "=" + value + "\n";
+	}
+
+	// Var C
+	notSet = false;
+	var = mBlocVarC.getValue();
+	name = "c";
+
+	if (var.bool_type) {
+		value = std::to_string(*var.bool_type);
+	}
+	else if (var.double_type) {
+		value = std::to_string(*var.double_type);
+	}
+	else if (var.int_type) {
+		value = std::to_string(*var.int_type);
+	}
+	else {
+		notSet = true;
+		value = "?";
+	}
+
+	if (!notSet) {
+		s += name + "=" + value + "\n";
+	}
+
+	// Var D
+	notSet = false;
+	var = mBlocVarD.getValue();
+	name = "d";
+
+	if (var.bool_type) {
+		value = std::to_string(*var.bool_type);
+	}
+	else if (var.double_type) {
+		value = std::to_string(*var.double_type);
+	}
+	else if (var.int_type) {
+		value = std::to_string(*var.int_type);
+	}
+	else {
+		notSet = true;
+		value = "?";
+	}
+
+	if (!notSet) {
+		s += name + "=" + value + "\n";
+	}
+	
+	return s;
 }

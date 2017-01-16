@@ -85,12 +85,12 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 
 	auto levelButton3 = std::make_shared<GUI::LevelButton>(context);
 	levelButton3->setPosition(160, 290);
-	//levelButton3->setText(mGameModel.getLevel(numLevel)->getName());
-	levelButton3->setText("???");
+	levelButton3->setText(mGameModel.getLevel(numLevel)->getName());
+	//levelButton3->setText("???");
 	levelButton3->setCallback([this, numLevel]()
 	{
-		//*getContext().numLevel = numLevel;
-		//requestStackPush(States::Game);
+		*getContext().numLevel = numLevel;
+		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton3);
 	mLevelButtons.push_back(levelButton3);
@@ -98,12 +98,12 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 
 	auto levelButton4 = std::make_shared<GUI::LevelButton>(context);
 	levelButton4->setPosition(400, 290);
-	//levelButton4->setText(mGameModel.getLevel(numLevel)->getName());
-	levelButton4->setText("???");
+	levelButton4->setText(mGameModel.getLevel(numLevel)->getName());
+	//levelButton4->setText("???");
 	levelButton4->setCallback([this, numLevel]()
 	{
-		//*getContext().numLevel = numLevel;
-		//requestStackPush(States::Game);
+		*getContext().numLevel = numLevel;
+		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton4);
 	mLevelButtons.push_back(levelButton4);
@@ -111,12 +111,12 @@ LevelManagerState::LevelManagerState(StateStack& stack, Context context)
 
 	auto levelButton5 = std::make_shared<GUI::LevelButton>(context);
 	levelButton5->setPosition(640, 290);
-	//levelButton5->setText(mGameModel.getLevel(numLevel)->getName());
-	levelButton5->setText("???");
+	levelButton5->setText(mGameModel.getLevel(numLevel)->getName());
+	//levelButton5->setText("???");
 	levelButton5->setCallback([this, numLevel]()
 	{
-		//*getContext().numLevel = numLevel;
-		//requestStackPush(States::Game);
+		*getContext().numLevel = numLevel;
+		requestStackPush(States::Game);
 	});
 	mGUIContainer.pack(levelButton5);
 	mLevelButtons.push_back(levelButton5);

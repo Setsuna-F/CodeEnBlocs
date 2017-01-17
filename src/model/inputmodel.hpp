@@ -17,13 +17,13 @@ namespace satap{
 			void setInputList(InputListModel* &inputList);
 
 			virtual BlockModel* getBlockById(size_t id){
-				std::cout<<"r0"<<std::endl;
+				//std::cout<<"r0"<<std::endl;
 
 				if (id==this->getId()){
-					std::cout<<"r1"<<std::endl;
+					//std::cout<<"r1"<<std::endl;
 					return this;
 				}
-				std::cout<<"L'id"<<"="<<id<<std::endl;
+				//std::cout<<"L'id"<<"="<<id<<std::endl;
 
 				BlockModel *block=nullptr;
 				/*for (std::vector<BlockModel *>::iterator it = this->_blockList.begin(); it != this->_blockList.end(); ++it){
@@ -38,7 +38,7 @@ namespace satap{
 				 block = (*it)->getBlockById(id);
 					}
 				 }*/
-				std::cout<<"r4"<<std::endl;
+				//std::cout<<"r4"<<std::endl;
 				return block;
 			}
 

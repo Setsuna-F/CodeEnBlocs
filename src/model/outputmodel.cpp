@@ -35,7 +35,7 @@ sct_type OutputModel::execute() {
 		//std::cout << "DANS BOOL :" << std::endl;
 	}
 
-	std::cout << "Output :" << val << std::endl;
+	//std::cout << "Output :" << val << std::endl;
 	_outPutList->push(val);
 	return _valOutput;
 }

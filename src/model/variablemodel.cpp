@@ -32,7 +32,7 @@ std::string VariableModel::getName() {
 
 void VariableModel::setValue(sct_type value) {
 	_value = value;
-	std::cout << "setvalue begin" << std::endl;
+	//std::cout << "setvalue begin" << std::endl;
 	if (value.bool_type != nullptr)
 	{
 		if (_value_ptr->bool_type == nullptr)
@@ -80,14 +80,14 @@ sct_type* VariableModel::getValuePtr() {
 
 sct_type VariableModel::execute() {
 	//return _value;
-	std::cout << "execute begin" << std::endl;
-	if (_value_ptr->int_type != nullptr)
-		std::cout << "int : " << *_value_ptr->int_type << std::endl;
-	if (_value_ptr->double_type != nullptr)
-		std::cout << "double : " << *_value_ptr->double_type << std::endl;
-	if (_value_ptr->bool_type != nullptr)
-		std::cout << "bool : " << *_value_ptr->bool_type << std::endl;
-	std::cout << "execute end" << std::endl;
+	//std::cout << "execute begin" << std::endl;
+	//if (_value_ptr->int_type != nullptr)
+	//	std::cout << "int : " << *_value_ptr->int_type << std::endl;
+	//if (_value_ptr->double_type != nullptr)
+	//	std::cout << "double : " << *_value_ptr->double_type << std::endl;
+	//if (_value_ptr->bool_type != nullptr)
+	//	std::cout << "bool : " << *_value_ptr->bool_type << std::endl;
+	//std::cout << "execute end" << std::endl;
 	return *_value_ptr;
 }
 

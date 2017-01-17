@@ -56,7 +56,7 @@ void InstructionBlockModel::nullBlockFromIndex(size_t index){
 	//this->_blockListName.erase(this->_blockListName.begin() + index);
 	//std::cout<<"Je passe ici "<< __FUNCTION__ <<std::endl;
 	if(index >= this->_blockList.size()){
-		std::cout<<"Il y a beaucoupe de bloc [Il ne devrait pas y en avoir] -> index="<<index<<"   size="<< this->_blockList.size() <<std::endl;
+		//std::cout<<"Il y a beaucoupe de bloc [Il ne devrait pas y en avoir] -> index="<<index<<"   size="<< this->_blockList.size() <<std::endl;
 	}
 	else{
 		//std::cout<<"Il reste un bloc"<<std::endl;

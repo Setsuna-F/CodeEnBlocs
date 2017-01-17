@@ -17,7 +17,7 @@ using namespace std;
 void saveLevel(int score, std::string namelevel) {
 	std::string name = to_string(score) + namelevel;
 
-	ofstream fichier("../res/allScores.ceg", ios::out | ios::app);  // ouverture en écriture avec effacement du fichier ouvert
+	ofstream fichier("res/allScores.ceg", ios::out | ios::app);  // ouverture en écriture avec effacement du fichier ouvert
 	if (fichier) {
 		fichier << name << "\n";
 		fichier.close();
@@ -28,7 +28,7 @@ void saveLevel(int score, std::string namelevel) {
 
 
 void saveAllScore(std::vector<int> vect_score) {
-	ofstream fichier("../res/allScores.ceg", ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+	ofstream fichier("res/allScores.ceg", ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
 	if (fichier) {
 		for (int i = 0; i < vect_score.size(); i++)
 		{
@@ -51,10 +51,10 @@ void saveAllScore(std::vector<int> vect_score) {
  */
 std::vector<sct_score> getAllScore() {
 	std::vector<sct_score> vect_score;
-	ifstream fichier("../res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
+	ifstream fichier("res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
 	if (fichier) {
 		std::string ligne;
-		printf("Tous les scores: \n");
+		//printf("Tous les scores: \n");
 		while (getline(fichier, ligne)) {
 			char str[40];
 			int i;
@@ -77,10 +77,10 @@ std::vector<sct_score> getAllScore() {
 
 std::vector<int> getAllScoreWithoutName() {
 	std::vector<int> vect_score;
-	ifstream fichier("../res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
+	ifstream fichier("res/allScores.ceg", ios::in);  // ouverture en écriture avec effacement du fichier ouvert
 	if (fichier) {
 		std::string ligne;
-		printf("Tous les scores: \n");
+		//printf("Tous les scores: \n");
 		while (getline(fichier, ligne)) {
 			char str[40];
 			int i;

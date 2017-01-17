@@ -496,7 +496,6 @@ void GameState::startExecute() {
 	if(mLi == 0 && mCol == 0)
 		return ;
 	int score = mCurrentLevel->validate();
-	std::cout << "coucou coucou coucou coucou ooooooohhhhhh" << std::endl;
 	mInputString.setString(mCurrentLevel->getWorkspace()->getInputList()->toString());
 	mVariablesString.setString(variablesToString());
 	mOutputString.setString(mCurrentLevel->getWorkspace()->getOutputList()->toString());
@@ -548,10 +547,12 @@ void GameState::effacerLigne(int ligne) {
 	}
 
 	// Si ça n'efface pas la ligne, c'est que geNbElementsOnLine retourne 0, et que donc, les éléments de la ligne ne sont pas correctement linkés.
-	std::cout << "effacer line " << ligne << std::endl;
+	//std::cout << "effacer line " << ligne << std::endl;
 	if (getNbElementsOnLine(ligne) > 0) {
-		if(mBlocsContainerDeleted[ligne]==0)
-			std::cout<< "la ligne est deja supprmé" <<std::endl;
+		if (mBlocsContainerDeleted[ligne] == 0)
+		{
+			//std::cout<< "la ligne est deja supprmé" <<std::endl;
+		}
 		//mCurrentLevel->getCodePage()->deleteLigne(ligne);
 		mBlocsContainer[ligne]->flush();
 		mCurrentLevel->getCodePage()->deleteLigne(ligne-countDel);
@@ -568,7 +569,7 @@ void GameState::effacerLigne(int ligne) {
 void GameState::newLine(int line)
 {
 	// TODO insérer ligne dans le model -> décaler lignes dessous
-	std::cout << "TODO insérer ligne dans model" << std::endl;
+	//std::cout << "TODO insérer ligne dans model" << std::endl;
 	if (getNbElementsOnLine(11) == 0)
 	{
 		for (int l = line; l<11; l++)
@@ -618,11 +619,11 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 	if(mLi > mCurrentLevel->getCodePage()->getBlockList().size())
 		return ;
 	std::shared_ptr<Bloc> bloc_ptr;
-	std::cerr << "1- " << __FUNCTION__ <<std::endl;
+	//std::cerr << "1- " << __FUNCTION__ <<std::endl;
 	if(mCurrentLevel->getCodePage()->getNbBlock(mLi) == 0 || (mBlocsContainerDeleted[mLi]==0)){ //Si la ligne est vide alors
-		std::cerr << "2- " << __FUNCTION__ <<std::endl;
+		//std::cerr << "2- " << __FUNCTION__ <<std::endl;
 		if(isValideBlock(t) || t == VariableBlocType){
-			std::cerr << "3- " << __FUNCTION__ <<std::endl;
+			//std::cerr << "3- " << __FUNCTION__ <<std::endl;
 			Bloc * bloc_tmp = factoryBlock(t);
 
 			std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -633,7 +634,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 			// TODO linker correctement le bloc créé avec les blocs existant de la même ligne. Mettre à jour (dans certains cas), le bloc à exécuter en premier (dans le blockList de mCurrentLevel->getCodePage()->...)
 
 			if(t == OutputBlocType || t == VariableBlocType){
-				std::cerr << "4- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "4- " << __FUNCTION__ <<std::endl;
 				//std::cerr << "ERROR: OUT OU VARIABLE " << __FUNCTION__ <<std::endl;
 				Bloc * bloc_assign_tmp= factoryBlock(AssignementBlocType);
 				std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -643,8 +644,10 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				mCol++; // TODO Trouver un autre moyen de mettre à jour mCol
 
 				BlockModel* compofirstop = dynamic_cast<BlockModel*>(bloc_tmp);
-				if(compofirstop == nullptr)
-					std::cout << "ERREUR: "<< __FUNCTION__ <<std::endl;
+				if (compofirstop == nullptr)
+				{
+					//std::cout << "ERREUR: " << __FUNCTION__ << std::endl;
+				}
 				else{
 					compofirstop->setWorspace(*mCurrentLevel->getWorkspace());
 					compofirstop->setType(t);
@@ -655,24 +658,24 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 				}
 			}
 			else{
-				std::cerr << "5- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "5- " << __FUNCTION__ <<std::endl;
 				mCurrentLevel->getCodePage()->addBlock(dynamic_cast<BlockModel*>(bloc_tmp), t, mLi);
 				mBlocsContainerDeleted[mLi]=1;
 			}
 		}
 		else{
-			std::cerr << "ERROR: " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
+			//std::cerr << "ERROR: " << __FUNCTION__ <<" Le type n'est pas conforme. "<<std::endl;
 		}
 	}else{
 		if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == AssignementBlocType){
-			std::cerr << "7- " << __FUNCTION__ <<std::endl;
+			//std::cerr << "7- " << __FUNCTION__ <<std::endl;
 			AssignmentModel* assignBlock = dynamic_cast<AssignmentModel*>(mCurrentLevel->getCodePage()->getBlockByIndex(mLi));
 			if(assignBlock->getSecondOperand()==nullptr){
-				std::cerr << "8- " << __FUNCTION__ <<std::endl;
+				//std::cerr << "8- " << __FUNCTION__ <<std::endl;
 			 	if(!isBooleanBlock(t)){
-					std::cerr << "9- " << __FUNCTION__ <<std::endl;
+					//std::cerr << "9- " << __FUNCTION__ <<std::endl;
 					if(!isValideBlock(t) && !isFunctionBlock(t)){
-						std::cerr << "10- " << __FUNCTION__ <<std::endl;
+						//std::cerr << "10- " << __FUNCTION__ <<std::endl;
 						Bloc * bloc_assign_tmp= factoryBlock(t);
 
 						std::pair<int, int> coordBloc = getCoordonnees(mLi, mCol);
@@ -684,14 +687,15 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 						BlockCompositeModel* compoblock = dynamic_cast<BlockCompositeModel*>(bloc_assign_tmp);
 						compoblock->setType(t);
 						assignBlock->setSecondOperand(compoblock);
-						if(assignBlock->getSecondOperand()==nullptr) //Je verifi que la nouvelle valeur n'est plus egale a null si elle est toujours alors elle renvera un message.
-							std::cerr << "Second operand est toujours nullptr " << __FUNCTION__ <<std::endl;
+						if (assignBlock->getSecondOperand() == nullptr) { //Je verifi que la nouvelle valeur n'est plus egale a null si elle est toujours alors elle renvera un message.
+							//std::cerr << "Second operand est toujours nullptr " << __FUNCTION__ << std::endl;
+						}
 					}
 				}
 			}
 			else if (assignBlock->getSecondOperand() != nullptr){
 				if (t != AssignementBlocType){
-					std::cerr << "12- " << __FUNCTION__ <<std::endl;
+					//std::cerr << "12- " << __FUNCTION__ <<std::endl;
 					BlockCompositeModel * blockmodel_tmp = assignBlock->getSecondOperand();
 					assignBlock->setSecondOperand(recusiveAdd(blockmodel_tmp, t));
 				}
@@ -699,7 +703,7 @@ void GameState::addBlocks(BlockModel *bloc, satap::typeBloc t){
 		}
 		else if(mCurrentLevel->getCodePage()->getBlockByIndex(mLi)->getType() == IfBlocType){
 			//std::cerr << "14- " << __FUNCTION__ <<std::endl;
-			std::cerr << "Type IfBlocType " << __FUNCTION__ <<std::endl;
+			//std::cerr << "Type IfBlocType " << __FUNCTION__ <<std::endl;
 		}
 	}
 }
@@ -708,7 +712,7 @@ BlockCompositeModel* GameState::recusiveAdd(BlockCompositeModel* &block, satap::
 	std::shared_ptr<Bloc> bloc_ptr;
 	if(isUnaryBlock(block->getType())){
 		if(isBaseFunctionBlock(block->getType())){ //Si la fonction est composable et donc peut avoir 1 parametre
-			std::cout << " " << t <<std::endl;
+			//std::cout << " " << t <<std::endl;
 			//BinaryModel* btmp = dynamic_cast<BinaryModel*>(block);
 
 			/*if(btmp->getOperand()==nullptr){//Si notre operateur n'a pas d'elements a l'interrieur alors
@@ -919,42 +923,42 @@ Bloc * GameState::factoryBlock(satap::typeBloc t){
 		b1->setValuePtr(mBlocVarSelected.getValuePtr());
 		b1->setSprite(mContext, Textures::VariableSpawner);
 		b = b1;
-		std::cout << "Ajout d'un bloc de type var" << std::endl;
+		//std::cout << "Ajout d'un bloc de type var" << std::endl;
 	}
 	else if (t == AssignementBlocType) {
 		b = new AssignmentBloc(mContext);
 		b->setSprite(mContext, Textures::AssignmentSpawner);
-		std::cout << "Ajout d'un bloc de type <-" << std::endl;
+		//std::cout << "Ajout d'un bloc de type <-" << std::endl;
 	}
 	else if (t == InputBlocType) {
 		b = new InputBloc(mContext, mCurrentLevel->getWorkspace()->getInputList());
 		b->setSprite(mContext, Textures::InputSpawner);
-		std::cout << "Ajout d'un bloc de type In" << std::endl;
+		//std::cout << "Ajout d'un bloc de type In" << std::endl;
 	}
 	else if (t == OutputBlocType) {
 		b = new OutputBloc(mContext, mCurrentLevel->getWorkspace()->getOutputList());
 		b->setSprite(mContext, Textures::OutputSpawner);
-		std::cout << "Ajout d'un bloc de type Out" << std::endl;
+		//std::cout << "Ajout d'un bloc de type Out" << std::endl;
 	}
 	else if (t == AddBlocType) {
 		b = new AddBloc(mContext);
 		b->setSprite(mContext, Textures::AddSpawner);
-		std::cout << "Ajout d'un bloc de type +" << std::endl;
+		//std::cout << "Ajout d'un bloc de type +" << std::endl;
 	}
 	else if (t == SubBlocType) {
 		b = new SubBloc(mContext);
 		b->setSprite(mContext, Textures::SubSpawner);
-		std::cout << "Ajout d'un bloc de type -" << std::endl;
+		//std::cout << "Ajout d'un bloc de type -" << std::endl;
 	}
 	else if (t == DivBlocType) {
 		b = new DivBloc(mContext);
 		b->setSprite(mContext, Textures::DivSpawner);
-		std::cout << "Ajout d'un bloc de type /" << std::endl;
+		//std::cout << "Ajout d'un bloc de type /" << std::endl;
 	}
 	else if (t == MultBlocType) {
 		b = new MultBloc(mContext);
 		b->setSprite(mContext, Textures::MultSpawner);
-		std::cout << "Ajout d'un bloc de type *" << std::endl;
+		//std::cout << "Ajout d'un bloc de type *" << std::endl;
 	}
 
 	return b;

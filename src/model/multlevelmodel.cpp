@@ -67,11 +67,11 @@ void MultLevelModel::reset(){
 	        input->push(foo);
         }
     }
-	std::cout<<"-------------------------------"<<std::endl;
-	std::cout<<"J'ai : "<<output1<<std::endl;
-	std::cout<<"J'ai : "<<output2<<std::endl;
+	//std::cout<<"-------------------------------"<<std::endl;
+	//std::cout<<"J'ai : "<<output1<<std::endl;
+	//std::cout<<"J'ai : "<<output2<<std::endl;
 	output = output1*output2;
-	std::cout<<"Dans le level je veux: "<<output<<std::endl;
+	//std::cout<<"Dans le level je veux: "<<output<<std::endl;
 
 	_outputListExpected = *(new OutputListModel());
 	_outputListExpected.push(typeToString(output));

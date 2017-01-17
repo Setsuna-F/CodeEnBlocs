@@ -48,11 +48,15 @@ sct_type AddModel::execute() {
 	else
 		return res;
 
-	if((firstOperand.int_type==nullptr)&&(firstOperand.double_type==nullptr)&&(firstOperand.bool_type==nullptr))
-		std::cout<< "ERREUR: LE PREMIER ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" <<std::endl;
+	if ((firstOperand.int_type == nullptr) && (firstOperand.double_type == nullptr) && (firstOperand.bool_type == nullptr))
+	{
+		//std::cout << "ERREUR: LE PREMIER ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" << std::endl;
+	}
 
-	if((secondOperand.int_type==nullptr)&&(secondOperand.double_type==nullptr)&&(secondOperand.bool_type==nullptr))
-		std::cout<< "ERREUR: LE SECOND ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" <<std::endl;
+	if ((secondOperand.int_type == nullptr) && (secondOperand.double_type == nullptr) && (secondOperand.bool_type == nullptr))
+	{
+		//std::cout << "ERREUR: LE SECOND ARGUMENT N'EST PAS VALIDE : [FONCTION : " << __FUNCTION__ << "]" << std::endl;
+	}
 
 
 	bool isinteger=true; // cette variable va nous servir a voir si les deux param sont des int ou des doubles
@@ -84,7 +88,7 @@ sct_type AddModel::execute() {
 	/*cas int*/
 	if(isinteger){
 		int res_add=res_first+res_second;
-		std::cout<<"val = "<< res_add <<std::endl;
+		//std::cout<<"val = "<< res_add <<std::endl;
 		res.int_type=new int(res_add);
 		//std::cout<<"val = "<< *res.int_type <<std::endl;
 
@@ -93,7 +97,7 @@ sct_type AddModel::execute() {
 	/*cas double*/
 	else{
 		double res_add=res_first+res_second;
-		std::cout<<"val = "<< res_add <<std::endl;
+		//std::cout<<"val = "<< res_add <<std::endl;
 		res.double_type=new double(res_add);
 		std::fflush(stdout);
 	}
